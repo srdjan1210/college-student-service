@@ -20,6 +20,10 @@ public class Screen extends JFrame {
 		setLocation(width / 4, height / 4);
 		setTitle("Studentska Služba");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
+		MenuBar menu = new MenuBar();
+		setJMenuBar(menu);
+		
 		setVisible(true);
 		
 	}
