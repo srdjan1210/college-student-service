@@ -34,6 +34,96 @@ public class Profesor {
 		this.godineStaza = godineStaza;
 		this.predmeti = new ArrayList<Predmet>();
 	}
+
+	public String getPrezime() {
+		return prezime;
+	}
+
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
+
+	public String getIme() {
+		return ime;
+	}
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+
+	public Date getDatumRodjenja() {
+		return datumRodjenja;
+	}
+
+	public void setDatumRodjenja(Date datumRodjenja) {
+		this.datumRodjenja = datumRodjenja;
+	}
+
+	public String getAdresa() {
+		return adresa;
+	}
+
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+
+	public Integer getKontaktTelefon() {
+		return kontaktTelefon;
+	}
+
+	public void setKontaktTelefon(Integer kontaktTelefon) {
+		this.kontaktTelefon = kontaktTelefon;
+	}
+
+	public String getEmailAdresa() {
+		return emailAdresa;
+	}
+
+	public void setEmailAdresa(String emailAdresa) {
+		this.emailAdresa = emailAdresa;
+	}
+
+	public String getAdresaKancelarije() {
+		return adresaKancelarije;
+	}
+
+	public void setAdresaKancelarije(String adresaKancelarije) {
+		this.adresaKancelarije = adresaKancelarije;
+	}
+
+	public Integer getBrojLicneKarte() {
+		return brojLicneKarte;
+	}
+
+	public void setBrojLicneKarte(Integer brojLicneKarte) {
+		this.brojLicneKarte = brojLicneKarte;
+	}
+
+	public String getZvanje() {
+		return zvanje;
+	}
+
+	public void setZvanje(String zvanje) {
+		this.zvanje = zvanje;
+	}
+
+	public Integer getGodineStaza() {
+		return godineStaza;
+	}
+
+	public void setGodineStaza(Integer godineStaza) {
+		this.godineStaza = godineStaza;
+	}
+
+	public ArrayList<Predmet> getPredmeti() {
+		return predmeti;
+	}
+
+	public void setPredmeti(ArrayList<Predmet> predmeti) {
+		this.predmeti = predmeti;
+	}
+	
+	
 	
 	
 }
