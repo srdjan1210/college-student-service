@@ -1,5 +1,6 @@
 package view;
 
+
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -27,6 +28,7 @@ public class MenuBar extends JMenuBar {
 
 		JMenu openMenuButton = new JMenu("Open");
 		Image icon = Toolkit.getDefaultToolkit().getImage("Icons/OpenMenuItem.png");
+
 		icon = icon.getScaledInstance(13, 13, icon.SCALE_SMOOTH);
 		openMenuButton.setIcon(new ImageIcon(icon));
 
