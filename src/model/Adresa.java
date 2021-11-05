@@ -6,7 +6,7 @@ public class Adresa {
 	private String grad;
 	private String drzava;
 	
-	public Adresa(String ulica, Integer broj, String grad, String dezava) {
+	public Adresa(String ulica, Integer broj, String grad, String drzava) {
 		super();
 		this.ulica = ulica;
 		this.broj = broj;

@@ -3,11 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import utils.EnumTypes.Status;
+
 public class Student {
-	enum Status{
-		Budzet,
-		Samofinansiranje
-	}
 	
 	private String prezime;
 	private String ime;

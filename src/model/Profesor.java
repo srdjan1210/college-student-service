@@ -3,8 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
-import model.Student.Status;
-
 public class Profesor {
 	private String prezime;
 	private String ime;
@@ -19,8 +17,8 @@ public class Profesor {
 	private ArrayList<Predmet> predmeti;
 	
 	public Profesor(String prezime, String ime, Date datumRodjenja, String adresa, Integer kontaktTelefon,
-			String emailAdresa, String adresaKancelarije, Integer brojLicneKarte, String zvanje, Integer godineStaza,
-			ArrayList<Predmet> predmeti) {
+			String emailAdresa, String adresaKancelarije, Integer brojLicneKarte, String zvanje, Integer godineStaza) {
+
 		super();
 		this.prezime = prezime;
 		this.ime = ime;
