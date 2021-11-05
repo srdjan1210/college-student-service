@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import utils.EnumTypes.Semestar;
+
 public class Predmet {
 	private String sifraPredmeta;
 	private String nazivPredmeta;
