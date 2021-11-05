@@ -20,6 +20,10 @@ public class Screen extends JFrame {
 		
 		setTitle("Studentska Služba");
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
+		MenuBar menu = new MenuBar();
+		setJMenuBar(menu);
+		
 		setVisible(true);
 		
 	}
