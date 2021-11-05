@@ -27,10 +27,10 @@ public class MenuBar extends JMenuBar {
 		MenuItems aboutMenuItem = new MenuItems("About", "Icons/AboutMenuItem.png", "CTRL + A");
 
 		JMenu openMenuButton = new JMenu("Open");
-		Image icon = Toolkit.getDefaultToolkit().getImage("Icons/OpenMenuItem.png");
 
-		icon = icon.getScaledInstance(13, 13, icon.SCALE_SMOOTH);
-		openMenuButton.setIcon(new ImageIcon(icon));
+		ImageIcon imageIcon=new ImageIcon("Icons/OpenMenuItem.png");
+		Image image=imageIcon.getImage().getScaledInstance(13,13,Image.SCALE_SMOOTH);
+		openMenuButton.setIcon(new ImageIcon(image));
 
 		MenuItems studentiItem = new MenuItems("Studenti", null, null);
 		MenuItems predmetiItem = new MenuItems("Predmeti", null, null);
