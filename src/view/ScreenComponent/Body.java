@@ -7,9 +7,8 @@ import javax.swing.JPanel;
 
 import utils.Constants;
 
-public class Body extends JPanel{
-	
-	
+public class Body extends JPanel {
+
 	public Body() {
 		super();
 		setPreferredSize(new Dimension(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2 - 60));

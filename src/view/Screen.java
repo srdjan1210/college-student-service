@@ -1,12 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import utils.Constants;
@@ -28,7 +24,7 @@ public class Screen extends JFrame {
 		MenuBar menu = new MenuBar();
 		Footer footer = new Footer();
 		Body body = new Body();
-		
+
 		setJMenuBar(menu);
 
 		setLayout(new BorderLayout());

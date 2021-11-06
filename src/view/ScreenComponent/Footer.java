@@ -7,8 +7,8 @@ import javax.swing.JPanel;
 
 import utils.Constants;
 
-public class Footer extends JPanel{
-	
+public class Footer extends JPanel {
+
 	public Footer() {
 		super();
 		setPreferredSize(new Dimension(Constants.SCREEN_WIDTH / 2, 30));
