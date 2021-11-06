@@ -1,4 +1,4 @@
-package view;
+package view.MenuBarComponent;
 
 
 import java.awt.Image;
@@ -7,6 +7,8 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+
+import utils.PropertyFactory;
 
 public class MenuBar extends JMenuBar {
 

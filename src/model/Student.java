@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Date;
 
-import utils.EnumTypes.Status;
+import utils.Constants.Status;
 
 public class Student {
 	

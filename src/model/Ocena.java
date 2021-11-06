@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-import utils.EnumTypes.BrOcena;
+import utils.Constants.BrOcena;
 
 public class Ocena {
 	private Student polozioIspit;
