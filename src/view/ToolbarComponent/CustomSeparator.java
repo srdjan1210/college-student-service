@@ -1,4 +1,4 @@
-package view.ToolbarComponents;
+package view.ToolbarComponent;
 
 import java.awt.Dimension;
 

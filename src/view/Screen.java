@@ -8,8 +8,8 @@ import javax.swing.WindowConstants;
 import utils.Constants;
 import view.MenuBarComponent.MenuBar;
 import view.ScreenComponent.Body;
-import view.ToolbarComponents.Toolbar;
 import view.StatusBarComponent.*;
+import view.ToolbarComponent.Toolbar;
 
 public class Screen extends JFrame {
 

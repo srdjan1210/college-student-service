@@ -1,4 +1,4 @@
-package view.ToolbarComponents;
+package view.ToolbarComponent;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,11 +24,12 @@ public class Toolbar extends JToolBar {
 		ImageIcon iconNew = ImageUtils.scaleImage(ImageUtils.readImageIcon("Icons/NewMenuItem.png"), Constants.ICON_BUTTON_WIDTH, Constants.ICON_BUTTON_HEIGHT);
 		ImageIcon iconDelete = ImageUtils.scaleImage(ImageUtils.readImageIcon("Icons/DeleteMenuItem.png"), Constants.ICON_BUTTON_WIDTH, Constants.ICON_BUTTON_HEIGHT);
 		ImageIcon iconEdit = ImageUtils.scaleImage(ImageUtils.readImageIcon("Icons/EditMenuitem.png"), Constants.ICON_BUTTON_WIDTH, Constants.ICON_BUTTON_HEIGHT);
+		ImageIcon iconSearch = ImageUtils.scaleImage(ImageUtils.readImageIcon("Icons/SearchIconItem.png"), Constants.ICON_BUTTON_WIDTH, Constants.ICON_BUTTON_HEIGHT);
 
 		JButton btnNew = new JButton(iconNew);
 		JButton btnEdit = new JButton(iconEdit);
 		JButton btnDelete = new JButton(iconDelete);
-		JButton btnSearch = new JButton(iconEdit);
+		JButton btnSearch = new JButton(iconSearch);
 
 		setButtonProperties(btnNew);
 		setButtonProperties(btnEdit);
