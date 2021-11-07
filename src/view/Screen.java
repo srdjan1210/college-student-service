@@ -16,8 +16,8 @@ public class Screen extends JFrame {
 	public Screen() {
 		super();
 
-		setSize(Constants.SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2);
-		setLocation(Constants.SCREEN_WIDTH / 4, Constants.SCREEN_HEIGHT / 4);
+		setSize(Constants.SCREEN_WIDTH * 3 / 4, Constants.SCREEN_HEIGHT * 3 / 4);
+		setLocation(Constants.SCREEN_WIDTH / 8, Constants.SCREEN_HEIGHT / 8);
 
 		// Screen body
 		Toolbar toolbar = new Toolbar();
