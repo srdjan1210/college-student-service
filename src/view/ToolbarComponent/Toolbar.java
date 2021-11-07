@@ -1,6 +1,7 @@
 package view.ToolbarComponent;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -20,21 +21,12 @@ public class Toolbar extends JToolBar {
 
 		setPreferredSize(new Dimension(Constants.SCREEN_WIDTH * 3 / 4, 30));
 		setFloatable(false);
-
-		ImageIcon iconNew = ImageUtils.scaleImage(ImageUtils.readImageIcon("Icons/NewMenuItem.png"), Constants.ICON_BUTTON_WIDTH, Constants.ICON_BUTTON_HEIGHT);
-		ImageIcon iconDelete = ImageUtils.scaleImage(ImageUtils.readImageIcon("Icons/DeleteMenuItem.png"), Constants.ICON_BUTTON_WIDTH, Constants.ICON_BUTTON_HEIGHT);
-		ImageIcon iconEdit = ImageUtils.scaleImage(ImageUtils.readImageIcon("Icons/EditMenuitem.png"), Constants.ICON_BUTTON_WIDTH, Constants.ICON_BUTTON_HEIGHT);
-		ImageIcon iconSearch = ImageUtils.scaleImage(ImageUtils.readImageIcon("Icons/SearchIconItem.png"), Constants.ICON_BUTTON_WIDTH, Constants.ICON_BUTTON_HEIGHT);
-
-		JButton btnNew = new JButton(iconNew);
-		JButton btnEdit = new JButton(iconEdit);
-		JButton btnDelete = new JButton(iconDelete);
-		JButton btnSearch = new JButton(iconSearch);
-
-		setButtonProperties(btnNew);
-		setButtonProperties(btnEdit);
-		setButtonProperties(btnDelete);
-		setButtonProperties(btnSearch);
+		
+		ToolbarIconButton btnNew = new ToolbarIconButton("Icons/NewMenuItem.png");
+		ToolbarIconButton btnEdit = new ToolbarIconButton("Icons/DeleteMenuItem.png");
+		ToolbarIconButton btnDelete = new ToolbarIconButton("Icons/EditMenuitem.png");
+		ToolbarIconButton btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png");
+		ToolbarSearch searchField = new ToolbarSearch();
 
 		// Left side of toolbar
 		add(new CustomSeparator());
@@ -48,18 +40,10 @@ public class Toolbar extends JToolBar {
 		add(Box.createHorizontalGlue());
 
 		// Right side of toolbar
-		add(new ToolbarSearch());
+		add(searchField);
 		add(new CustomSeparator());
 		add(btnSearch);
 		add(new CustomSeparator());
-
-	}
-
-	protected void setButtonProperties(JButton button) {
-		button.setSize(20, 20);
-		button.setBackground(Color.WHITE);
-		button.setBorder(BorderFactory.createEmptyBorder());
-		button.setContentAreaFilled(false);
 
 	}
 
