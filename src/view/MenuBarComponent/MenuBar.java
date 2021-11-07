@@ -1,6 +1,5 @@
 package view.MenuBarComponent;
 
-
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -30,8 +29,8 @@ public class MenuBar extends JMenuBar {
 
 		JMenu openMenuButton = new JMenu("Open");
 
-		ImageIcon imageIcon=new ImageIcon("Icons/OpenMenuItem.png");
-		Image image=imageIcon.getImage().getScaledInstance(13,13,Image.SCALE_SMOOTH);
+		ImageIcon imageIcon = new ImageIcon("Icons/OpenMenuItem.png");
+		Image image = imageIcon.getImage().getScaledInstance(13, 13, Image.SCALE_SMOOTH);
 		openMenuButton.setIcon(new ImageIcon(image));
 
 		MenuItems studentiItem = new MenuItems("Studenti", null, null);

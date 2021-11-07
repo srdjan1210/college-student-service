@@ -8,8 +8,8 @@ import javax.swing.WindowConstants;
 import utils.Constants;
 import view.MenuBarComponent.MenuBar;
 import view.ScreenComponent.Body;
-import view.ScreenComponent.Footer;
 import view.ToolbarComponents.Toolbar;
+import view.StatusBarComponent.*;
 
 public class Screen extends JFrame {
 
@@ -22,7 +22,7 @@ public class Screen extends JFrame {
 		// Screen body
 		Toolbar toolbar = new Toolbar();
 		MenuBar menu = new MenuBar();
-		Footer footer = new Footer();
+		StatusBar statusBar = new StatusBar(this);
 		Body body = new Body();
 
 		setJMenuBar(menu);
@@ -30,7 +30,7 @@ public class Screen extends JFrame {
 		setLayout(new BorderLayout());
 		add(toolbar, BorderLayout.PAGE_START);
 		add(body, BorderLayout.CENTER);
-		add(footer, BorderLayout.SOUTH);
+		add(statusBar, BorderLayout.SOUTH);
 
 		// Screen title and close operation
 		setTitle("Studentska Služba");
