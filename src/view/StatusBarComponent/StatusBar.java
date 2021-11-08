@@ -17,7 +17,7 @@ public class StatusBar extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		JLabel nazivAplikacijeLabel = new JLabel("[Studentska Sluzba]");
 		JLabel nazivTabaLabel = new JLabel("[Naziv_taba_ovde]");
-		SimpleDateFormat dateTimeFormat = new SimpleDateFormat("[HH:mm:ss dd/MM/yyyy]");
+		SimpleDateFormat dateTimeFormat = new SimpleDateFormat("[HH:mm dd/MM/yyyy]");
 		Date date = new Date();
 		JLabel trenutnoVremeLabel = new JLabel(dateTimeFormat.format(date));
 

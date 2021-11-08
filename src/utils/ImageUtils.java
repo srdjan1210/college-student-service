@@ -13,10 +13,11 @@ public class ImageUtils {
 		Image newimg = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		return new ImageIcon(newimg);
 	}
+
 	public static ImageIcon readImageIcon(String path) {
 
 		try {
-			BufferedImage ic = ImageIO.read( ClassLoader.getSystemResource(path));
+			BufferedImage ic = ImageIO.read(ClassLoader.getSystemResource(path));
 			ImageIcon ic2 = new ImageIcon(ic);
 			return ic2;
 		} catch (Exception e) {
