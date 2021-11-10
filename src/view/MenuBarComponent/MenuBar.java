@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
-
 public class MenuBar extends JMenuBar {
 
 	public MenuBar() {
@@ -32,12 +31,14 @@ public class MenuBar extends JMenuBar {
 		openMenuButton.setIcon(new ImageIcon(image));
 
 		MenuItems studentiItem = new MenuItems("Studenti", null, null);
+
 		MenuItems predmetiItem = new MenuItems("Predmeti", null, null);
 		MenuItems profesoriItem = new MenuItems("Profesori", null, null);
 		MenuItems katedreItem = new MenuItems("Katedre", null, null);
 		openMenuButton.add(studentiItem);
 		openMenuButton.add(predmetiItem);
 		openMenuButton.add(profesoriItem);
+
 		openMenuButton.add(katedreItem);
 
 		fileMenuButton.add(newMenuItem);

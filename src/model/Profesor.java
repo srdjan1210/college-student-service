@@ -1,23 +1,23 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Profesor {
 	private String prezime;
 	private String ime;
-	private Date datumRodjenja;
+	private LocalDate datumRodjenja;
 	private String adresa;
 	private String kontaktTelefon;
 	private String emailAdresa;
 	private String adresaKancelarije;
-	private int brojLicneKarte;
+	private String brojLicneKarte;
 	private String zvanje;
 	private int godineStaza;
 	private ArrayList<Predmet> predmeti;
 	
-	public Profesor(String prezime, String ime, Date datumRodjenja, String adresa, String kontaktTelefon,
-			String emailAdresa, String adresaKancelarije, int brojLicneKarte, String zvanje, int godineStaza) {
+	public Profesor(String prezime, String ime, LocalDate datumRodjenja, String adresa, String kontaktTelefon,
+			String emailAdresa, String adresaKancelarije, String brojLicneKarte, String zvanje, int godineStaza) {
 
 		super();
 		this.prezime = prezime;
@@ -49,11 +49,11 @@ public class Profesor {
 		this.ime = ime;
 	}
 
-	public Date getDatumRodjenja() {
+	public LocalDate getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(Date datumRodjenja) {
+	public void setDatumRodjenja(LocalDate datumRodjenja) {
 		this.datumRodjenja = datumRodjenja;
 	}
 
@@ -89,11 +89,11 @@ public class Profesor {
 		this.adresaKancelarije = adresaKancelarije;
 	}
 
-	public int getBrojLicneKarte() {
+	public String getBrojLicneKarte() {
 		return brojLicneKarte;
 	}
 
-	public void setBrojLicneKarte(int brojLicneKarte) {
+	public void setBrojLicneKarte(String brojLicneKarte) {
 		this.brojLicneKarte = brojLicneKarte;
 	}
 
