@@ -8,16 +8,16 @@ public class Profesor {
 	private String ime;
 	private Date datumRodjenja;
 	private String adresa;
-	private Integer kontaktTelefon;
+	private String kontaktTelefon;
 	private String emailAdresa;
 	private String adresaKancelarije;
-	private Integer brojLicneKarte;
+	private int brojLicneKarte;
 	private String zvanje;
-	private Integer godineStaza;
+	private int godineStaza;
 	private ArrayList<Predmet> predmeti;
 	
-	public Profesor(String prezime, String ime, Date datumRodjenja, String adresa, Integer kontaktTelefon,
-			String emailAdresa, String adresaKancelarije, Integer brojLicneKarte, String zvanje, Integer godineStaza) {
+	public Profesor(String prezime, String ime, Date datumRodjenja, String adresa, String kontaktTelefon,
+			String emailAdresa, String adresaKancelarije, int brojLicneKarte, String zvanje, int godineStaza) {
 
 		super();
 		this.prezime = prezime;
@@ -65,11 +65,11 @@ public class Profesor {
 		this.adresa = adresa;
 	}
 
-	public Integer getKontaktTelefon() {
+	public String getKontaktTelefon() {
 		return kontaktTelefon;
 	}
 
-	public void setKontaktTelefon(Integer kontaktTelefon) {
+	public void setKontaktTelefon(String kontaktTelefon) {
 		this.kontaktTelefon = kontaktTelefon;
 	}
 
@@ -89,11 +89,11 @@ public class Profesor {
 		this.adresaKancelarije = adresaKancelarije;
 	}
 
-	public Integer getBrojLicneKarte() {
+	public int getBrojLicneKarte() {
 		return brojLicneKarte;
 	}
 
-	public void setBrojLicneKarte(Integer brojLicneKarte) {
+	public void setBrojLicneKarte(int brojLicneKarte) {
 		this.brojLicneKarte = brojLicneKarte;
 	}
 
@@ -105,11 +105,11 @@ public class Profesor {
 		this.zvanje = zvanje;
 	}
 
-	public Integer getGodineStaza() {
+	public int getGodineStaza() {
 		return godineStaza;
 	}
 
-	public void setGodineStaza(Integer godineStaza) {
+	public void setGodineStaza(int godineStaza) {
 		this.godineStaza = godineStaza;
 	}
 

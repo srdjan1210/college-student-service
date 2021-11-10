@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
-import utils.PropertyFactory;
 
 public class MenuBar extends JMenuBar {
 

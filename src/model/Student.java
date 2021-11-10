@@ -11,18 +11,18 @@ public class Student {
 	private String ime;
 	private Date datumRodjenja;
 	private String adresa;
-	private Integer kontaktTelefon;
+	private String kontaktTelefon;
 	private String emailAdresa;
 	private String brojIndeksa;
-	private Integer godinaUpisa;
-	private Integer godinaStudija;
+	private int godinaUpisa;
+	private int godinaStudija;
 	private Status  status;
 	private double prosecnaOcena;
 	private ArrayList<Ocena> polozeniPredmeti;
 	private ArrayList<Predmet> nepolozeniPredmeti;
 	
-	public Student(String prezime, String ime, Date datumRodjenja, String adresa, Integer kontaktTelefon,
-			String emailAdresa, String brojIndeksa, Integer godinaUpisa, Integer godinaStudija, Status status,
+	public Student(String prezime, String ime, Date datumRodjenja, String adresa, String kontaktTelefon,
+			String emailAdresa, String brojIndeksa, int godinaUpisa, int godinaStudija, Status status,
 			double prosecnaOcena) {
 		super();
 		this.prezime = prezime;
@@ -72,11 +72,11 @@ public class Student {
 		this.adresa = adresa;
 	}
 
-	public Integer getKontaktTelefon() {
+	public String getKontaktTelefon() {
 		return kontaktTelefon;
 	}
 
-	public void setKontaktTelefon(Integer kontaktTelefon) {
+	public void setKontaktTelefon(String kontaktTelefon) {
 		this.kontaktTelefon = kontaktTelefon;
 	}
 
@@ -96,19 +96,19 @@ public class Student {
 		this.brojIndeksa = brojIndeksa;
 	}
 
-	public Integer getGodinaUpisa() {
+	public int getGodinaUpisa() {
 		return godinaUpisa;
 	}
 
-	public void setGodinaUpisa(Integer godinaUpisa) {
+	public void setGodinaUpisa(int godinaUpisa) {
 		this.godinaUpisa = godinaUpisa;
 	}
 
-	public Integer getGodinaStudija() {
+	public int getGodinaStudija() {
 		return godinaStudija;
 	}
 
-	public void setGodinaStudija(Integer godinaStudija) {
+	public void setGodinaStudija(int godinaStudija) {
 		this.godinaStudija = godinaStudija;
 	}
 

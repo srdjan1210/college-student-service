@@ -2,11 +2,11 @@ package model;
 
 public class Adresa {
 	private String ulica;
-	private Integer broj;
+	private int broj;
 	private String grad;
 	private String drzava;
 	
-	public Adresa(String ulica, Integer broj, String grad, String drzava) {
+	public Adresa(String ulica, int broj, String grad, String drzava) {
 		super();
 		this.ulica = ulica;
 		this.broj = broj;
@@ -22,11 +22,11 @@ public class Adresa {
 		this.ulica = ulica;
 	}
 
-	public Integer getBroj() {
+	public int getBroj() {
 		return broj;
 	}
 
-	public void setBroj(Integer broj) {
+	public void setBroj(int broj) {
 		this.broj = broj;
 	}
 
