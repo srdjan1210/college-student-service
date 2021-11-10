@@ -12,7 +12,14 @@ public class Constants {
 	};
 
 	public static enum Status {
-		BUDZET, SAMOFINANSIRANJE
+		BUDZET("B"), SAMOFINANSIRANJE("S");
+		private String value;
+		Status(String value) {
+			this.value = value;
+		}
+		public String getValue() {
+			return value;
+		}
 	};
 
 	public static int SCREEN_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
