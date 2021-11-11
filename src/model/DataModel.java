@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import utils.Constants.Status;
-import utils.EnumConversion;;
+import utils.EnumConversion;
+import utils.DataUtils;
 
 public class DataModel {
 
@@ -26,7 +27,9 @@ public class DataModel {
 
 	private ArrayList<Student> readStudentsFromFile() throws FileNotFoundException {
 		ArrayList<Student> students = new ArrayList<Student>();
-		File studentFile = new File("src/resources/studenti.txt");
+		//File studentFile = new File("src/resources/studenti.txt");
+		String str="resources/studenti.txt";
+		File studentFile=DataUtils.ReadDataFile(str);
 		Scanner scanner = new Scanner(studentFile);
 
 		while (scanner.hasNextLine()) {
@@ -46,7 +49,9 @@ public class DataModel {
 
 	private ArrayList<Profesor> readProfessorsFromFile() throws FileNotFoundException {
 		ArrayList<Profesor> professors = new ArrayList<Profesor>();
-		File professorFile = new File("src/resources/profesori.txt");
+		//File professorFile = new File("src/resources/profesori.txt");
+		String str="resources/profesori.txt";
+		File professorFile = DataUtils.ReadDataFile(str);
 		Scanner scanner = new Scanner(professorFile);
 
 		while (scanner.hasNextLine()) {
