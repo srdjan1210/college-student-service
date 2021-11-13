@@ -3,11 +3,11 @@ package utils;
 import java.awt.Toolkit;
 
 public class Constants {
-	public static enum BrOcena {
+	public static enum MarksValue {
 		SEST, SEDAM, OSAM, DEVET, DESET
 	};
 
-	public static enum Semestar {
+	public static enum Semester {
 		ZIMSKI, LETNJI
 	};
 

@@ -13,7 +13,7 @@ import utils.DataUtils;
 public class DataModel {
 
 	private ArrayList<Student> students;
-	private ArrayList<Profesor> professors;
+	private ArrayList<Professor> professors;
 
 	public DataModel() {
 		try {
@@ -47,8 +47,8 @@ public class DataModel {
 
 	}
 
-	private ArrayList<Profesor> readProfessorsFromFile() throws FileNotFoundException {
-		ArrayList<Profesor> professors = new ArrayList<Profesor>();
+	private ArrayList<Professor> readProfessorsFromFile() throws FileNotFoundException {
+		ArrayList<Professor> professors = new ArrayList<Professor>();
 		//File professorFile = new File("src/resources/profesori.txt");
 		String str="resources/profesori.txt";
 		File professorFile = DataUtils.ReadDataFile(str);
@@ -59,7 +59,7 @@ public class DataModel {
 			String[] data = professorData.split(",");
 			LocalDate date = LocalDate.parse(data[2]);
 			
-			Profesor professor = new Profesor(data[0], data[1], date, data[3], data[4], data[5], data[6], data[7],
+			Professor professor = new Professor(data[0], data[1], date, data[3], data[4], data[5], data[6], data[7],
 					data[8], Integer.parseInt(data[9]));
 			professors.add(professor);
 		}
