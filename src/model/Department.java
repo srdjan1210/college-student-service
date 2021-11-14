@@ -8,13 +8,12 @@ public class Department {
 	private Professor headOfTheDepartment;
 	private ArrayList<Professor> professorsList;
 	
-	public Department(String departmentId, String departmentName, Professor headOfTheDepartment,
-			ArrayList<Professor> professorsList) {
+	public Department(String departmentId, String departmentName, Professor headOfTheDepartment) {
 		super();
 		this.departmentId = departmentId;
 		this.departmentName = departmentName;
 		this.headOfTheDepartment = headOfTheDepartment;
-		this.professorsList = professorsList;
+		this.professorsList = new ArrayList<Professor>();
 	}
 
 	public String getDepartmentId() {

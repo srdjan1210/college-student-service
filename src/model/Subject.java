@@ -12,16 +12,15 @@ public class Subject {
 	private int espb;
 	private ArrayList<Student> studentsPassed;
 	private ArrayList<Student> studentsFailed;
-	public Subject(String subjectId, String subjectName, Semester semester, Professor professor, int espb,
-			ArrayList<Student> studentsPassed, ArrayList<Student> studentsFailed) {
+	public Subject(String subjectId, String subjectName, Semester semester, Professor professor, int espb) {
 		super();
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
 		this.semester = semester;
 		this.professor = professor;
 		this.espb = espb;
-		this.studentsPassed = studentsPassed;
-		this.studentsFailed = studentsFailed;
+		this.studentsPassed = new ArrayList<Student>();
+		this.studentsFailed = new ArrayList<Student>();
 	}
 	public String getSubjectId() {
 		return subjectId;
