@@ -7,109 +7,106 @@ import utils.Constants.Status;
 
 public class Student {
 	
-	private String prezime;
-	private String ime;
-	private LocalDate datumRodjenja;
-	private String adresa;
-	private String kontaktTelefon;
-	private String emailAdresa;
-	private String brojIndeksa;
-	private int godinaUpisa;
-	private int godinaStudija;
+	private String lastName;
+	private String firstName;
+	private LocalDate birthDay;
+	private String address;
+	private String phoneNumber;
+	private String emailAddress;
+	private String indexNumber;
+	private int entryYear;
+	private int studyYear;
 	private Status  status;
-	private double prosecnaOcena;
-	private ArrayList<Ocena> polozeniPredmeti;
-	private ArrayList<Predmet> nepolozeniPredmeti;
+	private double averageMark;
+	private ArrayList<Mark> passedSubjects;
+	private ArrayList<Subject> failedSubjects;
 	
-	public Student(String prezime, String ime, LocalDate datumRodjenja, String adresa, String kontaktTelefon,
-			String emailAdresa, String brojIndeksa, int godinaUpisa, int godinaStudija, Status status,
-			double prosecnaOcena) {
+	public Student(String lastName, String firstName, LocalDate birthDay, String address, String phoneNumber,
+			String emailAddress, String indexNumber, int entryYear, int studyYear, Status status, double averageMark) {
 		super();
-		this.prezime = prezime;
-		this.ime = ime;
-		this.datumRodjenja = datumRodjenja;
-		this.adresa = adresa;
-		this.kontaktTelefon = kontaktTelefon;
-		this.emailAdresa = emailAdresa;
-		this.brojIndeksa = brojIndeksa;
-		this.godinaUpisa = godinaUpisa;
-		this.godinaStudija = godinaStudija;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.birthDay = birthDay;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.emailAddress = emailAddress;
+		this.indexNumber = indexNumber;
+		this.entryYear = entryYear;
+		this.studyYear = studyYear;
 		this.status = status;
-		this.prosecnaOcena = prosecnaOcena;
-		this.polozeniPredmeti = new ArrayList<Ocena>();
-		this.nepolozeniPredmeti = new ArrayList<Predmet>();
+		this.averageMark = averageMark;
 	}
 
-	public String getPrezime() {
-		return prezime;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getIme() {
-		return ime;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setIme(String ime) {
-		this.ime = ime;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public LocalDate getDatumRodjenja() {
-		return datumRodjenja;
+	public LocalDate getBirthDay() {
+		return birthDay;
 	}
 
-	public void setDatumRodjenja(LocalDate datumRodjenja) {
-		this.datumRodjenja = datumRodjenja;
+	public void setBirthDay(LocalDate birthDay) {
+		this.birthDay = birthDay;
 	}
 
-	public String getAdresa() {
-		return adresa;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdresa(String adresa) {
-		this.adresa = adresa;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getKontaktTelefon() {
-		return kontaktTelefon;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setKontaktTelefon(String kontaktTelefon) {
-		this.kontaktTelefon = kontaktTelefon;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
-	public String getEmailAdresa() {
-		return emailAdresa;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 
-	public void setEmailAdresa(String emailAdresa) {
-		this.emailAdresa = emailAdresa;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
-	public String getBrojIndeksa() {
-		return brojIndeksa;
+	public String getIndexNumber() {
+		return indexNumber;
 	}
 
-	public void setBrojIndeksa(String brojIndeksa) {
-		this.brojIndeksa = brojIndeksa;
+	public void setIndexNumber(String indexNumber) {
+		this.indexNumber = indexNumber;
 	}
 
-	public int getGodinaUpisa() {
-		return godinaUpisa;
+	public int getEntryYear() {
+		return entryYear;
 	}
 
-	public void setGodinaUpisa(int godinaUpisa) {
-		this.godinaUpisa = godinaUpisa;
+	public void setEntryYear(int entryYear) {
+		this.entryYear = entryYear;
 	}
 
-	public int getGodinaStudija() {
-		return godinaStudija;
+	public int getStudyYear() {
+		return studyYear;
 	}
 
-	public void setGodinaStudija(int godinaStudija) {
-		this.godinaStudija = godinaStudija;
+	public void setStudyYear(int studyYear) {
+		this.studyYear = studyYear;
 	}
 
 	public Status getStatus() {
@@ -120,29 +117,32 @@ public class Student {
 		this.status = status;
 	}
 
-	public double getProsecnaOcena() {
-		return prosecnaOcena;
+	public double getAverageMark() {
+		return averageMark;
 	}
 
-	public void setProsecnaOcena(double prosecnaOcena) {
-		this.prosecnaOcena = prosecnaOcena;
+	public void setAverageMark(double averageMark) {
+		this.averageMark = averageMark;
 	}
 
-	public ArrayList<Ocena> getPolozeniPredmeti() {
-		return polozeniPredmeti;
+	public ArrayList<Mark> getPassedSubjects() {
+		return passedSubjects;
 	}
 
-	public void setPolozeniPredmeti(ArrayList<Ocena> polozeniPredmeti) {
-		this.polozeniPredmeti = polozeniPredmeti;
+	public void setPassedSubjects(ArrayList<Mark> passedSubjects) {
+		this.passedSubjects = passedSubjects;
 	}
 
-	public ArrayList<Predmet> getNepolozeniPredmeti() {
-		return nepolozeniPredmeti;
+	public ArrayList<Subject> getFailedSubjects() {
+		return failedSubjects;
 	}
 
-	public void setNepolozeniPredmeti(ArrayList<Predmet> nepolozeniPredmeti) {
-		this.nepolozeniPredmeti = nepolozeniPredmeti;
+	public void setFailedSubjects(ArrayList<Subject> failedSubjects) {
+		this.failedSubjects = failedSubjects;
 	}
+	
+	
+	
 	
 	
 

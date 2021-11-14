@@ -30,16 +30,16 @@ public class MenuBar extends JMenuBar {
 		Image image = imageIcon.getImage().getScaledInstance(13, 13, Image.SCALE_SMOOTH);
 		openMenuButton.setIcon(new ImageIcon(image));
 
-		MenuItems studentiItem = new MenuItems("Studenti", null, null);
+		MenuItems studentsItem = new MenuItems("Studenti", null, null);
 
-		MenuItems predmetiItem = new MenuItems("Predmeti", null, null);
-		MenuItems profesoriItem = new MenuItems("Profesori", null, null);
-		MenuItems katedreItem = new MenuItems("Katedre", null, null);
-		openMenuButton.add(studentiItem);
-		openMenuButton.add(predmetiItem);
-		openMenuButton.add(profesoriItem);
+		MenuItems subjectsItem = new MenuItems("Predmeti", null, null);
+		MenuItems professorsItem = new MenuItems("Profesori", null, null);
+		MenuItems departmentsItem = new MenuItems("Katedre", null, null);
+		openMenuButton.add(studentsItem);
+		openMenuButton.add(subjectsItem);
+		openMenuButton.add(professorsItem);
 
-		openMenuButton.add(katedreItem);
+		openMenuButton.add(departmentsItem);
 
 		fileMenuButton.add(newMenuItem);
 		fileMenuButton.add(saveMenuItem);

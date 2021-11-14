@@ -15,17 +15,17 @@ public class StatusBar extends JPanel {
 		super();
 		setPreferredSize(new Dimension(frame.getWidth(), 18));
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		JLabel nazivAplikacijeLabel = new JLabel("[Studentska Sluzba]");
-		JLabel nazivTabaLabel = new JLabel("[Naziv_taba_ovde]");
+		JLabel appNameLabel = new JLabel("[Studentska Sluzba]");
+		JLabel tabNaemLabel = new JLabel("[Naziv_taba_ovde]");
 		SimpleDateFormat dateTimeFormat = new SimpleDateFormat("[HH:mm dd/MM/yyyy]");
 		Date date = new Date();
-		JLabel trenutnoVremeLabel = new JLabel(dateTimeFormat.format(date));
+		JLabel currentDateLabel = new JLabel(dateTimeFormat.format(date));
 
-		nazivAplikacijeLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		nazivTabaLabel.setHorizontalAlignment(JLabel.CENTER);
-		trenutnoVremeLabel.setHorizontalAlignment(JLabel.RIGHT);
-		add(nazivAplikacijeLabel);
-		add(nazivTabaLabel);
-		add(trenutnoVremeLabel);
+		appNameLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		tabNaemLabel.setHorizontalAlignment(JLabel.CENTER);
+		currentDateLabel.setHorizontalAlignment(JLabel.RIGHT);
+		add(appNameLabel);
+		add(tabNaemLabel);
+		add(currentDateLabel);
 	}
 }
