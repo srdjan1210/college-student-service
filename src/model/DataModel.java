@@ -120,5 +120,5 @@ public class DataModel {
 	private String[] splitScannedData(String data) {
 		return data.split(",");
 	}
-
+	
 }
