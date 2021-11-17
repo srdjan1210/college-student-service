@@ -9,8 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import utils.Constants;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitBtn;
-
+import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
@@ -23,9 +22,6 @@ public class ToolbarNewStudent extends JFrame {
 	String[] years = { "1", "2", "3", "4" };
 
 	Vector<JComponent> fieldsReferences;
-
-	Vector<ToolbarWinLabel> labelReferences;
-	ToolbarEnterExitBtn exEn;
 	
 	public ToolbarNewStudent() {
 		
@@ -36,8 +32,6 @@ public class ToolbarNewStudent extends JFrame {
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
 		setLocationRelativeTo(null);
 		fieldsReferences = new Vector<JComponent>();
-		labelReferences = new Vector<ToolbarWinLabel>();
-
 		
 		
 		for(int i = 0; i < labelNames.length; i++) {
@@ -49,9 +43,7 @@ public class ToolbarNewStudent extends JFrame {
 			else
 				add(createRow(name, "Text"));
 		}
-
-		exEn = new ToolbarEnterExitBtn();
-		add(exEn);
+		add(new ToolbarEnterExitPanel());
 
 		//setVisible(true);
 	}
@@ -61,8 +53,6 @@ public class ToolbarNewStudent extends JFrame {
 	private JPanel createRow(String name, String fieldType) {
 		JPanel row = new JPanel();
 		ToolbarWinLabel lbl = new ToolbarWinLabel(name);
-
-		labelReferences.add(lbl);
 		row.add(lbl);
 		
 		if(fieldType.equals("Text"))
@@ -76,12 +66,4 @@ public class ToolbarNewStudent extends JFrame {
 		return row;
 	
 	}
-	public Vector<JComponent> getFieldsReferences() {
-		return fieldsReferences;
-	}
-
-	public Vector<ToolbarWinLabel> getLabelReferences() {
-		return labelReferences;
-	}
-
 }

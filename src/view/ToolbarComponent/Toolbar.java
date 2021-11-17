@@ -3,14 +3,11 @@ package view.ToolbarComponent;
 import java.awt.Dimension;
 
 import javax.swing.Box;
-import javax.swing.JFrame;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import utils.Constants;
 import view.ListenerHandler;
-
-import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.ToolbarCustomComponents.CustomSeparator;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarIconButton;
@@ -24,8 +21,6 @@ public class Toolbar extends JToolBar {
 	private ToolbarIconButton btnSearch;
 	private ToolbarSearch searchField;
 	private ToolbarNewStudent newStudentWin;
-	private ToolbarNewProfessor newProfessorWin;
-
 	
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
@@ -39,11 +34,8 @@ public class Toolbar extends JToolBar {
 		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png");
 		searchField = new ToolbarSearch();
 		newStudentWin = new ToolbarNewStudent();
-		newProfessorWin = new ToolbarNewProfessor();
 
 		btnNew.addActionListener(ListenerHandler.openWindowListener(newStudentWin));
-		btnNew.addActionListener(ListenerHandler.openWindowListener(newProfessorWin));
-
 		// Left side of toolbar
 		add(new CustomSeparator());
 		add(btnNew);
