@@ -119,7 +119,6 @@ public class DataModel {
 	private String[] splitScannedData(String data) {
 		return data.split(",");
 	}
-
 	public static DataModel getInstance() {
 			if (instance == null) {
 				instance = new DataModel();
@@ -177,5 +176,4 @@ public class DataModel {
 	public void setAddresses(ArrayList<Address> addresses) {
 		this.addresses = addresses;
 	}
-
 }
