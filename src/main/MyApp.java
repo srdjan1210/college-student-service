@@ -8,7 +8,8 @@ public class MyApp {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Screen scr = new Screen();
-		DataModel model = new DataModel();
+		DataModel model = DataModel.getInstance();
+		System.out.println(model.getProfessors().size());
 	}
 
 }

@@ -1,32 +1,35 @@
 package view.ToolbarComponent;
 
-import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Dimension;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import utils.Constants;
-import utils.ImageUtils;
+import view.ToolbarComponent.ToolbarCustomComponents.CustomSeparator;
+import view.ToolbarComponent.ToolbarCustomComponents.ToolbarIconButton;
+import view.ToolbarComponent.ToolbarCustomComponents.ToolbarSearch;
 
 public class Toolbar extends JToolBar {
 
+	private ToolbarIconButton btnNew;
+	private ToolbarIconButton btnEdit;
+	private ToolbarIconButton btnDelete;
+	private ToolbarIconButton btnSearch;
+	private ToolbarSearch searchField;
+	
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
 
 		setPreferredSize(new Dimension(Constants.SCREEN_WIDTH * 3 / 4, 30));
 		setFloatable(false);
 		
-		ToolbarIconButton btnNew = new ToolbarIconButton("Icons/NewMenuItem.png");
-		ToolbarIconButton btnEdit = new ToolbarIconButton("Icons/DeleteMenuItem.png");
-		ToolbarIconButton btnDelete = new ToolbarIconButton("Icons/EditMenuitem.png");
-		ToolbarIconButton btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png");
-		ToolbarSearch searchField = new ToolbarSearch();
+		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png");
+		btnEdit = new ToolbarIconButton("Icons/DeleteMenuItem.png");
+		btnDelete = new ToolbarIconButton("Icons/EditMenuitem.png");
+		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png");
+		searchField = new ToolbarSearch();
 
 		// Left side of toolbar
 		add(new CustomSeparator());
