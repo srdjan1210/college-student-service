@@ -14,7 +14,7 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
-public class ToolbarWindowNew extends JFrame {
+public class ToolbarNewStudent extends JFrame {
 
 	String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja" };
@@ -22,8 +22,10 @@ public class ToolbarWindowNew extends JFrame {
 	String[] years = { "1", "2", "3", "4" };
 
 	Vector<JComponent> fieldsReferences;
+	Vector<ToolbarWinLabel> labelReferences;
+	ToolbarEnterExitBtn exEn;
 	
-	public ToolbarWindowNew() {
+	public ToolbarNewStudent() {
 		
 		super();
 		BoxLayout layout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
@@ -32,6 +34,7 @@ public class ToolbarWindowNew extends JFrame {
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
 		setLocationRelativeTo(null);
 		fieldsReferences = new Vector<JComponent>();
+		labelReferences = new Vector<ToolbarWinLabel>();
 		
 		
 		for(int i = 0; i < labelNames.length; i++) {
@@ -43,7 +46,8 @@ public class ToolbarWindowNew extends JFrame {
 			else
 				add(createRow(name, "Text"));
 		}
-		add(new ToolbarEnterExitBtn());
+		exEn = new ToolbarEnterExitBtn();
+		add(exEn);
 
 		//setVisible(true);
 	}
@@ -53,6 +57,7 @@ public class ToolbarWindowNew extends JFrame {
 	private JPanel createRow(String name, String fieldType) {
 		JPanel row = new JPanel();
 		ToolbarWinLabel lbl = new ToolbarWinLabel(name);
+		labelReferences.add(lbl);
 		row.add(lbl);
 		
 		if(fieldType.equals("Text"))
@@ -66,4 +71,14 @@ public class ToolbarWindowNew extends JFrame {
 		return row;
 	
 	}
+
+	public Vector<JComponent> getFieldsReferences() {
+		return fieldsReferences;
+	}
+
+	public Vector<ToolbarWinLabel> getLabelReferences() {
+		return labelReferences;
+	}
+	
+	
 }
