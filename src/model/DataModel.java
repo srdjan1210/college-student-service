@@ -178,8 +178,4 @@ public class DataModel {
 		this.addresses = addresses;
 	}
 
-	public static void setInstance(DataModel instance) {
-		DataModel.instance = instance;
-	}
-	
 }
