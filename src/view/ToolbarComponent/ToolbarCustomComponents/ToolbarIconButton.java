@@ -1,4 +1,4 @@
-package view.ToolbarComponent;
+package view.ToolbarComponent.ToolbarCustomComponents;
 
 import java.awt.Color;
 import java.awt.Cursor;
