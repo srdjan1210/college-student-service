@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
 import javax.swing.event.MenuKeyEvent;
 
+import utils.ImageUtils;
 import view.ListenerHandler;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 
@@ -37,7 +38,7 @@ public class MenuBar extends JMenuBar {
 
 		JMenu openMenuButton = new JMenu("Open");
 
-		ImageIcon imageIcon = new ImageIcon("Icons/OpenMenuItem.png");
+		ImageIcon imageIcon = ImageUtils.readImageIcon("Icons/OpenMenuItem.png");
 		Image image = imageIcon.getImage().getScaledInstance(13, 13, Image.SCALE_SMOOTH);
 		openMenuButton.setIcon(new ImageIcon(image));
 
