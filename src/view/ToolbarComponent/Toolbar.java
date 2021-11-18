@@ -28,12 +28,15 @@ public class Toolbar extends JToolBar {
 		setPreferredSize(new Dimension(Constants.SCREEN_WIDTH * 3 / 4, 30));
 		setFloatable(false);
 		
-		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png");
-		btnEdit = new ToolbarIconButton("Icons/DeleteMenuItem.png");
-		btnDelete = new ToolbarIconButton("Icons/EditMenuitem.png");
-		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png");
+		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png", "Add Entity");
+		btnEdit = new ToolbarIconButton("Icons/DeleteMenuItem.png", "Edit Entity");
+		btnDelete = new ToolbarIconButton("Icons/EditMenuitem.png", "Delete Entity");
+		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Search");
 		searchField = new ToolbarSearch();
 		newStudentWin = new ToolbarNewStudent();
+		
+	
+	
 
 		btnNew.addActionListener(ListenerHandler.openWindowListener(newStudentWin));
 		// Left side of toolbar
@@ -52,6 +55,7 @@ public class Toolbar extends JToolBar {
 		add(new CustomSeparator());
 		add(btnSearch);
 		add(new CustomSeparator());
+		
 
 	}
 

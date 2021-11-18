@@ -12,7 +12,7 @@ import utils.ImageUtils;
 
 public class ToolbarIconButton extends JButton {
 	
-	public ToolbarIconButton(String path) {
+	public ToolbarIconButton(String path, String tooltip) {
 		super();
 		ImageIcon icon = ImageUtils.scaleImage(ImageUtils.readImageIcon(path), Constants.ICON_BUTTON_WIDTH, Constants.ICON_BUTTON_HEIGHT);
 		this.setIcon(icon);
@@ -21,6 +21,7 @@ public class ToolbarIconButton extends JButton {
 		setBorder(BorderFactory.createEmptyBorder());
 		setContentAreaFilled(false);
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		setToolTipText(tooltip);
 		
 	}
 
