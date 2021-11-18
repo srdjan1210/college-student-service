@@ -37,9 +37,9 @@ public class ToolbarNewStudent extends JFrame {
 		for(int i = 0; i < labelNames.length; i++) {
 			String name = labelNames[i];
 			if(i >= 9) 
-				add(createRow(name, "ComboYears"));
-			else if(i >= 8) 
 				add(createRow(name, "ComboFinancing"));
+			else if(i >= 8) 
+				add(createRow(name, "ComboYears"));
 			else
 				add(createRow(name, "Text"));
 		}
