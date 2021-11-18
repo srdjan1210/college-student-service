@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import utils.Constants;
 import view.MenuBarComponent.MenuBar;
@@ -36,6 +38,22 @@ public class Screen extends JFrame {
 		
 		// Tables
 		Tab studentTab=new Tab();
+		studentTab.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				if(studentTab.getSelectedIndex()==0) {
+					statusBar.setTabName("Student");
+				}
+				else if(studentTab.getSelectedIndex()==1) {
+					statusBar.setTabName("Profesor");
+				}
+				else
+				{
+					statusBar.setTabName("Predmet");
+				}
+			}});
 		add(studentTab);
 
 		// Screen title and close operation

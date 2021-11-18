@@ -7,7 +7,7 @@ public class Professor {
 	private String lastName;
 	private String firstName;
 	private LocalDate birthDay;
-	private String address;
+	private Address address;
 	private String phoneNumber;
 	private String emailAddress;
 	private String officeAddress;
@@ -16,7 +16,7 @@ public class Professor {
 	private int workingYears;
 	private ArrayList<Subject> subjects;
 	
-	public Professor(String lastName, String firstName, LocalDate birthDay, String address, String phoneNumber,
+	public Professor(String lastName, String firstName, LocalDate birthDay, Address address, String phoneNumber,
 			String emailAddress, String officeAddress, String idNumber, String title, int workingYears) {
 		super();
 		this.lastName = lastName;
@@ -29,6 +29,7 @@ public class Professor {
 		this.idNumber = idNumber;
 		this.title = title;
 		this.workingYears = workingYears;
+		this.subjects=new ArrayList<Subject>();
 	}
 
 	public String getLastName() {
@@ -55,11 +56,11 @@ public class Professor {
 		this.birthDay = birthDay;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
