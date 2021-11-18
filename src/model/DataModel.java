@@ -71,7 +71,7 @@ public class DataModel {
 	}
 
 	private Subject loadSubjectObject(String[] data) {
-		return new Subject(data[0], data[1], EnumConversion.stringToSemester(data[2]), getProfessorById(data[3]),
+		return new Subject(data[0], data[1], EnumConversion.stringToSemester(data[2]),Integer.parseInt(data[3]) ,getProfessorById(data[4]),
 				Integer.parseInt(data[4]));
 	}
 
