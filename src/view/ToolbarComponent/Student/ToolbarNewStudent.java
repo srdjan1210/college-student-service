@@ -1,12 +1,10 @@
 package view.ToolbarComponent.Student;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.BoxLayout;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import utils.Constants;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
@@ -65,5 +63,17 @@ public class ToolbarNewStudent extends JFrame {
 		row.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return row;
 	
+	}
+
+	public JTextField getTextField(int index) {
+		return (JTextField) fieldsReferences.get(index);
+	}
+
+	public JComboBox getComboBox(int index) {
+		return (JComboBox) fieldsReferences.get(index);
+	}
+
+	public Vector<JComponent> getFieldsReferences() {
+		return fieldsReferences;
 	}
 }
