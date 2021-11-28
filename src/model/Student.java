@@ -6,22 +6,22 @@ import java.util.ArrayList;
 import utils.Constants.Status;
 
 public class Student {
-	
+
 	private String lastName;
 	private String firstName;
 	private LocalDate birthDay;
-	private String address;
+	private Address address;
 	private String phoneNumber;
 	private String emailAddress;
 	private String indexNumber;
 	private int entryYear;
 	private int studyYear;
-	private Status  status;
+	private Status status;
 	private double averageMark;
-	private ArrayList<Mark> passedSubjects;
+	private ArrayList<Subject> passedSubjects;
 	private ArrayList<Subject> failedSubjects;
-	
-	public Student(String lastName, String firstName, LocalDate birthDay, String address, String phoneNumber,
+
+	public Student(String lastName, String firstName, LocalDate birthDay, Address address, String phoneNumber,
 			String emailAddress, String indexNumber, int entryYear, int studyYear, Status status, double averageMark) {
 		super();
 		this.lastName = lastName;
@@ -35,6 +35,8 @@ public class Student {
 		this.studyYear = studyYear;
 		this.status = status;
 		this.averageMark = averageMark;
+		this.passedSubjects = new ArrayList<Subject>();
+		this.failedSubjects = new ArrayList<Subject>();
 	}
 
 	public String getLastName() {
@@ -61,11 +63,11 @@ public class Student {
 		this.birthDay = birthDay;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
@@ -125,11 +127,11 @@ public class Student {
 		this.averageMark = averageMark;
 	}
 
-	public ArrayList<Mark> getPassedSubjects() {
+	public ArrayList<Subject> getPassedSubjects() {
 		return passedSubjects;
 	}
 
-	public void setPassedSubjects(ArrayList<Mark> passedSubjects) {
+	public void setPassedSubjects(ArrayList<Subject> passedSubjects) {
 		this.passedSubjects = passedSubjects;
 	}
 
@@ -140,13 +142,5 @@ public class Student {
 	public void setFailedSubjects(ArrayList<Subject> failedSubjects) {
 		this.failedSubjects = failedSubjects;
 	}
-	
-	
-	
-	
-	
 
-	
-	
-	
 }

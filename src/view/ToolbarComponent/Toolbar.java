@@ -8,7 +8,6 @@ import javax.swing.SwingConstants;
 
 import utils.Constants;
 import view.ListenerHandler;
-import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.ToolbarCustomComponents.CustomSeparator;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarIconButton;
@@ -22,7 +21,6 @@ public class Toolbar extends JToolBar {
 	private ToolbarIconButton btnSearch;
 	private ToolbarSearch searchField;
 	private ToolbarNewStudent newStudentWin;
-	private ToolbarNewProfessor newProfessorWin;
 	
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
@@ -30,16 +28,17 @@ public class Toolbar extends JToolBar {
 		setPreferredSize(new Dimension(Constants.SCREEN_WIDTH * 3 / 4, 30));
 		setFloatable(false);
 		
-		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png");
-		btnEdit = new ToolbarIconButton("Icons/DeleteMenuItem.png");
-		btnDelete = new ToolbarIconButton("Icons/EditMenuitem.png");
-		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png");
+		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png", "Add Entity");
+		btnEdit = new ToolbarIconButton("Icons/DeleteMenuItem.png", "Edit Entity");
+		btnDelete = new ToolbarIconButton("Icons/EditMenuitem.png", "Delete Entity");
+		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Search");
 		searchField = new ToolbarSearch();
 		newStudentWin = new ToolbarNewStudent();
-		newProfessorWin = new ToolbarNewProfessor();
+		
+	
+	
 
 		btnNew.addActionListener(ListenerHandler.openWindowListener(newStudentWin));
-		btnNew.addActionListener(ListenerHandler.openWindowListener(newProfessorWin));
 		// Left side of toolbar
 		add(new CustomSeparator());
 		add(btnNew);
@@ -56,6 +55,7 @@ public class Toolbar extends JToolBar {
 		add(new CustomSeparator());
 		add(btnSearch);
 		add(new CustomSeparator());
+		
 
 	}
 

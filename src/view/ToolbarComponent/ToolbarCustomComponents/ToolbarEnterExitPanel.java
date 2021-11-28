@@ -1,11 +1,13 @@
 package view.ToolbarComponent.ToolbarCustomComponents;
 
+
 import controller.StudentWindowController;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 public class ToolbarEnterExitPanel extends JPanel{
 
@@ -15,6 +17,7 @@ public class ToolbarEnterExitPanel extends JPanel{
 		super();
 		BoxLayout layout = new BoxLayout(this, BoxLayout.X_AXIS);
 		setLayout(layout);
+
 
 		buttonConfirm = new JButton("Potvrdi");
 		buttonConfirm.addActionListener(new ActionListener() {
@@ -38,6 +41,7 @@ public class ToolbarEnterExitPanel extends JPanel{
 				}
 			}
 		});;
+
 		add(buttonConfirm);
 		add(Box.createHorizontalStrut(50));
 		add(buttonExit);

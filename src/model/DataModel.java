@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -60,18 +61,18 @@ public class DataModel {
 	}
 
 	private Professor loadProfessorObject(String[] data) {
-		return new Professor(data[0], data[1], LocalDate.parse(data[2]), data[3], data[4], data[5], data[6], data[7],
+		return new Professor(data[0], data[1], LocalDate.parse(data[2]),convertStringToAddress(data[3]), data[4], data[5], data[6], data[7],
 				data[8], Integer.parseInt(data[9]));
 	}
 
 	private Student loadStudentObject(String[] data) {
-		return new Student(data[0], data[1], LocalDate.parse(data[2]), data[3], data[4], data[5], data[6],
+		return new Student(data[0], data[1], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4], data[5], data[6],
 				Integer.parseInt(data[7]), Integer.parseInt(data[8]), EnumConversion.stringToStatus(data[9]),
 				Double.parseDouble(data[10]));
 	}
 
 	private Subject loadSubjectObject(String[] data) {
-		return new Subject(data[0], data[1], EnumConversion.stringToSemester(data[2]), getProfessorById(data[3]),
+		return new Subject(data[0], data[1], EnumConversion.stringToSemester(data[2]),Integer.parseInt(data[3]) ,getProfessorById(data[4]),
 				Integer.parseInt(data[4]));
 	}
 
@@ -119,7 +120,12 @@ public class DataModel {
 	private String[] splitScannedData(String data) {
 		return data.split(",");
 	}
-
+	
+	private Address convertStringToAddress(String data) {
+		String[] addressChunks = data.split(":");
+		return new Address(addressChunks[2],Integer.parseInt(addressChunks[3]),addressChunks[1],addressChunks[0]);
+	}
+	
 	public static DataModel getInstance() {
 			if (instance == null) {
 				instance = new DataModel();
@@ -177,9 +183,4 @@ public class DataModel {
 	public void setAddresses(ArrayList<Address> addresses) {
 		this.addresses = addresses;
 	}
-
-	public static void setInstance(DataModel instance) {
-		DataModel.instance = instance;
-	}
-	
 }
