@@ -1,18 +1,16 @@
 package view.TablesComponent;
 
-import java.awt.Dimension;
-
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+
 public class Tables extends JTable{
-	public Tables(String[] columnNames)
+	public Tables(String[] columnNames,String[][] data)
 	{
 		super();
-		String[][] data = {};
-		int row_num=8;
-		DefaultTableModel model=new DefaultTableModel(row_num,columnNames.length);
-		model.setColumnIdentifiers(columnNames);
-		setModel(model);
+		DefaultTableModel dtm=new DefaultTableModel(data,columnNames);
+		dtm.setColumnIdentifiers(columnNames);
+		setModel(dtm);
+		setAutoCreateRowSorter(true);
 	}	
 }

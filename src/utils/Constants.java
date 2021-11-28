@@ -15,7 +15,14 @@ public class Constants {
 	};
 
 	public static enum Semester {
-		ZIMSKI, LETNJI
+		ZIMSKI("Z"), LETNJI("L");
+		private String value;
+		Semester(String value) {
+			this.value=value;
+		}
+		public String getValue() {
+			return value;
+		}
 	};
 
 	public static enum Status {
