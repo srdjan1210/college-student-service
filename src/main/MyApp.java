@@ -9,7 +9,6 @@ public class MyApp {
 		// TODO Auto-generated method stub
 		Screen scr = new Screen();
 		DataModel model = DataModel.getInstance();
-		System.out.println(model.getProfessors().size());
 	}
 
 }

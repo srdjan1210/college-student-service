@@ -21,7 +21,7 @@ public class StudentWindowController {
             students.add(student);
             DataModel.getInstance().setStudents(students);
         } else {
-            JOptionPane.showMessageDialog(window, "Polja nisu dobro popunjena");
+            JOptionPane.showMessageDialog(window, "Polja ne smiju biti prazna!");
         }
 
     }

@@ -3,27 +3,22 @@ package view.ToolbarComponent.Professor;
 import java.awt.Dimension;
 import java.util.Vector;
 
-import javax.swing.BoxLayout;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import utils.Constants;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitBtn;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
+import view.ToolbarComponent.ToolbarCustomComponents.*;
 
-public class ToolbarNewProfessor extends JFrame {
+public class ToolbarNewProfessor extends JDialog {
 	
 	String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Adresa kancelarije*", "Broj licne karte*", "Zvanje*", "Godine iskustva*" };
 	Vector<JComponent> fieldsReferences;
 	Vector<ToolbarWinLabel> labelReferences;
-	ToolbarEnterExitBtn exEn;
-	
+	ToolbarEnterExitPanel tenex;
+
 	public ToolbarNewProfessor() {
 		super();
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		BoxLayout layout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(layout);
 		setTitle("Dodavanje Profesora");
@@ -31,13 +26,15 @@ public class ToolbarNewProfessor extends JFrame {
 		setLocationRelativeTo(null);
 		fieldsReferences = new Vector<JComponent>();
 		labelReferences = new Vector<ToolbarWinLabel>();
+
 		for(int i = 0; i < labelNames.length; i++) {
 			String name = labelNames[i];
 			add(createRow(name));
 		}
-		
-		exEn = new ToolbarEnterExitBtn();
-		add(exEn);
+		tenex = new ToolbarEnterExitPanel();
+		add(tenex);
+		setVisible(true);
+
 	}
 	
 	private JPanel createRow(String name) {

@@ -1,10 +1,13 @@
 package view.ToolbarComponent.ToolbarCustomComponents;
 
 
+import controller.ProfessorWindowController;
 import controller.StudentWindowController;
+import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,21 +26,28 @@ public class ToolbarEnterExitPanel extends JPanel{
 		buttonConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//StudentWindowController.createStudentObjectFromFields((ToolbarNewStudent) buttonConfirm.getParent().getParent().getParent().getParent());
-				ToolbarNewStudent dialog = (ToolbarNewStudent) SwingUtilities.getWindowAncestor(buttonConfirm);
-				StudentWindowController.addNewStudent(dialog);
+				Window parent = SwingUtilities.getWindowAncestor(buttonConfirm);
+				if(parent instanceof ToolbarNewStudent) {
+					ToolbarNewStudent dialog = (ToolbarNewStudent) parent;
+					StudentWindowController.addNewStudent(dialog);
+				} else if(parent instanceof ToolbarNewProfessor) {
+					ToolbarNewProfessor dialog = (ToolbarNewProfessor) parent;
+					ProfessorWindowController.addProfessor(dialog);
+				}
+
 			}
 		});
 		buttonExit = new JButton("Otkazi");
 		buttonExit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Clicked");
-				//((ToolbarNewStudent)buttonExit.getParent().getParent().getParent().getParent()).dispose();
-				if(buttonExit.getParent().getParent() instanceof ToolbarNewStudent) {
-					System.out.println("This his toolbar new student");
-				} else {
-					System.out.println(buttonExit.getParent().getParent().getParent());
+				Window parent = SwingUtilities.getWindowAncestor(buttonConfirm);
+				if(parent instanceof ToolbarNewStudent) {
+					ToolbarNewStudent dialog = (ToolbarNewStudent) parent;
+					dialog.dispose();
+				} else if(parent instanceof ToolbarNewProfessor) {
+					ToolbarNewProfessor dialog = (ToolbarNewProfessor) parent;
+					dialog.dispose();
 				}
 			}
 		});;

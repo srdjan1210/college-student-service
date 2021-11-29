@@ -12,7 +12,7 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
-public class ToolbarNewStudent extends JFrame {
+public class ToolbarNewStudent extends JDialog {
 
 	String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja" };
@@ -22,8 +22,8 @@ public class ToolbarNewStudent extends JFrame {
 	Vector<JComponent> fieldsReferences;
 	
 	public ToolbarNewStudent() {
-		
 		super();
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		BoxLayout layout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(layout);
 		setTitle("Dodavanje studenta");
@@ -42,8 +42,7 @@ public class ToolbarNewStudent extends JFrame {
 				add(createRow(name, "Text"));
 		}
 		add(new ToolbarEnterExitPanel());
-
-		//setVisible(true);
+		setVisible(true);
 	}
 	
 	
