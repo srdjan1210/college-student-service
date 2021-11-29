@@ -10,14 +10,14 @@ public class Professor {
 	private Address address;
 	private String phoneNumber;
 	private String emailAddress;
-	private String officeAddress;
+	private Address officeAddress;
 	private String idNumber;
 	private String title;
 	private int workingYears;
 	private ArrayList<Subject> subjects;
 	
 	public Professor(String lastName, String firstName, LocalDate birthDay, Address address, String phoneNumber,
-			String emailAddress, String officeAddress, String idNumber, String title, int workingYears) {
+			String emailAddress, Address officeAddress, String idNumber, String title, int workingYears) {
 		super();
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -80,11 +80,11 @@ public class Professor {
 		this.emailAddress = emailAddress;
 	}
 
-	public String getOfficeAddress() {
+	public Address getOfficeAddress() {
 		return officeAddress;
 	}
 
-	public void setOfficeAddress(String officeAddress) {
+	public void setOfficeAddress(Address officeAddress) {
 		this.officeAddress = officeAddress;
 	}
 

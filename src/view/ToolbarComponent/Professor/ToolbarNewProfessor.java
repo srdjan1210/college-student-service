@@ -57,4 +57,12 @@ public class ToolbarNewProfessor extends JDialog {
 		return labelReferences;
 	}
 
+	public JTextField getTextField(int index) {
+		return (JTextField) fieldsReferences.get(index);
+	}
+
+	public JComboBox getComboBox(int index) {
+		return (JComboBox) fieldsReferences.get(index);
+	}
+
 }

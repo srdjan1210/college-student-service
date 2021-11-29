@@ -41,7 +41,8 @@ public class DataModel {
 		Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
 
 		while (scanner.hasNextLine()) {
-			String[] data = splitScannedData(scanner.nextLine());
+			String scannedData = scanner.nextLine();
+			String[] data = splitScannedData(scannedData);
 			T obj = null;
 			if (className.equals("Student"))
 				obj = (T) loadStudentObject(data);
@@ -54,14 +55,14 @@ public class DataModel {
 			else if (className.equals("Mark"))
 				obj = (T) loadMarkObject(data);
 			else if (className.equals("Address"))
-				obj = (T) loadAddressObject(data);
+				obj = (T) loadAddressObject(scannedData.split(":"));
 			entityList.add(obj);
 		}
 		return entityList;
 	}
 
 	private Professor loadProfessorObject(String[] data) {
-		return new Professor(data[0], data[1], LocalDate.parse(data[2]),convertStringToAddress(data[3]), data[4], data[5], data[6], data[7],
+		return new Professor(data[0], data[1], LocalDate.parse(data[2]),convertStringToAddress(data[3]), data[4], data[5], loadAddressObject(data[6].split(":")), data[7],
 				data[8], Integer.parseInt(data[9]));
 	}
 
@@ -86,7 +87,7 @@ public class DataModel {
 	}
 
 	private Address loadAddressObject(String[] data) {
-		return new Address(data[0], Integer.parseInt(data[1]), data[2], data[3]);
+		return new Address(data[0], Integer.parseInt(data[3]), data[2], data[1]);
 	}
 
 	private Professor getProfessorById(String id) {
@@ -182,5 +183,13 @@ public class DataModel {
 
 	public void setAddresses(ArrayList<Address> addresses) {
 		this.addresses = addresses;
+	}
+
+	public void addProfessorToList(Professor newProfessor) {
+		professors.add(newProfessor);
+	}
+
+	public void addStudentToList(Student newStudent) {
+		students.add(newStudent);
 	}
 }

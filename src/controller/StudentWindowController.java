@@ -9,22 +9,21 @@ import view.ToolbarComponent.Student.ToolbarNewStudent;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Vector;
 
 public class StudentWindowController {
 
-    public static void addNewStudent(ToolbarNewStudent window) {
-        if(checkIfFieldsEmpty(window)) {
-            Student student = createStudentObjectFromFields(window);
-            ArrayList<Student> students = DataModel.getInstance().getStudents();
-            students.add(student);
-            DataModel.getInstance().setStudents(students);
+    public static void addNewStudent(ToolbarNewStudent tns) {
+        if (checkIfFieldsEmpty(tns)) {
+            Student student = createStudentObjectFromFields(tns);
+            DataModel.getInstance().addStudentToList(student);
+            JOptionPane.showMessageDialog(tns, "Student uspjesno dodan u listu!");
         } else {
-            JOptionPane.showMessageDialog(window, "Polja ne smiju biti prazna!");
+            JOptionPane.showMessageDialog(tns, "Polja ne smiju biti prazna!");
         }
 
     }
+
     private static Student createStudentObjectFromFields(ToolbarNewStudent studWin) {
         String firstName = studWin.getTextField(0).getText();
         String secondName = studWin.getTextField(1).getText();
@@ -41,14 +40,14 @@ public class StudentWindowController {
 
     private static Address createAddressFromAddressString(String addString) {
         String[] addressParts = addString.split(":");
-        return new Address(addressParts[0],Integer.parseInt(addressParts[3]),addressParts[1],addressParts[2]);
+        return new Address(addressParts[0], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[2]);
     }
 
     private static boolean checkIfFieldsEmpty(ToolbarNewStudent window) {
         Vector<JComponent> fields = window.getFieldsReferences();
-        for(int i = 0; i < fields.size() - 2; i++) {
+        for (int i = 0; i < fields.size() - 2; i++) {
             JTextField field = (JTextField) fields.get(i);
-            if(field.getText().trim().equals("")) return false;
+            if (field.getText().trim().equals("")) return false;
         }
 
         return true;
