@@ -19,6 +19,7 @@ public class ToolbarNewProfessor extends JDialog {
 	public ToolbarNewProfessor() {
 		super();
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
 		BoxLayout layout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(layout);
 		setTitle("Dodavanje Profesora");

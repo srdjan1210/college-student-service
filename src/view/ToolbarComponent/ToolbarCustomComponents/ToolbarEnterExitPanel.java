@@ -1,23 +1,15 @@
 package view.ToolbarComponent.ToolbarCustomComponents;
 
 
-import controller.ProfessorWindowController;
-import controller.StudentWindowController;
-import controller.SubjectWindowController;
-import view.ToolbarComponent.Professor.ToolbarNewProfessor;
-import view.ToolbarComponent.Student.ToolbarNewStudent;
-import view.ToolbarComponent.Subject.ToolbarNewSubject;
+import view.ListenerHandler;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 public class ToolbarEnterExitPanel extends JPanel{
 
 	private JButton buttonConfirm;
-	private JButton buttonExit;
+	private JButton buttonCancel;
 	public ToolbarEnterExitPanel() {
 		super();
 		BoxLayout layout = new BoxLayout(this, BoxLayout.X_AXIS);
@@ -25,41 +17,14 @@ public class ToolbarEnterExitPanel extends JPanel{
 
 
 		buttonConfirm = new JButton("Potvrdi");
-		buttonConfirm.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Window parent = SwingUtilities.getWindowAncestor(buttonConfirm);
-				if(parent instanceof ToolbarNewStudent) {
-					ToolbarNewStudent dialog = (ToolbarNewStudent) parent;
-					StudentWindowController.addNewStudent(dialog);
-				} else if(parent instanceof ToolbarNewProfessor) {
-					ToolbarNewProfessor dialog = (ToolbarNewProfessor) parent;
-					ProfessorWindowController.addProfessor(dialog);
-				} else if(parent instanceof ToolbarNewSubject) {
-					ToolbarNewSubject dialog = (ToolbarNewSubject) parent;
-					SubjectWindowController.addSubject(dialog);
-				}
+		buttonCancel = new JButton("Otkazi");
 
-			}
-		});
-		buttonExit = new JButton("Otkazi");
-		buttonExit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Window parent = SwingUtilities.getWindowAncestor(buttonConfirm);
-				if(parent instanceof ToolbarNewStudent) {
-					ToolbarNewStudent dialog = (ToolbarNewStudent) parent;
-					dialog.dispose();
-				} else if(parent instanceof ToolbarNewProfessor) {
-					ToolbarNewProfessor dialog = (ToolbarNewProfessor) parent;
-					dialog.dispose();
-				}
-			}
-		});;
+		buttonConfirm.addActionListener(ListenerHandler.getButtonConfirmListener(buttonConfirm));
+		buttonCancel.addActionListener(ListenerHandler.getButtonCancelListener(buttonCancel));;
 
 		add(buttonConfirm);
 		add(Box.createHorizontalStrut(50));
-		add(buttonExit);
+		add(buttonCancel);
 	}
 	
 	
@@ -67,7 +32,7 @@ public class ToolbarEnterExitPanel extends JPanel{
 		return buttonConfirm; 
 	}
 	
-	public JButton getButtonExit() {
-		return buttonExit;
+	public JButton getButtonCancel() {
+		return buttonCancel;
 	}
 }

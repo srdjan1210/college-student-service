@@ -1,6 +1,8 @@
 package view.MenuBarComponent;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.*;
@@ -12,7 +14,7 @@ import view.Screen;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 
 public class MenuBar extends JMenuBar {
-
+	private MenuBar context = this;
 	public MenuBar() {
 		super();
 		JMenu fileMenuButton = new JMenu("File");
@@ -24,8 +26,7 @@ public class MenuBar extends JMenuBar {
 		helpMenuButton.setMnemonic('H');
 
 		MenuItems newMenuItem = new MenuItems("New", "Icons/NewMenuItem.png", "CTRL + N",'N');
-		Screen parentWindow = (Screen) SwingUtilities.getWindowAncestor(this);
-		newMenuItem.addActionListener(ListenerHandler.openWindowListener(null));
+		newMenuItem.addActionListener(ListenerHandler.openWindowListener(context));
 		MenuItems saveMenuItem = new MenuItems("Save", "Icons/SaveMenuItem.png", "CTRL + S",'S');
 		MenuItems closeMenuItem = new MenuItems("Close", "Icons/CloseMenuItem.png", "CTRL + C",'C');
 
