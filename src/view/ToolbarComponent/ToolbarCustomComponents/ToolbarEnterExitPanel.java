@@ -3,8 +3,10 @@ package view.ToolbarComponent.ToolbarCustomComponents;
 
 import controller.ProfessorWindowController;
 import controller.StudentWindowController;
+import controller.SubjectWindowController;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
+import view.ToolbarComponent.Subject.ToolbarNewSubject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,6 +35,9 @@ public class ToolbarEnterExitPanel extends JPanel{
 				} else if(parent instanceof ToolbarNewProfessor) {
 					ToolbarNewProfessor dialog = (ToolbarNewProfessor) parent;
 					ProfessorWindowController.addProfessor(dialog);
+				} else if(parent instanceof ToolbarNewSubject) {
+					ToolbarNewSubject dialog = (ToolbarNewSubject) parent;
+					SubjectWindowController.addSubject(dialog);
 				}
 
 			}

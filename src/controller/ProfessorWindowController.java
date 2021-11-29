@@ -12,13 +12,14 @@ import java.util.Vector;
 public class ProfessorWindowController {
 
     public static void addProfessor(ToolbarNewProfessor tnp) {
-            if(checkIfFieldsEmpty(tnp)) {
-                Professor professor = createProfessorObjectFromFields(tnp);
-                DataModel.getInstance().addProfessorToList(professor);
-                JOptionPane.showMessageDialog(tnp, "Profesor uspjesno dodan u listu!");
-            } else {
-                JOptionPane.showMessageDialog(tnp, "Polja ne smiju biti prazna!");
-            }
+        if(checkIfFieldsEmpty(tnp)) {
+            Professor professor = createProfessorObjectFromFields(tnp);
+            DataModel.getInstance().addProfessorToList(professor);
+            JOptionPane.showMessageDialog(tnp, "Profesor uspjesno dodan u listu!");
+            tnp.dispose();
+        } else {
+            JOptionPane.showMessageDialog(tnp, "Polja ne smiju biti prazna!");
+        }
     }
     private static Professor createProfessorObjectFromFields(ToolbarNewProfessor profWin) {
         String firstName = profWin.getTextField(0).getText();

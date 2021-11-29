@@ -18,6 +18,7 @@ public class StudentWindowController {
             Student student = createStudentObjectFromFields(tns);
             DataModel.getInstance().addStudentToList(student);
             JOptionPane.showMessageDialog(tns, "Student uspjesno dodan u listu!");
+            tns.dispose();
         } else {
             JOptionPane.showMessageDialog(tns, "Polja ne smiju biti prazna!");
         }
