@@ -57,12 +57,12 @@ public class Screen extends JFrame {
         setTitle("Studentska Slu�ba");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-
-
+        
     }
 
     public int getSelectedTab() {
         return selectedTab;
     }
+    
 
 }

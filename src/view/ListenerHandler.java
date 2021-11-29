@@ -1,18 +1,20 @@
 package view;
 
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
+
 import controller.ProfessorWindowController;
 import controller.StudentWindowController;
 import controller.SubjectWindowController;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
+import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarIconButton;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.*;
 
 public class ListenerHandler {
 	
@@ -77,6 +79,20 @@ public class ListenerHandler {
 					dialog.dispose();
 				}
 			}
+		};
+	}
+	
+	public static ActionListener openEditDialogListener(JButton btnEdit) {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ToolbarEditStudent editDialog = new ToolbarEditStudent();
+				editDialog.setVisible();
+				
+			}
+			
 		};
 	}
 
