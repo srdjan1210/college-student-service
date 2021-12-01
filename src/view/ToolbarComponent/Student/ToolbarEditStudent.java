@@ -16,12 +16,13 @@ public class ToolbarEditStudent extends JDialog {
 		setTitle("Izmena studenta");
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
 		setLocationRelativeTo(null);
-		setLayout(new BoxLayout(this.getContentPane(),BoxLayout.Y_AXIS));
+		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
-		EditStudentTab tab=new EditStudentTab();
+		EditStudentTab tab = new EditStudentTab();
 		add(tab);
 		setVisible(false);
 	}
+
 	public void setVisible() {
 		setVisible(true);
 	}
