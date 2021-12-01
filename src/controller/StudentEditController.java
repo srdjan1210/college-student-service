@@ -1,5 +1,6 @@
 package controller;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
@@ -8,7 +9,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import model.Address;
+import model.DataModel;
 import model.Student;
+import utils.Constants;
+import utils.EnumConversion;
+import view.TabComponent.Tab;
+import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
 
 public class StudentEditController {
@@ -19,7 +25,7 @@ public class StudentEditController {
 		String data[] = { "", "", "", "", "", "", "", "", "", "" };
 		data[0] = student.getFirstName();
 		data[1] = student.getLastName();
-		data[2] = student.getBirthDay().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		data[2] = student.getBirthDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		data[3] = addressToString(student.getAddress());
 		data[4] = student.getPhoneNumber();
 		data[5] = student.getEmailAddress();
@@ -32,19 +38,45 @@ public class StudentEditController {
 
 	public static String addressToString(Address address) {
 		String data = "";
-		data = address.getStreet() + " " + Integer.toString(address.getStreetNumber()) + " " + address.getCity() + " "
+		data = address.getStreet() + "-" + Integer.toString(address.getStreetNumber()) + "-" + address.getCity() + "-"
 				+ address.getCountry();
 		return data;
 	}
 	
-	public static void editStudent(ToolbarEditStudentInfo studentInfo) {
+	public static void editStudent(ToolbarEditStudentInfo studentInfo,ToolbarEditStudent dialog) {
 		if(checkIfFieldsIsEmpty(studentInfo)) {
+			String studentIndexBeforeEdit = Tab.getSelectedStudentIndex();
+			Vector<JComponent> fields = studentInfo.getFieldsReferences();
+			Student student = getEditedStudent(studentInfo);
+			DataModel model=DataModel.getInstance();
+			model.setEditedStudent(studentIndexBeforeEdit, student);
+			JOptionPane.showMessageDialog(studentInfo, "Informacije o studentu uspesno izmenjene!");
+			dialog.dispose();
 			
 		}
 		else {
 			JOptionPane.showMessageDialog(studentInfo, "Polja ne smiju biti prazna!");
 		}
 	}
+	
+	public static Student getEditedStudent(ToolbarEditStudentInfo studentInfo) {
+		String firstName = studentInfo.getTextField(0).getText();
+        String lastName = studentInfo.getTextField(1).getText();
+        LocalDate birthDate = LocalDate.parse(studentInfo.getTextField(2).getText());
+        Address address = createAddressFromAddressString(studentInfo.getTextField(3).getText());
+        String phoneNum = studentInfo.getTextField(4).getText();
+        String email = studentInfo.getTextField(5).getText();
+        String indexNum = studentInfo.getTextField(6).getText();
+        int startingYear = Integer.parseInt(studentInfo.getTextField(7).getText());
+        int currentYear = Integer.parseInt(studentInfo.getComboBox(8).getSelectedItem().toString());
+        Constants.Status financing = EnumConversion.stringToStatus(studentInfo.getComboBox(9).getSelectedItem().toString());
+		return new Student(lastName, firstName, birthDate, address, phoneNum, email, indexNum, startingYear, currentYear, financing, 0);
+	}
+	
+	public static Address createAddressFromAddressString(String addressString) {
+        String[] addressParts = addressString.split("-");
+        return new Address(addressParts[0], Integer.parseInt(addressParts[1]), addressParts[2], addressParts[3]);
+    }
 	
 	public static boolean checkIfFieldsIsEmpty(ToolbarEditStudentInfo studentInfo) {
 		Vector<JComponent> fields = studentInfo.getFieldsReferences();

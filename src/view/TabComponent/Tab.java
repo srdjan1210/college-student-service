@@ -76,6 +76,7 @@ public class Tab extends JTabbedPane {
 		add("Profesor", new JScrollPane(professorTable));
 		add("Predmeti", new JScrollPane(subjectTable));
 	}
+	
 
 	public static String getSelectedStudentIndex() {
 		return selectedStudentIndex;

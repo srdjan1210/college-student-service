@@ -193,4 +193,27 @@ public class DataModel {
 	public void addSubjectToList(Subject newSubject) {
 		subjects.add(newSubject);
 	}
+	
+	public void setEditedStudent(String oldIndex,Student studentNewInfo) {
+		for(int i=0;i<students.size();i++) {
+			if(students.get(i).getIndexNumber().equals(oldIndex)) {
+				students.get(i).setFirstName(studentNewInfo.getFirstName());
+				students.get(i).setLastName(studentNewInfo.getLastName());
+				students.get(i).setBirthDay(studentNewInfo.getBirthDay());
+				students.get(i).setAddress(studentNewInfo.getAddress());
+				students.get(i).setPhoneNumber(studentNewInfo.getPhoneNumber());
+				students.get(i).setEmailAddress(studentNewInfo.getEmailAddress());
+				students.get(i).setIndexNumber(studentNewInfo.getIndexNumber());
+				students.get(i).setEntryYear(studentNewInfo.getEntryYear());
+				students.get(i).setStudyYear(studentNewInfo.getStudyYear());
+				students.get(i).setStatus(studentNewInfo.getStatus());
+			}
+		}
+	}
+	
+	public void printStudents() {
+		for(int i=0;i<students.size();i++) {
+			System.out.println(students.get(i).getFirstName());
+		}
+	}
 }

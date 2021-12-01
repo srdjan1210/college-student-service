@@ -60,7 +60,7 @@ public class ListenerHandler {
 					SubjectAddingController.addSubject(dialog);
 				} else if (parent instanceof ToolbarEditStudent) {
 					ToolbarEditStudent dialog = (ToolbarEditStudent) parent;
-					StudentEditController.editStudent(dialog.getEditStudentTab().getEditInfo());
+					StudentEditController.editStudent(dialog.getEditStudentTab().getEditInfo(),dialog);
 				}
 
 			}
