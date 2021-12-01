@@ -7,8 +7,7 @@ import java.awt.event.KeyEvent;
 
 public class ToolbarAbstractAction extends AbstractAction {
 
-    public ToolbarAbstractAction(char shortcut) {
-        super();
+    public ToolbarAbstractAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
     }
     @Override
