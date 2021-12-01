@@ -1,2 +1,2 @@
 Stjepanovic,Srdjan,2000-10-12,Srbija:Novi Sad:Sajlovo:4,0665045747,stjepanovicsrdjan2000@gmail.com,RA168-2019,2019,3,B,9.0
-Selakovic,Darko,2000-10-13,Srbija:Novi Sad:Liman:4,0665045747,darkoselakovic2000@gmail.com,RA157-2019,2019,3,B,10.0
+Selakovic,Darko,2000-10-13,Srbija:Novi Sad:Liman:4,0665045747,darkoselakovic2000@gmail.com,RA157-2019,2019,3,S,10.0

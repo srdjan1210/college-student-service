@@ -1,14 +1,17 @@
 package view.ToolbarComponent;
 
+import java.awt.Dimension;
+import javax.swing.Box;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
+
 import utils.Constants;
+
 import controller.ListenerHandler;
+
 import view.ToolbarComponent.ToolbarCustomComponents.CustomSeparator;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarAbstractAction;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarIconButton;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarSearch;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class Toolbar extends JToolBar {
 
@@ -17,6 +20,7 @@ public class Toolbar extends JToolBar {
 	private ToolbarIconButton btnDelete;
 	private ToolbarIconButton btnSearch;
 	private ToolbarSearch searchField;
+	
 
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
@@ -24,12 +28,14 @@ public class Toolbar extends JToolBar {
 		setPreferredSize(new Dimension(Constants.SCREEN_WIDTH * 3 / 4, 30));
 		setFloatable(false);
 
-		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png", "Add Entity", 'N');
-		btnEdit = new ToolbarIconButton("Icons/DeleteMenuItem.png", "Edit Entity", '[');
-		btnDelete = new ToolbarIconButton("Icons/EditMenuitem.png", "Delete Entity", ']');
-		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Search", 'Y');
+		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png", "Add Entity");
+		btnEdit = new ToolbarIconButton("Icons/EditMenuItem.png", "Edit Entity");
+		btnDelete = new ToolbarIconButton("Icons/DeleteMenuitem.png", "Delete Entity");
+		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Search");
+
 		searchField = new ToolbarSearch();
 		btnNew.addActionListener(ListenerHandler.openWindowListener(btnNew));
+		btnEdit.addActionListener(ListenerHandler.openEditDialogListener(btnEdit));
 		// Left side of toolbar
 
 		add(new CustomSeparator());
@@ -70,5 +76,6 @@ public class Toolbar extends JToolBar {
 	public ToolbarSearch getSearchField() {
 		return searchField;
 	}
+	
 
 }

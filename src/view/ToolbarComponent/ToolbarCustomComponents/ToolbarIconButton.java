@@ -13,7 +13,7 @@ import view.ToolbarComponent.Toolbar;
 
 public class ToolbarIconButton extends JButton {
 	
-	public ToolbarIconButton(String path, String tooltip, char shortcut) {
+	public ToolbarIconButton(String path, String tooltip) {
 		super();
 		ImageIcon icon = ImageUtils.scaleImage(ImageUtils.readImageIcon(path), Constants.ICON_BUTTON_WIDTH, Constants.ICON_BUTTON_HEIGHT);
 		this.setIcon(icon);
