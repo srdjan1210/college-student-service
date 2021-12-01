@@ -10,7 +10,7 @@ import view.ToolbarComponent.Subject.ToolbarNewSubject;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class SubjectWindowController {
+public class SubjectAddingController {
 
     public static void addSubject(ToolbarNewSubject tns) {
         if (checkIfFieldsEmpty(tns)) {

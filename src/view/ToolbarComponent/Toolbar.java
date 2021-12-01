@@ -39,6 +39,7 @@ public class Toolbar extends JToolBar {
 		btnEdit.addActionListener(ListenerHandler.openEditDialogListener(btnEdit));
 		// Left side of toolbar
 
+
 		add(new CustomSeparator());
 		add(btnNew);
 		add(new CustomSeparator());

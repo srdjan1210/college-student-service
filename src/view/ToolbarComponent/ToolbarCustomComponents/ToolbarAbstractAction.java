@@ -9,6 +9,7 @@ public class ToolbarAbstractAction extends AbstractAction {
 
     public ToolbarAbstractAction() {
         putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+
     }
     @Override
     public void actionPerformed(ActionEvent e) {

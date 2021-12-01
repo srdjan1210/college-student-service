@@ -8,13 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
-import controller.ProfessorWindowController;
-import controller.StudentWindowController;
-import controller.SubjectWindowController;
 import view.Screen;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
-import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
 
@@ -52,13 +48,13 @@ public class ListenerHandler {
 				Window parent = SwingUtilities.getWindowAncestor(btnConfirm);
 				if (parent instanceof ToolbarNewStudent) {
 					ToolbarNewStudent dialog = (ToolbarNewStudent) parent;
-					StudentWindowController.addNewStudent(dialog);
+					StudentAddingController.addNewStudent(dialog);
 				} else if (parent instanceof ToolbarNewProfessor) {
 					ToolbarNewProfessor dialog = (ToolbarNewProfessor) parent;
-					ProfessorWindowController.addProfessor(dialog);
+					ProfessorAddingController.addProfessor(dialog);
 				} else if (parent instanceof ToolbarNewSubject) {
 					ToolbarNewSubject dialog = (ToolbarNewSubject) parent;
-					SubjectWindowController.addSubject(dialog);
+					SubjectAddingController.addSubject(dialog);
 				}
 
 			}

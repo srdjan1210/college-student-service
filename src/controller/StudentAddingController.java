@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class StudentWindowController {
+public class StudentAddingController {
 
     public static void addNewStudent(ToolbarNewStudent tns) {
         if (checkIfFieldsEmpty(tns)) {

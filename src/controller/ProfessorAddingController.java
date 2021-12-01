@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class ProfessorWindowController {
+public class ProfessorAddingController {
 
     public static void addProfessor(ToolbarNewProfessor tnp) {
         if (checkIfFieldsEmpty(tnp)) {
