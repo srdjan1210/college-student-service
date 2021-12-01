@@ -1,17 +1,11 @@
 package view.MenuBarComponent;
 
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 
 import javax.swing.*;
-import javax.swing.event.MenuKeyEvent;
 
 import utils.ImageUtils;
-import view.ListenerHandler;
-import view.Screen;
-import view.ToolbarComponent.Student.ToolbarNewStudent;
+import controller.ListenerHandler;
 
 public class MenuBar extends JMenuBar {
 	private MenuBar context = this;

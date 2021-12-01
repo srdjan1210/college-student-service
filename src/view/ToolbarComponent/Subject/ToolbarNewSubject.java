@@ -8,12 +8,13 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class ToolbarNewSubject extends JDialog {
-    String[] labelNames = {"Id predmeta*", "Naziv predmeta*", "Semestar*", "Profesor*", "Espb*", "Godina studija*"};
-    String[] semesterValues = {"ZIMSKI", "LETNJI"};
-    Vector<JComponent> fieldsReferences;
+    private String[] labelNames = {"Id predmeta*", "Naziv predmeta*", "Semestar*", "Profesor*", "Espb*", "Godina studija*"};
+    private String[] semesterValues = {"ZIMSKI", "LETNJI"};
+    private ArrayList<JComponent> fieldsReferences;
+    private ArrayList<ToolbarWinLabel> labelsReferences;
 
     public ToolbarNewSubject() {
         super();
@@ -24,11 +25,12 @@ public class ToolbarNewSubject extends JDialog {
         setTitle("Dodavanje Predmeta");
         setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
         setLocationRelativeTo(null);
-        fieldsReferences = new Vector<JComponent>();
+        fieldsReferences = new ArrayList<>();
+        labelsReferences = new ArrayList<>();
 
-        for(int i = 0; i < labelNames.length; i++) {
+        for (int i = 0; i < labelNames.length; i++) {
             String labelName = labelNames[i];
-            if(i == 2) {
+            if (i == 2) {
                 add(createRow(labelName, "Semester"));
                 continue;
             }
@@ -41,9 +43,10 @@ public class ToolbarNewSubject extends JDialog {
     private JPanel createRow(String labelName, String compType) {
         JPanel row = new JPanel();
         ToolbarWinLabel label = new ToolbarWinLabel(labelName);
+        labelsReferences.add(label);
         row.add(label);
 
-        if(compType.equals("Semester"))
+        if (compType.equals("Semester"))
             fieldsReferences.add(new ToolbarWinCombo(semesterValues));
         else
             fieldsReferences.add(new ToolbarWinTxtField());
@@ -61,7 +64,7 @@ public class ToolbarNewSubject extends JDialog {
         return (JComboBox) fieldsReferences.get(index);
     }
 
-    public Vector<JComponent> getFieldsReferences() {
+    public ArrayList<JComponent> getFieldsReferences() {
         return fieldsReferences;
     }
 }

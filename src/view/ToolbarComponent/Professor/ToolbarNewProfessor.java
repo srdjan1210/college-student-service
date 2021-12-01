@@ -1,6 +1,7 @@
 package view.ToolbarComponent.Professor;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.*;
@@ -10,11 +11,11 @@ import view.ToolbarComponent.ToolbarCustomComponents.*;
 
 public class ToolbarNewProfessor extends JDialog {
 	
-	String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
+	private String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Adresa kancelarije*", "Broj licne karte*", "Zvanje*", "Godine iskustva*" };
-	Vector<JComponent> fieldsReferences;
-	Vector<ToolbarWinLabel> labelReferences;
-	ToolbarEnterExitPanel tenex;
+	private ArrayList<JComponent> fieldsReferences;
+	private ArrayList<ToolbarWinLabel> labelReferences;
+	private ToolbarEnterExitPanel tenex;
 
 	public ToolbarNewProfessor() {
 		super();
@@ -25,8 +26,9 @@ public class ToolbarNewProfessor extends JDialog {
 		setTitle("Dodavanje Profesora");
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
 		setLocationRelativeTo(null);
-		fieldsReferences = new Vector<JComponent>();
-		labelReferences = new Vector<ToolbarWinLabel>();
+
+		fieldsReferences = new ArrayList<JComponent>();
+		labelReferences = new ArrayList<ToolbarWinLabel>();
 
 		for(int i = 0; i < labelNames.length; i++) {
 			String name = labelNames[i];
@@ -50,11 +52,11 @@ public class ToolbarNewProfessor extends JDialog {
 	
 	}
 
-	public Vector<JComponent> getFieldsReferences() {
+	public ArrayList<JComponent> getFieldsReferences() {
 		return fieldsReferences;
 	}
 
-	public Vector<ToolbarWinLabel> getLabelReferences() {
+	public ArrayList<ToolbarWinLabel> getLabelReferences() {
 		return labelReferences;
 	}
 

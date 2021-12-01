@@ -8,7 +8,7 @@ import utils.EnumConversion;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
 
 import javax.swing.*;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class SubjectWindowController {
 
@@ -35,7 +35,7 @@ public class SubjectWindowController {
     }
 
     private static boolean checkIfFieldsEmpty(ToolbarNewSubject window) {
-        Vector<JComponent> fields = window.getFieldsReferences();
+        ArrayList<JComponent> fields = window.getFieldsReferences();
         for (int i = 0; i < fields.size(); i++) {
             if (i == 2) continue;
             JTextField field = (JTextField) fields.get(i);

@@ -14,12 +14,13 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
 public class ToolbarNewStudent extends JDialog {
 
-	String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
+	private String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja" };
-	String[] finansingWay = { "BUDZET", "SAMOFINANSIRANJE" };
-	String[] years = { "1", "2", "3", "4" };
+	private String[] finansingWay = { "BUDZET", "SAMOFINANSIRANJE" };
+	private String[] years = { "1", "2", "3", "4" };
 
-	Vector<JComponent> fieldsReferences;
+	private ArrayList<JComponent> fieldsReferences;
+	private ArrayList<ToolbarWinLabel> labelReferences;
 	
 	public ToolbarNewStudent() {
 		super();
@@ -30,7 +31,8 @@ public class ToolbarNewStudent extends JDialog {
 		setTitle("Dodavanje studenta");
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
 		setLocationRelativeTo(null);
-		fieldsReferences = new Vector<JComponent>();
+		fieldsReferences = new ArrayList<>();
+		labelReferences = new ArrayList<>();
 		
 		
 		for(int i = 0; i < labelNames.length; i++) {
@@ -51,6 +53,7 @@ public class ToolbarNewStudent extends JDialog {
 	private JPanel createRow(String name, String fieldType) {
 		JPanel row = new JPanel();
 		ToolbarWinLabel lbl = new ToolbarWinLabel(name);
+		labelReferences.add(lbl);
 		row.add(lbl);
 		
 		if(fieldType.equals("Text"))
@@ -73,7 +76,7 @@ public class ToolbarNewStudent extends JDialog {
 		return (JComboBox) fieldsReferences.get(index);
 	}
 
-	public Vector<JComponent> getFieldsReferences() {
+	public ArrayList<JComponent> getFieldsReferences() {
 		return fieldsReferences;
 	}
 }

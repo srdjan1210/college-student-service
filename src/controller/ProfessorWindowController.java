@@ -7,12 +7,12 @@ import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class ProfessorWindowController {
 
     public static void addProfessor(ToolbarNewProfessor tnp) {
-        if(checkIfFieldsEmpty(tnp)) {
+        if (checkIfFieldsEmpty(tnp)) {
             Professor professor = createProfessorObjectFromFields(tnp);
             DataModel.getInstance().addProfessorToList(professor);
             JOptionPane.showMessageDialog(tnp, "Profesor uspjesno dodan u listu!");
@@ -21,6 +21,7 @@ public class ProfessorWindowController {
             JOptionPane.showMessageDialog(tnp, "Polja ne smiju biti prazna!");
         }
     }
+
     private static Professor createProfessorObjectFromFields(ToolbarNewProfessor profWin) {
         String firstName = profWin.getTextField(0).getText();
         String secondName = profWin.getTextField(1).getText();
@@ -32,18 +33,18 @@ public class ProfessorWindowController {
         String id = profWin.getTextField(7).getText();
         String title = profWin.getTextField(8).getText();
         int experience = Integer.parseInt(profWin.getTextField(9).getText());
-        return new Professor(firstName, secondName, birthDate, address, phone, email , office, id, title, experience);
+        return new Professor(firstName, secondName, birthDate, address, phone, email, office, id, title, experience);
     }
 
     private static Address createAddressFromAddressString(String addString) {
         String[] addressParts = addString.split(":");
-        return new Address(addressParts[0],Integer.parseInt(addressParts[3]),addressParts[1],addressParts[2]);
+        return new Address(addressParts[0], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[2]);
     }
 
     private static boolean checkIfFieldsEmpty(ToolbarNewProfessor tnp) {
-        Vector<JComponent> fields = tnp.getFieldsReferences();
-        for(JComponent field: fields) {
-            if(((JTextField)field).getText().trim().equals("")) return false;
+        ArrayList<JComponent> fields = tnp.getFieldsReferences();
+        for (JComponent field : fields) {
+            if (((JTextField) field).getText().trim().equals("")) return false;
         }
         return true;
     }

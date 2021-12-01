@@ -1,8 +1,9 @@
-package view;
+package controller;
 
 import controller.ProfessorWindowController;
 import controller.StudentWindowController;
 import controller.SubjectWindowController;
+import view.Screen;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;

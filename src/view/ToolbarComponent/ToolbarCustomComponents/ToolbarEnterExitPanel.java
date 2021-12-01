@@ -1,7 +1,7 @@
 package view.ToolbarComponent.ToolbarCustomComponents;
 
 
-import view.ListenerHandler;
+import controller.ListenerHandler;
 
 import javax.swing.*;
 

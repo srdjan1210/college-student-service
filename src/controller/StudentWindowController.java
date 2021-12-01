@@ -9,7 +9,7 @@ import view.ToolbarComponent.Student.ToolbarNewStudent;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class StudentWindowController {
 
@@ -45,7 +45,7 @@ public class StudentWindowController {
     }
 
     private static boolean checkIfFieldsEmpty(ToolbarNewStudent window) {
-        Vector<JComponent> fields = window.getFieldsReferences();
+        ArrayList<JComponent> fields = window.getFieldsReferences();
         for (int i = 0; i < fields.size() - 2; i++) {
             JTextField field = (JTextField) fields.get(i);
             if (field.getText().trim().equals("")) return false;
