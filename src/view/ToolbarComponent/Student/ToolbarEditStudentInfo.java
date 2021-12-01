@@ -24,7 +24,7 @@ public class ToolbarEditStudentInfo extends JPanel {
 
 	public ToolbarEditStudentInfo() {
 		super();
-		setPreferredSize(new Dimension(20, 100));
+		setPreferredSize(new Dimension(200, 800));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		fieldsReferences = new Vector<JComponent>();
@@ -38,8 +38,6 @@ public class ToolbarEditStudentInfo extends JPanel {
 			else
 				add(createOneItem(labelName, "TextField"));
 		}
-
-		add(new ToolbarEnterExitPanel());
 		setVisible(true);
 	}
 

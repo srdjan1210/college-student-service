@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import view.Screen;
+import view.TabComponent.Tab;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
+import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
 
@@ -55,6 +58,9 @@ public class ListenerHandler {
 				} else if (parent instanceof ToolbarNewSubject) {
 					ToolbarNewSubject dialog = (ToolbarNewSubject) parent;
 					SubjectAddingController.addSubject(dialog);
+				} else if (parent instanceof ToolbarEditStudent) {
+					ToolbarEditStudent dialog = (ToolbarEditStudent) parent;
+					StudentEditController.editStudent(dialog.getEditStudentTab().getEditInfo());
 				}
 
 			}
@@ -75,6 +81,9 @@ public class ListenerHandler {
 				} else if (parent instanceof ToolbarNewSubject) {
 					ToolbarNewSubject dialog = (ToolbarNewSubject) parent;
 					dialog.dispose();
+				} else if (parent instanceof ToolbarEditStudent) {
+					ToolbarEditStudent dialog = (ToolbarEditStudent) parent;
+					dialog.dispose();
 				}
 			}
 		};
@@ -86,8 +95,12 @@ public class ListenerHandler {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				if(!Tab.getSelectedStudentIndex().equals("")) {
 				ToolbarEditStudent editDialog = new ToolbarEditStudent();
 				editDialog.setVisible();
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Morate odabrati studenta kog menjate!", "InfoBox: " + "Problem sa izmenom studenta!", JOptionPane.INFORMATION_MESSAGE);
 
 			}
 

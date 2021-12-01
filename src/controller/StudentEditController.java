@@ -1,15 +1,20 @@
 package controller;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Vector;
+
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import model.Address;
 import model.Student;
+import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
 
 public class StudentEditController {
 	public StudentEditController() {
 
 	}
-
 	public static String[] findStudentDataForFields(Student student) {
 		String data[] = { "", "", "", "", "", "", "", "", "", "" };
 		data[0] = student.getFirstName();
@@ -31,4 +36,24 @@ public class StudentEditController {
 				+ address.getCountry();
 		return data;
 	}
+	
+	public static void editStudent(ToolbarEditStudentInfo studentInfo) {
+		if(checkIfFieldsIsEmpty(studentInfo)) {
+			
+		}
+		else {
+			JOptionPane.showMessageDialog(studentInfo, "Polja ne smiju biti prazna!");
+		}
+	}
+	
+	public static boolean checkIfFieldsIsEmpty(ToolbarEditStudentInfo studentInfo) {
+		Vector<JComponent> fields = studentInfo.getFieldsReferences();
+		for(int i=0;i<fields.size()-2;i++) {
+			JTextField textField = (JTextField)fields.get(i);
+			if(textField.getText().trim().equals(""))
+				return false;
+		}
+		return true;
+	}
+	
 }
