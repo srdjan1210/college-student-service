@@ -17,6 +17,7 @@ local.properties
 .loadpath
 .recommenders
 .idea
+src/resources/
 # External tool builders
 .externalToolBuilders/
 
