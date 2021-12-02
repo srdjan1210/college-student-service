@@ -18,7 +18,9 @@ import view.TablesComponent.Tables;
 
 public class Tab extends JTabbedPane {
 	public static int selectedrow = -1;
-	public static String selectedStudentIndex = "";
+	private static String selectedStudentIndex = "";
+	private static String selectedProfessorId = "";
+	private static String selectedSubjectId = "";
 	private Tables studentTable;
 
 	public Tab() {
@@ -88,4 +90,12 @@ public class Tab extends JTabbedPane {
 	public static String getSelectedStudentIndex() {
 		return selectedStudentIndex;
 	}
+	public static String getSelectedProfessorId() {
+		return selectedProfessorId;
+	}
+	public static String getSelectedSubjectId() {
+		return selectedSubjectId;
+	}
+
+
 }

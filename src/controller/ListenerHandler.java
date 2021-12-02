@@ -16,6 +16,7 @@ import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
+import view.ToolbarComponent.ToolbarCustomComponents.ToolbarIconButton;
 
 public class ListenerHandler {
 
@@ -85,6 +86,33 @@ public class ListenerHandler {
 					ToolbarEditStudent dialog = (ToolbarEditStudent) parent;
 					dialog.dispose();
 				}
+			}
+		};
+	}
+
+	public static ActionListener getButtonDeleteListener() {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ToolbarIconButton buttonDelete = (ToolbarIconButton) e.getSource();
+				Screen screen = (Screen) SwingUtilities.getWindowAncestor(buttonDelete);
+
+				if(screen.getSelectedTab() == 0) {
+					DeleteEntityController.deleteStudent(Tab.getSelectedStudentIndex());
+					return;
+				}
+
+				if(screen.getSelectedTab() == 1) {
+					DeleteEntityController.deleteProfessor(Tab.getSelectedProfessorId());
+					return;
+				}
+
+				if(screen.getSelectedTab() == 2) {
+					DeleteEntityController.deleteSubject(Tab.getSelectedSubjectId());
+					return;
+				}
+
 			}
 		};
 	}
