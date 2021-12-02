@@ -1,13 +1,18 @@
 package model;
 
-import utils.DataUtils;
-import utils.EnumConversion;
-
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+import utils.DataUtils;
+import utils.EnumConversion;
 
 public class DataModel {
 
@@ -26,11 +31,24 @@ public class DataModel {
 			subjects = readEntityFromFile("resources/predmeti.txt", "Subject");
 			departments = readEntityFromFile("resources/katedre.txt", "Department");
 			marks = readEntityFromFile("resources/ocene.txt", "Mark");
+			readStudentSubjectsFromFile("resources/nepolozeni.txt");
 			//addresses = readEntityFromFile("resources/adrese.txt", "Address");
 		} catch (Exception err) {
 			err.printStackTrace();
 		}
 
+	}
+	
+	private void readStudentSubjectsFromFile(String fileName) throws FileNotFoundException{
+		Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
+
+		while (scanner.hasNextLine()) {
+			String scannedData = scanner.nextLine();
+			String[] data = splitScannedData(scannedData);
+			Student student = getStudentById(data[0]);
+			Subject failedSubject = getSubjectById(data[1]);
+			student.addFailedSubject(failedSubject);
+		}
 	}
 
 	@SuppressWarnings("unchecked")

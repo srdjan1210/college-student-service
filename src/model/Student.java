@@ -142,6 +142,10 @@ public class Student {
     public void setFailedSubjects(ArrayList<Subject> failedSubjects) {
         this.failedSubjects = failedSubjects;
     }
+    
+    public void addFailedSubject(Subject subject) {
+    	this.failedSubjects.add(subject);
+    }
 
     @Override
     public String toString() {
