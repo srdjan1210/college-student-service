@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import controller.StudentAddingController;
 import org.w3c.dom.events.MouseEvent;
 
 import controller.TableViewController;
@@ -18,12 +19,13 @@ import view.TablesComponent.Tables;
 public class Tab extends JTabbedPane {
 	public static int selectedrow = -1;
 	public static String selectedStudentIndex = "";
+	private Tables studentTable;
 
 	public Tab() {
 		super();
 		String[] studentColumnNames = { "Indeks", "Ime", "Prezime", "Godina studija", "Status", "Prosek" };
 		String[] professorColumnNames = { "Ime", "Prezime", "Titula", "E-mail adresa" };
-		String[] subjectColumnNames = { "Šifra predmeta", "Naziv predmeta", "Broj ESPB bodova",
+		String[] subjectColumnNames = { "ï¿½ifra predmeta", "Naziv predmeta", "Broj ESPB bodova",
 				"Godina na kojoj se predmet izvodi", "Semestar u kome se predmet izvodi" };
 
 		DataModel dataModel = DataModel.getInstance();
@@ -34,7 +36,8 @@ public class Tab extends JTabbedPane {
 		String[][] professorsData = TableViewController.getProfessorsData(professors);
 		String[][] subjectsData = TableViewController.geSubjectsData(subjects);
 
-		Tables studentTable = new Tables(studentColumnNames, studentsData);
+		studentTable = new Tables(studentColumnNames, studentsData);
+		StudentAddingController.addObserver(studentTable);
 		studentTable.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -76,7 +79,11 @@ public class Tab extends JTabbedPane {
 		add("Profesor", new JScrollPane(professorTable));
 		add("Predmeti", new JScrollPane(subjectTable));
 	}
-	
+
+
+	public Tables getStudentTable() {
+		return studentTable;
+	}
 
 	public static String getSelectedStudentIndex() {
 		return selectedStudentIndex;

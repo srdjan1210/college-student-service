@@ -18,7 +18,7 @@ public class Constants {
 	};
 
 	public static enum Semester {
-		ZIMSKI("Z"), LETNJI("L");
+		ZIMSKI("ZIMSKI"), LETNJI("LETNJI");
 
 		private String value;
 

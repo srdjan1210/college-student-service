@@ -11,4 +11,10 @@ public class Tables extends JTable {
 		setModel(dtm);
 		setAutoCreateRowSorter(true);
 	}
+
+	public void notify(String[] row) {
+		DefaultTableModel dtm = (DefaultTableModel) this.getModel();
+		dtm.insertRow(dtm.getRowCount(), row);
+	}
+
 }

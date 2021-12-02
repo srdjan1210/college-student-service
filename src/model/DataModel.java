@@ -3,9 +3,10 @@ package model;
 import utils.DataUtils;
 import utils.EnumConversion;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class DataModel {
@@ -25,7 +26,7 @@ public class DataModel {
 			subjects = readEntityFromFile("resources/predmeti.txt", "Subject");
 			departments = readEntityFromFile("resources/katedre.txt", "Department");
 			marks = readEntityFromFile("resources/ocene.txt", "Mark");
-			addresses = readEntityFromFile("resources/adrese.txt", "Address");
+			//addresses = readEntityFromFile("resources/adrese.txt", "Address");
 		} catch (Exception err) {
 			err.printStackTrace();
 		}
@@ -42,19 +43,20 @@ public class DataModel {
 			String[] data = splitScannedData(scannedData);
 			T obj = null;
 			if (className.equals("Student"))
-				obj = (T) loadStudentObject(data);
+				obj = (T) loadStudentObject(trimSplittedString(data));
 			else if (className.equals("Professor"))
-				obj = (T) loadProfessorObject(data);
+				obj = (T) loadProfessorObject(trimSplittedString(data));
 			else if (className.equals("Subject"))
-				obj = (T) loadSubjectObject(data);
+				obj = (T) loadSubjectObject(trimSplittedString(data));
 			else if (className.equals("Department"))
-				obj = (T) loadDepartmentObject(data);
+				obj = (T) loadDepartmentObject(trimSplittedString(data));
 			else if (className.equals("Mark"))
-				obj = (T) loadMarkObject(data);
+				obj = (T) loadMarkObject(trimSplittedString(data));
 			else if (className.equals("Address"))
-				obj = (T) loadAddressObject(scannedData.split(":"));
+				obj = (T) loadAddressObject(trimSplittedString(scannedData.split(":")));
 			entityList.add(obj);
 		}
+		scanner.close();
 		return entityList;
 	}
 
@@ -64,14 +66,14 @@ public class DataModel {
 	}
 
 	private Student loadStudentObject(String[] data) {
-		return new Student(data[0], data[1], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4],
+		return new Student(data[1], data[0], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4],
 				data[5], data[6], Integer.parseInt(data[7]), Integer.parseInt(data[8]),
 				EnumConversion.stringToStatus(data[9]), Double.parseDouble(data[10]));
 	}
 
 	private Subject loadSubjectObject(String[] data) {
 		return new Subject(data[0], data[1], EnumConversion.stringToSemester(data[2]), Integer.parseInt(data[3]),
-				getProfessorById(data[4]), Integer.parseInt(data[4]));
+				getProfessorById(data[4]), Integer.parseInt(data[5]));
 	}
 
 	private Department loadDepartmentObject(String[] data) {
@@ -214,6 +216,36 @@ public class DataModel {
 	public void printStudents() {
 		for(int i=0;i<students.size();i++) {
 			System.out.println(students.get(i).getFirstName());
+		}
+	}
+
+	private String[] trimSplittedString(String[] data) {
+		for(String point: data) {
+			point = point.trim();
+		}
+		return data;
+	}
+
+	public void writeDataToFiles() {
+		writeEntitiesToFile("resources/studenti.txt", students);
+		writeEntitiesToFile("resources/profesori.txt", professors);
+		writeEntitiesToFile("resources/predmeti.txt", subjects);
+		writeEntitiesToFile("resources/katedre.txt", departments);
+		writeEntitiesToFile("resources/ocene.txt", marks);
+	}
+
+
+	private void writeEntitiesToFile(String path, ArrayList<?> list) {
+		File file = new File(path);
+		try(BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
+			for(int i = 0; i < list.size(); i++) {
+				Object entity = list.get(i);
+				if(i == 0) myWriter.write(entity.toString());
+				else myWriter.append(entity.toString());
+				if(i != list.size() -1) myWriter.newLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

@@ -47,7 +47,9 @@ public class Department {
 	public void setProfessorsList(ArrayList<Professor> professorsList) {
 		this.professorsList = professorsList;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return departmentId + "," + departmentName + "," + headOfTheDepartment.getIdNumber();
+	}
 }

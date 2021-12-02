@@ -1,1 +1,1 @@
-Stojic,Dusan,1980-10-02,Srbija:Novi Sad:Sajlovo:16,0662312323,stojicd@uns.ac.rs,Srbija:NoviSad:Dositeja Obradovica:6,1010101010,Docent,10
+Stojic,Dusan,1980-10-02,Srbija:Novi Sad:Sajlovo:16,0662312323,stojicd@uns.ac.rs,Dositeja Obradovica:Srbija:NoviSad:6,1010101010,Docent,10

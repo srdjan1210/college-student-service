@@ -5,6 +5,7 @@ import model.DataModel;
 import model.Student;
 import utils.Constants;
 import utils.EnumConversion;
+import view.TablesComponent.Tables;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 
 import javax.swing.*;
@@ -12,13 +13,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class StudentAddingController {
-
+    private static ArrayList<Tables> tables = new ArrayList<Tables>();
     public static void addNewStudent(ToolbarNewStudent tns) {
         if (checkIfFieldsEmpty(tns)) {
             Student student = createStudentObjectFromFields(tns);
             DataModel.getInstance().addStudentToList(student);
             JOptionPane.showMessageDialog(tns, "Student uspjesno dodan u listu!");
             tns.dispose();
+            notifyObservers(student);
         } else {
             JOptionPane.showMessageDialog(tns, "Polja ne smiju biti prazna!");
         }
@@ -52,5 +54,20 @@ public class StudentAddingController {
         }
 
         return true;
+    }
+
+    public static void addObserver(Tables table) {
+        tables.add(table);
+    }
+
+    public static void removeObserver(Tables table) {
+        tables.remove(table);
+    }
+
+    private static void notifyObservers(Student student) {
+        String[] array = {student.getIndexNumber(), student.getFirstName(), student.getLastName(), Integer.toString(student.getStudyYear()), student.getStatus().getValue(), Double.toString(student.getAverageMark())};
+        for(Tables table: tables) {
+            table.notify(array);
+        }
     }
 }
