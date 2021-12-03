@@ -37,7 +37,7 @@ public class StudentAddingController {
         String indexNum = studWin.getTextField(6).getText();
         int startingYear = Integer.parseInt(studWin.getTextField(7).getText());
         int currentYear = Integer.parseInt(studWin.getComboBox(8).getSelectedItem().toString());
-        Constants.Status financing = EnumConversion.stringToStatus(studWin.getTextField(0).getText());
+        Constants.Status financing = EnumConversion.stringToStatus(studWin.getComboBox(9).getSelectedItem().toString());
         return new Student(firstName, secondName, birthDate, address, phoneNum, email, indexNum, startingYear, currentYear, financing, 0);
     }
 

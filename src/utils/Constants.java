@@ -17,7 +17,7 @@ public class Constants {
 		}
 	};
 
-	public static enum Semester {
+	public enum Semester {
 		ZIMSKI("ZIMSKI"), LETNJI("LETNJI");
 
 		private String value;
@@ -31,7 +31,7 @@ public class Constants {
 		}
 	};
 
-	public static enum Status {
+	public enum Status {
 		BUDZET("B"), SAMOFINANSIRANJE("S");
 
 		private String value;
