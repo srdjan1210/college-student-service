@@ -32,7 +32,7 @@ public class Constants {
 	};
 
 	public enum Status {
-		BUDZET("B"), SAMOFINANSIRANJE("S");
+		BUDZET("BUDZET"), SAMOFINANSIRANJE("SAMOFINANSIRANJE");
 
 		private String value;
 

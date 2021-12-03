@@ -7,7 +7,7 @@ import utils.Constants.Status;
 public class EnumConversion {
 
 	public static Status stringToStatus(String status) {
-		return status.equals("B")? Status.BUDZET : Status.SAMOFINANSIRANJE;
+		return status.equals("BUDZET")? Status.BUDZET : Status.SAMOFINANSIRANJE;
 	}
 	
 	public static Semester stringToSemester(String semester) {

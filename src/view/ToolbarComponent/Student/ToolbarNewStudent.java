@@ -16,7 +16,7 @@ public class ToolbarNewStudent extends JDialog {
 
 	private String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja" };
-	private String[] finansingWay = { "B", "S" };
+	private String[] finansingWay = { "BUDZET", "SAMOFINANSIRANJE" };
 	private String[] years = { "1", "2", "3", "4" };
 
 	private ArrayList<JComponent> fieldsReferences;
