@@ -18,7 +18,6 @@ public class ProfessorAddingController {
     public static void addProfessor(ToolbarNewProfessor tnp) {
         try{
             checkIfFieldsEmpty(tnp);
-            System.out.println("Sve proslo validno");
             Professor professor = createProfessorObjectFromFields(tnp);
             DataModel.getInstance().addProfessorToList(professor);
             JOptionPane.showMessageDialog(tnp, "Profesor uspjesno dodan u listu!");
