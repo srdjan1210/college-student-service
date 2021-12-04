@@ -57,7 +57,7 @@ public class ToolbarNewStudent extends JDialog {
 		row.add(lbl);
 		
 		if(fieldType.equals("Text"))
-			fieldsReferences.add(new ToolbarWinTxtField());
+			fieldsReferences.add(new ToolbarWinTxtField(name));
 		else if(fieldType.equals("ComboYears")) 
 			fieldsReferences.add(new ToolbarWinCombo(years));
 		else if(fieldType.equals("ComboFinancing")) 

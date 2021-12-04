@@ -49,7 +49,7 @@ public class ToolbarNewSubject extends JDialog {
         if (compType.equals("Semester"))
             fieldsReferences.add(new ToolbarWinCombo(semesterValues));
         else
-            fieldsReferences.add(new ToolbarWinTxtField());
+            fieldsReferences.add(new ToolbarWinTxtField(labelName));
 
         row.add(fieldsReferences.get(fieldsReferences.size() - 1));
 

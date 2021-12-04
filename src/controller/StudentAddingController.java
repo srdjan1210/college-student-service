@@ -1,5 +1,6 @@
 package controller;
 
+import Exceptions.InvalidFieldException;
 import model.Address;
 import model.DataModel;
 import model.Student;
@@ -9,20 +10,24 @@ import view.TablesComponent.Tables;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 
 import javax.swing.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class StudentAddingController {
     private static ArrayList<Tables> tables = new ArrayList<Tables>();
     public static void addNewStudent(ToolbarNewStudent tns) {
-        if (checkIfFieldsEmpty(tns)) {
+        try {
+            checkIfFieldsEmpty(tns);
             Student student = createStudentObjectFromFields(tns);
             DataModel.getInstance().addStudentToList(student);
             JOptionPane.showMessageDialog(tns, "Student uspjesno dodan u listu!");
             tns.dispose();
             notifyObservers(student);
-        } else {
-            JOptionPane.showMessageDialog(tns, "Polja ne smiju biti prazna!");
+        } catch(InvalidFieldException e) {
+            JOptionPane.showMessageDialog(tns, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
         }
 
     }
@@ -46,15 +51,28 @@ public class StudentAddingController {
         return new Address(addressParts[0], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[2]);
     }
 
-    private static boolean checkIfFieldsEmpty(ToolbarNewStudent window) {
+    private static boolean checkIfFieldsEmpty(ToolbarNewStudent window) throws InvalidFieldException{
         ArrayList<JComponent> fields = window.getFieldsReferences();
         for (int i = 0; i < fields.size() - 2; i++) {
             JTextField field = (JTextField) fields.get(i);
-            if (field.getText().trim().equals("")) return false;
+            if(field.getName().toLowerCase(Locale.ROOT).contains("datum") && !isValidDate(field))
+                throw new InvalidFieldException("Format datuma treba da bude yyyy-MM-dd(" + field.getName() +")");
+            if (field.getText().trim().equals(""))
+                throw new InvalidFieldException(field.getName() + " polje je prazno ili nevalidno!");
         }
 
         return true;
     }
+
+    private static boolean isValidDate(JTextField dateField) throws InvalidFieldException {
+        try {
+            LocalDate.parse(dateField.getText());
+        } catch(Exception e) {
+            return false;
+        }
+        return true;
+    }
+
 
     public static void addObserver(Tables table) {
         tables.add(table);

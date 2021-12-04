@@ -51,7 +51,7 @@ public class ToolbarEditStudentInfo extends JPanel {
 		else if (itemType.equals("ComboYearOfStudy"))
 			fieldsReferences.add(new ToolbarWinCombo(yearOfStudy));
 		else if (itemType.equals("TextField"))
-			fieldsReferences.add(new ToolbarWinTxtField());
+			fieldsReferences.add(new ToolbarWinTxtField(labelName));
 
 		itemPanel.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return itemPanel;

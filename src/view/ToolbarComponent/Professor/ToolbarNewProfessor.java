@@ -44,7 +44,7 @@ public class ToolbarNewProfessor extends JDialog {
 		JPanel row = new JPanel();
 		ToolbarWinLabel lbl = new ToolbarWinLabel(name);
 		labelReferences.add(lbl);
-		fieldsReferences.add(new ToolbarWinTxtField());
+		fieldsReferences.add(new ToolbarWinTxtField(name));
 
 		row.add(lbl);
 		row.add(fieldsReferences.get(fieldsReferences.size() - 1));
