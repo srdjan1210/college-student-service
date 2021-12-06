@@ -1,6 +1,0 @@
-Srdjan,Stjepanovic,2000-10-12,Srbija:Novi Sad:Sajlovo:4,0665045747,stjepanovicsrdjan2000@gmail.com,RA 168-2019,2019,3,S,9.0
-Darko,Selakovic,2000-10-13,Srbija:Novi Sad:Liman:4,0665045747,darkoselakovic2000@gmail.com,RA 157-2019,2019,3,B,10.0
-Marko,Uljarevic,2000-01-21,Balzakova:Novi Sad:Srbija:4,0660404020,marko@gmail.com,RA 233-2019,2019,3,S,0.0
-Sara,Sinjeri,2000-04-14,Janka Cmelika:Novi Sad:Srbija:56,0603308330,sarasinjeri140400@gmail.com,RA 76-2019,2019,3,S,0.0
-Teodora,Mijovic,2000-07-25,StudDomLazar:Novi Sad:Srbija:10,0664040430,teodora@gmail.com,RA 43-2019,2019,3,S,0.0
-Bjelica,Vojin,2000-04-20,Hadzi Ruvimova:Novi Sad:Srbija:32,0650000333,vojin@gmail.com,RA 170-2019,2019,3,S,0.0
