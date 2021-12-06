@@ -3,7 +3,7 @@ package utils;
 import java.awt.Toolkit;
 
 public class Constants {
-	public static enum MarksValue {
+	public enum MarksValue {
 		SEST(6), SEDAM(7), OSAM(8), DEVET(9), DESET(10);
 
 		private int value;
@@ -17,7 +17,7 @@ public class Constants {
 		}
 	};
 
-	public static enum Semester {
+	public enum Semester {
 		ZIMSKI("ZIMSKI"), LETNJI("LETNJI");
 
 		private String value;
@@ -31,8 +31,8 @@ public class Constants {
 		}
 	};
 
-	public static enum Status {
-		BUDZET("B"), SAMOFINANSIRANJE("S");
+	public enum Status {
+		BUDZET("BUDZET"), SAMOFINANSIRANJE("SAMOFINANSIRANJE");
 
 		private String value;
 
@@ -49,4 +49,12 @@ public class Constants {
 	public static int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	public static int ICON_BUTTON_HEIGHT = 20;
 	public static int ICON_BUTTON_WIDTH = 20;
+	public static String[] studentLabelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
+			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja" };
+	public static String[] finansingWayLabels = { "BUDZET", "SAMOFINANSIRANJE" };
+	public static String[] yearsLabels = { "1", "2", "3", "4" };
+	public static String[] professorLabelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
+			"E-mail adresa*", "Adresa kancelarije*", "Broj licne karte*", "Zvanje*", "Godine iskustva*" };
+	public static String[] subjectLabelNames = {"Id predmeta*", "Naziv predmeta*", "Semestar*", "Profesor*", "Espb*", "Godina studija*"};
+	public static String[] semesterValues = {"ZIMSKI", "LETNJI"};
 }

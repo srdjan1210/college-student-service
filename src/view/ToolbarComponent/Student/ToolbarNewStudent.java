@@ -2,24 +2,20 @@ package view.ToolbarComponent.Student;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.*;
 
 import utils.Constants;
+import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
-public class ToolbarNewStudent extends JDialog {
-
-	private String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
-			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja" };
-	private String[] finansingWay = { "BUDZET", "SAMOFINANSIRANJE" };
-	private String[] years = { "1", "2", "3", "4" };
-
-	private ArrayList<JComponent> fieldsReferences;
+public class ToolbarNewStudent extends AddingScreen {
+	private String[] labelNames = Constants.studentLabelNames;
+	private String[] finansingWay = Constants.finansingWayLabels;
+	private String[] years = Constants.yearsLabels;
 	private ArrayList<ToolbarWinLabel> labelReferences;
 	
 	public ToolbarNewStudent() {
@@ -33,7 +29,6 @@ public class ToolbarNewStudent extends JDialog {
 		setLocationRelativeTo(null);
 		fieldsReferences = new ArrayList<>();
 		labelReferences = new ArrayList<>();
-		
 		
 		for(int i = 0; i < labelNames.length; i++) {
 			String name = labelNames[i];
@@ -57,7 +52,7 @@ public class ToolbarNewStudent extends JDialog {
 		row.add(lbl);
 		
 		if(fieldType.equals("Text"))
-			fieldsReferences.add(new ToolbarWinTxtField());
+			fieldsReferences.add(new ToolbarWinTxtField(name));
 		else if(fieldType.equals("ComboYears")) 
 			fieldsReferences.add(new ToolbarWinCombo(years));
 		else if(fieldType.equals("ComboFinancing")) 
@@ -79,4 +74,6 @@ public class ToolbarNewStudent extends JDialog {
 	public ArrayList<JComponent> getFieldsReferences() {
 		return fieldsReferences;
 	}
+
+
 }

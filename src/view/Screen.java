@@ -1,5 +1,9 @@
 package view;
 
+import controller.AddProfessorController;
+import controller.AddStudentController;
+import controller.AddSubjectController;
+import interfaces.IAddingController;
 import utils.Constants;
 import view.MenuBarComponent.MenuBar;
 import view.ScreenComponent.Body;
@@ -14,8 +18,9 @@ import java.awt.*;
 
 public class Screen extends JFrame {
     private int selectedTab = 0;
-
-    public Screen() {
+    private Tab studentTab;
+    private static Screen instance;
+    private Screen() {
         super();
 
         setSize(Constants.SCREEN_WIDTH * 3 / 4, Constants.SCREEN_HEIGHT * 3 / 4);
@@ -35,7 +40,7 @@ public class Screen extends JFrame {
         add(statusBar, BorderLayout.SOUTH);
 
         // Tables
-        Tab studentTab = new Tab();
+        studentTab = new Tab(new AddStudentController());
         studentTab.addChangeListener(new ChangeListener() {
 
             @Override
@@ -43,10 +48,13 @@ public class Screen extends JFrame {
                 // TODO Auto-generated method stub
                 selectedTab = studentTab.getSelectedIndex();
                 if (studentTab.getSelectedIndex() == 0) {
+                    studentTab.setAddingController(new AddStudentController());
                     statusBar.setTabName("Student");
                 } else if (studentTab.getSelectedIndex() == 1) {
+                    studentTab.setAddingController(new AddProfessorController());
                     statusBar.setTabName("Profesor");
                 } else {
+                    studentTab.setAddingController(new AddSubjectController());
                     statusBar.setTabName("Predmet");
                 }
             }
@@ -57,12 +65,20 @@ public class Screen extends JFrame {
         setTitle("Studentska Slu�ba");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-        
+
     }
 
     public int getSelectedTab() {
         return selectedTab;
     }
-    
+    public Tab getStudentTab() { return studentTab; }
+    public static Screen getInstance() {
+        if(instance == null) {
+            instance = new Screen();
+        }
+        return instance;
+    }
+
+
 
 }

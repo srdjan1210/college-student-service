@@ -106,7 +106,7 @@ public class DataModel {
 	private Address loadAddressObject(String[] data) {
 		return new Address(data[0], Integer.parseInt(data[3]), data[2], data[1]);
 	}
-
+	//Entity find by unique id methods
 	public Professor getProfessorById(String id) {
 		for (Professor prof : professors) {
 			if (prof.getIdNumber().equals(id)) {
@@ -135,25 +135,11 @@ public class DataModel {
 		return null;
 	}
 
-	private String[] splitScannedData(String data) {
-		return data.split(",");
-	}
 
-	private Address convertStringToAddress(String data) {
-		String[] addressChunks = data.split(":");
-		return new Address(addressChunks[2], Integer.parseInt(addressChunks[3]), addressChunks[1], addressChunks[0]);
-	}
 
-	public static DataModel getInstance() {
-		if (instance == null) {
-			instance = new DataModel();
-			return instance;
-		}
 
-		return instance;
 
-	}
-
+	//Getters and setters
 	public ArrayList<Student> getStudents() {
 		return students;
 	}
@@ -202,6 +188,7 @@ public class DataModel {
 		this.addresses = addresses;
 	}
 
+	//Adding entities methods
 	public void addProfessorToList(Professor newProfessor) {
 		professors.add(newProfessor);
 	}
@@ -213,7 +200,7 @@ public class DataModel {
 	public void addSubjectToList(Subject newSubject) {
 		subjects.add(newSubject);
 	}
-	
+	//Editing entities methods
 	public void setEditedStudent(String oldIndex,Student studentNewInfo) {
 		for(int i=0;i<students.size();i++) {
 			if(students.get(i).getIndexNumber().equals(oldIndex)) {
@@ -230,13 +217,7 @@ public class DataModel {
 			}
 		}
 	}
-	
-	public void printStudents() {
-		for(int i=0;i<students.size();i++) {
-			System.out.println(students.get(i).getFirstName());
-		}
-	}
-
+	//Helper methods
 	private String[] trimSplittedString(String[] data) {
 		for(String point: data) {
 			point = point.trim();
@@ -244,6 +225,50 @@ public class DataModel {
 		return data;
 	}
 
+	private String[] splitScannedData(String data) {
+		return data.split(",");
+	}
+
+	private Address convertStringToAddress(String data) {
+		String[] addressChunks = data.split(":");
+		return new Address(addressChunks[2], Integer.parseInt(addressChunks[3]), addressChunks[1], addressChunks[0]);
+	}
+	//Deleting entities methods
+	public boolean removeStudentByIndex(String index) {
+		//Treba dodati uklanjanje svih zavisnosti entiteta u drugim listama
+		for(Student student: students) {
+			if(student.getIndexNumber().equals(index)) {
+				students.remove(student);
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	public boolean removeProfessorById(String id) {
+		//Treba dodati uklanjanje svih zavisnosti entiteta u drugim listama
+		for(Professor professor: professors) {
+			if(professor.getIdNumber().equals(id)) {
+				professors.remove(professor);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public boolean removeSubjecById(String id) {
+		//Treba dodati uklanjanje svih zavisnosti entiteta u drugim listama
+		for(Subject subject: subjects) {
+			if(subject.getSubjectId().equals(id)) {
+				subjects.remove(subject);
+				return true;
+			}
+		}
+		return false;
+	}
+	//Writing to file methods
 	public void writeDataToFiles() {
 		writeEntitiesToFile("resources/studenti.txt", students);
 		writeEntitiesToFile("resources/profesori.txt", professors);
@@ -265,5 +290,15 @@ public class DataModel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static DataModel getInstance() {
+		if (instance == null) {
+			instance = new DataModel();
+			return instance;
+		}
+
+		return instance;
+
 	}
 }

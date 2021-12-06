@@ -17,7 +17,7 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 public class ToolbarEditStudentInfo extends JPanel {
 	String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
 			"Email adresa*", "Broj indexa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*" };
-	String[] finansingWay = { "Budzet", "Samofinansiranje" };
+	String[] finansingWay = { "BUDZET", "SAMOFINANSIRANJE" };
 	String[] yearOfStudy = { "1", "2", "3", "4" };
 
 	Vector<JComponent> fieldsReferences;
@@ -51,7 +51,7 @@ public class ToolbarEditStudentInfo extends JPanel {
 		else if (itemType.equals("ComboYearOfStudy"))
 			fieldsReferences.add(new ToolbarWinCombo(yearOfStudy));
 		else if (itemType.equals("TextField"))
-			fieldsReferences.add(new ToolbarWinTxtField());
+			fieldsReferences.add(new ToolbarWinTxtField(labelName));
 
 		itemPanel.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return itemPanel;
