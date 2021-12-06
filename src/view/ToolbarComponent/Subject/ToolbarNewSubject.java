@@ -1,6 +1,7 @@
 package view.ToolbarComponent.Subject;
 
 import utils.Constants;
+import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
@@ -10,10 +11,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ToolbarNewSubject extends JDialog {
-    private String[] labelNames = {"Id predmeta*", "Naziv predmeta*", "Semestar*", "Profesor*", "Espb*", "Godina studija*"};
-    private String[] semesterValues = {"ZIMSKI", "LETNJI"};
-    private ArrayList<JComponent> fieldsReferences;
+public class ToolbarNewSubject extends AddingScreen {
+    private String[] labelNames = Constants.subjectLabelNames;
+    private String[] semesterValues = Constants.semesterValues;
     private ArrayList<ToolbarWinLabel> labelsReferences;
 
     public ToolbarNewSubject() {
@@ -67,4 +67,5 @@ public class ToolbarNewSubject extends JDialog {
     public ArrayList<JComponent> getFieldsReferences() {
         return fieldsReferences;
     }
+
 }

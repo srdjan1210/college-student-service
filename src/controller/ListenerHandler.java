@@ -9,11 +9,11 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import view.ToolbarComponent.AddingScreen;
 import view.Screen;
 import view.TabComponent.Tab;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
-import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarIconButton;
@@ -24,7 +24,7 @@ public class ListenerHandler {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Screen frame = (Screen) SwingUtilities.getWindowAncestor(tib);
+				Screen frame = Screen.getInstance();
 				if (frame.getSelectedTab() == 0) {
 					new ToolbarNewStudent();
 					return;
@@ -49,20 +49,21 @@ public class ListenerHandler {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Window parent = SwingUtilities.getWindowAncestor(btnConfirm);
-				if (parent instanceof ToolbarNewStudent) {
-					ToolbarNewStudent dialog = (ToolbarNewStudent) parent;
-					StudentAddingController.addNewStudent(dialog);
-				} else if (parent instanceof ToolbarNewProfessor) {
-					ToolbarNewProfessor dialog = (ToolbarNewProfessor) parent;
-					ProfessorAddingController.addProfessor(dialog);
-				} else if (parent instanceof ToolbarNewSubject) {
-					ToolbarNewSubject dialog = (ToolbarNewSubject) parent;
-					SubjectAddingController.addSubject(dialog);
-				} else if (parent instanceof ToolbarEditStudent) {
-					ToolbarEditStudent dialog = (ToolbarEditStudent) parent;
-					StudentEditController.editStudent(dialog.getEditStudentTab().getEditInfo(),dialog);
-				}
+				AddingScreen parent = (AddingScreen)SwingUtilities.getWindowAncestor(btnConfirm);
+				Screen.getInstance().getStudentTab().addNewEntity(parent);
+//				if (parent instanceof ToolbarNewStudent) {
+//					ToolbarNewStudent dialog = (ToolbarNewStudent) parent;
+//					StudentAddingController.addNewStudent(dialog);
+//				} else if (parent instanceof ToolbarNewProfessor) {
+//					ToolbarNewProfessor dialog = (ToolbarNewProfessor) parent;
+//					ProfessorAddingController.addProfessor(dialog);
+//				} else if (parent instanceof ToolbarNewSubject) {
+//					ToolbarNewSubject dialog = (ToolbarNewSubject) parent;
+//					SubjectAddingController.addSubject(dialog);
+//				} else if (parent instanceof ToolbarEditStudent) {
+//					ToolbarEditStudent dialog = (ToolbarEditStudent) parent;
+//					StudentEditController.editStudent(dialog.getEditStudentTab().getEditInfo(),dialog);
+//				}
 
 			}
 		};

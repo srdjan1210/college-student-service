@@ -2,29 +2,34 @@ package view.TabComponent;
 
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Vector;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
-import controller.StudentAddingController;
-import org.w3c.dom.events.MouseEvent;
+import interfaces.IAddingController;
 
 import controller.TableViewController;
 import model.DataModel;
 import model.Professor;
 import model.Student;
 import model.Subject;
+import view.ToolbarComponent.AddingScreen;
 import view.TablesComponent.Tables;
 
 public class Tab extends JTabbedPane {
+
+	private IAddingController addingController;
 	public static int selectedrow = -1;
 	private static String selectedStudentIndex = "";
 	private static String selectedProfessorId = "";
 	private static String selectedSubjectId = "";
 	private Tables studentTable;
 
-	public Tab() {
+	public Tab(IAddingController controller) {
 		super();
+		this.addingController = controller;
 		String[] studentColumnNames = { "Indeks", "Ime", "Prezime", "Godina studija", "Status", "Prosek" };
 		String[] professorColumnNames = { "Ime", "Prezime", "Titula", "E-mail adresa" };
 		String[] subjectColumnNames = { "�ifra predmeta", "Naziv predmeta", "Broj ESPB bodova",
@@ -37,29 +42,35 @@ public class Tab extends JTabbedPane {
 		String[][] studentsData = TableViewController.getStudentsData(students);
 		String[][] professorsData = TableViewController.getProfessorsData(professors);
 		String[][] subjectsData = TableViewController.geSubjectsData(subjects);
+		Vector<Vector<String>> studentData = new Vector<>();
+		for(int i = 0; i < studentsData.length; i++) {
+			Vector<String> vector = new Vector<>(Arrays.asList(studentsData[i]));
+			studentData.add(vector);
+		}
 
-		studentTable = new Tables(studentColumnNames, studentsData);
-		StudentAddingController.addObserver(studentTable);
+		studentTable = new Tables(new Vector<>(Arrays.asList(studentColumnNames)), studentData);
+		controller.addObserver(studentTable);
 		studentTable.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				// TODO Auto-generated method stub
 				selectedrow = studentTable.getSelectedRow();
-				selectedStudentIndex = studentsData[selectedrow][0];
+				selectedStudentIndex = studentData.get(selectedrow).get(0);
 			}
 
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent e) {
 				// TODO Auto-generated method stub
 				selectedrow = studentTable.getSelectedRow();
-				selectedStudentIndex = studentsData[selectedrow][0];
+//				selectedStudentIndex = studentsData[selectedrow][0];
+				selectedStudentIndex = studentData.get(selectedrow).get(0);
 			}
 
 			@Override
 			public void mouseReleased(java.awt.event.MouseEvent e) {
 				// TODO Auto-generated method stub
 				selectedrow = studentTable.getSelectedRow();
-				selectedStudentIndex = studentsData[selectedrow][0];
+				selectedStudentIndex = studentData.get(selectedrow).get(0);
 			}
 
 			@Override
@@ -74,12 +85,12 @@ public class Tab extends JTabbedPane {
 
 			}
 		});
-		Tables professorTable = new Tables(professorColumnNames, professorsData);
-		Tables subjectTable = new Tables(subjectColumnNames, subjectsData);
+//		Tables professorTable = new Tables(professorColumnNames, professorsData);
+//		Tables subjectTable = new Tables(subjectColumnNames, subjectsData);
 
 		add("Student", new JScrollPane(studentTable));
-		add("Profesor", new JScrollPane(professorTable));
-		add("Predmeti", new JScrollPane(subjectTable));
+//		add("Profesor", new JScrollPane(professorTable));
+//		add("Predmeti", new JScrollPane(subjectTable));
 	}
 
 
@@ -97,5 +108,9 @@ public class Tab extends JTabbedPane {
 		return selectedSubjectId;
 	}
 
+	public void addNewEntity(AddingScreen dialog) {
+		this.addingController.addNewEntity(dialog);
+	}
+	public void setAddingController(IAddingController controller) { this.addingController = controller; }
 
 }

@@ -1,33 +1,39 @@
 package controller;
 
 import Exceptions.InvalidFieldException;
+import interfaces.IAddingController;
 import model.Address;
 import model.DataModel;
 import model.Professor;
-import view.ToolbarComponent.Professor.ToolbarNewProfessor;
+import view.ToolbarComponent.AddingScreen;
+import view.TablesComponent.Tables;
 
 import javax.swing.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class ProfessorAddingController {
-
-    public static void addProfessor(ToolbarNewProfessor tnp) {
+public class AddProfessorController implements IAddingController {
+    @Override
+    public void addNewEntity(AddingScreen dialog) {
         try{
-            checkIfFieldsEmpty(tnp);
-            Professor professor = createProfessorObjectFromFields(tnp);
+            checkIfFieldsEmpty(dialog);
+            Professor professor = createProfessorObjectFromFields(dialog);
             DataModel.getInstance().addProfessorToList(professor);
-            JOptionPane.showMessageDialog(tnp, "Profesor uspjesno dodan u listu!");
-            tnp.dispose();
+            JOptionPane.showMessageDialog((JDialog)dialog, "Profesor uspjesno dodan u listu!");
+            dialog.dispose();
         } catch(InvalidFieldException e) {
-            JOptionPane.showMessageDialog(tnp, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog((JDialog)dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
         }
     }
 
-    private static Professor createProfessorObjectFromFields(ToolbarNewProfessor profWin) {
+    @Override
+    public void addObserver(Tables table) {
+
+    }
+
+
+    private Professor createProfessorObjectFromFields(AddingScreen profWin) {
         String firstName = profWin.getTextField(0).getText();
         String secondName = profWin.getTextField(1).getText();
         LocalDate birthDate = LocalDate.parse(profWin.getTextField(2).getText());
@@ -41,12 +47,12 @@ public class ProfessorAddingController {
         return new Professor(firstName, secondName, birthDate, address, phone, email, office, id, title, experience);
     }
 
-    private static Address createAddressFromAddressString(String addString) {
+    private Address createAddressFromAddressString(String addString) {
         String[] addressParts = addString.split(":");
         return new Address(addressParts[0], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[2]);
     }
 
-    private static void checkIfFieldsEmpty(ToolbarNewProfessor tnp) throws InvalidFieldException {
+    private void checkIfFieldsEmpty(AddingScreen tnp) throws InvalidFieldException {
         ArrayList<JComponent> fields = tnp.getFieldsReferences();
         for (JComponent field : fields) {
             if(field.getName().toLowerCase(Locale.ROOT).contains("datum") && !isValidDate((JTextField)field))
@@ -57,7 +63,7 @@ public class ProfessorAddingController {
 
     }
 
-    private static boolean isValidDate(JTextField dateField) {
+    private boolean isValidDate(JTextField dateField) {
         try {
             LocalDate.parse(dateField.getText());
         } catch(Exception e) {

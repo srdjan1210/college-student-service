@@ -1,35 +1,41 @@
 package controller;
 
 import Exceptions.InvalidFieldException;
+import interfaces.IAddingController;
 import model.DataModel;
 import model.Professor;
 import model.Subject;
 import utils.Constants;
 import utils.EnumConversion;
-import view.ToolbarComponent.Subject.ToolbarNewSubject;
+import view.ToolbarComponent.AddingScreen;
+import view.TablesComponent.Tables;
 
 import javax.swing.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class SubjectAddingController {
-
-    public static void addSubject(ToolbarNewSubject tns) {
+public class AddSubjectController implements IAddingController {
+    @Override
+    public void addNewEntity(AddingScreen dialog) {
         try {
-            checkIfFieldsEmpty(tns);
-            Subject subject = createSubjectObjectFromFields(tns);
+            checkIfFieldsEmpty(dialog);
+            Subject subject = createSubjectObjectFromFields(dialog);
             DataModel.getInstance().addSubjectToList(subject);
-            JOptionPane.showMessageDialog(tns, "Predmet uspjesno dodan u listu!");
-            tns.dispose();
+            JOptionPane.showMessageDialog((JDialog)dialog, "Predmet uspjesno dodan u listu!");
+            dialog.dispose();
         } catch(InvalidFieldException e) {
-            JOptionPane.showMessageDialog(tns, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog((JDialog)dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
         }
     }
 
-    private static Subject createSubjectObjectFromFields(ToolbarNewSubject subWin) {
+    @Override
+    public void addObserver(Tables table) {
+
+    }
+
+
+    private Subject createSubjectObjectFromFields(AddingScreen subWin) {
         String id = subWin.getTextField(0).getText();
         String name = subWin.getTextField(1).getText();
         Constants.Semester semester = EnumConversion.stringToSemester(subWin.getComboBox(2).getSelectedItem().toString());
@@ -40,7 +46,7 @@ public class SubjectAddingController {
         return new Subject(id, name, semester, studyYear, professor, espb);
     }
 
-    private static void checkIfFieldsEmpty(ToolbarNewSubject window) throws InvalidFieldException {
+    private void checkIfFieldsEmpty(AddingScreen window) throws InvalidFieldException {
         ArrayList<JComponent> fields = window.getFieldsReferences();
         for (int i = 0; i < fields.size(); i++) {
             if (i == 2) continue;
@@ -53,7 +59,7 @@ public class SubjectAddingController {
     }
 
 
-    private static boolean isValidDate(JTextField dateField) {
+    private boolean isValidDate(JTextField dateField) {
         try {
             LocalDate.parse(dateField.getText());
         } catch(Exception e) {

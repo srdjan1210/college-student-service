@@ -1,38 +1,39 @@
 package controller;
 
 import Exceptions.InvalidFieldException;
+import interfaces.IAddingController;
 import model.Address;
 import model.DataModel;
 import model.Student;
 import utils.Constants;
 import utils.EnumConversion;
+import view.ToolbarComponent.AddingScreen;
 import view.TablesComponent.Tables;
-import view.ToolbarComponent.Student.ToolbarNewStudent;
 
 import javax.swing.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
+import java.util.Vector;
 
-public class StudentAddingController {
-    private static ArrayList<Tables> tables = new ArrayList<Tables>();
-    public static void addNewStudent(ToolbarNewStudent tns) {
+public class AddStudentController implements IAddingController {
+    private Tables studentTable;
+    @Override
+    public void addNewEntity(AddingScreen dialog) {
         try {
-            checkIfFieldsEmpty(tns);
-            Student student = createStudentObjectFromFields(tns);
+            checkIfFieldsEmpty(dialog);
+            Student student = createStudentObjectFromFields(dialog);
             DataModel.getInstance().addStudentToList(student);
-            JOptionPane.showMessageDialog(tns, "Student uspjesno dodan u listu!");
-            tns.dispose();
-            notifyObservers(student);
+            JOptionPane.showMessageDialog((JDialog)dialog, "Student uspjesno dodan u listu!");
+            dialog.dispose();
+            notifyInserted(student);
         } catch(InvalidFieldException e) {
-            JOptionPane.showMessageDialog(tns, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog((JDialog)dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
         }
-
     }
 
-    private static Student createStudentObjectFromFields(ToolbarNewStudent studWin) {
+    private Student createStudentObjectFromFields(AddingScreen studWin) {
         String firstName = studWin.getTextField(0).getText();
         String secondName = studWin.getTextField(1).getText();
         LocalDate birthDate = LocalDate.parse(studWin.getTextField(2).getText());
@@ -46,12 +47,12 @@ public class StudentAddingController {
         return new Student(firstName, secondName, birthDate, address, phoneNum, email, indexNum, startingYear, currentYear, financing, 0);
     }
 
-    private static Address createAddressFromAddressString(String addString) {
+    private Address createAddressFromAddressString(String addString) {
         String[] addressParts = addString.split(":");
         return new Address(addressParts[0], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[2]);
     }
 
-    private static boolean checkIfFieldsEmpty(ToolbarNewStudent window) throws InvalidFieldException{
+    private boolean checkIfFieldsEmpty(AddingScreen window) throws InvalidFieldException {
         ArrayList<JComponent> fields = window.getFieldsReferences();
         for (int i = 0; i < fields.size() - 2; i++) {
             JTextField field = (JTextField) fields.get(i);
@@ -72,20 +73,13 @@ public class StudentAddingController {
         }
         return true;
     }
-
-
-    public static void addObserver(Tables table) {
-        tables.add(table);
+    @Override
+    public void addObserver(Tables table) {
+        studentTable = table;
     }
 
-    public static void removeObserver(Tables table) {
-        tables.remove(table);
-    }
-
-    private static void notifyObservers(Student student) {
+    public void notifyInserted(Student student) {
         String[] array = {student.getIndexNumber(), student.getFirstName(), student.getLastName(), Integer.toString(student.getStudyYear()), student.getStatus().getValue(), Double.toString(student.getAverageMark())};
-        for(Tables table: tables) {
-            table.notify(array);
-        }
+        studentTable.notifyInserted(new Vector<>(Arrays.asList(array)));
     }
 }

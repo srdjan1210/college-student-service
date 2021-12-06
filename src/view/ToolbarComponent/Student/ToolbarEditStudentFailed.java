@@ -30,8 +30,8 @@ public class ToolbarEditStudentFailed extends JPanel{
 		ArrayList<Subject>failedSubjects = student.getFailedSubjects();
 		String[][] data = TableViewController.geSubjectsData(failedSubjects);
 		
-		Tables failedSubjectsTable = new Tables(columnNames,data);
-		add(new JScrollPane(failedSubjectsTable));
+//		Tables failedSubjectsTable = new Tables(columnNames,data);
+//		add(new JScrollPane(failedSubjectsTable));
 		setVisible(true);
 	}
 }
