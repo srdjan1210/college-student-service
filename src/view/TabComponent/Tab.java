@@ -8,13 +8,14 @@ import java.util.Vector;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
+import controller.DeleteEntityController;
 import interfaces.IAddingController;
 
 import controller.TableViewController;
-import model.DataModel;
-import model.Professor;
-import model.Student;
-import model.Subject;
+import model.*;
+import view.TablesComponent.ProfessorTable;
+import view.TablesComponent.StudentTable;
+import view.TablesComponent.SubjectTable;
 import view.ToolbarComponent.AddingScreen;
 import view.TablesComponent.Tables;
 
@@ -30,47 +31,59 @@ public class Tab extends JTabbedPane {
 	public Tab(IAddingController controller) {
 		super();
 		this.addingController = controller;
-		String[] studentColumnNames = { "Indeks", "Ime", "Prezime", "Godina studija", "Status", "Prosek" };
-		String[] professorColumnNames = { "Ime", "Prezime", "Titula", "E-mail adresa" };
-		String[] subjectColumnNames = { "�ifra predmeta", "Naziv predmeta", "Broj ESPB bodova",
-				"Godina na kojoj se predmet izvodi", "Semestar u kome se predmet izvodi" };
+		StudentTable studentTable = new StudentTable();
+		ProfessorTable professorTable = new ProfessorTable();
+		SubjectTable subjectTable = new SubjectTable();
 
-		DataModel dataModel = DataModel.getInstance();
-		ArrayList<Student> students = dataModel.getStudents();
-		ArrayList<Professor> professors = dataModel.getProfessors();
-		ArrayList<Subject> subjects = dataModel.getSubjects();
-		String[][] studentsData = TableViewController.getStudentsData(students);
-		String[][] professorsData = TableViewController.getProfessorsData(professors);
-		String[][] subjectsData = TableViewController.geSubjectsData(subjects);
-		Vector<Vector<String>> studentData = new Vector<>();
-		for(int i = 0; i < studentsData.length; i++) {
-			Vector<String> vector = new Vector<>(Arrays.asList(studentsData[i]));
-			studentData.add(vector);
-		}
+		DataModel.getInstance().setStudentObserver(studentTable);
+		DataModel.getInstance().setProfessorObserver(professorTable);
+		DataModel.getInstance().setSubjectObserver(subjectTable);
+//		String[] studentColumnNames = { "Indeks", "Ime", "Prezime", "Godina studija", "Status", "Prosek" };
+//		String[] professorColumnNames = { "Ime", "Prezime", "Titula", "E-mail adresa" };
+//		String[] subjectColumnNames = { "�ifra predmeta", "Naziv predmeta", "Broj ESPB bodova",
+//				"Godina na kojoj se predmet izvodi", "Semestar u kome se predmet izvodi" };
+//
+//		DataModel dataModel = DataModel.getInstance();
+//		ArrayList<Student> students = dataModel.getStudents();
+//		ArrayList<Professor> professors = dataModel.getProfessors();
+//		ArrayList<Subject> subjects = dataModel.getSubjects();
+//		String[][] studentsData = TableViewController.getStudentsData(students);
+//		String[][] professorsData = TableViewController.getProfessorsData(professors);
+//		String[][] subjectsData = TableViewController.geSubjectsData(subjects);
+//		Vector<Vector<String>> studentData = new Vector<>();
+//		for(int i = 0; i < studentsData.length; i++) {
+//			Vector<String> vector = new Vector<>(Arrays.asList(studentsData[i]));
+//			studentData.add(vector);
+//		}
 
-		studentTable = new Tables(new Vector<>(Arrays.asList(studentColumnNames)), studentData);
-		controller.addObserver(studentTable);
+//		studentTable = new Tables(new Vector<>(Arrays.asList(studentColumnNames)), studentData);
+//		controller.addObserver(studentTable);
+//		DeleteEntityController.studentTable = studentTable;
 		studentTable.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				// TODO Auto-generated method stub
+				StudentTableModel model = (StudentTableModel) studentTable.getModel();
 				selectedrow = studentTable.getSelectedRow();
-				selectedStudentIndex = studentData.get(selectedrow).get(0);
+				selectedStudentIndex = (String) model.getValueAt(selectedrow, 0);
 			}
 
 			@Override
 			public void mousePressed(java.awt.event.MouseEvent e) {
 				// TODO Auto-generated method stub
+				StudentTableModel model = (StudentTableModel) studentTable.getModel();
 				selectedrow = studentTable.getSelectedRow();
-//				selectedStudentIndex = studentsData[selectedrow][0];
-				selectedStudentIndex = studentData.get(selectedrow).get(0);
+				selectedStudentIndex = (String) model.getValueAt(selectedrow, 0);
+////				selectedStudentIndex = studentsData[selectedrow][0];
+//				selectedStudentIndex = studentTable.
 			}
 
 			@Override
 			public void mouseReleased(java.awt.event.MouseEvent e) {
 				// TODO Auto-generated method stub
+				StudentTableModel model = (StudentTableModel) studentTable.getModel();
 				selectedrow = studentTable.getSelectedRow();
-				selectedStudentIndex = studentData.get(selectedrow).get(0);
+				selectedStudentIndex = (String) model.getValueAt(selectedrow, 0);
 			}
 
 			@Override
@@ -89,8 +102,8 @@ public class Tab extends JTabbedPane {
 //		Tables subjectTable = new Tables(subjectColumnNames, subjectsData);
 
 		add("Student", new JScrollPane(studentTable));
-//		add("Profesor", new JScrollPane(professorTable));
-//		add("Predmeti", new JScrollPane(subjectTable));
+		add("Profesor", new JScrollPane(professorTable));
+		add("Predmeti", new JScrollPane(subjectTable));
 	}
 
 

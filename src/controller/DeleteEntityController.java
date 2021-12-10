@@ -2,16 +2,19 @@ package controller;
 
 import model.DataModel;
 import model.Student;
+import view.TablesComponent.Tables;
 
 import javax.swing.*;
 
 public class DeleteEntityController {
-
+    public static Tables studentTable;
 
     public static void deleteStudent(String index) {
         boolean success = DataModel.getInstance().removeStudentByIndex(index);
-        if(success)
+        if(success) {
             JOptionPane.showMessageDialog(null, "Uspjesno uklonjen student " + index + "!");
+            notifyTable(studentTable, index);
+        }
         else
             JOptionPane.showMessageDialog(null, "Student nije pronadjen ili selektovan!");
     }
@@ -30,5 +33,9 @@ public class DeleteEntityController {
             JOptionPane.showMessageDialog(null, "Uspjesno uklonjen predmet iz liste!");
         else
             JOptionPane.showMessageDialog(null, "Predmet nije pronadjen ili selektovan!");
+    }
+
+    public static void notifyTable(Tables table, String index) {
+        table.notifyDeleted(index);
     }
 }

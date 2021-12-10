@@ -20,7 +20,7 @@ public class ToolbarEnterExitPanel extends JPanel{
 		buttonCancel = new JButton("Otkazi");
 
 		buttonConfirm.addActionListener(ListenerHandler.getButtonConfirmListener(buttonConfirm));
-		buttonCancel.addActionListener(ListenerHandler.getButtonCancelListener(buttonCancel));;
+		buttonCancel.addActionListener(ListenerHandler.getButtonCancelListener(buttonCancel));
 
 		add(buttonConfirm);
 		add(Box.createHorizontalStrut(50));

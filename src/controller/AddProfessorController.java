@@ -27,11 +27,6 @@ public class AddProfessorController implements IAddingController {
         }
     }
 
-    @Override
-    public void addObserver(Tables table) {
-
-    }
-
 
     private Professor createProfessorObjectFromFields(AddingScreen profWin) {
         String firstName = profWin.getTextField(0).getText();

@@ -29,12 +29,6 @@ public class AddSubjectController implements IAddingController {
         }
     }
 
-    @Override
-    public void addObserver(Tables table) {
-
-    }
-
-
     private Subject createSubjectObjectFromFields(AddingScreen subWin) {
         String id = subWin.getTextField(0).getText();
         String name = subWin.getTextField(1).getText();

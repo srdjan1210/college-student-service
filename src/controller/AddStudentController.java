@@ -27,7 +27,7 @@ public class AddStudentController implements IAddingController {
             DataModel.getInstance().addStudentToList(student);
             JOptionPane.showMessageDialog((JDialog)dialog, "Student uspjesno dodan u listu!");
             dialog.dispose();
-            notifyInserted(student);
+//            notifyInserted(student);
         } catch(InvalidFieldException e) {
             JOptionPane.showMessageDialog((JDialog)dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
         }
@@ -73,13 +73,13 @@ public class AddStudentController implements IAddingController {
         }
         return true;
     }
-    @Override
-    public void addObserver(Tables table) {
-        studentTable = table;
-    }
-
-    public void notifyInserted(Student student) {
-        String[] array = {student.getIndexNumber(), student.getFirstName(), student.getLastName(), Integer.toString(student.getStudyYear()), student.getStatus().getValue(), Double.toString(student.getAverageMark())};
-        studentTable.notifyInserted(new Vector<>(Arrays.asList(array)));
-    }
+//    @Override
+//    public void addObserver(Tables table) {
+//        studentTable = table;
+//    }
+//
+//    public void notifyInserted(Student student) {
+//        String[] array = {student.getIndexNumber(), student.getFirstName(), student.getLastName(), Integer.toString(student.getStudyYear()), student.getStatus().getValue(), Double.toString(student.getAverageMark())};
+//        studentTable.notifyInserted(new Vector<>(Arrays.asList(array)));
+//    }
 }
