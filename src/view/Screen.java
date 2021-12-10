@@ -1,24 +1,23 @@
 package view;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import controller.AddProfessorController;
 import controller.AddStudentController;
 import controller.AddSubjectController;
 import controller.EditingStudentController;
-import interfaces.IAddingController;
-import interfaces.IEditingController;
+import model.DataModel;
 import utils.Constants;
 import view.MenuBarComponent.MenuBar;
 import view.ScreenComponent.Body;
 import view.StatusBarComponent.StatusBar;
 import view.TabComponent.Tab;
-import view.TablesComponent.Tables;
-import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Toolbar;
-
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
 
 public class Screen extends JFrame {
     private int selectedTab = 0;
@@ -54,12 +53,15 @@ public class Screen extends JFrame {
                 if (studentTab.getSelectedIndex() == 0) {
                     studentTab.setAddingController(new AddStudentController());
                     studentTab.setEditingController(new EditingStudentController());
+                    DataModel.getInstance().setTableObserver(studentTab.getStudentTable());
                     statusBar.setTabName("Student");
                 } else if (studentTab.getSelectedIndex() == 1) {
                     studentTab.setAddingController(new AddProfessorController());
+                    DataModel.getInstance().setTableObserver(studentTab.getProfessorTable());
                     statusBar.setTabName("Profesor");
                 } else {
                     studentTab.setAddingController(new AddSubjectController());
+                    DataModel.getInstance().setTableObserver(studentTab.getSubjectTable());
                     statusBar.setTabName("Predmet");
                 }
             }

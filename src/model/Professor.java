@@ -120,6 +120,15 @@ public class Professor {
         this.subjects = subjects;
     }
 
+    public String getDataAt(int index) {
+        switch(index) {
+            case 0: return firstName;
+            case 1: return lastName;
+            case 2: return title;
+            case 3: return emailAddress;
+            default: return "";
+        }
+    }
 
     @Override
     public String toString() {

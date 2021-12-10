@@ -1,6 +1,7 @@
 package model;
 
 import utils.Constants.Status;
+import utils.EnumConversion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -145,6 +146,19 @@ public class Student {
     
     public void addFailedSubject(Subject subject) {
     	this.failedSubjects.add(subject);
+    }
+
+    public String getDataAt(int index) {
+        switch(index) {
+            case 0: return indexNumber;
+            case 1: return firstName;
+            case 2: return lastName;
+            case 3: return Integer.toString(studyYear);
+            case 4: return status.getValue();
+            case 5: return Double.toString(averageMark);
+            default: return "";
+        }
+
     }
 
     @Override
