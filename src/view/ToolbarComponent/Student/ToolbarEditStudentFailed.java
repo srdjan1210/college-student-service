@@ -2,11 +2,10 @@ package view.ToolbarComponent.Student;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 
 import controller.TableViewController;
 import model.DataModel;
@@ -14,7 +13,6 @@ import model.Student;
 import model.Subject;
 import view.EditStudentCustomComponents.FailedSubjectsButtons;
 import view.TabComponent.Tab;
-import view.TablesComponent.Tables;
 
 public class ToolbarEditStudentFailed extends JPanel{
 	public ToolbarEditStudentFailed() {

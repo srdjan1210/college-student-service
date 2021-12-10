@@ -1,6 +1,7 @@
 package view.TabComponent;
 
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 import controller.StudentEditController;
 import model.DataModel;
@@ -29,6 +30,10 @@ public class EditStudentTab extends JTabbedPane {
 	}
 	
 	public ToolbarEditStudentInfo getEditInfo() {
+		return editInfo;
+	}
+	
+	public ToolbarEditStudentInfo getToolbarEditStudentInfo() {
 		return editInfo;
 	}
 }

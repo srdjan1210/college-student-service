@@ -3,12 +3,16 @@ package view;
 import controller.AddProfessorController;
 import controller.AddStudentController;
 import controller.AddSubjectController;
+import controller.EditingStudentController;
 import interfaces.IAddingController;
+import interfaces.IEditingController;
 import utils.Constants;
 import view.MenuBarComponent.MenuBar;
 import view.ScreenComponent.Body;
 import view.StatusBarComponent.StatusBar;
 import view.TabComponent.Tab;
+import view.TablesComponent.Tables;
+import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Toolbar;
 
 import javax.swing.*;
@@ -40,7 +44,7 @@ public class Screen extends JFrame {
         add(statusBar, BorderLayout.SOUTH);
 
         // Tables
-        studentTab = new Tab(new AddStudentController());
+        studentTab = new Tab(new AddStudentController(), new EditingStudentController());
         studentTab.addChangeListener(new ChangeListener() {
 
             @Override
@@ -49,6 +53,7 @@ public class Screen extends JFrame {
                 selectedTab = studentTab.getSelectedIndex();
                 if (studentTab.getSelectedIndex() == 0) {
                     studentTab.setAddingController(new AddStudentController());
+                    studentTab.setEditingController(new EditingStudentController());
                     statusBar.setTabName("Student");
                 } else if (studentTab.getSelectedIndex() == 1) {
                     studentTab.setAddingController(new AddProfessorController());

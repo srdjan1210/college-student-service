@@ -9,9 +9,10 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import view.ToolbarComponent.AddingScreen;
 import view.Screen;
 import view.TabComponent.Tab;
+import view.ToolbarComponent.AddingScreen;
+import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
@@ -49,8 +50,13 @@ public class ListenerHandler {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AddingScreen parent = (AddingScreen)SwingUtilities.getWindowAncestor(btnConfirm);
-				Screen.getInstance().getStudentTab().addNewEntity(parent);
+				Window parent = SwingUtilities.getWindowAncestor(btnConfirm);
+				if(parent instanceof AddingScreen) {
+					Screen.getInstance().getStudentTab().addNewEntity((AddingScreen)parent);
+				}
+				else if(parent instanceof EditingScreen) {
+					Screen.getInstance().getStudentTab().editNewEntity((EditingScreen)parent);
+				}
 //				if (parent instanceof ToolbarNewStudent) {
 //					ToolbarNewStudent dialog = (ToolbarNewStudent) parent;
 //					StudentAddingController.addNewStudent(dialog);
