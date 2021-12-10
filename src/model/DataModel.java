@@ -2,10 +2,9 @@ package model;
 
 import utils.DataUtils;
 import utils.EnumConversion;
-import view.TablesComponent.ProfessorTable;
-import view.TablesComponent.StudentTable;
-import view.TablesComponent.SubjectTable;
+import view.TablesComponent.Tables;
 
+import javax.swing.table.AbstractTableModel;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,9 +18,7 @@ public class DataModel {
     private ArrayList<Department> departments;
     private ArrayList<Mark> marks;
     private ArrayList<Address> addresses;
-    private StudentTable studentChangedObserver;
-    private ProfessorTable professorChangedObserver;
-    private SubjectTable subjectChangedObserver;
+    private Tables tableObserver;
     private static DataModel instance = null;
 
     private DataModel() {
@@ -188,17 +185,20 @@ public class DataModel {
     //Adding entities methods
     public void addProfessorToList(Professor newProfessor) {
         professors.add(newProfessor);
-        notifyProfessorTableModel();
+        notifyTable();
+        //notifyProfessorTableModel();
     }
 
     public void addStudentToList(Student newStudent) {
         students.add(newStudent);
-        notifyStudentTableModel();
+        notifyTable();
+        //notifyStudentTableModel();
     }
 
     public void addSubjectToList(Subject newSubject) {
         subjects.add(newSubject);
-        notifySubjectTableModel();
+        notifyTable();
+        //notifySubjectTableModel();
     }
 
     //Editing entities methods
@@ -302,30 +302,12 @@ public class DataModel {
         return instance;
     }
 
-    public void setStudentObserver(StudentTable observer) {
-        studentChangedObserver = observer;
+    public void setTableObserver(Tables table) {
+        tableObserver = table;
     }
 
-    public void setProfessorObserver(ProfessorTable observer) {
-        professorChangedObserver = observer;
-    }
-
-    public void setSubjectObserver(SubjectTable observer) {
-        subjectChangedObserver = observer;
-    }
-
-    public void notifyStudentTableModel() {
-        StudentTableModel model = (StudentTableModel) studentChangedObserver.getModel();
-        model.fireTableDataChanged();
-    }
-
-    public void notifyProfessorTableModel() {
-        ProfessorTableModel model = (ProfessorTableModel) professorChangedObserver.getModel();
-        model.fireTableDataChanged();
-    }
-
-    public void notifySubjectTableModel() {
-        SubjectTableModel model = (SubjectTableModel) professorChangedObserver.getModel();
+    public void notifyTable() {
+        AbstractTableModel model = (AbstractTableModel) tableObserver.getModel();
         model.fireTableDataChanged();
     }
 }

@@ -36,6 +36,6 @@ public class DeleteEntityController {
     }
 
     public static void notifyTable(Tables table, String index) {
-        table.notifyDeleted(index);
+        //table.notifyDeleted(index);
     }
 }

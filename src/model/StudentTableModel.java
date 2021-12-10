@@ -2,7 +2,6 @@ package model;
 
 import utils.Constants;
 
-import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
 public class StudentTableModel extends AbstractTableModel {

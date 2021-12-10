@@ -4,6 +4,7 @@ import controller.AddProfessorController;
 import controller.AddStudentController;
 import controller.AddSubjectController;
 import interfaces.IAddingController;
+import model.DataModel;
 import utils.Constants;
 import view.MenuBarComponent.MenuBar;
 import view.ScreenComponent.Body;
@@ -49,12 +50,15 @@ public class Screen extends JFrame {
                 selectedTab = studentTab.getSelectedIndex();
                 if (studentTab.getSelectedIndex() == 0) {
                     studentTab.setAddingController(new AddStudentController());
+                    DataModel.getInstance().setTableObserver(studentTab.getStudentTable());
                     statusBar.setTabName("Student");
                 } else if (studentTab.getSelectedIndex() == 1) {
                     studentTab.setAddingController(new AddProfessorController());
+                    DataModel.getInstance().setTableObserver(studentTab.getProfessorTable());
                     statusBar.setTabName("Profesor");
                 } else {
                     studentTab.setAddingController(new AddSubjectController());
+                    DataModel.getInstance().setTableObserver(studentTab.getSubjectTable());
                     statusBar.setTabName("Predmet");
                 }
             }
