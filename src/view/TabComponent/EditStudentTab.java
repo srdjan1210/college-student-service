@@ -1,11 +1,11 @@
 package view.TabComponent;
 
 import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
 
 import controller.StudentEditController;
 import model.DataModel;
 import model.Student;
+import view.Screen;
 import view.ToolbarComponent.Student.ToolbarEditStudentFailed;
 import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
 
@@ -16,7 +16,7 @@ public class EditStudentTab extends JTabbedPane {
 		super();
 		editInfo = new ToolbarEditStudentInfo();
 		editFailed = new ToolbarEditStudentFailed();
-		String studentIndex = Tab.getSelectedStudentIndex();
+		String studentIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
 		DataModel instance = DataModel.getInstance();
 		Student student = instance.getStudentById(studentIndex);
 		String studentData[] = StudentEditController.findStudentDataForFields(student);

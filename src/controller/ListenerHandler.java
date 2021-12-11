@@ -106,7 +106,7 @@ public class ListenerHandler {
 				Screen screen = (Screen) SwingUtilities.getWindowAncestor(buttonDelete);
 
 				if(screen.getSelectedTab() == 0) {
-					DeleteEntityController.deleteStudent(Tab.getSelectedStudentIndex());
+					DeleteEntityController.deleteStudent(Screen.getInstance().getStudentTab().getSelectedStudentIndex());
 					return;
 				}
 
@@ -130,7 +130,7 @@ public class ListenerHandler {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(!Tab.getSelectedStudentIndex().equals("")) {
+				if(!Screen.getInstance().getStudentTab().getSelectedStudentIndex().equals("")) {
 				ToolbarEditStudent editDialog = new ToolbarEditStudent();
 				editDialog.setVisible();
 				}

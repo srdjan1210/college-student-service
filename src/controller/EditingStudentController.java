@@ -14,6 +14,7 @@ import model.DataModel;
 import model.Student;
 import utils.Constants;
 import utils.EnumConversion;
+import view.Screen;
 import view.TabComponent.Tab;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.EditingScreen;
@@ -25,13 +26,13 @@ public class EditingStudentController implements IEditingController {
 	public void editEntity(EditingScreen dialog) {
 		// TODO Auto-generated method stub
 		if(checkIfFieldsIsEmpty(dialog)) {
-			String studentIndexBeforeEdit = Tab.getSelectedStudentIndex();
+			String studentIndexBeforeEdit = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
 			Vector<JComponent> fields = dialog.getFieldsReferences();
 			Student student = getEditedStudent(dialog);
 			DataModel model=DataModel.getInstance();
 			model.setEditedStudent(studentIndexBeforeEdit, student);
 			JOptionPane.showMessageDialog(dialog, "Informacije o studentu uspesno izmenjene!");
-			notifyObserver(student);
+//			notifyObserver(student);
 			dialog.dispose();
 			
 		}
@@ -69,16 +70,16 @@ public class EditingStudentController implements IEditingController {
 		}
 		return true;
 	}
-	@Override
-	public void addObserver(Tables table) {
-		// TODO Auto-generated method stub
-		studentTable = table;
-	}
+//	@Override
+//	public void addObserver(Tables table) {
+//		// TODO Auto-generated method stub
+//		studentTable = table;
+//	}
 	
-	public void notifyObserver(Student student) {
-		String[] array = {student.getIndexNumber(), student.getFirstName(), student.getLastName(), Integer.toString(student.getStudyYear()), student.getStatus().getValue(), Double.toString(student.getAverageMark())};
-        studentTable.notifyEditing(new Vector<>(Arrays.asList(array)));
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
-	}
+//	public void notifyObserver(Student student) {
+//		String[] array = {student.getIndexNumber(), student.getFirstName(), student.getLastName(), Integer.toString(student.getStudyYear()), student.getStatus().getValue(), Double.toString(student.getAverageMark())};
+//       studentTable.notifyEditing(new Vector<>(Arrays.asList(array)));
+//        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
+//	}
 	
 }

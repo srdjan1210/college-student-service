@@ -13,6 +13,7 @@ import model.StudentTableModel;
 import model.SubjectTableModel;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.AddingScreen;
+import view.ToolbarComponent.EditingScreen;
 
 public class Tab extends JTabbedPane {
 
@@ -127,6 +128,10 @@ public class Tab extends JTabbedPane {
 
     public void addNewEntity(AddingScreen dialog) {
         this.addingController.addNewEntity(dialog);
+    }
+    
+    public void editNewEntity(EditingScreen dialog) {
+    	this.editingController.editEntity(dialog);
     }
 
     public void setAddingController(IAddingController controller) {

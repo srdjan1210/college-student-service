@@ -5,5 +5,5 @@ import view.ToolbarComponent.EditingScreen;
 
 public interface IEditingController {
 	public void editEntity(EditingScreen dialog);
-	public void addObserver(Tables table);
+//	public void addObserver(Tables table);
 }
