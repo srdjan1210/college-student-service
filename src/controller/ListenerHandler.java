@@ -96,23 +96,24 @@ public class ListenerHandler {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ToolbarIconButton buttonDelete = (ToolbarIconButton) e.getSource();
-				Screen screen = (Screen) SwingUtilities.getWindowAncestor(buttonDelete);
+				Screen.getInstance().getStudentTab().deleteEntity();
+//				ToolbarIconButton buttonDelete = (ToolbarIconButton) e.getSource();
+//				Screen screen = (Screen) SwingUtilities.getWindowAncestor(buttonDelete);
 
-				if(screen.getSelectedTab() == 0) {
-					DeleteEntityController.deleteStudent(Tab.getSelectedStudentIndex());
-					return;
-				}
-
-				if(screen.getSelectedTab() == 1) {
-					DeleteEntityController.deleteProfessor(Tab.getSelectedProfessorId());
-					return;
-				}
-
-				if(screen.getSelectedTab() == 2) {
-					DeleteEntityController.deleteSubject(Tab.getSelectedSubjectId());
-					return;
-				}
+//				if(screen.getSelectedTab() == 0) {
+					//DeleteEntityController.deleteStudent(Tab.getSelectedStudentIndex());
+//					return;
+//				}
+//
+//				if(screen.getSelectedTab() == 1) {
+//					DeleteEntityController.deleteProfessor(Tab.getSelectedProfessorId());
+//					return;
+//				}
+//
+//				if(screen.getSelectedTab() == 2) {
+//					DeleteEntityController.deleteSubject(Tab.getSelectedSubjectId());
+//					return;
+//				}
 
 			}
 		};
@@ -124,7 +125,7 @@ public class ListenerHandler {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(!Tab.getSelectedStudentIndex().equals("")) {
+				if(!Screen.getInstance().getStudentTab().getSelectedStudentIndex().equals("")) {
 				ToolbarEditStudent editDialog = new ToolbarEditStudent();
 				editDialog.setVisible();
 				}

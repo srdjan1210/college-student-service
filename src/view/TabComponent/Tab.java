@@ -1,6 +1,7 @@
 package view.TabComponent;
 
 import interfaces.IAddingController;
+import interfaces.IDeleteController;
 import model.DataModel;
 import model.ProfessorTableModel;
 import model.StudentTableModel;
@@ -14,6 +15,7 @@ import java.awt.event.MouseListener;
 public class Tab extends JTabbedPane {
 
     private IAddingController addingController;
+    private IDeleteController deleteController;
     public static int selectedrow = -1;
     private static String selectedStudentIndex = "";
     private static String selectedProfessorId = "";
@@ -22,9 +24,10 @@ public class Tab extends JTabbedPane {
     private Tables professorTable;
     private Tables subjectTable;
 
-    public Tab(IAddingController controller) {
+    public Tab(IAddingController controller, IDeleteController deleteController) {
         super();
         this.addingController = controller;
+        this.deleteController = deleteController;
 //		StudentTable studentTable = new StudentTable();
 //		ProfessorTable professorTable = new ProfessorTable();
 //		SubjectTable subjectTable = new SubjectTable();
@@ -124,9 +127,13 @@ public class Tab extends JTabbedPane {
         this.addingController.addNewEntity(dialog);
     }
 
+    public void deleteEntity() { deleteController.deleteEntity(getSelectedStudentIndex());}
+
     public void setAddingController(IAddingController controller) {
         this.addingController = controller;
     }
+
+    public void setDeleteController(IDeleteController controller) { this.deleteController = controller; }
 
     public Tables getStudentTable() {
         return studentTable;

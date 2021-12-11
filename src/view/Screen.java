@@ -1,8 +1,6 @@
 package view;
 
-import controller.AddProfessorController;
-import controller.AddStudentController;
-import controller.AddSubjectController;
+import controller.*;
 import interfaces.IAddingController;
 import model.DataModel;
 import utils.Constants;
@@ -41,7 +39,7 @@ public class Screen extends JFrame {
         add(statusBar, BorderLayout.SOUTH);
 
         // Tables
-        studentTab = new Tab(new AddStudentController());
+        studentTab = new Tab(new AddStudentController(), new DeleteStudentController());
         studentTab.addChangeListener(new ChangeListener() {
 
             @Override
@@ -50,14 +48,17 @@ public class Screen extends JFrame {
                 selectedTab = studentTab.getSelectedIndex();
                 if (studentTab.getSelectedIndex() == 0) {
                     studentTab.setAddingController(new AddStudentController());
+                    studentTab.setDeleteController(new DeleteStudentController());
                     DataModel.getInstance().setTableObserver(studentTab.getStudentTable());
                     statusBar.setTabName("Student");
                 } else if (studentTab.getSelectedIndex() == 1) {
                     studentTab.setAddingController(new AddProfessorController());
+                    studentTab.setDeleteController(new DeleteProfessorController());
                     DataModel.getInstance().setTableObserver(studentTab.getProfessorTable());
                     statusBar.setTabName("Profesor");
                 } else {
                     studentTab.setAddingController(new AddSubjectController());
+                    studentTab.setDeleteController(new DeleteSubjectController());
                     DataModel.getInstance().setTableObserver(studentTab.getSubjectTable());
                     statusBar.setTabName("Predmet");
                 }

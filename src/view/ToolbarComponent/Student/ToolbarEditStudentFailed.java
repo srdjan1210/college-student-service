@@ -13,6 +13,7 @@ import model.DataModel;
 import model.Student;
 import model.Subject;
 import view.EditStudentCustomComponents.FailedSubjectsButtons;
+import view.Screen;
 import view.TabComponent.Tab;
 import view.TablesComponent.Tables;
 
@@ -26,7 +27,7 @@ public class ToolbarEditStudentFailed extends JPanel{
 		add(buttons);
 		
 		String[] columnNames = {"Sifra predmeta","Naziv predmeta","ESPB","Godina studija","Semestar"};
-		Student student = DataModel.getInstance().getStudentById(Tab.getSelectedStudentIndex());
+		Student student = DataModel.getInstance().getStudentById(Screen.getInstance().getStudentTab().getSelectedStudentIndex());
 		ArrayList<Subject>failedSubjects = student.getFailedSubjects();
 		String[][] data = TableViewController.geSubjectsData(failedSubjects);
 		

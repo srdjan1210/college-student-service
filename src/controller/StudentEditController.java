@@ -13,6 +13,7 @@ import model.DataModel;
 import model.Student;
 import utils.Constants;
 import utils.EnumConversion;
+import view.Screen;
 import view.TabComponent.Tab;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
@@ -45,7 +46,7 @@ public class StudentEditController {
 	
 	public static void editStudent(ToolbarEditStudentInfo studentInfo,ToolbarEditStudent dialog) {
 		if(checkIfFieldsIsEmpty(studentInfo)) {
-			String studentIndexBeforeEdit = Tab.getSelectedStudentIndex();
+			String studentIndexBeforeEdit = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
 			Vector<JComponent> fields = studentInfo.getFieldsReferences();
 			Student student = getEditedStudent(studentInfo);
 			DataModel model=DataModel.getInstance();
