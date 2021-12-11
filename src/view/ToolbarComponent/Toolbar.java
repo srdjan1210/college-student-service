@@ -35,8 +35,8 @@ public class Toolbar extends JToolBar {
 		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Search");
 
 		searchField = new ToolbarSearch();
-		btnNew.addActionListener(ListenerHandler.openWindowListener(btnNew));
-		btnEdit.addActionListener(ListenerHandler.openEditDialogListener(btnEdit));
+		btnNew.addActionListener(ListenerHandler.openWindowListener());
+		btnEdit.addActionListener(ListenerHandler.openEditDialogListener());
 		btnDelete.addActionListener(ListenerHandler.getButtonDeleteListener());
 		// Left side of toolbar
 

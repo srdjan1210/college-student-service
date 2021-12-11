@@ -32,4 +32,8 @@ public class EditStudentTab extends JTabbedPane {
 	public ToolbarEditStudentInfo getEditInfo() {
 		return editInfo;
 	}
+	
+	public ToolbarEditStudentInfo getToolbarEditStudentInfo() {
+		return editInfo;
+	}
 }

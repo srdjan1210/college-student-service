@@ -9,16 +9,16 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import utils.Constants;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
 public class ToolbarEditStudentInfo extends JPanel {
-	String[] labelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
-			"Email adresa*", "Broj indexa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja*" };
-	String[] finansingWay = { "BUDZET", "SAMOFINANSIRANJE" };
-	String[] yearOfStudy = { "1", "2", "3", "4" };
+	String[] labelNames = Constants.studentLabelNames;
+	String[] finansingWay = Constants.finansingWayLabels;
+	String[] yearOfStudy = Constants.yearsLabels;
 
 	Vector<JComponent> fieldsReferences;
 

@@ -21,7 +21,7 @@ public class MenuBar extends JMenuBar {
 		helpMenuButton.setMnemonic('H');
 
 		MenuItems newMenuItem = new MenuItems("New", "Icons/NewMenuItem.png", "CTRL + N", 'N');
-		newMenuItem.addActionListener(ListenerHandler.openWindowListener(context));
+		newMenuItem.addActionListener(ListenerHandler.openWindowListener());
 		MenuItems saveMenuItem = new MenuItems("Save", "Icons/SaveMenuItem.png", "CTRL + S", 'S');
 		MenuItems closeMenuItem = new MenuItems("Close", "Icons/CloseMenuItem.png", "CTRL + C", 'C');
 

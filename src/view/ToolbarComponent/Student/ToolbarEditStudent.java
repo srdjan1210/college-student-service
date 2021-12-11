@@ -2,16 +2,20 @@ package view.ToolbarComponent.Student;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.BoxLayout;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JTextField;
 
 import utils.Constants;
 import view.TabComponent.EditStudentTab;
+import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 
-public class ToolbarEditStudent extends JDialog {
+public class ToolbarEditStudent extends EditingScreen {
 	private EditStudentTab tab;
 	public ToolbarEditStudent() {
 		super();
@@ -33,5 +37,21 @@ public class ToolbarEditStudent extends JDialog {
 
 	public void setVisible() {
 		setVisible(true);
+	}
+
+	@Override
+	public JTextField getTextField(int index) {
+		// TODO Auto-generated method stub
+		return tab.getToolbarEditStudentInfo().getTextField(index);
+	}
+
+	@Override
+	public JComboBox getComboBox(int index) {
+		// TODO Auto-generated method stub
+		return tab.getToolbarEditStudentInfo().getComboBox(index);
+	}
+	
+	public Vector<JComponent> getFieldsReferences() {
+		return tab.getToolbarEditStudentInfo().getFieldsReferences();
 	}
 }

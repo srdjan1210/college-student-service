@@ -1,7 +1,15 @@
 package view;
 
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import controller.*;
-import interfaces.IAddingController;
+
 import model.DataModel;
 import utils.Constants;
 import view.MenuBarComponent.MenuBar;
@@ -9,11 +17,6 @@ import view.ScreenComponent.Body;
 import view.StatusBarComponent.StatusBar;
 import view.TabComponent.Tab;
 import view.ToolbarComponent.Toolbar;
-
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
 
 public class Screen extends JFrame {
     private int selectedTab = 0;
@@ -39,7 +42,9 @@ public class Screen extends JFrame {
         add(statusBar, BorderLayout.SOUTH);
 
         // Tables
-        studentTab = new Tab(new AddStudentController(), new DeleteStudentController());
+
+        studentTab = new Tab(new AddStudentController(), new EditingStudentController(), new DeleteStudentController());
+
         studentTab.addChangeListener(new ChangeListener() {
 
             @Override
@@ -49,6 +54,7 @@ public class Screen extends JFrame {
                 if (studentTab.getSelectedIndex() == 0) {
                     studentTab.setAddingController(new AddStudentController());
                     studentTab.setDeleteController(new DeleteStudentController());
+                    studentTab.setEditingController(new EditingStudentController());
                     DataModel.getInstance().setTableObserver(studentTab.getStudentTable());
                     statusBar.setTabName("Student");
                 } else if (studentTab.getSelectedIndex() == 1) {
