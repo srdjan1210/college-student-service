@@ -21,9 +21,7 @@ public class Tab extends JTabbedPane {
     private IAddingController addingController;
     private IDeleteController deleteController;
 	private IEditingController editingController;
-
-    private static String selectedProfessorId = "";
-    private static String selectedSubjectId = "";
+    private int selectedTab = 0;
     private Tables studentTable;
     private Tables professorTable;
     private Tables subjectTable;
@@ -46,17 +44,21 @@ public class Tab extends JTabbedPane {
     }
 
 
+
     public String getSelectedStudentIndex() {
         StudentTableModel model = (StudentTableModel) studentTable.getModel();
         return (String)model.getValueAt(studentTable.getSelectedRow(), 0);
     }
 
-    public static String getSelectedProfessorId() {
-        return selectedProfessorId;
+    public String getSelectedProfessorId() {
+        ProfessorTableModel model = (ProfessorTableModel) professorTable.getModel();
+        return Integer.toString(professorTable.getSelectedRow());
+        //return (String)model.getValueAt(professorTable.getSelectedRow(), 0);
     }
 
-    public static String getSelectedSubjectId() {
-        return selectedSubjectId;
+    public String getSelectedSubjectId() {
+        SubjectTableModel model = (SubjectTableModel) subjectTable.getModel();
+        return (String)model.getValueAt(subjectTable.getSelectedRow(), 0);
     }
 
     public void addNewEntity(AddingScreen dialog) {
@@ -67,7 +69,9 @@ public class Tab extends JTabbedPane {
     	this.editingController.editEntity(dialog);
     }
 
-    public void deleteEntity() { deleteController.deleteEntity(getSelectedStudentIndex());}
+    public void deleteEntity() {
+        deleteController.deleteEntity();
+    }
 
     public void setAddingController(IAddingController controller) {
         this.addingController = controller;

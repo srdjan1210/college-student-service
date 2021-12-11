@@ -243,6 +243,7 @@ public class DataModel {
         for (Student student : students) {
             if (student.getIndexNumber().equals(index)) {
                 students.remove(student);
+                notifyTable();
                 return true;
             }
 
@@ -255,6 +256,7 @@ public class DataModel {
         for (Professor professor : professors) {
             if (professor.getIdNumber().equals(id)) {
                 professors.remove(professor);
+                notifyTable();
                 return true;
             }
         }
@@ -267,6 +269,7 @@ public class DataModel {
         for (Subject subject : subjects) {
             if (subject.getSubjectId().equals(id)) {
                 subjects.remove(subject);
+                notifyTable();
                 return true;
             }
         }
