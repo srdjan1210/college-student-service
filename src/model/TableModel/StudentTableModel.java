@@ -1,5 +1,6 @@
-package model;
+package model.TableModel;
 
+import model.Database.DataModel;
 import utils.Constants;
 
 import javax.swing.table.AbstractTableModel;

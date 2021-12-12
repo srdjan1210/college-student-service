@@ -1,7 +1,6 @@
 package controller;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Vector;
 
 import javax.swing.JComponent;
@@ -10,12 +9,11 @@ import javax.swing.JTextField;
 
 import interfaces.IEditingController;
 import model.Address;
-import model.DataModel;
+import model.Database.DataModel;
 import model.Student;
 import utils.Constants;
 import utils.EnumConversion;
 import view.Screen;
-import view.TabComponent.Tab;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.EditingScreen;
 

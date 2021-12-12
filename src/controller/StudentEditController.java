@@ -9,12 +9,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import model.Address;
-import model.DataModel;
+import model.Database.DataModel;
 import model.Student;
 import utils.Constants;
 import utils.EnumConversion;
 import view.Screen;
-import view.TabComponent.Tab;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
 
