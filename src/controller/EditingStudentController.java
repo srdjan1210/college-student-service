@@ -1,7 +1,7 @@
 package controller;
 
 import java.time.LocalDate;
-import java.util.Arrays;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
 import javax.swing.JComponent;
@@ -15,24 +15,20 @@ import model.Student;
 import utils.Constants;
 import utils.EnumConversion;
 import view.Screen;
-import view.TabComponent.Tab;
-import view.TablesComponent.Tables;
 import view.ToolbarComponent.EditingScreen;
 
 public class EditingStudentController implements IEditingController {
-	private Tables studentTable;
 
 	@Override
 	public void editEntity(EditingScreen dialog) {
 		// TODO Auto-generated method stub
 		if(checkIfFieldsIsEmpty(dialog)) {
 			String studentIndexBeforeEdit = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
-			Vector<JComponent> fields = dialog.getFieldsReferences();
+			
 			Student student = getEditedStudent(dialog);
 			DataModel model=DataModel.getInstance();
 			model.setEditedStudent(studentIndexBeforeEdit, student);
 			JOptionPane.showMessageDialog(dialog, "Informacije o studentu uspesno izmenjene!");
-//			notifyObserver(student);
 			dialog.dispose();
 			
 		}
@@ -42,7 +38,29 @@ public class EditingStudentController implements IEditingController {
 		
 	}
 	
-	public static Student getEditedStudent(EditingScreen dialog) {
+	public static String[] findStudentDataForFields(Student student) {
+		String data[] = { "", "", "", "", "", "", "", "", "", "" };
+		data[0] = student.getFirstName();
+		data[1] = student.getLastName();
+		data[2] = student.getBirthDay().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		data[3] = addressToString(student.getAddress());
+		data[4] = student.getPhoneNumber();
+		data[5] = student.getEmailAddress();
+		data[6] = student.getIndexNumber();
+		data[7] = Integer.toString(student.getEntryYear());
+		data[8] = Integer.toString(student.getStudyYear());
+		data[9] = student.getStatus().getValue();
+		return data;
+	}
+	
+	public static String addressToString(Address address) {
+		String data = "";
+		data = address.getStreet() + "-" + Integer.toString(address.getStreetNumber()) + "-" + address.getCity() + "-"
+				+ address.getCountry();
+		return data;
+	}
+	
+	public Student getEditedStudent(EditingScreen dialog) {
 		String firstName = dialog.getTextField(0).getText();
         String lastName = dialog.getTextField(1).getText();
         LocalDate birthDate = LocalDate.parse(dialog.getTextField(2).getText());

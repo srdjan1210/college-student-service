@@ -60,6 +60,7 @@ public class Screen extends JFrame {
                 } else if (studentTab.getSelectedIndex() == 1) {
                     studentTab.setAddingController(new AddProfessorController());
                     studentTab.setDeleteController(new DeleteProfessorController());
+                    studentTab.setEditingController(new EditingProfessorController());
                     DataModel.getInstance().setTableObserver(studentTab.getProfessorTable());
                     statusBar.setTabName("Profesor");
                 } else {

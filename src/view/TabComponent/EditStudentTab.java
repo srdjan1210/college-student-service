@@ -2,7 +2,7 @@ package view.TabComponent;
 
 import javax.swing.JTabbedPane;
 
-import controller.StudentEditController;
+import controller.EditingStudentController;
 import model.DataModel;
 import model.Student;
 import view.Screen;
@@ -19,7 +19,7 @@ public class EditStudentTab extends JTabbedPane {
 		String studentIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
 		DataModel instance = DataModel.getInstance();
 		Student student = instance.getStudentById(studentIndex);
-		String studentData[] = StudentEditController.findStudentDataForFields(student);
+		String studentData[] = EditingStudentController.findStudentDataForFields(student);
 		for (int i = 0; i < 8; i++)
 			editInfo.setTextField(i, studentData[i]);
 		
@@ -27,10 +27,6 @@ public class EditStudentTab extends JTabbedPane {
 		editInfo.setComboBox(9, studentData[9]);
 		add("Informacije", editInfo);
 		add("Nepolozeni",editFailed);
-	}
-	
-	public ToolbarEditStudentInfo getEditInfo() {
-		return editInfo;
 	}
 	
 	public ToolbarEditStudentInfo getToolbarEditStudentInfo() {

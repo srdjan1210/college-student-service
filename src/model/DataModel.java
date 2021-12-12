@@ -182,6 +182,15 @@ public class DataModel {
     public void setAddresses(ArrayList<Address> addresses) {
         this.addresses = addresses;
     }
+    
+    public String getProfessorIdFromEmail(String email) {
+    	for (Professor professor : professors) {
+            if (professor.getEmailAddress().equals(email)) {
+                return professor.getIdNumber();
+            }
+        }
+    	return null;
+    }
 
     //Adding entities methods
     public void addProfessorToList(Professor newProfessor) {
@@ -216,8 +225,27 @@ public class DataModel {
                 students.get(i).setEntryYear(studentNewInfo.getEntryYear());
                 students.get(i).setStudyYear(studentNewInfo.getStudyYear());
                 students.get(i).setStatus(studentNewInfo.getStatus());
+                notifyTable();
             }
         }
+    }
+    
+    public void setEditedProfessor(String oldId, Professor professorNewInfo) {
+    	for(int i=0;i<professors.size();i++) {
+    		if(professors.get(i).getIdNumber().equals(oldId)) {
+    			 professors.get(i).setFirstName(professorNewInfo.getFirstName());
+    			 professors.get(i).setLastName(professorNewInfo.getLastName());
+    			 professors.get(i).setBirthDay(professorNewInfo.getBirthDay());
+    		 	 professors.get(i).setAddress(professorNewInfo.getAddress());
+    			 professors.get(i).setPhoneNumber(professorNewInfo.getPhoneNumber());
+    			 professors.get(i).setEmailAddress(professorNewInfo.getEmailAddress());
+    			 professors.get(i).setOfficeAddress(professorNewInfo.getOfficeAddress());
+    			 professors.get(i).setIdNumber(professorNewInfo.getIdNumber());
+    			 professors.get(i).setTitle(professorNewInfo.getTitle());
+    			 professors.get(i).setWorkingYears(professorNewInfo.getWorkingYears());
+                 notifyTable();
+    		}
+    	}
     }
 
     //Helper methods

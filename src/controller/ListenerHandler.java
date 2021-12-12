@@ -3,6 +3,7 @@ package controller;
 import view.Screen;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
+import view.ToolbarComponent.Professor.ToolbarEditProfessor;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
@@ -92,12 +93,25 @@ public class ListenerHandler {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                if (!Screen.getInstance().getStudentTab().getSelectedStudentIndex().equals("")) {
-                    ToolbarEditStudent editDialog = new ToolbarEditStudent();
+            	Screen frame = Screen.getInstance();
+                if (frame.getSelectedTab() == 0) {
+                	ToolbarEditStudent editDialog = new ToolbarEditStudent();
                     editDialog.setVisible();
-                } else
-                    JOptionPane.showMessageDialog(null, "Morate odabrati studenta kog menjate!", "InfoBox: " + "Problem sa izmenom studenta!", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+
+                if (frame.getSelectedTab() == 1) {
+                	ToolbarEditProfessor editDialog = new ToolbarEditProfessor();
+                    editDialog.setVisible();
+                    return;
+                }
+
+                if (frame.getSelectedTab() == 2) {
+                	ToolbarEditStudent editDialog = new ToolbarEditStudent();
+                    editDialog.setVisible();
+                    return;
+                }
+                // TODO Auto-generated method stub
 
             }
 
