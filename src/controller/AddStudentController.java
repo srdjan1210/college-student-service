@@ -3,7 +3,7 @@ package controller;
 import Exceptions.InvalidFieldException;
 import interfaces.IAddingController;
 import model.Address;
-import model.DataModel;
+import model.Database.DataModel;
 import model.Student;
 import utils.Constants;
 import utils.EnumConversion;
@@ -13,9 +13,7 @@ import view.TablesComponent.Tables;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Locale;
-import java.util.Vector;
 
 public class AddStudentController implements IAddingController {
     private Tables studentTable;

@@ -1,17 +1,15 @@
 package view.TabComponent;
 
-import java.awt.event.MouseListener;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import interfaces.IAddingController;
 import interfaces.IDeleteController;
 import interfaces.IEditingController;
-import model.DataModel;
-import model.ProfessorTableModel;
-import model.StudentTableModel;
-import model.SubjectTableModel;
+import model.Database.DataModel;
+import model.TableModel.ProfessorTableModel;
+import model.TableModel.StudentTableModel;
+import model.TableModel.SubjectTableModel;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;

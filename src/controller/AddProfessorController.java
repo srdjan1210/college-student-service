@@ -3,10 +3,9 @@ package controller;
 import Exceptions.InvalidFieldException;
 import interfaces.IAddingController;
 import model.Address;
-import model.DataModel;
+import model.Database.DataModel;
 import model.Professor;
 import view.ToolbarComponent.AddingScreen;
-import view.TablesComponent.Tables;
 
 import javax.swing.*;
 import java.time.LocalDate;

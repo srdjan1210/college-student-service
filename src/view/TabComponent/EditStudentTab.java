@@ -3,7 +3,7 @@ package view.TabComponent;
 import javax.swing.JTabbedPane;
 
 import controller.EditingStudentController;
-import model.DataModel;
+import model.Database.DataModel;
 import model.Student;
 import view.Screen;
 import view.ToolbarComponent.Student.ToolbarEditStudentFailed;

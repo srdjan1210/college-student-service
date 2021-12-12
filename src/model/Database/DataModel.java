@@ -1,14 +1,11 @@
-package model;
+package model.Database;
 
-import utils.DataUtils;
-import utils.EnumConversion;
+import model.*;
 import view.TablesComponent.Tables;
 
 import javax.swing.table.AbstractTableModel;
-import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Iterator;
 
 public class DataModel {
 
@@ -22,86 +19,17 @@ public class DataModel {
     private static DataModel instance = null;
 
     private DataModel() {
+        DataReader reader = new DataReader(this);
         try {
-            students = readEntityFromFile("resources/studenti.txt", "Student");
-            professors = readEntityFromFile("resources/profesori.txt", "Professor");
-            subjects = readEntityFromFile("resources/predmeti.txt", "Subject");
-            departments = readEntityFromFile("resources/katedre.txt", "Department");
-            marks = readEntityFromFile("resources/ocene.txt", "Mark");
-            readStudentSubjectsFromFile("resources/nepolozeni.txt");
-            System.out.println(students.size() + " " + professors.size());
-            //addresses = readEntityFromFile("resources/adrese.txt", "Address");
+            students = reader.readEntityFromFile("resources/studenti.txt", "Student");
+            professors = reader.readEntityFromFile("resources/profesori.txt", "Professor");
+            subjects = reader.readEntityFromFile("resources/predmeti.txt", "Subject");
+            departments = reader.readEntityFromFile("resources/katedre.txt", "Department");
+            marks = reader.readEntityFromFile("resources/ocene.txt", "Mark");
+            reader.readStudentSubjectsFromFile("resources/nepolozeni.txt");
         } catch (Exception err) {
             err.printStackTrace();
         }
-    }
-
-    private void readStudentSubjectsFromFile(String fileName) throws FileNotFoundException {
-        Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-
-        while (scanner.hasNextLine()) {
-            String scannedData = scanner.nextLine();
-            String[] data = splitScannedData(scannedData);
-            Student student = getStudentById(data[0]);
-            Subject failedSubject = getSubjectById(data[1]);
-            student.addFailedSubject(failedSubject);
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    private <T> ArrayList<T> readEntityFromFile(String fileName, String className) throws FileNotFoundException {
-        ArrayList<T> entityList = new ArrayList<T>();
-        Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-
-        while (scanner.hasNextLine()) {
-            String scannedData = scanner.nextLine();
-            String[] data = splitScannedData(scannedData);
-            T obj = null;
-            if (className.equals("Student"))
-                obj = (T) loadStudentObject(trimSplittedString(data));
-            else if (className.equals("Professor"))
-                obj = (T) loadProfessorObject(trimSplittedString(data));
-            else if (className.equals("Subject"))
-                obj = (T) loadSubjectObject(trimSplittedString(data));
-            else if (className.equals("Department"))
-                obj = (T) loadDepartmentObject(trimSplittedString(data));
-            else if (className.equals("Mark"))
-                obj = (T) loadMarkObject(trimSplittedString(data));
-            else if (className.equals("Address"))
-                obj = (T) loadAddressObject(trimSplittedString(scannedData.split(":")));
-            entityList.add(obj);
-        }
-        scanner.close();
-        return entityList;
-    }
-
-    private Professor loadProfessorObject(String[] data) {
-        return new Professor(data[0], data[1], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4],
-                data[5], loadAddressObject(data[6].split(":")), data[7], data[8], Integer.parseInt(data[9]));
-    }
-
-    private Student loadStudentObject(String[] data) {
-        return new Student(data[1], data[0], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4],
-                data[5], data[6], Integer.parseInt(data[7]), Integer.parseInt(data[8]),
-                EnumConversion.stringToStatus(data[9]), Double.parseDouble(data[10]));
-    }
-
-    private Subject loadSubjectObject(String[] data) {
-        return new Subject(data[0], data[1], EnumConversion.stringToSemester(data[2]), Integer.parseInt(data[3]),
-                getProfessorById(data[4]), Integer.parseInt(data[5]));
-    }
-
-    private Department loadDepartmentObject(String[] data) {
-        return new Department(data[0], data[1], getProfessorById(data[2]));
-    }
-
-    private Mark loadMarkObject(String[] data) {
-        return new Mark(getStudentById(data[0]), getSubjectById(data[1]), EnumConversion.stringToMark(data[2]),
-                LocalDate.parse(data[3]));
-    }
-
-    private Address loadAddressObject(String[] data) {
-        return new Address(data[0], Integer.parseInt(data[3]), data[2], data[1]);
     }
 
     //Entity find by unique id methods
@@ -124,7 +52,7 @@ public class DataModel {
         return null;
     }
 
-    private Subject getSubjectById(String id) {
+    public Subject getSubjectById(String id) {
         for (Subject subj : subjects) {
             if (subj.getSubjectId().equals(id)) {
                 return subj;
@@ -198,19 +126,16 @@ public class DataModel {
     public void addProfessorToList(Professor newProfessor) {
         professors.add(newProfessor);
         notifyTable();
-        //notifyProfessorTableModel();
     }
 
     public void addStudentToList(Student newStudent) {
         students.add(newStudent);
         notifyTable();
-        //notifyStudentTableModel();
     }
 
     public void addSubjectToList(Subject newSubject) {
         subjects.add(newSubject);
         notifyTable();
-        //notifySubjectTableModel();
     }
 
     //Editing entities methods
@@ -250,29 +175,13 @@ public class DataModel {
     	}
     }
 
-    //Helper methods
-    private String[] trimSplittedString(String[] data) {
-        for (String point : data) {
-            point = point.trim();
-        }
-        return data;
-    }
-
-    private String[] splitScannedData(String data) {
-        return data.split(",");
-    }
-
-    private Address convertStringToAddress(String data) {
-        String[] addressChunks = data.split(":");
-        return new Address(addressChunks[2], Integer.parseInt(addressChunks[3]), addressChunks[1], addressChunks[0]);
-    }
-
     //Deleting entities methods
     public boolean removeStudentByIndex(String index) {
         //Treba dodati uklanjanje svih zavisnosti entiteta u drugim listama
         for (Student student : students) {
             if (student.getIndexNumber().equals(index)) {
                 students.remove(student);
+                removeStudentDependencies(index);
                 notifyTable();
                 return true;
             }
@@ -306,28 +215,52 @@ public class DataModel {
         return false;
     }
 
-    //Writing to file methods
-    public void writeDataToFiles() {
-        writeEntitiesToFile("resources/studenti.txt", students);
-        writeEntitiesToFile("resources/profesori.txt", professors);
-        writeEntitiesToFile("resources/predmeti.txt", subjects);
-        writeEntitiesToFile("resources/katedre.txt", departments);
-        writeEntitiesToFile("resources/ocene.txt", marks);
+
+    private void removeStudentDependencies(String index) {
+//        removeStudentFromPassed(index);
+//        removeStudentFromNotPassed(index);
+        removeStudentFromMarks(index);
     }
 
-
-    private void writeEntitiesToFile(String path, ArrayList<?> list) {
-        File file = new File(path);
-        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
-            for (int i = 0; i < list.size(); i++) {
-                Object entity = list.get(i);
-                if (i == 0) myWriter.write(entity.toString());
-                else myWriter.append(entity.toString());
-                if (i != list.size() - 1) myWriter.newLine();
+    private void removeStudentFromPassed(String index) {
+        for (Subject subject : subjects) {
+            ArrayList<Student> passed = subject.getStudentsPassed();
+            for (Student student : students) {
+                if (student.getIndexNumber().equals(index)) {
+                    students.remove(student);
+                }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+    }
+
+    private void removeStudentFromNotPassed(String index) {
+        for (Subject subject : subjects) {
+            ArrayList<Student> passed = subject.getStudentsFailed();
+            for (Student student : students) {
+                if (student.getIndexNumber().equals(index)) {
+                    students.remove(student);
+                }
+            }
+        }
+    }
+
+    private void removeStudentFromMarks(String index) {
+        for (Iterator<Mark> markIt = marks.iterator(); markIt.hasNext(); ) {
+            Mark mark = markIt.next();
+            if (mark.getPassedExam().getIndexNumber().equals(index)) {
+                markIt.remove();
+            }
+        }
+    }
+
+    //Writing to file methods
+    public void writeDataToFiles() {
+        DataWriter writer = new DataWriter();
+        writer.writeEntitiesToFile("resources/studenti.txt", students);
+        writer.writeEntitiesToFile("resources/profesori.txt", professors);
+        writer.writeEntitiesToFile("resources/predmeti.txt", subjects);
+        writer.writeEntitiesToFile("resources/katedre.txt", departments);
+        writer.writeEntitiesToFile("resources/ocene.txt", marks);
     }
 
     public static DataModel getInstance() {

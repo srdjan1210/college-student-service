@@ -10,7 +10,7 @@ import javax.swing.event.ChangeListener;
 
 import controller.*;
 
-import model.DataModel;
+import model.Database.DataModel;
 import utils.Constants;
 import view.MenuBarComponent.MenuBar;
 import view.ScreenComponent.Body;

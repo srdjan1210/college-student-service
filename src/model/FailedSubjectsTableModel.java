@@ -7,13 +7,12 @@ import utils.Constants;
 public class FailedSubjectsTableModel extends AbstractTableModel {
 
 	private String[][] data;
-	public FailedSubjectsTableModel(String[][] data){
-		this.data = data;
+	public FailedSubjectsTableModel(){
 	}
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return data.length;
+		return 0;
 	}
 
 	@Override

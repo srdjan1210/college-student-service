@@ -1,6 +1,6 @@
 package main;
 
-import model.DataModel;
+import model.Database.DataModel;
 import view.Screen;
 
 import java.awt.event.WindowEvent;

@@ -1,7 +1,7 @@
 package controller;
 
 import interfaces.IDeleteController;
-import model.DataModel;
+import model.Database.DataModel;
 import view.Screen;
 
 import javax.swing.*;

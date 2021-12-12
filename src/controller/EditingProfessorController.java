@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 import interfaces.IEditingController;
 import model.Address;
-import model.DataModel;
+import model.Database.DataModel;
 import model.Professor;
 import view.Screen;
 import view.ToolbarComponent.EditingScreen;

@@ -1,7 +1,6 @@
 package controller;
 
-import model.DataModel;
-import model.Student;
+import model.Database.DataModel;
 import view.TablesComponent.Tables;
 
 import javax.swing.*;

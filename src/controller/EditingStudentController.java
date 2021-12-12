@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 import interfaces.IEditingController;
 import model.Address;
-import model.DataModel;
+import model.Database.DataModel;
 import model.Student;
 import utils.Constants;
 import utils.EnumConversion;
@@ -88,16 +88,4 @@ public class EditingStudentController implements IEditingController {
 		}
 		return true;
 	}
-//	@Override
-//	public void addObserver(Tables table) {
-//		// TODO Auto-generated method stub
-//		studentTable = table;
-//	}
-	
-//	public void notifyObserver(Student student) {
-//		String[] array = {student.getIndexNumber(), student.getFirstName(), student.getLastName(), Integer.toString(student.getStudyYear()), student.getStatus().getValue(), Double.toString(student.getAverageMark())};
-//       studentTable.notifyEditing(new Vector<>(Arrays.asList(array)));
-//        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
-//	}
-	
 }
