@@ -11,7 +11,7 @@ public class TableViewController {
 
     }
 
-    public static String[][] getStudentsData(ArrayList<Student> students) {
+    public String[][] getStudentsData(ArrayList<Student> students) {
         String[][] data = new String[students.size()][6];
         int i = 0;
         for (Student student : students) {
@@ -26,7 +26,7 @@ public class TableViewController {
         return data;
     }
 
-    public static String[][] getProfessorsData(ArrayList<Professor> professors) {
+    public String[][] getProfessorsData(ArrayList<Professor> professors) {
         String[][] data = new String[professors.size()][4];
         int i = 0;
         for (Professor professor : professors) {
@@ -39,7 +39,7 @@ public class TableViewController {
         return data;
     }
 
-    public static String[][] geSubjectsData(ArrayList<Subject> subjects) {
+    public String[][] geSubjectsData(ArrayList<Subject> subjects) {
         String[][] data = new String[subjects.size()][5];
         int i = 0;
         for (Subject subject : subjects) {

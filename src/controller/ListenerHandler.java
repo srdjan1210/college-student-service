@@ -95,9 +95,9 @@ public class ListenerHandler {
             public void actionPerformed(ActionEvent e) {
             	Screen frame = Screen.getInstance();
                 if (frame.getSelectedTab() == 0) {
-                	ToolbarEditStudent editDialog = new ToolbarEditStudent();
-                    editDialog.setVisible();
-                    return;
+                		ToolbarEditStudent editDialog = new ToolbarEditStudent();
+                		editDialog.setVisible();
+                		return;
                 }
 
                 if (frame.getSelectedTab() == 1) {

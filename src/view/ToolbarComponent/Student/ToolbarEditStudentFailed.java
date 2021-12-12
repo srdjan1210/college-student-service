@@ -2,19 +2,21 @@ package view.ToolbarComponent.Student;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.table.AbstractTableModel;
 
 import controller.TableViewController;
 import model.DataModel;
+import model.FailedSubjectsTableModel;
 import model.Student;
 import model.Subject;
+import utils.Constants;
 import view.Screen;
 import view.EditStudentCustomComponents.FailedSubjectsButtons;
-import view.Screen;
-import view.TabComponent.Tab;
+import view.TablesComponent.Tables;
 
 public class ToolbarEditStudentFailed extends JPanel{
 	public ToolbarEditStudentFailed() {
@@ -25,13 +27,14 @@ public class ToolbarEditStudentFailed extends JPanel{
 		FailedSubjectsButtons buttons = new FailedSubjectsButtons();
 		add(buttons);
 		
-		String[] columnNames = {"Sifra predmeta","Naziv predmeta","ESPB","Godina studija","Semestar"};
+		String[] columnNames = Constants.subjectColumnNames;
 		Student student = DataModel.getInstance().getStudentById(Screen.getInstance().getStudentTab().getSelectedStudentIndex());
+		System.out.println(student.getFailedSubjects());
 		ArrayList<Subject>failedSubjects = student.getFailedSubjects();
 		String[][] data = TableViewController.geSubjectsData(failedSubjects);
 		
-//		Tables failedSubjectsTable = new Tables(columnNames,data);
-//		add(new JScrollPane(failedSubjectsTable));
+		Tables failedSubjectsTable = new Tables(new FailedSubjectsTableModel(data));
+		add(new JScrollPane(failedSubjectsTable));
 		setVisible(true);
 	}
 }

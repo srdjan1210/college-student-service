@@ -154,6 +154,8 @@ public class DataModel {
     public ArrayList<Subject> getSubjects() {
         return subjects;
     }
+    
+    
 
     public void setSubjects(ArrayList<Subject> subjects) {
         this.subjects = subjects;
