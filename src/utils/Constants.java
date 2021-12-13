@@ -50,16 +50,19 @@ public class Constants {
 	public static int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	public static int ICON_BUTTON_HEIGHT = 20;
 	public static int ICON_BUTTON_WIDTH = 20;
-	public static String[] studentLabelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
-			"E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*", "Nacin finansiranja" };
+	public static String[] studentLabelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*",
+			"Broj telefona*", "E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*",
+			"Nacin finansiranja" };
 	public static String[] finansingWayLabels = { "BUDZET", "SAMOFINANSIRANJE" };
 	public static String[] yearsLabels = { "1", "2", "3", "4" };
-	public static String[] professorLabelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*", "Broj telefona*",
-			"E-mail adresa*", "Adresa kancelarije*", "Broj licne karte*", "Zvanje*", "Godine iskustva*" };
-	public static String[] subjectLabelNames = {"Id predmeta*", "Naziv predmeta*", "Semestar*", "Profesor*", "Espb*", "Godina studija*"};
-	public static String[] semesterValues = {"ZIMSKI", "LETNJI"};
+	public static String[] professorLabelNames = { "Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*",
+			"Broj telefona*", "E-mail adresa*", "Adresa kancelarije*", "Broj licne karte*", "Zvanje*",
+			"Godine iskustva*" };
+	public static String[] subjectLabelNames = { "Id predmeta*", "Naziv predmeta*", "Semestar*", "Profesor*", "Espb*",
+			"Godina studija*" };
+	public static String[] semesterValues = { "ZIMSKI", "LETNJI" };
 	public static String[] studentColumnNames = { "Indeks", "Ime", "Prezime", "Godina studija", "Status", "Prosek" };
 	public static String[] professorColumnNames = { "Ime", "Prezime", "Titula", "E-mail adresa" };
 	public static String[] subjectColumnNames = { "�ifra predmeta", "Naziv predmeta", "Broj ESPB bodova",
-													"Godina na kojoj se predmet izvodi", "Semestar u kome se predmet izvodi" };
+			"Godina na kojoj se predmet izvodi", "Semestar u kome se predmet izvodi" };
 }

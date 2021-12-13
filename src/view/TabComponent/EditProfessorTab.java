@@ -7,10 +7,10 @@ import model.Database.DataModel;
 import model.Professor;
 import view.Screen;
 import view.ToolbarComponent.Professor.ToolbarEditProfessorInfo;
-import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
 
 public class EditProfessorTab extends JTabbedPane {
 	private ToolbarEditProfessorInfo editInfo;
+
 	public EditProfessorTab() {
 		super();
 		editInfo = new ToolbarEditProfessorInfo();
@@ -22,7 +22,7 @@ public class EditProfessorTab extends JTabbedPane {
 			editInfo.setTextField(i, professorData[i]);
 		add("Informacije", editInfo);
 	}
-	
+
 	public ToolbarEditProfessorInfo getToolbarEditProfessorInfo() {
 		return editInfo;
 	}

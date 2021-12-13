@@ -1,7 +1,6 @@
 package view.ToolbarComponent.Student;
 
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -16,10 +15,10 @@ import model.Database.DataModel;
 import utils.Constants;
 import view.TabComponent.EditStudentTab;
 import view.ToolbarComponent.EditingScreen;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 
 public class ToolbarEditStudent extends EditingScreen {
 	private EditStudentTab tab;
+
 	public ToolbarEditStudent() {
 		super();
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -30,28 +29,26 @@ public class ToolbarEditStudent extends EditingScreen {
 		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
 		tab = new EditStudentTab();
 		tab.addChangeListener(new ChangeListener() {
-			
+
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
-				if(tab.getSelectedIndex() == 0) {
-					
+				if (tab.getSelectedIndex() == 0) {
+
+				} else if (tab.getSelectedIndex() == 1) {
+					DataModel.getInstance()
+							.setTableObserver(tab.getToolbarEditStudentFailed().getFailedSubjectsTable());
+				} else if (tab.getSelectedIndex() == 2) {
+
 				}
-				else if(tab.getSelectedIndex() == 1) {
-					DataModel.getInstance().setTableObserver(tab.getToolbarEditStudentFailed().getFailedSubjectsTable());
-				}
-				else if(tab.getSelectedIndex() == 2) {
-					
-				}
-				
+
 			}
 		});
 		add(tab);
-	//	add(new ToolbarEnterExitPanel());
 		setVisible(false);
 	}
-	
-	public EditStudentTab getEditStudentTab(){
+
+	public EditStudentTab getEditStudentTab() {
 		return tab;
 	}
 
@@ -70,7 +67,7 @@ public class ToolbarEditStudent extends EditingScreen {
 		// TODO Auto-generated method stub
 		return tab.getToolbarEditStudentInfo().getComboBox(index);
 	}
-	
+
 	public Vector<JComponent> getFieldsReferences() {
 		return tab.getToolbarEditStudentInfo().getFieldsReferences();
 	}

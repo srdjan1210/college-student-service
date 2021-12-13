@@ -20,22 +20,20 @@ public class EditingProfessorController implements IEditingController {
 	@Override
 	public void editEntity(EditingScreen dialog) {
 		// TODO Auto-generated method stub
-		if(checkIfFieldsIsEmpty(dialog)) {
+		if (checkIfFieldsIsEmpty(dialog)) {
 			String professorIdBeforeEdit = Screen.getInstance().getStudentTab().getSelectedProfessorId();
-			
+
 			Professor professor = getEditedProfessor(dialog);
 			DataModel model = DataModel.getInstance();
 			model.setEditedProfessor(professorIdBeforeEdit, professor);
 			JOptionPane.showMessageDialog(dialog, "Informacije o profesoru uspesno izmenjene!");
 			dialog.dispose();
-		}
-		else {
+		} else {
 			JOptionPane.showMessageDialog(dialog, "Polja ne smiju biti prazna!");
 		}
-		
+
 	}
-//	String lastName, String firstName, LocalDate birthDay, Address address, String phoneNumber,
-//    String emailAddress, Address officeAddress, String idNumber, String title, int workingYears
+
 	public Professor getEditedProfessor(EditingScreen dialog) {
 		String firstName = dialog.getTextField(0).getText();
 		String lastName = dialog.getTextField(1).getText();
@@ -47,26 +45,25 @@ public class EditingProfessorController implements IEditingController {
 		String idNumber = dialog.getTextField(7).getText();
 		String title = dialog.getTextField(8).getText();
 		int workingYears = Integer.parseInt(dialog.getTextField(9).getText());
-		return new Professor(lastName,firstName,birthDate,address,phoneNum,email,officeAddress,idNumber,title,workingYears);
+		return new Professor(lastName, firstName, birthDate, address, phoneNum, email, officeAddress, idNumber, title,
+				workingYears);
 	}
-	
+
 	public Address createAddressFromAddressString(String addressString) {
-        String[] addressParts = addressString.split("-");
-        return new Address(addressParts[0], Integer.parseInt(addressParts[1]), addressParts[2], addressParts[3]);
-    }
-	
+		String[] addressParts = addressString.split("-");
+		return new Address(addressParts[0], Integer.parseInt(addressParts[1]), addressParts[2], addressParts[3]);
+	}
+
 	public boolean checkIfFieldsIsEmpty(EditingScreen dialog) {
 		Vector<JComponent> fields = dialog.getFieldsReferences();
-		for(int i=0;i<fields.size()-2;i++) {
-			JTextField textField = (JTextField)fields.get(i);
-			if(textField.getText().trim().equals(""))
+		for (int i = 0; i < fields.size() - 2; i++) {
+			JTextField textField = (JTextField) fields.get(i);
+			if (textField.getText().trim().equals(""))
 				return false;
 		}
 		return true;
 	}
-	
-	
-	
+
 	public static String[] findProfessorDataForFields(Professor professor) {
 		String data[] = { "", "", "", "", "", "", "", "", "", "" };
 		data[0] = professor.getFirstName();
@@ -81,13 +78,12 @@ public class EditingProfessorController implements IEditingController {
 		data[9] = Integer.toString(professor.getWorkingYears());
 		return data;
 	}
-	
+
 	public static String addressToString(Address address) {
 		String data = "";
 		data = address.getStreet() + "-" + Integer.toString(address.getStreetNumber()) + "-" + address.getCity() + "-"
 				+ address.getCountry();
 		return data;
 	}
-	
 
 }
