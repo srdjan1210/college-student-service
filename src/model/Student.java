@@ -147,6 +147,13 @@ public class Student {
     public void addFailedSubject(Subject subject) {
     	this.failedSubjects.add(subject);
     }
+    
+    public void removeFailedSubject(String subjectId) {
+    	for(int i=0;i<failedSubjects.size();i++) {
+    		if(failedSubjects.get(i).getSubjectId().equals(subjectId))
+    			failedSubjects.remove(i);
+    	}
+    }
 
     public String getDataAt(int index) {
         switch(index) {

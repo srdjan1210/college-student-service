@@ -38,6 +38,7 @@ public class ToolbarEditStudentInfo extends JPanel {
 			else
 				add(createOneItem(labelName, "TextField"));
 		}
+		add(new ToolbarEnterExitPanel());
 		setVisible(true);
 	}
 

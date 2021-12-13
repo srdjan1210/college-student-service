@@ -2,6 +2,7 @@ package view.TabComponent;
 
 import javax.swing.JTabbedPane;
 
+import controller.DeleteFailedSubjectController;
 import controller.EditingStudentController;
 import model.Database.DataModel;
 import model.Student;
@@ -12,6 +13,7 @@ import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
 public class EditStudentTab extends JTabbedPane {
 	private ToolbarEditStudentInfo editInfo;
 	private ToolbarEditStudentFailed editFailed;
+	private int selectedTab;
 	public EditStudentTab() {
 		super();
 		editInfo = new ToolbarEditStudentInfo();
@@ -31,5 +33,9 @@ public class EditStudentTab extends JTabbedPane {
 	
 	public ToolbarEditStudentInfo getToolbarEditStudentInfo() {
 		return editInfo;
+	}
+	
+	public ToolbarEditStudentFailed getToolbarEditStudentFailed() {
+		return editFailed;
 	}
 }

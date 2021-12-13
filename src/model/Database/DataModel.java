@@ -1,11 +1,19 @@
 package model.Database;
 
-import model.*;
-import view.TablesComponent.Tables;
-
-import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.swing.table.AbstractTableModel;
+
+import model.Address;
+import model.Department;
+import model.Mark;
+import model.Professor;
+import model.Student;
+import model.Subject;
+import view.TablesComponent.Tables;
 
 public class DataModel {
 
@@ -15,6 +23,7 @@ public class DataModel {
     private ArrayList<Department> departments;
     private ArrayList<Mark> marks;
     private ArrayList<Address> addresses;
+    private ArrayList<Subject> failedSubjects;
     private Tables tableObserver;
     private static DataModel instance = null;
 
@@ -26,7 +35,7 @@ public class DataModel {
             subjects = reader.readEntityFromFile("resources/predmeti.txt", "Subject");
             departments = reader.readEntityFromFile("resources/katedre.txt", "Department");
             marks = reader.readEntityFromFile("resources/ocene.txt", "Mark");
-            reader.readStudentSubjectsFromFile("resources/nepolozeni.txt");
+            failedSubjects = reader.readStudentSubjectsFromFile("resources/nepolozeni.txt");
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -243,7 +252,17 @@ public class DataModel {
             }
         }
     }
-
+    
+    public boolean removeFailedSubjectFromStudentSubjects(String subjectId,String studentId) {
+    	for(Student student : students) {
+    		if(student.getIndexNumber().equals(studentId)) {
+    			student.removeFailedSubject(subjectId);
+    			notifyTable();
+    			return true;}
+    		}
+    	return false;
+    	}
+    	
     private void removeStudentFromMarks(String index) {
         for (Iterator<Mark> markIt = marks.iterator(); markIt.hasNext(); ) {
             Mark mark = markIt.next();
@@ -251,6 +270,14 @@ public class DataModel {
                 markIt.remove();
             }
         }
+    }
+    
+    public int getLinesOfFailedToWrite() {
+    	int lines = 0;
+    	for(Student student : students) {
+    		lines+=student.getFailedSubjects().size();
+    	}
+    	return lines;
     }
 
     //Writing to file methods
@@ -261,6 +288,8 @@ public class DataModel {
         writer.writeEntitiesToFile("resources/predmeti.txt", subjects);
         writer.writeEntitiesToFile("resources/katedre.txt", departments);
         writer.writeEntitiesToFile("resources/ocene.txt", marks);
+        writer.writeEntitiesToFile("resources/profesori.txt", professors);
+        writer.writeFailedSubjectsToFile("resources/nepolozeni.txt", failedSubjects,students);
     }
 
     public static DataModel getInstance() {

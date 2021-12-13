@@ -1,13 +1,20 @@
 package model.Database;
 
-import model.*;
-import utils.DataUtils;
-import utils.EnumConversion;
-
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+import model.Address;
+import model.Department;
+import model.Mark;
+import model.Professor;
+import model.Student;
+import model.Subject;
+import utils.DataUtils;
+import utils.EnumConversion;
 
 public class DataReader {
     private DataModel dm;
@@ -35,22 +42,27 @@ public class DataReader {
                 obj = (T) loadMarkObject(trimSplittedString(data));
             else if (className.equals("Address"))
                 obj = (T) loadAddressObject(trimSplittedString(scannedData.split(":")));
+            else if (className.equals("FailedSubjects"))
+            	obj = (T) loadFailedSubjectsObject(trimSplittedString(data));
             entityList.add(obj);
         }
         scanner.close();
         return entityList;
     }
 
-    public void readStudentSubjectsFromFile(String fileName) throws FileNotFoundException {
+    public ArrayList<Subject> readStudentSubjectsFromFile(String fileName) throws FileNotFoundException {
         Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-
+        ArrayList<Subject> failed = new ArrayList<Subject>();
         while (scanner.hasNextLine()) {
             String scannedData = scanner.nextLine();
             String[] data = splitScannedData(scannedData);
             Student student = dm.getStudentById(data[0]);
             Subject failedSubject = dm.getSubjectById(data[1]);
             student.addFailedSubject(failedSubject);
+            if(!failed.contains(failedSubject))
+            	failed.add(failedSubject);
         }
+        return failed;
     }
 
     private Professor loadProfessorObject(String[] data) {
@@ -80,6 +92,10 @@ public class DataReader {
 
     private Address loadAddressObject(String[] data) {
         return new Address(data[0], Integer.parseInt(data[3]), data[2], data[1]);
+    }
+    
+    private Subject loadFailedSubjectsObject(String[] data) {
+    	return dm.getSubjectById(data[1]);
     }
 
     private String[] trimSplittedString(String[] data) {
