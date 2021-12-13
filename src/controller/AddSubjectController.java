@@ -1,6 +1,6 @@
 package controller;
 
-import Exceptions.InvalidFieldException;
+import exceptions.InvalidFieldException;
 import interfaces.IAddingController;
 import model.Database.DataModel;
 import model.Professor;

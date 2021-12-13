@@ -1,21 +1,17 @@
 package view;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import controller.*;
-
 import model.Database.DataModel;
 import utils.Constants;
 import view.MenuBarComponent.MenuBar;
-import view.ScreenComponent.Body;
 import view.StatusBarComponent.StatusBar;
 import view.TabComponent.Tab;
 import view.ToolbarComponent.Toolbar;
+
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class Screen extends JFrame {
 	private int selectedTab = 0;
@@ -32,13 +28,11 @@ public class Screen extends JFrame {
 		Toolbar toolbar = new Toolbar();
 		MenuBar menu = new MenuBar();
 		StatusBar statusBar = new StatusBar(this);
-		Body body = new Body();
 
 		setJMenuBar(menu);
 
 		setLayout(new BorderLayout());
 		add(toolbar, BorderLayout.PAGE_START);
-		add(body, BorderLayout.CENTER);
 		add(statusBar, BorderLayout.SOUTH);
 
 		// Tables
