@@ -1,18 +1,21 @@
 package controller;
 
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.SwingUtilities;
+
 import view.Screen;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Professor.ToolbarEditProfessor;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
+import view.ToolbarComponent.Student.ToolbarEditStudentFailed;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ListenerHandler {
 
@@ -115,7 +118,20 @@ public class ListenerHandler {
 
             }
 
-        };
+        };	
+        }
+    
+    public static ActionListener getButtonDeleteFailedSubjectListener(ToolbarEditStudentFailed failedPanel) {
+		return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				failedPanel.setDeleteController(new DeleteFailedSubjectController(failedPanel));
+				return;
+			}
+			
+		};	
     }
 
 }

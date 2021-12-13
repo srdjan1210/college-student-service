@@ -9,7 +9,10 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import model.Database.DataModel;
 import utils.Constants;
 import view.TabComponent.EditStudentTab;
 import view.ToolbarComponent.EditingScreen;
@@ -26,8 +29,25 @@ public class ToolbarEditStudent extends EditingScreen {
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
 		tab = new EditStudentTab();
+		tab.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				if(tab.getSelectedIndex() == 0) {
+					
+				}
+				else if(tab.getSelectedIndex() == 1) {
+					DataModel.getInstance().setTableObserver(tab.getToolbarEditStudentFailed().getFailedSubjectsTable());
+				}
+				else if(tab.getSelectedIndex() == 2) {
+					
+				}
+				
+			}
+		});
 		add(tab);
-		add(new ToolbarEnterExitPanel());
+	//	add(new ToolbarEnterExitPanel());
 		setVisible(false);
 	}
 	

@@ -1,4 +1,4 @@
-package model;
+package model.TableModel;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -7,12 +7,13 @@ import utils.Constants;
 public class FailedSubjectsTableModel extends AbstractTableModel {
 
 	private String[][] data;
-	public FailedSubjectsTableModel(){
+	public FailedSubjectsTableModel(String[][] data){
+		this.data = data;
 	}
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return data.length;
 	}
 
 	@Override

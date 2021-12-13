@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.plaf.DimensionUIResource;
 
+import controller.ListenerHandler;
+
 public class FailedSubjectsButtons extends JPanel{
 	private JButton buttonAdd;
 	private JButton buttonDelete;
@@ -21,6 +23,8 @@ public class FailedSubjectsButtons extends JPanel{
 		buttonAdd = new JButton("Dodaj");
 		buttonDelete = new JButton("Obrisi");
 		buttonTakingExam = new JButton("Polaganje");
+		
+	//	buttonDelete.addActionListener(ListenerHandler.getButtonDeleteFailedSubjectListener(this));
 		
 		add(buttonAdd);
 		add(Box.createHorizontalStrut(50));
