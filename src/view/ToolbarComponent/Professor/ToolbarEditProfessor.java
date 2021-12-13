@@ -11,13 +11,12 @@ import javax.swing.JTextField;
 
 import utils.Constants;
 import view.TabComponent.EditProfessorTab;
-import view.TabComponent.EditStudentTab;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 
 public class ToolbarEditProfessor extends EditingScreen {
 	private EditProfessorTab tab;
-	
+
 	public ToolbarEditProfessor() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -32,11 +31,11 @@ public class ToolbarEditProfessor extends EditingScreen {
 		add(new ToolbarEnterExitPanel());
 		setVisible(false);
 	}
-	
-	public EditProfessorTab getEditProfessorTab(){
+
+	public EditProfessorTab getEditProfessorTab() {
 		return tab;
 	}
-	
+
 	public void setVisible() {
 		setVisible(true);
 	}

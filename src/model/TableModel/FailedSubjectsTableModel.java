@@ -7,9 +7,11 @@ import utils.Constants;
 public class FailedSubjectsTableModel extends AbstractTableModel {
 
 	private String[][] data;
-	public FailedSubjectsTableModel(String[][] data){
+
+	public FailedSubjectsTableModel(String[][] data) {
 		this.data = data;
 	}
+
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
@@ -27,10 +29,10 @@ public class FailedSubjectsTableModel extends AbstractTableModel {
 		// TODO Auto-generated method stub
 		return data[rowIndex][columnIndex];
 	}
-	
-    @Override
-    public String getColumnName(int column) {
-        return Constants.subjectColumnNames[column];
-    }
+
+	@Override
+	public String getColumnName(int column) {
+		return Constants.subjectColumnNames[column];
+	}
 
 }

@@ -15,7 +15,7 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 public class ToolbarEditProfessorInfo extends JPanel {
 	String[] labelNames = Constants.professorLabelNames;
 	Vector<JComponent> fieldsReferences;
-	
+
 	public ToolbarEditProfessorInfo() {
 		super();
 		setPreferredSize(new Dimension(200, 800));
@@ -28,7 +28,7 @@ public class ToolbarEditProfessorInfo extends JPanel {
 		}
 		setVisible(true);
 	}
-	
+
 	public JPanel createOneItem(String labelName) {
 		JPanel itemPanel = new JPanel();
 		ToolbarWinLabel label = new ToolbarWinLabel(labelName);
@@ -37,7 +37,7 @@ public class ToolbarEditProfessorInfo extends JPanel {
 		itemPanel.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return itemPanel;
 	}
-	
+
 	public JTextField getTextField(int index) {
 		return (JTextField) fieldsReferences.get(index);
 	}
@@ -46,7 +46,7 @@ public class ToolbarEditProfessorInfo extends JPanel {
 		JTextField field = (JTextField) fieldsReferences.get(index);
 		field.setText(value);
 	}
-	
+
 	public Vector<JComponent> getFieldsReferences() {
 		return fieldsReferences;
 	}

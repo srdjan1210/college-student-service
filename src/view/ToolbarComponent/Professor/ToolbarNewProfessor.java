@@ -11,59 +11,58 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ToolbarNewProfessor extends AddingScreen {
-    private String[] labelNames = Constants.professorLabelNames;
-    private ArrayList<ToolbarWinLabel> labelReferences;
-    private ToolbarEnterExitPanel tenex;
+	private String[] labelNames = Constants.professorLabelNames;
+	private ArrayList<ToolbarWinLabel> labelReferences;
+	private ToolbarEnterExitPanel tenex;
 
-    public ToolbarNewProfessor() {
-        super();
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
-        BoxLayout layout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
-        setLayout(layout);
-        setTitle("Dodavanje Profesora");
-        setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
-        setLocationRelativeTo(null);
+	public ToolbarNewProfessor() {
+		super();
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
+		BoxLayout layout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
+		setLayout(layout);
+		setTitle("Dodavanje Profesora");
+		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
+		setLocationRelativeTo(null);
 
-        fieldsReferences = new ArrayList<JComponent>();
-        labelReferences = new ArrayList<ToolbarWinLabel>();
+		fieldsReferences = new ArrayList<JComponent>();
+		labelReferences = new ArrayList<ToolbarWinLabel>();
 
-        for (int i = 0; i < labelNames.length; i++) {
-            String name = labelNames[i];
-            add(createRow(name));
-        }
-        tenex = new ToolbarEnterExitPanel();
-        add(tenex);
-        setVisible(true);
+		for (int i = 0; i < labelNames.length; i++) {
+			String name = labelNames[i];
+			add(createRow(name));
+		}
+		tenex = new ToolbarEnterExitPanel();
+		add(tenex);
+		setVisible(true);
 
-    }
+	}
 
-    private JPanel createRow(String name) {
-        JPanel row = new JPanel();
-        ToolbarWinLabel lbl = new ToolbarWinLabel(name);
-        labelReferences.add(lbl);
-        fieldsReferences.add(new ToolbarWinTxtField(name));
+	private JPanel createRow(String name) {
+		JPanel row = new JPanel();
+		ToolbarWinLabel lbl = new ToolbarWinLabel(name);
+		labelReferences.add(lbl);
+		fieldsReferences.add(new ToolbarWinTxtField(name));
 
-        row.add(lbl);
-        row.add(fieldsReferences.get(fieldsReferences.size() - 1));
-        return row;
-    }
+		row.add(lbl);
+		row.add(fieldsReferences.get(fieldsReferences.size() - 1));
+		return row;
+	}
 
-    public ArrayList<JComponent> getFieldsReferences() {
-        return fieldsReferences;
-    }
+	public ArrayList<JComponent> getFieldsReferences() {
+		return fieldsReferences;
+	}
 
-    public ArrayList<ToolbarWinLabel> getLabelReferences() {
-        return labelReferences;
-    }
+	public ArrayList<ToolbarWinLabel> getLabelReferences() {
+		return labelReferences;
+	}
 
-    public JTextField getTextField(int index) {
-        return (JTextField) fieldsReferences.get(index);
-    }
+	public JTextField getTextField(int index) {
+		return (JTextField) fieldsReferences.get(index);
+	}
 
-    public JComboBox getComboBox(int index) {
-        return (JComboBox) fieldsReferences.get(index);
-    }
-
+	public JComboBox getComboBox(int index) {
+		return (JComboBox) fieldsReferences.get(index);
+	}
 
 }
