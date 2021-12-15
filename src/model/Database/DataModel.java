@@ -181,7 +181,6 @@ public class DataModel {
 
 	// Deleting entities methods
 	public boolean removeStudentByIndex(String index) {
-		// Treba dodati uklanjanje svih zavisnosti entiteta u drugim listama
 		for (Student student : students) {
 			if (student.getIndexNumber().equals(index)) {
 				students.remove(student);
@@ -207,7 +206,7 @@ public class DataModel {
 		return false;
 	}
 
-	public boolean removeSubjecById(String id) {
+	public boolean removeSubjectById(String id) {
 		// Treba dodati uklanjanje svih zavisnosti entiteta u drugim listama
 		for (Subject subject : subjects) {
 			if (subject.getSubjectId().equals(id)) {

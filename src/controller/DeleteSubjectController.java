@@ -12,7 +12,7 @@ public class DeleteSubjectController implements IDeleteController {
         int resp = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite obrisati predmet?", "Obrisi predmet?", JOptionPane.YES_NO_OPTION);
         if(resp == 1) return;
         String id = Screen.getInstance().getStudentTab().getSelectedSubjectId();
-        boolean success = DataModel.getInstance().removeSubjecById(id);
+        boolean success = DataModel.getInstance().removeSubjectById(id);
         if(success)
             JOptionPane.showMessageDialog(null, "Predmet " + id + " uspjesno uklonjen!");
         else
