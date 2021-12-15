@@ -16,7 +16,7 @@ public class Professor {
     private int workingYears;
     private ArrayList<Subject> subjects;
 
-    public Professor(String lastName, String firstName, LocalDate birthDay, Address address, String phoneNumber,
+    public Professor(String firstName, String lastName, LocalDate birthDay, Address address, String phoneNumber,
                      String emailAddress, Address officeAddress, String idNumber, String title, int workingYears) {
         super();
         this.lastName = lastName;
@@ -132,7 +132,7 @@ public class Professor {
 
     @Override
     public String toString() {
-        return lastName + "," + firstName + "," + birthDay + "," + address + ","
+        return firstName + "," + lastName + "," + birthDay + "," + address + ","
                 + phoneNumber + "," + emailAddress + "," + officeAddress + "," + idNumber + "," + title + "," + workingYears;
     }
 }
