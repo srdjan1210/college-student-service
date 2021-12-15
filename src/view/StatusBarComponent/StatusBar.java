@@ -51,8 +51,8 @@ public class StatusBar extends JPanel {
 						int minute = calendar.get(Calendar.MINUTE);
 						int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
-						currentDateLabel.setText(
-								hour + ":" + minute + ":" + second + "  " + day + "." + month + "." + year + ".");
+						String currentTimeDate = String.format("%02d:%02d:%02d   %02d.%02d.%d.",hour,minute,second,day,month,year);
+						currentDateLabel.setText(currentTimeDate);
 
 						sleep(1000);
 					}
