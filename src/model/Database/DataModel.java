@@ -199,6 +199,7 @@ public class DataModel {
 		for (Professor professor : professors) {
 			if (professor.getIdNumber().equals(id)) {
 				professors.remove(professor);
+				removeProfessorDependencies(id);
 				notifyTable();
 				return true;
 			}
@@ -223,6 +224,10 @@ public class DataModel {
         removeStudentFromPassed(index);
         removeStudentFromNotPassed(index);
 		removeStudentFromMarks(index);
+	}
+
+	private void removeProfessorDependencies(String id) {
+		removeProfessorFromSubjects(id);
 	}
 
 	private void removeStudentFromPassed(String index) {
@@ -254,6 +259,17 @@ public class DataModel {
 			Mark mark = markIt.next();
 			if (mark.getPassedExam().getIndexNumber().equals(index)) {
 				markIt.remove();
+			}
+		}
+	}
+
+	private void removeProfessorFromSubjects(String id) {
+		for (Iterator<Subject> subIt = subjects.iterator(); subIt.hasNext();) {
+			Subject subject = subIt.next();
+
+			if(subject.getProfessor() == null) continue;
+			if(subject.getProfessor().getIdNumber().equals(id)) {
+				subject.setProfessor(null);
 			}
 		}
 	}

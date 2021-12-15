@@ -111,6 +111,6 @@ public class Subject {
 	@Override
 	public String toString() {
 		return subjectId + "," + subjectName + "," + semester.getValue() + "," + yearOfStudy + ","
-				+ professor.getIdNumber() + "," + espb;
+				+ (professor == null? "null": professor.getIdNumber()) + "," + espb;
 	}
 }
