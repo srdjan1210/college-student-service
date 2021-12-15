@@ -2,20 +2,21 @@ package model.TableModel;
 
 import javax.swing.table.AbstractTableModel;
 
+import model.Database.DataModel;
 import utils.Constants;
+import view.Screen;
+import view.ToolbarComponent.Student.ToolbarEditStudentFailed;
 
 public class FailedSubjectsTableModel extends AbstractTableModel {
 
-	private String[][] data;
-
-	public FailedSubjectsTableModel(String[][] data) {
-		this.data = data;
+	public FailedSubjectsTableModel() {
 	}
 
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return data.length;
+		return ToolbarEditStudentFailed.getSubjectsData(DataModel.getInstance()
+				.getStudentById(Screen.getInstance().getStudentTab().getSelectedStudentIndex()).getFailedSubjects()).length;
 	}
 
 	@Override
@@ -27,7 +28,8 @@ public class FailedSubjectsTableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
-		return data[rowIndex][columnIndex];
+		return ToolbarEditStudentFailed.getSubjectsData(DataModel.getInstance()
+				.getStudentById(Screen.getInstance().getStudentTab().getSelectedStudentIndex()).getFailedSubjects())[rowIndex][columnIndex];
 	}
 
 	@Override

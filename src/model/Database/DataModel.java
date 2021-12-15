@@ -23,6 +23,7 @@ public class DataModel {
 	private ArrayList<Address> addresses;
 	private ArrayList<Subject> failedSubjects;
 	private Tables tableObserver;
+	private Tables editTableObserver;
 	private static DataModel instance = null;
 
 	private DataModel() {
@@ -258,13 +259,15 @@ public class DataModel {
 	}
 
 	public boolean removeFailedSubjectFromStudentSubjects(String subjectId, String studentId) {
-		for (Student student : students) {
-			if (student.getIndexNumber().equals(studentId)) {
-				student.removeFailedSubject(subjectId);
-				//notifyTable();
-				return true;
+
+			for(Iterator<Student> studentIt = students.iterator(); studentIt.hasNext();) {
+				Student student = studentIt.next();
+				if(student.getIndexNumber().equals(studentId)) {
+					student.removeFailedSubject(subjectId);
+					notifyEditTable();
+					return true;
+				}
 			}
-		}
 		return false;
 	}
 
@@ -302,6 +305,15 @@ public class DataModel {
 
 	public void notifyTable() {
 		AbstractTableModel model = (AbstractTableModel) tableObserver.getModel();
+		model.fireTableDataChanged();
+	}
+	
+	public void setEditTableObserver(Tables table) {
+		editTableObserver = table;
+	}
+	
+	public void notifyEditTable() {
+		AbstractTableModel model = (AbstractTableModel) editTableObserver.getModel();
 		model.fireTableDataChanged();
 	}
 }
