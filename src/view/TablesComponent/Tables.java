@@ -1,18 +1,13 @@
 package view.TablesComponent;
 
-import java.awt.Dimension;
+import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-public class Tables extends JTable{
-	public Tables(String[] columnNames)
-	{
+public class Tables extends JTable {
+	public Tables(AbstractTableModel tableModel) {
 		super();
-		String[][] data = {};
-		int row_num=8;
-		DefaultTableModel model=new DefaultTableModel(row_num,columnNames.length);
-		model.setColumnIdentifiers(columnNames);
-		setModel(model);
-	}	
+		setModel(tableModel);
+		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		setColumnSelectionAllowed(false);
+	}
 }

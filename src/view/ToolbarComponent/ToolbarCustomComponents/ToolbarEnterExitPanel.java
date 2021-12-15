@@ -1,24 +1,30 @@
 package view.ToolbarComponent.ToolbarCustomComponents;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+
+import controller.ListenerHandler;
+
+import javax.swing.*;
+
 
 public class ToolbarEnterExitPanel extends JPanel{
 
 	private JButton buttonConfirm;
-	private JButton buttonExit;
+	private JButton buttonCancel;
 	public ToolbarEnterExitPanel() {
 		super();
 		BoxLayout layout = new BoxLayout(this, BoxLayout.X_AXIS);
 		setLayout(layout);
-		
+
+
 		buttonConfirm = new JButton("Potvrdi");
-		buttonExit = new JButton("Otkazi");
+		buttonCancel = new JButton("Otkazi");
+
+		buttonConfirm.addActionListener(ListenerHandler.getButtonConfirmListener(buttonConfirm));
+		buttonCancel.addActionListener(ListenerHandler.getButtonCancelListener(buttonCancel));
+
 		add(buttonConfirm);
 		add(Box.createHorizontalStrut(50));
-		add(buttonExit);
+		add(buttonCancel);
 	}
 	
 	
@@ -26,7 +32,7 @@ public class ToolbarEnterExitPanel extends JPanel{
 		return buttonConfirm; 
 	}
 	
-	public JButton getButtonExit() {
-		return buttonExit;
+	public JButton getButtonCancel() {
+		return buttonCancel;
 	}
 }

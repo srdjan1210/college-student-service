@@ -1,9 +1,9 @@
 package model;
 
+import utils.Constants.Status;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-import utils.Constants.Status;
 
 public class Student {
 
@@ -21,7 +21,7 @@ public class Student {
 	private ArrayList<Subject> passedSubjects;
 	private ArrayList<Subject> failedSubjects;
 
-	public Student(String lastName, String firstName, LocalDate birthDay, Address address, String phoneNumber,
+	public Student(String firstName, String lastName, LocalDate birthDay, Address address, String phoneNumber,
 			String emailAddress, String indexNumber, int entryYear, int studyYear, Status status, double averageMark) {
 		super();
 		this.lastName = lastName;
@@ -143,4 +143,43 @@ public class Student {
 		this.failedSubjects = failedSubjects;
 	}
 
+	public void addFailedSubject(Subject subject) {
+		this.failedSubjects.add(subject);
+	}
+
+	public void removeFailedSubject(String subjectId) {
+		for (int i = 0; i < failedSubjects.size(); i++) {
+			if (failedSubjects.get(i).getSubjectId().equals(subjectId)) {
+				failedSubjects.remove(i);
+				return;
+			}
+		}
+	}
+
+	public String getDataAt(int index) {
+		switch (index) {
+		case 0:
+			return indexNumber;
+		case 1:
+			return firstName;
+		case 2:
+			return lastName;
+		case 3:
+			return Integer.toString(studyYear);
+		case 4:
+			return status.getValue();
+		case 5:
+			return Double.toString(averageMark);
+		default:
+			return "";
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return firstName + "," + lastName + "," + birthDay + "," + address.toString() + "," + phoneNumber + ","
+				+ emailAddress + "," + indexNumber + "," + entryYear + "," + studyYear + "," + status.getValue() + ","
+				+ averageMark;
+	}
 }

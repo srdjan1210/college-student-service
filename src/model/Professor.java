@@ -4,125 +4,135 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Professor {
-	private String lastName;
-	private String firstName;
-	private LocalDate birthDay;
-	private Address address;
-	private String phoneNumber;
-	private String emailAddress;
-	private String officeAddress;
-	private String idNumber;
-	private String title;
-	private int workingYears;
-	private ArrayList<Subject> subjects;
-	
-	public Professor(String lastName, String firstName, LocalDate birthDay, Address address, String phoneNumber,
-			String emailAddress, String officeAddress, String idNumber, String title, int workingYears) {
-		super();
-		this.lastName = lastName;
-		this.firstName = firstName;
-		this.birthDay = birthDay;
-		this.address = address;
-		this.phoneNumber = phoneNumber;
-		this.emailAddress = emailAddress;
-		this.officeAddress = officeAddress;
-		this.idNumber = idNumber;
-		this.title = title;
-		this.workingYears = workingYears;
-		this.subjects=new ArrayList<Subject>();
-	}
+    private String lastName;
+    private String firstName;
+    private LocalDate birthDay;
+    private Address address;
+    private String phoneNumber;
+    private String emailAddress;
+    private Address officeAddress;
+    private String idNumber;
+    private String title;
+    private int workingYears;
+    private ArrayList<Subject> subjects;
 
-	public String getLastName() {
-		return lastName;
-	}
+    public Professor(String firstName, String lastName, LocalDate birthDay, Address address, String phoneNumber,
+                     String emailAddress, Address officeAddress, String idNumber, String title, int workingYears) {
+        super();
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.birthDay = birthDay;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+        this.officeAddress = officeAddress;
+        this.idNumber = idNumber;
+        this.title = title;
+        this.workingYears = workingYears;
+        this.subjects = new ArrayList<Subject>();
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public LocalDate getBirthDay() {
-		return birthDay;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setBirthDay(LocalDate birthDay) {
-		this.birthDay = birthDay;
-	}
+    public LocalDate getBirthDay() {
+        return birthDay;
+    }
 
-	public Address getAddress() {
-		return address;
-	}
+    public void setBirthDay(LocalDate birthDay) {
+        this.birthDay = birthDay;
+    }
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+    public Address getAddress() {
+        return address;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public String getEmailAddress() {
-		return emailAddress;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
+    public String getEmailAddress() {
+        return emailAddress;
+    }
 
-	public String getOfficeAddress() {
-		return officeAddress;
-	}
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
 
-	public void setOfficeAddress(String officeAddress) {
-		this.officeAddress = officeAddress;
-	}
+    public Address getOfficeAddress() {
+        return officeAddress;
+    }
 
-	public String getIdNumber() {
-		return idNumber;
-	}
+    public void setOfficeAddress(Address officeAddress) {
+        this.officeAddress = officeAddress;
+    }
 
-	public void setIdNumber(String idNumber) {
-		this.idNumber = idNumber;
-	}
+    public String getIdNumber() {
+        return idNumber;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public int getWorkingYears() {
-		return workingYears;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setWorkingYears(int workingYears) {
-		this.workingYears = workingYears;
-	}
+    public int getWorkingYears() {
+        return workingYears;
+    }
 
-	public ArrayList<Subject> getSubjects() {
-		return subjects;
-	}
+    public void setWorkingYears(int workingYears) {
+        this.workingYears = workingYears;
+    }
 
-	public void setSubjects(ArrayList<Subject> subjects) {
-		this.subjects = subjects;
-	}
-	
-	
-	
-	
-	
-	
+    public ArrayList<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(ArrayList<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
+    public String getDataAt(int index) {
+        switch(index) {
+            case 0: return firstName;
+            case 1: return lastName;
+            case 2: return title;
+            case 3: return emailAddress;
+            default: return "";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return firstName + "," + lastName + "," + birthDay + "," + address + ","
+                + phoneNumber + "," + emailAddress + "," + officeAddress + "," + idNumber + "," + title + "," + workingYears;
+    }
 }

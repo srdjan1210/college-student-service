@@ -1,19 +1,14 @@
 package view.MenuBarComponent;
 
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 
-import javax.swing.ImageIcon;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.KeyStroke;
-import javax.swing.event.MenuKeyEvent;
+import javax.swing.*;
 
 import utils.ImageUtils;
-import view.ListenerHandler;
-import view.ToolbarComponent.Student.ToolbarNewStudent;
+import controller.ListenerHandler;
 
 public class MenuBar extends JMenuBar {
+	private MenuBar context = this;
 
 	public MenuBar() {
 		super();
@@ -25,16 +20,16 @@ public class MenuBar extends JMenuBar {
 		editMenuButton.setMnemonic('E');
 		helpMenuButton.setMnemonic('H');
 
-		MenuItems newMenuItem = new MenuItems("New", "Icons/NewMenuItem.png", "CTRL + N",'N');
-		newMenuItem.addActionListener(ListenerHandler.openWindowListener(new ToolbarNewStudent()));
-		MenuItems saveMenuItem = new MenuItems("Save", "Icons/SaveMenuItem.png", "CTRL + S",'S');
-		MenuItems closeMenuItem = new MenuItems("Close", "Icons/CloseMenuItem.png", "CTRL + C",'C');
+		MenuItems newMenuItem = new MenuItems("New", "Icons/NewMenuItem.png", "CTRL + N", 'N');
+		newMenuItem.addActionListener(ListenerHandler.openWindowListener());
+		MenuItems saveMenuItem = new MenuItems("Save", "Icons/SaveMenuItem.png", "CTRL + S", 'S');
+		MenuItems closeMenuItem = new MenuItems("Close", "Icons/CloseMenuItem.png", "CTRL + C", 'C');
 
-		MenuItems editMenuItem = new MenuItems("Edit", "Icons/EditMenuItem.png", "CTRL + E",'E');
-		MenuItems deleteMenuItem = new MenuItems("Delete", "Icons/DeleteMenuItem.png", "CTRL + D",'D');
+		MenuItems editMenuItem = new MenuItems("Edit", "Icons/EditMenuItem.png", "CTRL + E", 'E');
+		MenuItems deleteMenuItem = new MenuItems("Delete", "Icons/DeleteMenuItem.png", "CTRL + D", 'D');
 
-		MenuItems helpMenuItem = new MenuItems("Help", "Icons/HelpMenuItem.png", "CTRL + H",'H');
-		MenuItems aboutMenuItem = new MenuItems("About", "Icons/AboutMenuItem.png", "CTRL + A",'A');
+		MenuItems helpMenuItem = new MenuItems("Help", "Icons/HelpMenuItem.png", "CTRL + H", 'H');
+		MenuItems aboutMenuItem = new MenuItems("About", "Icons/AboutMenuItem.png", "CTRL + A", 'A');
 
 		JMenu openMenuButton = new JMenu("Open");
 
@@ -42,10 +37,10 @@ public class MenuBar extends JMenuBar {
 		Image image = imageIcon.getImage().getScaledInstance(13, 13, Image.SCALE_SMOOTH);
 		openMenuButton.setIcon(new ImageIcon(image));
 
-		MenuItems studentsItem = new MenuItems("Studenti", "Icons/StudentMenuItem.png", "CTRL + Q",'Q');
-		MenuItems subjectsItem = new MenuItems("Predmeti", "Icons/SubjectMenuItem.png", "CTRL + W",'W');
-		MenuItems professorsItem = new MenuItems("Profesori", "Icons/ProfessorMenuItems.png", "CTRL + R",'R');
-		MenuItems departmentsItem = new MenuItems("Katedre", "Icons/DepartmentMenuItem.png", "CTRL + T",'T');
+		MenuItems studentsItem = new MenuItems("Studenti", "Icons/StudentMenuItem.png", "CTRL + Q", 'Q');
+		MenuItems subjectsItem = new MenuItems("Predmeti", "Icons/SubjectMenuItem.png", "CTRL + W", 'W');
+		MenuItems professorsItem = new MenuItems("Profesori", "Icons/ProfessorMenuItems.png", "CTRL + R", 'R');
+		MenuItems departmentsItem = new MenuItems("Katedre", "Icons/DepartmentMenuItem.png", "CTRL + T", 'T');
 
 		openMenuButton.add(studentsItem);
 		openMenuButton.add(subjectsItem);

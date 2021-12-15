@@ -1,8 +1,8 @@
 package model;
 
-import java.util.ArrayList;
-
 import utils.Constants.Semester;
+
+import java.util.ArrayList;
 
 public class Subject {
 	private String subjectId;
@@ -91,4 +91,26 @@ public class Subject {
 		this.yearOfStudy = yearOfStudy;
 	}
 
+	public String getDataAt(int index) {
+		switch (index) {
+		case 0:
+			return subjectId;
+		case 1:
+			return subjectName;
+		case 2:
+			return Integer.toString(espb);
+		case 3:
+			return Integer.toString(yearOfStudy);
+		case 4:
+			return semester.getValue();
+		default:
+			return "";
+		}
+	}
+
+	@Override
+	public String toString() {
+		return subjectId + "," + subjectName + "," + semester.getValue() + "," + yearOfStudy + ","
+				+ (professor == null? "null": professor.getIdNumber()) + "," + espb;
+	}
 }

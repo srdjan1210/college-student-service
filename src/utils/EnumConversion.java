@@ -7,7 +7,7 @@ import utils.Constants.Status;
 public class EnumConversion {
 
 	public static Status stringToStatus(String status) {
-		return status.equals("B")? Status.BUDZET : Status.SAMOFINANSIRANJE;
+		return status.equals("BUDZET")? Status.BUDZET : Status.SAMOFINANSIRANJE;
 	}
 	
 	public static Semester stringToSemester(String semester) {
@@ -16,12 +16,12 @@ public class EnumConversion {
 	
 	public static MarksValue stringToMark(String mark) {
 		switch(mark) {
-		case "6": return MarksValue.SEST;
-		case "7": return MarksValue.SEDAM;
-		case "8": return MarksValue.OSAM;
-		case "9": return MarksValue.DEVET;
-		case "10": return MarksValue.DESET;
-		default: return MarksValue.SEST;
+			case "6": return MarksValue.SEST;
+			case "7": return MarksValue.SEDAM;
+			case "8": return MarksValue.OSAM;
+			case "9": return MarksValue.DEVET;
+			case "10": return MarksValue.DESET;
+			default: return MarksValue.SEST;
 		}
 	}
 }

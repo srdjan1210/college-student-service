@@ -1,14 +1,15 @@
 package view.ToolbarComponent;
 
 import java.awt.Dimension;
-
 import javax.swing.Box;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+
 import utils.Constants;
-import view.ListenerHandler;
-import view.ToolbarComponent.Student.ToolbarNewStudent;
+
+import controller.ListenerHandler;
+
 import view.ToolbarComponent.ToolbarCustomComponents.CustomSeparator;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarIconButton;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarSearch;
@@ -20,26 +21,26 @@ public class Toolbar extends JToolBar {
 	private ToolbarIconButton btnDelete;
 	private ToolbarIconButton btnSearch;
 	private ToolbarSearch searchField;
-	private ToolbarNewStudent newStudentWin;
 	
+
 	public Toolbar() {
 		super(SwingConstants.HORIZONTAL);
 
 		setPreferredSize(new Dimension(Constants.SCREEN_WIDTH * 3 / 4, 30));
 		setFloatable(false);
-		
-		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png", "Add Entity");
-		btnEdit = new ToolbarIconButton("Icons/DeleteMenuItem.png", "Edit Entity");
-		btnDelete = new ToolbarIconButton("Icons/EditMenuitem.png", "Delete Entity");
-		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Search");
-		searchField = new ToolbarSearch();
-		newStudentWin = new ToolbarNewStudent();
-		
-	
-	
 
-		btnNew.addActionListener(ListenerHandler.openWindowListener(newStudentWin));
+		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png", "Add Entity");
+		btnEdit = new ToolbarIconButton("Icons/EditMenuItem.png", "Edit Entity");
+		btnDelete = new ToolbarIconButton("Icons/DeleteMenuitem.png", "Delete Entity");
+		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Search");
+
+		searchField = new ToolbarSearch();
+		btnNew.addActionListener(ListenerHandler.openWindowListener());
+		btnEdit.addActionListener(ListenerHandler.openEditDialogListener());
+		btnDelete.addActionListener(ListenerHandler.getButtonDeleteListener());
 		// Left side of toolbar
+
+
 		add(new CustomSeparator());
 		add(btnNew);
 		add(new CustomSeparator());
@@ -58,5 +59,26 @@ public class Toolbar extends JToolBar {
 		
 
 	}
+
+	public ToolbarIconButton getBtnNew() {
+		return btnNew;
+	}
+
+	public ToolbarIconButton getBtnEdit() {
+		return btnEdit;
+	}
+
+	public ToolbarIconButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	public ToolbarIconButton getBtnSearch() {
+		return btnSearch;
+	}
+
+	public ToolbarSearch getSearchField() {
+		return searchField;
+	}
+	
 
 }
