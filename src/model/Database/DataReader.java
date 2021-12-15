@@ -70,7 +70,7 @@ public class DataReader {
 	}
 
 	private Student loadStudentObject(String[] data) {
-		return new Student(data[1], data[0], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4],
+		return new Student(data[0], data[1], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4],
 				data[5], data[6], Integer.parseInt(data[7]), Integer.parseInt(data[8]),
 				EnumConversion.stringToStatus(data[9]), Double.parseDouble(data[10]));
 	}

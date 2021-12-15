@@ -21,7 +21,7 @@ public class Student {
 	private ArrayList<Subject> passedSubjects;
 	private ArrayList<Subject> failedSubjects;
 
-	public Student(String lastName, String firstName, LocalDate birthDay, Address address, String phoneNumber,
+	public Student(String firstName, String lastName, LocalDate birthDay, Address address, String phoneNumber,
 			String emailAddress, String indexNumber, int entryYear, int studyYear, Status status, double averageMark) {
 		super();
 		this.lastName = lastName;

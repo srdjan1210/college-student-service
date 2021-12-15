@@ -70,7 +70,7 @@ public class EditingStudentController implements IEditingController {
 		int startingYear = Integer.parseInt(dialog.getTextField(7).getText());
 		int currentYear = Integer.parseInt(dialog.getComboBox(8).getSelectedItem().toString());
 		Constants.Status financing = EnumConversion.stringToStatus(dialog.getComboBox(9).getSelectedItem().toString());
-		return new Student(lastName, firstName, birthDate, address, phoneNum, email, indexNum, startingYear,
+		return new Student(firstName, lastName, birthDate, address, phoneNum, email, indexNum, startingYear,
 				currentYear, financing, 0);
 	}
 
