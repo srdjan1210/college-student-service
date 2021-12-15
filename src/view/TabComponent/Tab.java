@@ -47,7 +47,6 @@ public class Tab extends JTabbedPane {
 
 	public String getSelectedProfessorId() {
 		ProfessorTableModel model = (ProfessorTableModel) professorTable.getModel();
-		// return Integer.toString(professorTable.getSelectedRow());
 		String emailAddress = (String) model.getValueAt(professorTable.getSelectedRow(), 3);
 		DataModel instance = DataModel.getInstance();
 		return instance.getProfessorIdFromEmail(emailAddress);
