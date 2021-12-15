@@ -45,7 +45,7 @@ public class EditingProfessorController implements IEditingController {
 		String idNumber = dialog.getTextField(7).getText();
 		String title = dialog.getTextField(8).getText();
 		int workingYears = Integer.parseInt(dialog.getTextField(9).getText());
-		return new Professor(lastName, firstName, birthDate, address, phoneNum, email, officeAddress, idNumber, title,
+		return new Professor(firstName, lastName, birthDate, address, phoneNum, email, officeAddress, idNumber, title,
 				workingYears);
 	}
 
