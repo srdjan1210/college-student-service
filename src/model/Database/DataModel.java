@@ -182,7 +182,6 @@ public class DataModel {
 
 	// Deleting entities methods
 	public boolean removeStudentByIndex(String index) {
-		// Treba dodati uklanjanje svih zavisnosti entiteta u drugim listama
 		for (Student student : students) {
 			if (student.getIndexNumber().equals(index)) {
 				students.remove(student);
@@ -200,6 +199,7 @@ public class DataModel {
 		for (Professor professor : professors) {
 			if (professor.getIdNumber().equals(id)) {
 				professors.remove(professor);
+				removeProfessorDependencies(id);
 				notifyTable();
 				return true;
 			}
@@ -208,7 +208,7 @@ public class DataModel {
 		return false;
 	}
 
-	public boolean removeSubjecById(String id) {
+	public boolean removeSubjectById(String id) {
 		// Treba dodati uklanjanje svih zavisnosti entiteta u drugim listama
 		for (Subject subject : subjects) {
 			if (subject.getSubjectId().equals(id)) {
@@ -221,15 +221,20 @@ public class DataModel {
 	}
 
 	private void removeStudentDependencies(String index) {
-//        removeStudentFromPassed(index);
-//        removeStudentFromNotPassed(index);
+        removeStudentFromPassed(index);
+        removeStudentFromNotPassed(index);
 		removeStudentFromMarks(index);
+	}
+
+	private void removeProfessorDependencies(String id) {
+		removeProfessorFromSubjects(id);
 	}
 
 	private void removeStudentFromPassed(String index) {
 		for (Subject subject : subjects) {
 			ArrayList<Student> passed = subject.getStudentsPassed();
-			for (Student student : students) {
+			for(Iterator<Student> studIt = passed.iterator(); studIt.hasNext();){
+				Student student = studIt.next();
 				if (student.getIndexNumber().equals(index)) {
 					students.remove(student);
 				}
@@ -239,8 +244,9 @@ public class DataModel {
 
 	private void removeStudentFromNotPassed(String index) {
 		for (Subject subject : subjects) {
-			ArrayList<Student> passed = subject.getStudentsFailed();
-			for (Student student : students) {
+			ArrayList<Student> failed = subject.getStudentsFailed();
+			for(Iterator<Student> studIt = failed.iterator(); studIt.hasNext();) {
+				Student student = studIt.next();
 				if (student.getIndexNumber().equals(index)) {
 					students.remove(student);
 				}
@@ -248,7 +254,28 @@ public class DataModel {
 		}
 	}
 
+	private void removeStudentFromMarks(String index) {
+		for (Iterator<Mark> markIt = marks.iterator(); markIt.hasNext();) {
+			Mark mark = markIt.next();
+			if (mark.getPassedExam().getIndexNumber().equals(index)) {
+				markIt.remove();
+			}
+		}
+	}
+
+	private void removeProfessorFromSubjects(String id) {
+		for (Iterator<Subject> subIt = subjects.iterator(); subIt.hasNext();) {
+			Subject subject = subIt.next();
+
+			if(subject.getProfessor() == null) continue;
+			if(subject.getProfessor().getIdNumber().equals(id)) {
+				subject.setProfessor(null);
+			}
+		}
+	}
+
 	public boolean removeFailedSubjectFromStudentSubjects(String subjectId, String studentId) {
+
 			for(Iterator<Student> studentIt = students.iterator(); studentIt.hasNext();) {
 				Student student = studentIt.next();
 				if(student.getIndexNumber().equals(studentId)) {
@@ -260,14 +287,7 @@ public class DataModel {
 		return false;
 	}
 
-	private void removeStudentFromMarks(String index) {
-		for (Iterator<Mark> markIt = marks.iterator(); markIt.hasNext();) {
-			Mark mark = markIt.next();
-			if (mark.getPassedExam().getIndexNumber().equals(index)) {
-				markIt.remove();
-			}
-		}
-	}
+
 
 	public int getLinesOfFailedToWrite() {
 		int lines = 0;

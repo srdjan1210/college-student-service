@@ -4,8 +4,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 import view.Screen;
 import view.ToolbarComponent.AddingScreen;

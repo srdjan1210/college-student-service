@@ -39,8 +39,6 @@ public class DataWriter {
 				for (int j = 0; j < failedSubjects.size(); j++) {
 					if (students.get(i).getFailedSubjects().contains(failedSubjects.get(j))) {
 						if (writeNumber == 0) {
-							System.out.println(
-									students.get(i).getIndexNumber() + "," + failedSubjects.get(j).getSubjectId());
 							myWriter.write(
 									students.get(i).getIndexNumber() + "," + failedSubjects.get(j).getSubjectId());
 							writeNumber++;
