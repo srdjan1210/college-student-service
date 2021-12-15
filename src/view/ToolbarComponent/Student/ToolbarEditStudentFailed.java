@@ -24,22 +24,14 @@ public class ToolbarEditStudentFailed extends JPanel {
 
 	public ToolbarEditStudentFailed() {
 		super();
-		// DeleteFailedSubjectController deleteController = new
-		// DeleteFailedSubjectController(this);
 		setPreferredSize(new Dimension(200, 800));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		FailedSubjectsButtons buttons = new FailedSubjectsButtons();
 		add(buttons);
 
-		String[] columnNames = Constants.subjectColumnNames;
-		Student student = DataModel.getInstance()
-				.getStudentById(Screen.getInstance().getStudentTab().getSelectedStudentIndex());
-		ArrayList<Subject> failedSubjects = student.getFailedSubjects();
-		String[][] data = getSubjectsData(failedSubjects);
-
-		failedSubjectsTable = new Tables(new FailedSubjectsTableModel(data));
-		DataModel.getInstance().setTableObserver(failedSubjectsTable);
+		failedSubjectsTable = new Tables(new FailedSubjectsTableModel());
+		
 		add(new JScrollPane(failedSubjectsTable));
 
 		buttons.getButtonDelete().addActionListener(ListenerHandler.getButtonDeleteFailedSubjectListener(this));
@@ -59,7 +51,7 @@ public class ToolbarEditStudentFailed extends JPanel {
 		return failedSubjectsTable;
 	}
 
-	public String[][] getSubjectsData(ArrayList<Subject> subjects) {
+	public static String[][] getSubjectsData(ArrayList<Subject> subjects) {
 		String[][] data = new String[subjects.size()][5];
 		int i = 0;
 		for (Subject subject : subjects) {
