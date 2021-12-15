@@ -97,18 +97,30 @@ public class ListenerHandler {
 			public void actionPerformed(ActionEvent e) {
 				Screen frame = Screen.getInstance();
 				if (frame.getSelectedTab() == 0) {
+					if(Screen.getInstance().getStudentTab().getStudentTable().getSelectedRow() == -1) {
+			            JOptionPane.showMessageDialog(null, "Student nije selektovan!", "Izmena studenta",JOptionPane.WARNING_MESSAGE);
+			            return;
+			        }
 					ToolbarEditStudent editDialog = new ToolbarEditStudent();
 					editDialog.setVisible();
 					return;
 				}
 
 				if (frame.getSelectedTab() == 1) {
+					if(Screen.getInstance().getStudentTab().getProfessorTable().getSelectedRow() == -1) {
+			            JOptionPane.showMessageDialog(null, "Profesor nije selektovan!", "Izmena profesora",JOptionPane.WARNING_MESSAGE);
+			            return;
+			        }
 					ToolbarEditProfessor editDialog = new ToolbarEditProfessor();
 					editDialog.setVisible();
 					return;
 				}
 
 				if (frame.getSelectedTab() == 2) {
+					if(Screen.getInstance().getStudentTab().getSubjectTable().getSelectedRow() == -1) {
+			            JOptionPane.showMessageDialog(null, "Predmet nije selektovan!", "Izmena predmeta",JOptionPane.WARNING_MESSAGE);
+			            return;
+			        }
 					ToolbarEditStudent editDialog = new ToolbarEditStudent();
 					editDialog.setVisible();
 					return;

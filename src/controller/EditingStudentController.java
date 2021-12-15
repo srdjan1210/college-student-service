@@ -22,6 +22,10 @@ public class EditingStudentController implements IEditingController {
 	@Override
 	public void editEntity(EditingScreen dialog) {
 		// TODO Auto-generated method stub
+		if(Screen.getInstance().getStudentTab().getStudentTable().getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Student nije selektovan!", "Izmena studenta",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 		if (checkIfFieldsIsEmpty(dialog)) {
 			String studentIndexBeforeEdit = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
 
