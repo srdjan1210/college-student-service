@@ -18,7 +18,7 @@ public class AddSubjectController implements IAddingController {
 	@Override
 	public void addNewEntity(AddingScreen dialog) {
 		try {
-			checkIfFieldsEmpty(dialog);
+			validate(dialog);
 			Subject subject = createSubjectObjectFromFields(dialog);
 			DataModel.getInstance().addSubjectToList(subject);
 			JOptionPane.showMessageDialog((JDialog) dialog, "Predmet uspjesno dodan u listu!");
@@ -40,7 +40,7 @@ public class AddSubjectController implements IAddingController {
 		return new Subject(id, name, semester, studyYear, professor, espb);
 	}
 
-	private void checkIfFieldsEmpty(AddingScreen window) throws InvalidFieldException {
+	public void validate(AddingScreen window) throws InvalidFieldException {
 		ArrayList<JComponent> fields = window.getFieldsReferences();
 		for (int i = 0; i < fields.size(); i++) {
 			if (i == 2)

@@ -17,6 +17,7 @@ public class ToolbarEnterExitPanel extends JPanel{
 
 
 		buttonConfirm = new JButton("Potvrdi");
+		buttonConfirm.setEnabled(false);
 		buttonCancel = new JButton("Otkazi");
 
 		buttonConfirm.addActionListener(ListenerHandler.getButtonConfirmListener(buttonConfirm));

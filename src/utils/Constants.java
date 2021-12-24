@@ -55,7 +55,7 @@ public class Constants {
     public static int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     public static int ICON_BUTTON_HEIGHT = 20;
     public static int ICON_BUTTON_WIDTH = 20;
-    public static String[] studentLabelNames = {"Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*",
+    public static String[] studentLabelNames = {"Ime*", "Prezime*", "Datum rodjenja(gggg-mm-dd)*", "Adresa stanovanja*",
             "Broj telefona*", "E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*",
             "Nacin finansiranja"};
     public static String[] finansingWayLabels = {"BUDZET", "SAMOFINANSIRANJE"};

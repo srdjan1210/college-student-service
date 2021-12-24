@@ -9,7 +9,7 @@ public class ToolbarWinLabel extends JLabel{
 	
 	public ToolbarWinLabel(String text) {
 		super(text);
-		setPreferredSize(new Dimension(150, 30));
+		setPreferredSize(new Dimension(200, 30));
 	}
 
 }

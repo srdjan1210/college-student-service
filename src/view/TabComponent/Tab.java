@@ -81,6 +81,18 @@ public class Tab extends JTabbedPane {
 		this.deleteController = controller;
 	}
 
+	public IAddingController getAddingController() {
+		return addingController;
+	}
+
+	public IDeleteController getDeleteController() {
+		return deleteController;
+	}
+
+	public IEditingController getEditingController() {
+		return editingController;
+	}
+
 	public Tables getStudentTable() {
 		return studentTable;
 	}

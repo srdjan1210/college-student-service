@@ -1,5 +1,6 @@
 package view.ToolbarComponent.Professor;
 
+import controller.ListenerHandler;
 import utils.Constants;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
@@ -43,7 +44,12 @@ public class ToolbarNewProfessor extends AddingScreen {
 		ToolbarWinLabel lbl = new ToolbarWinLabel(name);
 		labelReferences.add(lbl);
 		fieldsReferences.add(new ToolbarWinTxtField(name));
-
+		if(fieldsReferences.size() == 4) {
+			fieldsReferences.get(3).addFocusListener(ListenerHandler.getAdressScreenListener());
+		}
+		if(fieldsReferences.size() == 7) {
+			fieldsReferences.get(6).addFocusListener(ListenerHandler.getAdressScreenListener());
+		}
 		row.add(lbl);
 		row.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return row;
@@ -51,6 +57,11 @@ public class ToolbarNewProfessor extends AddingScreen {
 
 	public ArrayList<JComponent> getFieldsReferences() {
 		return fieldsReferences;
+	}
+
+	@Override
+	public ToolbarEnterExitPanel getTenex() {
+		return tenex;
 	}
 
 	public ArrayList<ToolbarWinLabel> getLabelReferences() {

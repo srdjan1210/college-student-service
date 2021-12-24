@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import controller.ListenerHandler;
 import utils.Constants;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
@@ -17,6 +18,7 @@ public class ToolbarNewStudent extends AddingScreen {
 	private String[] finansingWay = Constants.finansingWayLabels;
 	private String[] years = Constants.yearsLabels;
 	private ArrayList<ToolbarWinLabel> labelReferences;
+	private ToolbarEnterExitPanel tenex;
 	
 	public ToolbarNewStudent() {
 		super();
@@ -39,8 +41,10 @@ public class ToolbarNewStudent extends AddingScreen {
 			else
 				add(createRow(name, "Text"));
 		}
-		add(new ToolbarEnterExitPanel());
+		tenex = new ToolbarEnterExitPanel();
+		add(tenex);
 		setVisible(true);
+
 	}
 	
 	
@@ -57,7 +61,10 @@ public class ToolbarNewStudent extends AddingScreen {
 			fieldsReferences.add(new ToolbarWinCombo(years));
 		else if(fieldType.equals("ComboFinancing")) 
 			fieldsReferences.add(new ToolbarWinCombo(finansingWay));
-		
+
+		if(fieldsReferences.size() == 4) {
+			fieldsReferences.get(3).addFocusListener(ListenerHandler.getAdressScreenListener());
+		}
 		row.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return row;
 	
@@ -73,6 +80,11 @@ public class ToolbarNewStudent extends AddingScreen {
 
 	public ArrayList<JComponent> getFieldsReferences() {
 		return fieldsReferences;
+	}
+
+	@Override
+	public ToolbarEnterExitPanel getTenex() {
+		return tenex;
 	}
 
 

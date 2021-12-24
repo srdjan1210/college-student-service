@@ -1,81 +1,55 @@
 package view.ToolbarComponent.ToolbarCustomComponents;
+import exceptions.InvalidFieldException;
+import interfaces.IAddingController;
+import view.Screen;
+import view.ToolbarComponent.AddingScreen;
 
-import java.awt.Dimension;
-import java.awt.Window;
+import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import view.Screen;
-import view.TabComponent.Tab;
-import view.ToolbarComponent.EditingScreen;
-import view.ToolbarComponent.Student.ToolbarEditStudent;
-import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
-
-public class ToolbarWinTxtField extends JTextField implements DocumentListener{
+public class ToolbarWinTxtField extends JTextField implements DocumentListener {
 	
 	
 	public ToolbarWinTxtField(String name) {
 		super();
 		setName(name);
-		this.getDocument().addDocumentListener(this);
 		setPreferredSize(new Dimension(150, 30));
-		
+		this.getDocument().addDocumentListener(this);
 	}
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("AAAAAA");
-		Window parent = SwingUtilities.getWindowAncestor(this);
-		if(parent instanceof EditingScreen) {
-			if(getText().trim().isEmpty()) {
-				((EditingScreen) parent).getEnterExit().getButtonConfirm().setEnabled(false);
-				System.out.println("insertUpdate");
-				return;
-			}
-		}
-		
-		
-		/*for(int i=0;i<8;i++) {
-			JTextField field = (JTextField) fieldsReferences.get(i);
-			if (field.getText().trim().isEmpty())
-		      {
-		        buttonConfirm.setEnabled(false);
-		        return;
-		      }
-		}
-		buttonConfirm.setEnabled(true);*/
+		executeValidation();
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("BBBBBB");
-		Window parent = SwingUtilities.getWindowAncestor(this);
-		if(parent instanceof EditingScreen) {
-			if(getText().trim().isEmpty()) {
-				((EditingScreen) parent).getEnterExit().getButtonConfirm().setEnabled(false);
-				System.out.println("removeUpdate");
-				return;
-			}
-		}
+		executeValidation();
 	}
 
 	@Override
+
 	public void changedUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("CCCCCC");
-		Window parent = SwingUtilities.getWindowAncestor(this);
-		if(parent instanceof EditingScreen) {
-			if(getText().trim().isEmpty()) {
-				((EditingScreen) parent).getEnterExit().getButtonConfirm().setEnabled(false);
-				System.out.println("changedUpdate");
-				return;
+		executeValidation();
+	}
+
+
+	private void executeValidation() {
+		Window window = SwingUtilities.getWindowAncestor(this);
+		if(window instanceof AddingScreen) {
+			AddingScreen addingScreen = (AddingScreen) window;
+			IAddingController controller = Screen.getInstance().getStudentTab().getAddingController();
+			try {
+				controller.validate(addingScreen);
+				addingScreen.getTenex().getButtonConfirm().setEnabled(true);
+			} catch(InvalidFieldException exception) {
+				addingScreen.getTenex().getButtonConfirm().setEnabled(false);
 			}
 		}
 	}
-
 }
