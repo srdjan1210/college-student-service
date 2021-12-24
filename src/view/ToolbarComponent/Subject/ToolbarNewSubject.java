@@ -15,6 +15,7 @@ public class ToolbarNewSubject extends AddingScreen {
     private String[] labelNames = Constants.subjectLabelNames;
     private String[] semesterValues = Constants.semesterValues;
     private ArrayList<ToolbarWinLabel> labelsReferences;
+    private ToolbarEnterExitPanel tenex;
 
     public ToolbarNewSubject() {
         super();
@@ -36,7 +37,8 @@ public class ToolbarNewSubject extends AddingScreen {
             }
             add(createRow(labelName, ""));
         }
-        add(new ToolbarEnterExitPanel());
+        tenex = new ToolbarEnterExitPanel();
+        add(tenex);
         setVisible(true);
     }
 
@@ -67,5 +69,11 @@ public class ToolbarNewSubject extends AddingScreen {
     public ArrayList<JComponent> getFieldsReferences() {
         return fieldsReferences;
     }
+
+    @Override
+    public ToolbarEnterExitPanel getTenex() {
+        return tenex;
+    }
+
 
 }

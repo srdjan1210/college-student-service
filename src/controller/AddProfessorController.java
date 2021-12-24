@@ -16,7 +16,7 @@ public class AddProfessorController implements IAddingController {
 	@Override
 	public void addNewEntity(AddingScreen dialog) {
 		try {
-			checkIfFieldsEmpty(dialog);
+			validate(dialog);
 			Professor professor = createProfessorObjectFromFields(dialog);
 			DataModel.getInstance().addProfessorToList(professor);
 			JOptionPane.showMessageDialog((JDialog) dialog, "Profesor uspjesno dodan u listu!");
@@ -45,7 +45,7 @@ public class AddProfessorController implements IAddingController {
 		return new Address(addressParts[0], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[2]);
 	}
 
-	private void checkIfFieldsEmpty(AddingScreen tnp) throws InvalidFieldException {
+	public void validate(AddingScreen tnp) throws InvalidFieldException {
 		ArrayList<JComponent> fields = tnp.getFieldsReferences();
 		for (JComponent field : fields) {
 			if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !isValidDate((JTextField) field))

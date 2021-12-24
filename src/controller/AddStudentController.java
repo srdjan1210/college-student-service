@@ -18,12 +18,12 @@ public class AddStudentController implements IAddingController {
 	@Override
 	public void addNewEntity(AddingScreen dialog) {
 		try {
-			checkIfFieldsEmpty(dialog);
+			validate(dialog);
 			Student student = createStudentObjectFromFields(dialog);
 			DataModel.getInstance().addStudentToList(student);
 			JOptionPane.showMessageDialog((JDialog) dialog, "Student uspjesno dodan u listu!");
 			dialog.dispose();
-		} catch (InvalidFieldException e) {
+		} catch (Exception e) {
 			JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
 		}
 	}
@@ -48,7 +48,7 @@ public class AddStudentController implements IAddingController {
 		return new Address(addressParts[0], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[2]);
 	}
 
-	private boolean checkIfFieldsEmpty(AddingScreen window) throws InvalidFieldException {
+	public void validate(AddingScreen window) throws InvalidFieldException {
 		ArrayList<JComponent> fields = window.getFieldsReferences();
 		for (int i = 0; i < fields.size() - 2; i++) {
 			JTextField field = (JTextField) fields.get(i);
@@ -57,8 +57,6 @@ public class AddStudentController implements IAddingController {
 			if (field.getText().trim().equals(""))
 				throw new InvalidFieldException(field.getName() + " polje je prazno ili nevalidno!");
 		}
-
-		return true;
 	}
 
 	private static boolean isValidDate(JTextField dateField) throws InvalidFieldException {

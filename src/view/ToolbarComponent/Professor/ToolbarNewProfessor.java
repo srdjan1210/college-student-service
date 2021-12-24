@@ -59,6 +59,11 @@ public class ToolbarNewProfessor extends AddingScreen {
 		return fieldsReferences;
 	}
 
+	@Override
+	public ToolbarEnterExitPanel getTenex() {
+		return tenex;
+	}
+
 	public ArrayList<ToolbarWinLabel> getLabelReferences() {
 		return labelReferences;
 	}
