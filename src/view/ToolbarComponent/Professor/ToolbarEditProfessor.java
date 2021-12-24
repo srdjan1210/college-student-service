@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import utils.Constants;
@@ -56,6 +57,13 @@ public class ToolbarEditProfessor extends EditingScreen {
 	public Vector<JComponent> getFieldsReferences() {
 		// TODO Auto-generated method stub
 		return tab.getToolbarEditProfessorInfo().getFieldsReferences();
+	}
+
+
+	@Override
+	public ToolbarEnterExitPanel getEnterExit() {
+		// TODO Auto-generated method stub
+		return tab.getToolbarEditProfessorInfo().getEnterExit();
 	}
 
 }

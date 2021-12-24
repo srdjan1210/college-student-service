@@ -9,12 +9,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import utils.Constants;
+import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
 public class ToolbarEditProfessorInfo extends JPanel {
 	String[] labelNames = Constants.professorLabelNames;
 	Vector<JComponent> fieldsReferences;
+	ToolbarEnterExitPanel enterExit;
+	
+	public ToolbarEnterExitPanel getEnterExit() {
+		return enterExit;
+	}
 
 	public ToolbarEditProfessorInfo() {
 		super();
@@ -26,6 +32,8 @@ public class ToolbarEditProfessorInfo extends JPanel {
 			String labelName = labelNames[i];
 			add(createOneItem(labelName));
 		}
+		enterExit = new ToolbarEnterExitPanel();
+		add(enterExit);
 		setVisible(true);
 	}
 

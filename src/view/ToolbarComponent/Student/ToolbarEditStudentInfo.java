@@ -3,12 +3,17 @@ package view.ToolbarComponent.Student;
 import java.awt.Dimension;
 import java.util.Vector;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
+import controller.ListenerHandler;
 import utils.Constants;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
@@ -21,28 +26,59 @@ public class ToolbarEditStudentInfo extends JPanel {
 	String[] yearOfStudy = Constants.yearsLabels;
 
 	Vector<JComponent> fieldsReferences;
-
+	DocumentListener myDocListener;
+	ToolbarEnterExitPanel enterExit;
+	JButton buttonConfirm;
+	JButton buttonCancel;
 	public ToolbarEditStudentInfo() {
 		super();
 		setPreferredSize(new Dimension(200, 800));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		fieldsReferences = new Vector<JComponent>();
-
+		myDocListener = new MyDocListener();
+		
 		for (int i = 0; i < 10; i++) {
 			String labelName = labelNames[i];
 			if (i == 8)
-				add(createOneItem(labelName, "ComboYearOfStudy"));
+				add(createOneItem(labelName, "ComboYearOfStudy",myDocListener));
 			else if (i == 9)
-				add(createOneItem(labelName, "ComboFinansingWay"));
+				add(createOneItem(labelName, "ComboFinansingWay",myDocListener));
 			else
-				add(createOneItem(labelName, "TextField"));
+				add(createOneItem(labelName, "TextField",myDocListener));
 		}
-		add(new ToolbarEnterExitPanel());
+		
+		enterExit = new ToolbarEnterExitPanel();
+		add(enterExit);
+		/*buttonConfirm = new JButton("Potvrdi");
+		buttonCancel = new JButton("Otkazi");
+
+		buttonConfirm.addActionListener(ListenerHandler.getButtonConfirmListener(buttonConfirm));
+		buttonCancel.addActionListener(ListenerHandler.getButtonCancelListener(buttonCancel));*/
+		
+	/*	JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+	    panel.add(buttonConfirm);
+	    panel.add(Box.createHorizontalStrut(20));
+	    panel.add(buttonCancel);
+	    add(panel);*/
+		
 		setVisible(true);
 	}
+	
+	public ToolbarEnterExitPanel getEnterExit() {
+		return enterExit;
+	}
 
-	public JPanel createOneItem(String labelName, String itemType) {
+	public void setEnterExit(ToolbarEnterExitPanel enterExit) {
+		this.enterExit = enterExit;
+	}
+
+	public void addExit(ToolbarEnterExitPanel enterExit) {
+		add(enterExit);
+	}
+
+	public JPanel createOneItem(String labelName, String itemType,DocumentListener docListener) {
 		JPanel itemPanel = new JPanel();
 		ToolbarWinLabel label = new ToolbarWinLabel(labelName);
 		itemPanel.add(label);
@@ -51,8 +87,11 @@ public class ToolbarEditStudentInfo extends JPanel {
 			fieldsReferences.add(new ToolbarWinCombo(finansingWay));
 		else if (itemType.equals("ComboYearOfStudy"))
 			fieldsReferences.add(new ToolbarWinCombo(yearOfStudy));
-		else if (itemType.equals("TextField"))
-			fieldsReferences.add(new ToolbarWinTxtField(labelName));
+		else if (itemType.equals("TextField")) {
+			ToolbarWinTxtField field = new ToolbarWinTxtField(labelName);
+			//field.getDocument().addDocumentListener(myDocListener);
+			fieldsReferences.add(field);
+		}
 
 		itemPanel.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return itemPanel;
@@ -100,4 +139,41 @@ public class ToolbarEditStudentInfo extends JPanel {
 	public Vector<JComponent> getFieldsReferences() {
 		return fieldsReferences;
 	}
+	
+	private void checkFieldsFull()
+	  {
+		for(int i=0;i<8;i++) {
+			JTextField field = (JTextField) fieldsReferences.get(i);
+			if (field.getText().trim().isEmpty())
+		      {
+		        buttonConfirm.setEnabled(false);
+		        return;
+		      }
+		}
+		buttonConfirm.setEnabled(true);
+	  }
+	
+	private class MyDocListener implements DocumentListener
+	  {
+
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			// TODO Auto-generated method stub
+			checkFieldsFull();
+		}
+
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			// TODO Auto-generated method stub
+			checkFieldsFull();
+		}
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			// TODO Auto-generated method stub
+			checkFieldsFull();
+		}
+	 
+	 
+	  }
 }

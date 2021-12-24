@@ -10,7 +10,7 @@ import view.ToolbarComponent.Professor.ToolbarEditProfessorInfo;
 
 public class EditProfessorTab extends JTabbedPane {
 	private ToolbarEditProfessorInfo editInfo;
-
+	
 	public EditProfessorTab() {
 		super();
 		editInfo = new ToolbarEditProfessorInfo();

@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -15,6 +16,7 @@ import model.Database.DataModel;
 import utils.Constants;
 import view.TabComponent.EditStudentTab;
 import view.ToolbarComponent.EditingScreen;
+import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 
 public class ToolbarEditStudent extends EditingScreen {
 	private EditStudentTab tab;
@@ -70,5 +72,11 @@ public class ToolbarEditStudent extends EditingScreen {
 
 	public Vector<JComponent> getFieldsReferences() {
 		return tab.getToolbarEditStudentInfo().getFieldsReferences();
+	}
+
+	@Override
+	public ToolbarEnterExitPanel getEnterExit() {
+		// TODO Auto-generated method stub
+		return tab.getToolbarEditStudentInfo().getEnterExit();
 	}
 }
