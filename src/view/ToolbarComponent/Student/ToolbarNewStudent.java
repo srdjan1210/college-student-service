@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import controller.ListenerHandler;
 import utils.Constants;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
@@ -41,6 +42,7 @@ public class ToolbarNewStudent extends AddingScreen {
 		}
 		add(new ToolbarEnterExitPanel());
 		setVisible(true);
+
 	}
 	
 	
@@ -57,6 +59,10 @@ public class ToolbarNewStudent extends AddingScreen {
 			fieldsReferences.add(new ToolbarWinCombo(years));
 		else if(fieldType.equals("ComboFinancing")) 
 			fieldsReferences.add(new ToolbarWinCombo(finansingWay));
+
+		if(fieldsReferences.size() == 4) {
+			fieldsReferences.get(3).addFocusListener(ListenerHandler.getAdressScreenListener());
+		}
 		
 		row.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return row;

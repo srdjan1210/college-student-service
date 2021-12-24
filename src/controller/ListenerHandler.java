@@ -3,6 +3,8 @@ package controller;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.*;
 
@@ -142,6 +144,50 @@ public class ListenerHandler {
 				return;
 			}
 
+		};
+	}
+
+	public static FocusListener getAdressScreenListener() {
+		return new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(!((JTextField)e.getSource()).getText().trim().equals("")) return;
+				JTextField countryName = new JTextField();
+				JTextField cityName = new JTextField();
+				JTextField streetName = new JTextField();
+				JTextField streetNumber = new JTextField();
+
+				final JComponent[] inputs = new JComponent[] {
+						new JLabel("Drzava"),
+						countryName,
+						new JLabel("Grad"),
+						cityName,
+						new JLabel("Ulica"),
+						streetName,
+						new JLabel("Broj"),
+						streetNumber
+
+				};
+				String resultText = "";
+				int result = JOptionPane.showConfirmDialog(null, inputs, "Unesite Adresu", JOptionPane.PLAIN_MESSAGE);
+				if (result == JOptionPane.OK_OPTION) {
+					resultText =
+							countryName.getText() + ":" +
+									cityName.getText() + ":" +
+									streetName.getText() + ":" +
+									streetNumber.getText();
+					JTextField field = ((JTextField)e.getSource());
+					field.setText(resultText);
+					field.getParent().requestFocus();
+				}
+
+
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+
+			}
 		};
 	}
 
