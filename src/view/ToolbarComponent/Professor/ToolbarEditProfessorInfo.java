@@ -8,6 +8,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.ListenerHandler;
 import utils.Constants;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
@@ -33,6 +34,7 @@ public class ToolbarEditProfessorInfo extends JPanel {
 			add(createOneItem(labelName));
 		}
 		enterExit = new ToolbarEnterExitPanel();
+		enterExit.getButtonConfirm().setEnabled(true);
 		add(enterExit);
 		setVisible(true);
 	}
@@ -42,6 +44,9 @@ public class ToolbarEditProfessorInfo extends JPanel {
 		ToolbarWinLabel label = new ToolbarWinLabel(labelName);
 		itemPanel.add(label);
 		fieldsReferences.add(new ToolbarWinTxtField(labelName));
+		if(fieldsReferences.size() == 4) {
+			fieldsReferences.get(3).addFocusListener(ListenerHandler.getAddressListenerForEdit());
+		}
 		itemPanel.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return itemPanel;
 	}

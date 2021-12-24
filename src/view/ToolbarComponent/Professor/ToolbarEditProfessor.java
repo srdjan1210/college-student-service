@@ -29,7 +29,6 @@ public class ToolbarEditProfessor extends EditingScreen {
 		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
 		tab = new EditProfessorTab();
 		add(tab);
-		add(new ToolbarEnterExitPanel());
 		setVisible(false);
 	}
 

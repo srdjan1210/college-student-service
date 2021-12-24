@@ -2,12 +2,17 @@ package controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import java.awt.Color;
 
+import exceptions.InvalidFieldException;
 import interfaces.IEditingController;
 import model.Address;
 import model.Database.DataModel;
@@ -92,4 +97,48 @@ public class EditingStudentController implements IEditingController {
 		}
 		return true;
 	}
+
+	@Override
+	public void validate(EditingScreen dialog) throws InvalidFieldException {
+		// TODO Auto-generated method stub
+		Vector<JComponent> fields = dialog.getFieldsReferences();
+		for(int i=0;i<fields.size() - 2;i++) {
+			JTextField field = (JTextField) fields.get(i);
+			if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !isValidDate(field))
+				throw new InvalidFieldException("Format datuma treba da bude yyyy-MM-dd(" + field.getName() + ")");
+			if (field.getText().trim().equals(""))
+				throw new InvalidFieldException(field.getName() + " polje je prazno ili nevalidno!");
+			if (field.getName().toLowerCase(Locale.ROOT).contains("adresa") && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail") && !isValidAdressNumber(field)) {
+                field.setBorder(BorderFactory.createLineBorder(Color.red, 1));
+                throw new InvalidFieldException("Adresa nije u dobrom formatu");}
+		}
+	}
+	
+	private static boolean isValidDate(JTextField dateField) throws InvalidFieldException {
+		try {
+			LocalDate.parse(dateField.getText());
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+	
+	private static boolean isValidAdressNumber(JTextField adressField) {
+        String text = adressField.getText();
+        String[] txtSpl = text.split("-");
+        if (txtSpl.length != 4 ||  
+        		txtSpl[0].trim().equals("") ||        		
+                 txtSpl[1].trim().equals("") ||
+                 txtSpl[2].trim().equals("") ||
+                 txtSpl[3].trim().equals("")) {
+
+            return  false;
+        }
+        try {
+            Integer.parseInt(txtSpl[1]);
+        } catch(Exception e) {
+            return false;
+        }
+        return true;
+    }
 }

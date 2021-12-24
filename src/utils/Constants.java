@@ -60,7 +60,7 @@ public class Constants {
             "Nacin finansiranja"};
     public static String[] finansingWayLabels = {"BUDZET", "SAMOFINANSIRANJE"};
     public static String[] yearsLabels = {"1", "2", "3", "4"};
-    public static String[] professorLabelNames = {"Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*",
+    public static String[] professorLabelNames = {"Ime*", "Prezime*", "Datum rodjenja(gggg-mm-dd)*", "Adresa stanovanja*",
             "Broj telefona*", "E-mail adresa*", "Adresa kancelarije*", "Broj licne karte*", "Zvanje*",
             "Godine iskustva*"};
     public static String[] subjectLabelNames = {"Id predmeta*", "Naziv predmeta*", "Semestar*", "Profesor*", "Espb*",
