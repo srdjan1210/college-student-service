@@ -1,6 +1,6 @@
 package view.ToolbarComponent.Professor;
 
-import controller.ListenerHandler;
+import view.ListenerHandler;
 import utils.Constants;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.*;

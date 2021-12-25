@@ -8,7 +8,7 @@ import javax.swing.SwingConstants;
 
 import utils.Constants;
 
-import controller.ListenerHandler;
+import view.ListenerHandler;
 
 import view.ToolbarComponent.ToolbarCustomComponents.CustomSeparator;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarIconButton;

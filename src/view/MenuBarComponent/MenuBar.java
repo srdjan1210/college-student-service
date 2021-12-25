@@ -5,7 +5,7 @@ import java.awt.Image;
 import javax.swing.*;
 
 import utils.ImageUtils;
-import controller.ListenerHandler;
+import view.ListenerHandler;
 
 public class MenuBar extends JMenuBar {
 	private MenuBar context = this;

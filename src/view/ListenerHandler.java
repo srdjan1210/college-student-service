@@ -1,5 +1,6 @@
-package controller;
+package view;
 
+import controller.DeleteFailedSubjectController;
 import view.Screen;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;

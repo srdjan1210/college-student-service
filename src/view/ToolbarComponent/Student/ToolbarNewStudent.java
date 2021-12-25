@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import controller.ListenerHandler;
+import view.ListenerHandler;
 import utils.Constants;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.*;
