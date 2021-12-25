@@ -10,7 +10,6 @@ import utils.EnumConversion;
 import view.ToolbarComponent.AddingScreen;
 
 import javax.swing.*;
-import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -50,52 +49,25 @@ public class AddStudentController implements IAddingController {
     }
 
     public void validate(AddingScreen window) throws InvalidFieldException {
+        EntityValidator validator = new EntityValidator();
         ArrayList<JComponent> fields = window.getFieldsReferences();
         for (int i = 0; i < fields.size() - 2; i++) {
             JTextField field = (JTextField) fields.get(i);
-            if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !isValidDate(field)) {
-                field.setBorder(BorderFactory.createLineBorder(Color.red, 1));
-                throw new InvalidFieldException("Format datuma treba da bude yyyy-MM-dd(" + field.getName() + ")");
-            }
 
-            if (field.getText().trim().equals("")) {
-                field.setBorder(BorderFactory.createLineBorder(Color.red, 1));
-                throw new InvalidFieldException(field.getName() + " polje je prazno ili nevalidno!");
-            }
+            if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !validator.isValidDate(field))
+                validator.throwInvalidValidation(field, "<html>Format datuma treba da bude <br>GGGG-MM-DD</html>");
 
-            if (field.getName().toLowerCase(Locale.ROOT).contains("adresa") && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail") && !isValidAdressNumber(field)) {
-                field.setBorder(BorderFactory.createLineBorder(Color.red, 1));
-                throw new InvalidFieldException("Adresa nije u dobrom formatu");
-            }
+            if (field.getText().trim().equals(""))
+                validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
 
-            field.setBorder(BorderFactory.createLineBorder(Color.gray));
+            if (field.getName().toLowerCase(Locale.ROOT).contains("adresa")
+                    && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail")
+                    && !validator.isValidAdressNumber(field))
+                validator.throwInvalidValidation(field, "Adresa nije u dobrom formatu!");
+
+            validator.setEmptyMessage(field);
         }
     }
 
-    private boolean isValidDate(JTextField dateField) throws InvalidFieldException {
-        try {
-            LocalDate.parse(dateField.getText());
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
 
-    private boolean isValidAdressNumber(JTextField adressField) {
-        String text = adressField.getText();
-        String[] txtSpl = text.split(":");
-        if (txtSpl.length != 4
-                || txtSpl[0].trim().equals("")
-                || txtSpl[1].trim().equals("")
-                || txtSpl[2].trim().equals("")
-                || txtSpl[3].trim().equals("")) {
-            return false;
-        }
-        try {
-            Integer.parseInt(txtSpl[3]);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
 }

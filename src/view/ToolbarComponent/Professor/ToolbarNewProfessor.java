@@ -3,9 +3,7 @@ package view.ToolbarComponent.Professor;
 import controller.ListenerHandler;
 import utils.Constants;
 import view.ToolbarComponent.AddingScreen;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
+import view.ToolbarComponent.ToolbarCustomComponents.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +41,11 @@ public class ToolbarNewProfessor extends AddingScreen {
 		JPanel row = new JPanel();
 		ToolbarWinLabel lbl = new ToolbarWinLabel(name);
 		labelReferences.add(lbl);
-		fieldsReferences.add(new ToolbarWinTxtField(name));
+
+		ToolbarWinTxtField field = new ToolbarWinTxtField(name);
+		PanelFieldError errPanel = new PanelFieldError(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
+		fieldsReferences.add(field);
+
 		if(fieldsReferences.size() == 4) {
 			fieldsReferences.get(3).addFocusListener(ListenerHandler.getAdressScreenListener());
 		}
@@ -51,9 +53,12 @@ public class ToolbarNewProfessor extends AddingScreen {
 			fieldsReferences.get(6).addFocusListener(ListenerHandler.getAdressScreenListener());
 		}
 		row.add(lbl);
-		row.add(fieldsReferences.get(fieldsReferences.size() - 1));
+		row.add(errPanel);
+		//row.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return row;
 	}
+
+
 
 	public ArrayList<JComponent> getFieldsReferences() {
 		return fieldsReferences;
