@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -16,6 +17,7 @@ import interfaces.IEditingController;
 import model.Address;
 import model.Database.DataModel;
 import model.Professor;
+import model.Student;
 import view.Screen;
 import view.ToolbarComponent.EditingScreen;
 
@@ -24,18 +26,19 @@ public class EditingProfessorController implements IEditingController {
 	@Override
 	public void editEntity(EditingScreen dialog) {
 		// TODO Auto-generated method stub
-		if (checkIfFieldsIsEmpty(dialog)) {
+		
+		try {
+			validate(dialog);
 			String professorIdBeforeEdit = Screen.getInstance().getStudentTab().getSelectedProfessorId();
-
 			Professor professor = getEditedProfessor(dialog);
 			DataModel model = DataModel.getInstance();
 			model.setEditedProfessor(professorIdBeforeEdit, professor);
 			JOptionPane.showMessageDialog(dialog, "Informacije o profesoru uspesno izmenjene!");
 			dialog.dispose();
-		} else {
-			JOptionPane.showMessageDialog(dialog, "Polja ne smiju biti prazna!");
 		}
-
+     catch (Exception e) {
+        JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
+    }
 	}
 
 	public Professor getEditedProfessor(EditingScreen dialog) {
@@ -54,8 +57,8 @@ public class EditingProfessorController implements IEditingController {
 	}
 
 	public Address createAddressFromAddressString(String addressString) {
-		String[] addressParts = addressString.split("-");
-		return new Address(addressParts[0], Integer.parseInt(addressParts[1]), addressParts[2], addressParts[3]);
+		String[] addressParts = addressString.split(":");
+		return new Address(addressParts[2], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[0]);
 	}
 
 	public boolean checkIfFieldsIsEmpty(EditingScreen dialog) {
@@ -85,53 +88,29 @@ public class EditingProfessorController implements IEditingController {
 
 	public static String addressToString(Address address) {
 		String data = "";
-		data = address.getStreet() + "-" + Integer.toString(address.getStreetNumber()) + "-" + address.getCity() + "-"
-				+ address.getCountry();
+		data = address.getCountry() + ":" + address.getCity() + ":" + address.getStreet() +":" + Integer.toString(address.getStreetNumber());
 		return data;
 	}
 	
 	@Override
 	public void validate(EditingScreen dialog) throws InvalidFieldException {
 		// TODO Auto-generated method stub
-		Vector<JComponent> fields = dialog.getFieldsReferences();
-		for(int i=0;i<fields.size() - 2;i++) {
-			JTextField field = (JTextField) fields.get(i);
-			if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !isValidDate(field))
-				throw new InvalidFieldException("Format datuma treba da bude yyyy-MM-dd(" + field.getName() + ")");
-			if (field.getText().trim().equals(""))
-				throw new InvalidFieldException(field.getName() + " polje je prazno ili nevalidno!");
-			if (field.getName().toLowerCase(Locale.ROOT).contains("adresa") && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail") && !isValidAdressNumber(field)) {
-                field.setBorder(BorderFactory.createLineBorder(Color.red, 1));
-                throw new InvalidFieldException("Adresa nije u dobrom formatu");}
-		}
-	}
-	
-	private static boolean isValidDate(JTextField dateField) throws InvalidFieldException {
-		try {
-			LocalDate.parse(dateField.getText());
-		} catch (Exception e) {
-			return false;
-		}
-		return true;
-	}
-	
-	private static boolean isValidAdressNumber(JTextField adressField) {
-        String text = adressField.getText();
-        String[] txtSpl = text.split("-");
-        if (txtSpl.length != 4 ||  
-        		txtSpl[0].trim().equals("") ||        		
-                 txtSpl[1].trim().equals("") ||
-                 txtSpl[2].trim().equals("") ||
-                 txtSpl[3].trim().equals("")) {
-
-            return  false;
+        EntityValidator validator = new EntityValidator();
+        Vector<JComponent> fields = dialog.getFieldsReferences();
+        for(int i=0;i<fields.size() - 2;i++) {
+        	JTextField field = (JTextField) fields.get(i);
+        	 if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !validator.isValidDate(field))
+                 validator.throwInvalidValidation(field, "<html>Format datuma treba da bude <br>GGGG-MM-DD</html>");
+        	 if (field.getText().trim().equals(""))
+                 validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
+             if (field.getName().toLowerCase(Locale.ROOT).contains("adresa")
+                     && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail")
+                     && !validator.isValidAdressNumber(field))
+                 validator.throwInvalidValidation(field, "Adresa nije u dobrom formatu!");
+             if(!validator.isValidNumberField(field))
+                 validator.throwInvalidValidation(field, "Polje treba biti broj!");
+             validator.setEmptyMessage(field);
         }
-        try {
-            Integer.parseInt(txtSpl[1]);
-        } catch(Exception e) {
-            return false;
-        }
-        return true;
-    }
+	}
 
 }

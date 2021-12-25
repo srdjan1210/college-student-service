@@ -1,6 +1,7 @@
 package view.ToolbarComponent.Student;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.Box;
@@ -15,6 +16,8 @@ import javax.swing.event.DocumentListener;
 
 import controller.ListenerHandler;
 import utils.Constants;
+import view.ToolbarComponent.ToolbarCustomComponents.ErrorMessageLabel;
+import view.ToolbarComponent.ToolbarCustomComponents.PanelFieldError;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
@@ -26,15 +29,15 @@ public class ToolbarEditStudentInfo extends JPanel {
 	String[] yearOfStudy = Constants.yearsLabels;
 
 	Vector<JComponent> fieldsReferences;
+	ArrayList<ToolbarWinLabel> labelReferences;
 	ToolbarEnterExitPanel enterExit;
-	JButton buttonConfirm;
-	JButton buttonCancel;
 	public ToolbarEditStudentInfo() {
 		super();
 		setPreferredSize(new Dimension(200, 800));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		fieldsReferences = new Vector<JComponent>();
+		labelReferences = new ArrayList<>();
 		
 		for (int i = 0; i < 10; i++) {
 			String labelName = labelNames[i];
@@ -60,21 +63,28 @@ public class ToolbarEditStudentInfo extends JPanel {
 	public JPanel createOneItem(String labelName, String itemType) {
 		JPanel itemPanel = new JPanel();
 		ToolbarWinLabel label = new ToolbarWinLabel(labelName);
+		labelReferences.add(label);
 		itemPanel.add(label);
 
-		if (itemType.equals("ComboFinansingWay"))
+		if (itemType.equals("ComboFinansingWay")) {
 			fieldsReferences.add(new ToolbarWinCombo(finansingWay));
-		else if (itemType.equals("ComboYearOfStudy"))
+			itemPanel.add(fieldsReferences.get(fieldsReferences.size()-1));
+		}
+		else if (itemType.equals("ComboYearOfStudy")) {
 			fieldsReferences.add(new ToolbarWinCombo(yearOfStudy));
+			itemPanel.add(fieldsReferences.get(fieldsReferences.size()-1));
+		}
 		else if (itemType.equals("TextField")) {
-			fieldsReferences.add(new ToolbarWinTxtField(labelName));
+			ToolbarWinTxtField field = new ToolbarWinTxtField(labelName);
+			PanelFieldError errPanel = new PanelFieldError(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
+			itemPanel.add(errPanel);
+			fieldsReferences.add(field);
 		}
 		
 		if(fieldsReferences.size() == 4) {
-			fieldsReferences.get(3).addFocusListener(ListenerHandler.getAddressListenerForEdit());
+			fieldsReferences.get(3).addFocusListener(ListenerHandler.getAdressScreenListener());
 		}
 
-		itemPanel.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return itemPanel;
 	}
 
@@ -119,6 +129,10 @@ public class ToolbarEditStudentInfo extends JPanel {
 
 	public Vector<JComponent> getFieldsReferences() {
 		return fieldsReferences;
+	}
+	
+	public ArrayList<ToolbarWinLabel> getLabelReferences() {
+		return labelReferences;
 	}
 	
 }
