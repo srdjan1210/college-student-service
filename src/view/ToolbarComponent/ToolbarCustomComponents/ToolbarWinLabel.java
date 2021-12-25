@@ -1,6 +1,6 @@
 package view.ToolbarComponent.ToolbarCustomComponents;
 
-import java.awt.Dimension;
+import java.awt.*;
 
 import javax.swing.JLabel;
 
