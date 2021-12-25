@@ -2,10 +2,7 @@ package view.ToolbarComponent.Subject;
 
 import utils.Constants;
 import view.ToolbarComponent.AddingScreen;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
+import view.ToolbarComponent.ToolbarCustomComponents.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,12 +45,19 @@ public class ToolbarNewSubject extends AddingScreen {
         labelsReferences.add(label);
         row.add(label);
 
-        if (compType.equals("Semester"))
+        if (compType.equals("Semester")) {
             fieldsReferences.add(new ToolbarWinCombo(semesterValues));
-        else
-            fieldsReferences.add(new ToolbarWinTxtField(labelName));
+            row.add(fieldsReferences.get(fieldsReferences.size() - 1));
+        }
+        else {
+            ToolbarWinTxtField field = new ToolbarWinTxtField(labelName);
+            PanelFieldError errPanel = new PanelFieldError(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
+            row.add(errPanel);
+            fieldsReferences.add(field);
+        }
 
-        row.add(fieldsReferences.get(fieldsReferences.size() - 1));
+
+
 
         return row;
     }
@@ -73,6 +77,11 @@ public class ToolbarNewSubject extends AddingScreen {
     @Override
     public ToolbarEnterExitPanel getTenex() {
         return tenex;
+    }
+
+    @Override
+    public ArrayList<ToolbarWinLabel> getLabelReferences() {
+        return labelsReferences;
     }
 
 

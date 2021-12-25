@@ -1,6 +1,7 @@
 package view.ToolbarComponent;
 
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
+import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 
 import javax.swing.*;
 import java.lang.reflect.Array;
@@ -17,6 +18,8 @@ public abstract class AddingScreen extends JDialog {
     public abstract ArrayList<JComponent> getFieldsReferences();
 
     public abstract ToolbarEnterExitPanel getTenex();
+
+    public abstract ArrayList<ToolbarWinLabel> getLabelReferences();
 
     public void dispose() {
         super.dispose();

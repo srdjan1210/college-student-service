@@ -8,13 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import controller.DeleteFailedSubjectController;
-import controller.ListenerHandler;
-import model.Student;
+import view.ListenerHandler;
 import model.Subject;
-import model.Database.DataModel;
 import model.TableModel.FailedSubjectsTableModel;
-import utils.Constants;
-import view.Screen;
 import view.EditStudentCustomComponents.FailedSubjectsButtons;
 import view.TablesComponent.Tables;
 

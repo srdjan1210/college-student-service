@@ -1,17 +1,14 @@
 package view.ToolbarComponent.Student;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
 
-import controller.ListenerHandler;
+import view.ListenerHandler;
 import utils.Constants;
 import view.ToolbarComponent.AddingScreen;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
+import view.ToolbarComponent.ToolbarCustomComponents.*;
 
 public class ToolbarNewStudent extends AddingScreen {
 	private String[] labelNames = Constants.studentLabelNames;
@@ -55,19 +52,26 @@ public class ToolbarNewStudent extends AddingScreen {
 		labelReferences.add(lbl);
 		row.add(lbl);
 		
-		if(fieldType.equals("Text"))
-			fieldsReferences.add(new ToolbarWinTxtField(name));
-		else if(fieldType.equals("ComboYears")) 
+		if(fieldType.equals("Text")) {
+			ToolbarWinTxtField field = new ToolbarWinTxtField(name);
+			PanelFieldError errPanel = new PanelFieldError(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
+			row.add(errPanel);
+			fieldsReferences.add(field);
+		}
+		else if(fieldType.equals("ComboYears")) {
 			fieldsReferences.add(new ToolbarWinCombo(years));
-		else if(fieldType.equals("ComboFinancing")) 
+			row.add(fieldsReferences.get(fieldsReferences.size() - 1));
+		}
+		else if(fieldType.equals("ComboFinancing")) {
 			fieldsReferences.add(new ToolbarWinCombo(finansingWay));
+			row.add(fieldsReferences.get(fieldsReferences.size() - 1));
+		}
+
 
 		if(fieldsReferences.size() == 4) {
 			fieldsReferences.get(3).addFocusListener(ListenerHandler.getAdressScreenListener());
 		}
-		row.add(fieldsReferences.get(fieldsReferences.size() - 1));
 		return row;
-	
 	}
 
 	public JTextField getTextField(int index) {
@@ -85,6 +89,11 @@ public class ToolbarNewStudent extends AddingScreen {
 	@Override
 	public ToolbarEnterExitPanel getTenex() {
 		return tenex;
+	}
+
+	@Override
+	public ArrayList<ToolbarWinLabel> getLabelReferences() {
+		return labelReferences;
 	}
 
 
