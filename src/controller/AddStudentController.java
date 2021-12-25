@@ -63,7 +63,7 @@ public class AddStudentController implements IAddingController {
             if (field.getName().toLowerCase(Locale.ROOT).contains("adresa")
                     && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail")
                     && !validator.isValidAdressNumber(field))
-                validator.throwInvalidValidation(field, "Adresa nije u dobrom formatu!");
+                validator.throwInvalidValidation(field, "<html>Adresa treba biti u formatu<br>(Drzava:Grad:Ulica:Broj Ulice)</html>");
 
             if(!validator.isValidNumberField(field))
                 validator.throwInvalidValidation(field, "Polje treba biti broj!");
