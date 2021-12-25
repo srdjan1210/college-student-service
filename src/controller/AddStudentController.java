@@ -65,6 +65,8 @@ public class AddStudentController implements IAddingController {
                     && !validator.isValidAdressNumber(field))
                 validator.throwInvalidValidation(field, "Adresa nije u dobrom formatu!");
 
+            if(!validator.isValidNumberField(field))
+                validator.throwInvalidValidation(field, "Polje treba biti broj!");
             validator.setEmptyMessage(field);
         }
     }

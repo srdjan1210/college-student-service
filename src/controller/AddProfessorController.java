@@ -56,6 +56,8 @@ public class AddProfessorController implements IAddingController {
                 validator.throwInvalidValidation(field, "Polje mora biti popunjeno");
             if (field.getName().toLowerCase(Locale.ROOT).contains("adresa") && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail") && !validator.isValidAdressNumber(field))
                 validator.throwInvalidValidation(field, "Adresa nije u dobrom formatu");
+            if(!validator.isValidNumberField(field))
+                validator.throwInvalidValidation(field, "Polje treba biti broj!");
             validator.setEmptyMessage(field);
         }
     }

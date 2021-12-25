@@ -50,7 +50,10 @@ public class AddSubjectController implements IAddingController {
                 validator.throwInvalidValidation(field, "<html>Format datuma treba da bude <br>GGGG-MM-DD</html>");
             if (field.getText().trim().equals(""))
                 validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
+            if(!validator.isValidNumberField(field))
+                validator.throwInvalidValidation(field, "Polje treba biti broj!");
             validator.setEmptyMessage(field);
+
         }
     }
 

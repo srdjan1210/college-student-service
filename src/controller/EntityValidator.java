@@ -5,8 +5,11 @@ import exceptions.InvalidFieldException;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class EntityValidator {
+
+    private String[] numberFields = {"Espb*", "Godina upisa*", "Godina studija*", "Godine iskustva*"};
 
     public EntityValidator() {
 
@@ -17,10 +20,27 @@ public class EntityValidator {
         setErrorMessage(field, message);
         throw new InvalidFieldException(message);
     }
+
     private void setErrorMessage(JTextField field, String message) {
         JPanel panel = (JPanel) field.getParent();
         Component[] children = panel.getComponents();
-        ((JLabel)children[2]).setText(message);
+        ((JLabel) children[2]).setText(message);
+    }
+
+    public void setEmptyMessage(JTextField field) {
+        field.setBorder(BorderFactory.createLineBorder(Color.gray));
+        setErrorMessage(field, "");
+    }
+
+    public boolean isValidNumberField(JTextField field) {
+        if (!Arrays.asList(numberFields).contains(field.getName()))
+            return true;
+        try {
+            Integer.parseInt(field.getText());
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     public boolean isValidDate(JTextField dateField) {
@@ -31,6 +51,7 @@ public class EntityValidator {
         }
         return true;
     }
+
     public boolean isValidAdressNumber(JTextField adressField) {
         String text = adressField.getText();
         String[] txtSpl = text.split(":");
@@ -49,8 +70,5 @@ public class EntityValidator {
         return true;
     }
 
-    public void setEmptyMessage(JTextField field) {
-        field.setBorder(BorderFactory.createLineBorder(Color.gray));
-        setErrorMessage(field, "");
-    }
+
 }
