@@ -1,6 +1,7 @@
 package view.ToolbarComponent.Professor;
 
 import java.awt.Dimension;
+import java.net.http.WebSocket.Listener;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -58,6 +59,8 @@ public class ToolbarEditProfessorInfo extends JPanel {
 		if(fieldsReferences.size() == 4) {
 			fieldsReferences.get(3).addFocusListener(ListenerHandler.getAdressScreenListener());
 		}
+		if(fieldsReferences.size() == 7)
+			fieldsReferences.get(6).addFocusListener(ListenerHandler.getAdressScreenListener());
 		return itemPanel;
 	}
 	
