@@ -52,12 +52,18 @@ public class AddProfessorController implements IAddingController {
             JTextField field = (JTextField) fields.get(i);
             if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !validator.isValidDate(field))
                 validator.throwInvalidValidation(field, "<html>Format datuma treba da bude <br>GGGG-MM-DD</html");
+
             if (field.getText().trim().equals(""))
                 validator.throwInvalidValidation(field, "Polje mora biti popunjeno");
+
             if (field.getName().toLowerCase(Locale.ROOT).contains("adresa") && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail") && !validator.isValidAdressNumber(field))
                 validator.throwInvalidValidation(field, "<html>Adresa treba biti u formatu<br>(Drzava:Grad:Ulica:Broj Ulice)</html>");
+
             if(!validator.isValidNumberField(field))
                 validator.throwInvalidValidation(field, "Polje treba biti broj!");
+
+            if(field.getName().toLowerCase().contains("broj licne karte") && !validator.isValidLBO(field))
+                validator.throwInvalidValidation(field, "LBO vec zauzet!");
             validator.setEmptyMessage(field);
         }
     }

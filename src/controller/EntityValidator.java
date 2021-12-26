@@ -1,6 +1,10 @@
 package controller;
 
 import exceptions.InvalidFieldException;
+import model.Database.DataModel;
+import model.Professor;
+import model.Student;
+import model.Subject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,6 +72,27 @@ public class EntityValidator {
             return false;
         }
         return true;
+    }
+
+    public boolean isValidIndexNumber(JTextField field) {
+        DataModel database = DataModel.getInstance();
+        Student student = database.getStudentById(field.getText());
+        if(student == null) return true;
+        return false;
+    }
+
+    public boolean isValidLBO(JTextField field) {
+        DataModel database = DataModel.getInstance();
+        Professor professor = database.getProfessorById(field.getText());
+        if(professor == null) return true;
+        return false;
+    }
+
+    public boolean isValidSubjectId(JTextField field) {
+        DataModel database = DataModel.getInstance();
+        Subject subject = database.getSubjectById(field.getText());
+        if(subject == null) return true;
+        return false;
     }
 
 

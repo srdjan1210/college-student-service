@@ -67,6 +67,9 @@ public class AddStudentController implements IAddingController {
 
             if(!validator.isValidNumberField(field))
                 validator.throwInvalidValidation(field, "Polje treba biti broj!");
+
+            if(field.getName().toLowerCase().contains("indeks") && !validator.isValidIndexNumber(field))
+                validator.throwInvalidValidation(field, "Broj indeksa vec zauzet!");
             validator.setEmptyMessage(field);
         }
     }

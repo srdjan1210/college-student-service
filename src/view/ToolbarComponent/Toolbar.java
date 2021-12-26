@@ -29,10 +29,10 @@ public class Toolbar extends JToolBar {
 		setPreferredSize(new Dimension(Constants.SCREEN_WIDTH * 3 / 4, 30));
 		setFloatable(false);
 
-		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png", "Add Entity");
-		btnEdit = new ToolbarIconButton("Icons/EditMenuItem.png", "Edit Entity");
-		btnDelete = new ToolbarIconButton("Icons/DeleteMenuitem.png", "Delete Entity");
-		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Search");
+		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png", "Add Entity", 'N');
+		btnEdit = new ToolbarIconButton("Icons/EditMenuItem.png", "Edit Entity", 'E');
+		btnDelete = new ToolbarIconButton("Icons/DeleteMenuitem.png", "Delete Entity", 'D');
+		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Search", 'F');
 
 		searchField = new ToolbarSearch();
 		btnNew.addActionListener(ListenerHandler.openWindowListener());

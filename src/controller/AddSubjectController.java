@@ -52,6 +52,9 @@ public class AddSubjectController implements IAddingController {
                 validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
             if(!validator.isValidNumberField(field))
                 validator.throwInvalidValidation(field, "Polje treba biti broj!");
+            if(field.getName().toLowerCase().contains("id predmeta") && !validator.isValidSubjectId(field))
+                validator.throwInvalidValidation(field, "Sifra predmeta vec zauzeta!");
+
             validator.setEmptyMessage(field);
 
         }
