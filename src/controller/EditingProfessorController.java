@@ -109,6 +109,8 @@ public class EditingProfessorController implements IEditingController {
                  validator.throwInvalidValidation(field, "Adresa nije u dobrom formatu!");
              if(!validator.isValidNumberField(field))
                  validator.throwInvalidValidation(field, "Polje treba biti broj!");
+             if(field.getName().toLowerCase().contains("broj licne karte") && !validator.isValidLBOForEditing(field))
+                 validator.throwInvalidValidation(field, "LBO vec zauzet!");
              validator.setEmptyMessage(field);
         }
 	}

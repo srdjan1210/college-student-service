@@ -37,7 +37,6 @@ public class EditingStudentController implements IEditingController {
 			System.out.println(DataModel.getInstance().getStudentById(studentIndexBeforeEdit).getAddress().getStreetNumber());
 			System.out.println(DataModel.getInstance().getStudentById(studentIndexBeforeEdit).getAddress().getStreet());
 			Student student = getEditedStudent(dialog);
-			System.out.println(student.getAddress().getCountry());
 			DataModel model = DataModel.getInstance();
 			model.setEditedStudent(studentIndexBeforeEdit, student);
 			JOptionPane.showMessageDialog(dialog, "Informacije o studentu uspesno izmenjene!");
@@ -120,6 +119,9 @@ public class EditingStudentController implements IEditingController {
              
              if(!validator.isValidNumberField(field))
                  validator.throwInvalidValidation(field, "Polje treba biti broj!");
+             
+             if(field.getName().toLowerCase().contains("indeks") && !validator.isValidIndexNumberForEditing(field))
+                 validator.throwInvalidValidation(field, "Broj indeksa vec zauzet!");
              validator.setEmptyMessage(field);
         }
 	}
