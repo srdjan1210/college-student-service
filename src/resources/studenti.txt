@@ -9,4 +9,3 @@ asdasd,asdasdasd,2019-12-10,Janka Cmelika:NS:Srbija:56,2314141234,asdasdasd,RA 5
 asdasd,asdasd,2000-12-12,asdasd:sdasdasd:asda:2,asdasd,asdasd,asdasd,2222,1,BUDZET,0.0
 asdasd,asdasd,2000-12-12,asdasd:asdasd:asdasd:12,asdasdasd,asdasd,asdasd,2000,1,BUDZET,0.0
 asdasd,asdasd,2000-12-12,asdasd:asdasd:asdasd:2,asdasdasd,asdasd,asdasd,12,1,BUDZET,0.0
-asdasd,asdasd,2000-12-12,asd:asd:asd:2,asdasd,asdasd,asd,12,1,BUDZET,0.0
