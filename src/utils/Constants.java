@@ -55,7 +55,7 @@ public class Constants {
     public static int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     public static int ICON_BUTTON_HEIGHT = 20;
     public static int ICON_BUTTON_WIDTH = 20;
-    public static String[] studentLabelNames = {"Ime*", "Prezime*", "Datum rodjenja(gggg-mm-dd)*", "Adresa stanovanja*",
+    public static String[] studentLabelNames = {"Ime*", "Prezime*", "Datum rodjenja*", "Adresa stanovanja*",
             "Broj telefona*", "E-mail adresa*", "Broj indeksa*", "Godina upisa*", "Trenutna godina studija*",
             "Nacin finansiranja"};
     public static String[] finansingWayLabels = {"BUDZET", "SAMOFINANSIRANJE"};
@@ -68,6 +68,6 @@ public class Constants {
     public static String[] semesterValues = {"ZIMSKI", "LETNJI"};
     public static String[] studentColumnNames = {"Indeks", "Ime", "Prezime", "Godina studija", "Status", "Prosek"};
     public static String[] professorColumnNames = {"Ime", "Prezime", "Titula", "E-mail adresa"};
-    public static String[] subjectColumnNames = {"�ifra predmeta", "Naziv predmeta", "Broj ESPB bodova",
+    public static String[] subjectColumnNames = {"Sifra predmeta", "Naziv predmeta", "Broj ESPB bodova",
             "Godina na kojoj se predmet izvodi", "Semestar u kome se predmet izvodi"};
 }

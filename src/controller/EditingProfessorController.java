@@ -1,17 +1,23 @@
 package controller;
 
+import java.awt.Color;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Vector;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import exceptions.InvalidFieldException;
 import interfaces.IEditingController;
 import model.Address;
 import model.Database.DataModel;
 import model.Professor;
+import model.Student;
 import view.Screen;
 import view.ToolbarComponent.EditingScreen;
 
@@ -20,18 +26,19 @@ public class EditingProfessorController implements IEditingController {
 	@Override
 	public void editEntity(EditingScreen dialog) {
 		// TODO Auto-generated method stub
-		if (checkIfFieldsIsEmpty(dialog)) {
+		
+		try {
+			validate(dialog);
 			String professorIdBeforeEdit = Screen.getInstance().getStudentTab().getSelectedProfessorId();
-
 			Professor professor = getEditedProfessor(dialog);
 			DataModel model = DataModel.getInstance();
 			model.setEditedProfessor(professorIdBeforeEdit, professor);
 			JOptionPane.showMessageDialog(dialog, "Informacije o profesoru uspesno izmenjene!");
 			dialog.dispose();
-		} else {
-			JOptionPane.showMessageDialog(dialog, "Polja ne smiju biti prazna!");
 		}
-
+     catch (Exception e) {
+        JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
+    }
 	}
 
 	public Professor getEditedProfessor(EditingScreen dialog) {
@@ -50,8 +57,8 @@ public class EditingProfessorController implements IEditingController {
 	}
 
 	public Address createAddressFromAddressString(String addressString) {
-		String[] addressParts = addressString.split("-");
-		return new Address(addressParts[0], Integer.parseInt(addressParts[1]), addressParts[2], addressParts[3]);
+		String[] addressParts = addressString.split(":");
+		return new Address(addressParts[2], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[0]);
 	}
 
 	public boolean checkIfFieldsIsEmpty(EditingScreen dialog) {
@@ -81,9 +88,29 @@ public class EditingProfessorController implements IEditingController {
 
 	public static String addressToString(Address address) {
 		String data = "";
-		data = address.getStreet() + "-" + Integer.toString(address.getStreetNumber()) + "-" + address.getCity() + "-"
-				+ address.getCountry();
+		data = address.getCountry() + ":" + address.getCity() + ":" + address.getStreet() +":" + Integer.toString(address.getStreetNumber());
 		return data;
+	}
+	
+	@Override
+	public void validate(EditingScreen dialog) throws InvalidFieldException {
+		// TODO Auto-generated method stub
+        EntityValidator validator = new EntityValidator();
+        Vector<JComponent> fields = dialog.getFieldsReferences();
+        for(int i=0;i<fields.size() - 2;i++) {
+        	JTextField field = (JTextField) fields.get(i);
+        	 if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !validator.isValidDate(field))
+                 validator.throwInvalidValidation(field, "<html>Format datuma treba da bude <br>GGGG-MM-DD</html>");
+        	 if (field.getText().trim().equals(""))
+                 validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
+             if (field.getName().toLowerCase(Locale.ROOT).contains("adresa")
+                     && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail")
+                     && !validator.isValidAdressNumber(field))
+                 validator.throwInvalidValidation(field, "Adresa nije u dobrom formatu!");
+             if(!validator.isValidNumberField(field))
+                 validator.throwInvalidValidation(field, "Polje treba biti broj!");
+             validator.setEmptyMessage(field);
+        }
 	}
 
 }

@@ -5,6 +5,7 @@ import view.Screen;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Professor.ToolbarEditProfessor;
+import view.ToolbarComponent.Professor.ToolbarEditProfessorInfo;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarEditStudentFailed;
@@ -76,6 +77,9 @@ public class ListenerHandler {
                     dialog.dispose();
                 } else if (parent instanceof ToolbarEditStudent) {
                     ToolbarEditStudent dialog = (ToolbarEditStudent) parent;
+                    dialog.dispose();
+                } else if (parent instanceof ToolbarEditProfessor) {
+                	ToolbarEditProfessor dialog = (ToolbarEditProfessor) parent;
                     dialog.dispose();
                 }
             }

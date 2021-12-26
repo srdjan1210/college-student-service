@@ -1,9 +1,10 @@
 package view.ToolbarComponent.ToolbarCustomComponents;
-
 import exceptions.InvalidFieldException;
 import interfaces.IAddingController;
+import interfaces.IEditingController;
 import view.Screen;
 import view.ToolbarComponent.AddingScreen;
+import view.ToolbarComponent.EditingScreen;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -34,6 +35,7 @@ public class ToolbarWinTxtField extends JTextField implements DocumentListener {
 	}
 
 	@Override
+
 	public void changedUpdate(DocumentEvent e) {
 		executeValidation();
 	}
@@ -49,6 +51,17 @@ public class ToolbarWinTxtField extends JTextField implements DocumentListener {
 				addingScreen.getTenex().getButtonConfirm().setEnabled(true);
 			} catch(InvalidFieldException exception) {
 				addingScreen.getTenex().getButtonConfirm().setEnabled(false);
+			}
+		}
+		
+		else if(window instanceof EditingScreen) {
+			EditingScreen editingScreen = (EditingScreen) window;
+			IEditingController controller = Screen.getInstance().getStudentTab().getEditingController();
+			try {
+				controller.validate(editingScreen);
+				editingScreen.getEnterExit().getButtonConfirm().setEnabled(true);
+			} catch(InvalidFieldException exception) {
+				editingScreen.getEnterExit().getButtonConfirm().setEnabled(false);
 			}
 		}
 	}
