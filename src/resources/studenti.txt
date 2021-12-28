@@ -8,3 +8,5 @@ asda,asd,2019-12-12,Janka necega:Beograd:Srbija:12,123123,stjepan@gmail.com,RA 2
 asdasd,asdasdasd,2019-12-10,Janka Cmelika:NS:Srbija:56,2314141234,asdasdasd,RA 500-2019,2019,1,BUDZET,0.0
 asdasd,asdasd,2000-12-12,asdasd:sdasdasd:asda:2,asdasd,asdasd,asdasda,2222,1,SAMOFINANSIRANJE,0.0
 asdasd,asdasd,2000-12-12,asd:asd:asd:2,asdasd,asdasd,asd,12,3,SAMOFINANSIRANJE,0.0
+Srdjan2,Stjepanovic2,2000-12-12,asdasd:asdasd:asdasd:5,066023002300,stjepanovicsrdjan2000@gmail.com,RA 600-2019,2019,3,BUDZET,0.0
+EditTest,test,2000-12-12,asdasd:asdasd:asdasd:2,123123123,asdasdasd,RA 4000-2019,2019,1,BUDZET,0.0
