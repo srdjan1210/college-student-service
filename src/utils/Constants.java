@@ -16,9 +16,6 @@ public class Constants {
             return value;
         }
     }
-
-    ;
-
     public enum Semester {
         ZIMSKI("ZIMSKI"), LETNJI("LETNJI");
 
@@ -32,9 +29,6 @@ public class Constants {
             return value;
         }
     }
-
-    ;
-
     public enum Status {
         BUDZET("BUDZET"), SAMOFINANSIRANJE("SAMOFINANSIRANJE");
 
@@ -48,8 +42,6 @@ public class Constants {
             return value;
         }
     }
-
-    ;
 
     public static int SCREEN_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     public static int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();

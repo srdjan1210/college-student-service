@@ -31,6 +31,7 @@ public class DataWriter {
 	}
 
 	public void writeFailedSubjectsToFile(String path, ArrayList<Subject> failedSubjects, ArrayList<Student> students) {
+		System.out.println(students.get(0).getFailedSubjects().size() +" "+ failedSubjects.size());
 		File file = new File(path);
 		try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
 			int writeNumber = 0;

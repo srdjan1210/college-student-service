@@ -7,16 +7,20 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controller.AddFailedSubjectController;
 import controller.DeleteFailedSubjectController;
+import model.Database.DataModel;
 import view.ListenerHandler;
 import model.Subject;
 import model.TableModel.FailedSubjectsTableModel;
 import view.EditStudentCustomComponents.FailedSubjectsButtons;
+import view.Screen;
 import view.TablesComponent.Tables;
 
 public class ToolbarEditStudentFailed extends JPanel {
 	private Tables failedSubjectsTable;
 	private DeleteFailedSubjectController deleteController;
+	private AddFailedSubjectController addingController;
 
 	public ToolbarEditStudentFailed() {
 		super();
@@ -31,6 +35,7 @@ public class ToolbarEditStudentFailed extends JPanel {
 		add(new JScrollPane(failedSubjectsTable));
 
 		buttons.getButtonDelete().addActionListener(ListenerHandler.getButtonDeleteFailedSubjectListener(this));
+		buttons.getButtonAdd().addActionListener(ListenerHandler.getAddFailedSubjectListener(this));
 		setVisible(true);
 	}
 
@@ -41,6 +46,10 @@ public class ToolbarEditStudentFailed extends JPanel {
 
 	public void setDeleteController(DeleteFailedSubjectController deleteController) {
 		this.deleteController = deleteController;
+	}
+
+	public void setAddingController(AddFailedSubjectController addingController) {
+		this.addingController = addingController;
 	}
 
 	public Tables getFailedSubjectsTable() {
@@ -59,5 +68,9 @@ public class ToolbarEditStudentFailed extends JPanel {
 			i++;
 		}
 		return data;
+	}
+
+	public void addFailedSubject() {
+		addingController.addNewFailedSubject();
 	}
 }

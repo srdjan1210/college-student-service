@@ -3,6 +3,7 @@ package model.Database;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.lang.model.type.ArrayType;
 import javax.swing.table.AbstractTableModel;
 
 import model.Address;
@@ -275,7 +276,6 @@ public class DataModel {
 	}
 
 	public boolean removeFailedSubjectFromStudentSubjects(String subjectId, String studentId) {
-
 			for(Iterator<Student> studentIt = students.iterator(); studentIt.hasNext();) {
 				Student student = studentIt.next();
 				if(student.getIndexNumber().equals(studentId)) {
@@ -295,6 +295,41 @@ public class DataModel {
 			lines += student.getFailedSubjects().size();
 		}
 		return lines;
+	}
+	//Adding failed subjects to students
+
+	public void addFailedSubjectToStudent(String index, Subject subject) {
+		for(Student student: students) {
+			if(student.getIndexNumber().equals(index)) {
+				student.addFailedSubject(subject);
+				failedSubjects.add(subject);
+				notifyEditTable();
+			}
+		}
+	}
+	public ArrayList<Subject> getNewSubjectsForStudent(String index) {
+		Student student = getStudentById(index);
+		ArrayList<Subject> failedSubjects = student.getFailedSubjects();
+		ArrayList<Subject> passedSubjects = student.getPassedSubjects();
+		ArrayList<Subject> resultList = new ArrayList<>();
+		for(Subject subject: subjects) {
+			if(!isSubjectFoundInList(subject.getSubjectId(), student.getFailedSubjects()) &&
+			   !isSubjectFoundInList(subject.getSubjectId(), student.getPassedSubjects()) &&
+				student.getStudyYear() == subject.getYearOfStudy()) {
+				resultList.add(subject);
+			}
+		}
+
+		return resultList;
+
+	}
+
+	public boolean isSubjectFoundInList(String subjectId, ArrayList<Subject> subjects) {
+		for(Subject subject: subjects) {
+			if(subject.getSubjectId().equals(subjectId))
+				return true;
+		}
+		return false;
 	}
 
 	// Writing to file methods
@@ -327,7 +362,7 @@ public class DataModel {
 	public void setEditTableObserver(Tables table) {
 		editTableObserver = table;
 	}
-	
+
 	public void notifyEditTable() {
 		AbstractTableModel model = (AbstractTableModel) editTableObserver.getModel();
 		model.fireTableDataChanged();

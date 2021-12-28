@@ -3,10 +3,8 @@ Borisa,Selakovicaa,2000-10-13,Srbija:Novi Sad:Liman:4,0665045747,darkoselakovic2
 Sara,Sinjeri2,2000-04-14,Janka Cmelika:Novi Sad:Srbija:56,0603308330,sarasinjeri140400@gmail.com,RA 76-2019,2019,3,BUDZET,0.0
 Moravac,Jovance,2001-08-10,Bulvr Despota Stefana:Novi Sad:Srbija:7,0628165873,josanamoravac@gmail.com,MH 14-2020,2020,2,BUDZET,0.0
 Sara,Sinjeri,2000-04-14,Jan.Cmel.:NS:Srb:56,0603308330,sarasinjeri140400@gmail.com,RA 76-2019,2019,3,BUDZET,0.0
-Srdjan2,Stjepanovic2,2019-12-12,Janka Cmelika:NS:Srbija:12,06693409304,asdasdasd,RA 150-2019,2019,3,BUDZET,0.0
+Srdjan2,Stjepanovic2,2019-12-12,Janka Cmelika:NS:Srbija:12,06693409304,asdasdasd,RA 50-2019,2019,3,BUDZET,0.0
 asda,asd,2019-12-12,Janka necega:Beograd:Srbija:12,123123,stjepan@gmail.com,RA 204-2019,2019,3,BUDZET,0.0
 asdasd,asdasdasd,2019-12-10,Janka Cmelika:NS:Srbija:56,2314141234,asdasdasd,RA 500-2019,2019,1,BUDZET,0.0
-asdasd,asdasd,2000-12-12,asdasd:sdasdasd:asda:2,asdasd,asdasd,asdasd,2222,1,BUDZET,0.0
-asdasd,asdasd,2000-12-12,asdasd:asdasd:asdasd:12,asdasdasd,asdasd,asdasd,2000,1,BUDZET,0.0
-asdasd,asdasd,2000-12-12,asdasd:asdasd:asdasd:2,asdasdasd,asdasd,asdasd,12,1,BUDZET,0.0
-asdasd,asdasd,2000-12-12,asd:asd:asd:2,asdasd,asdasd,asd,12,1,BUDZET,0.0
+asdasd,asdasd,2000-12-12,asdasd:sdasdasd:asda:2,asdasd,asdasd,asdasda,2222,1,SAMOFINANSIRANJE,0.0
+asdasd,asdasd,2000-12-12,asd:asd:asd:2,asdasd,asdasd,asd,12,3,SAMOFINANSIRANJE,0.0
