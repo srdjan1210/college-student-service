@@ -1,4 +1,3 @@
-Srdjan,Stjepanovic,2000-10-12,Srbija:Novi Sad:Sajlovo:4,0665045747,stjepanovicsrdjan2000@gmail.com,Sajlovo:Srbija:Novi Sad:4,11101011,Docent,12
 Borisa,Selakovicaa,2000-10-13,Srbija:Novi Sad:Liman:4,0665045747,darkoselakovic2000@gmail.com,Sajlovo:Srbija:Novi Sad:4,11101012,Docent,12
 SaraS,Sinjeri2,2000-04-14,Janka Cmelika:Novi Sad:Srbija:56,0603308330,sarasinjeri140400@gmail.com,Sajlovo:Srbija:Novi Sad:4,11101013,Docent,12
 Moravac,Jovance,2001-08-10,Bulvr Despota Stefana:Novi Sad:Srbija:7,0628165873,josanamoravac@gmail.com,Sajlovo:Srbija:Novi Sad:4,11101015,Docent,12

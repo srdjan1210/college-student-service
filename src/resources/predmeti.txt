@@ -1,5 +1,5 @@
-Mat1,Matematika 1,ZIMSKI,3,11101011,6
-An1,Matematicka analiza 1,ZIMSKI,2,11101011,6
+Mat1,Matematika 1,ZIMSKI,3,null,6
+An1,Matematicka analiza 1,ZIMSKI,2,null,6
 Oet,Osnovi elektrotehnike,LETNJI,1,11101012,8
 OISISI,Osnovi Inf. Inz i Soft. Inz,ZIMSKI,3,0000011111,6
 asdasda,asdasdasd,ZIMSKI,2,null,12
