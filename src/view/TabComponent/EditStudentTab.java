@@ -2,6 +2,7 @@ package view.TabComponent;
 
 import javax.swing.JTabbedPane;
 
+import controller.AddFailedSubjectController;
 import controller.EditingStudentController;
 import model.Database.DataModel;
 import model.Student;
@@ -17,6 +18,7 @@ public class EditStudentTab extends JTabbedPane {
 		super();
 		editInfo = new ToolbarEditStudentInfo();
 		editFailed = new ToolbarEditStudentFailed();
+		editFailed.setAddingController(new AddFailedSubjectController());
 		String studentIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
 		DataModel instance = DataModel.getInstance();
 		Student student = instance.getStudentById(studentIndex);

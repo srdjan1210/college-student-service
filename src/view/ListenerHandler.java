@@ -90,10 +90,18 @@ public class ListenerHandler {
 
     public static ActionListener getButtonDeleteListener() {
         return new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 Screen.getInstance().getStudentTab().deleteEntity();
+            }
+        };
+    }
+
+    public static ActionListener getAddFailedSubjectListener(ToolbarEditStudentFailed studentFailedPanel) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                studentFailedPanel.addFailedSubject();
             }
         };
     }
