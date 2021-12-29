@@ -1,6 +1,7 @@
 package view.MenuBarComponent;
 
 import java.awt.Image;
+import java.net.http.WebSocket.Listener;
 
 import javax.swing.*;
 
@@ -26,7 +27,9 @@ public class MenuBar extends JMenuBar {
 		MenuItems closeMenuItem = new MenuItems("Close", "Icons/CloseMenuItem.png", "CTRL + C", 'C');
 
 		MenuItems editMenuItem = new MenuItems("Edit", "Icons/EditMenuItem.png", "CTRL + E", 'E');
+		editMenuItem.addActionListener(ListenerHandler.openEditDialogListener());
 		MenuItems deleteMenuItem = new MenuItems("Delete", "Icons/DeleteMenuItem.png", "CTRL + D", 'D');
+		deleteMenuItem.addActionListener(ListenerHandler.getButtonDeleteListener());
 
 		MenuItems helpMenuItem = new MenuItems("Help", "Icons/HelpMenuItem.png", "CTRL + H", 'H');
 		MenuItems aboutMenuItem = new MenuItems("About", "Icons/AboutMenuItem.png", "CTRL + A", 'A');
@@ -37,10 +40,10 @@ public class MenuBar extends JMenuBar {
 		Image image = imageIcon.getImage().getScaledInstance(13, 13, Image.SCALE_SMOOTH);
 		openMenuButton.setIcon(new ImageIcon(image));
 
-		MenuItems studentsItem = new MenuItems("Studenti", "Icons/StudentMenuItem.png", "CTRL + Q", 'Q');
-		MenuItems subjectsItem = new MenuItems("Predmeti", "Icons/SubjectMenuItem.png", "CTRL + W", 'W');
+		MenuItems studentsItem = new MenuItems("Studenti", "Icons/StudentMenuItem.png", "CTRL + T", 'T');
+		MenuItems subjectsItem = new MenuItems("Predmeti", "Icons/SubjectMenuItem.png", "CTRL + P", 'P');
 		MenuItems professorsItem = new MenuItems("Profesori", "Icons/ProfessorMenuItems.png", "CTRL + R", 'R');
-		MenuItems departmentsItem = new MenuItems("Katedre", "Icons/DepartmentMenuItem.png", "CTRL + T", 'T');
+		MenuItems departmentsItem = new MenuItems("Katedre", "Icons/DepartmentMenuItem.png", "CTRL + K", 'K');
 
 		openMenuButton.add(studentsItem);
 		openMenuButton.add(subjectsItem);

@@ -10,6 +10,7 @@ import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarEditStudentFailed;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
+import view.ToolbarComponent.Subject.ToolbarEditSubject;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
 
 import javax.swing.*;
@@ -79,8 +80,9 @@ public class ListenerHandler {
                     ToolbarEditStudent dialog = (ToolbarEditStudent) parent;
                     dialog.dispose();
                 } else if (parent instanceof ToolbarEditProfessor) {
-                	ToolbarEditProfessor dialog = (ToolbarEditProfessor) parent;
-                    dialog.dispose();
+                	// new ToolbarEditSubject();
+                	ToolbarEditSubject dialog = (ToolbarEditSubject) parent;
+                	dialog.dispose();
                 }
             }
         };
@@ -135,8 +137,7 @@ public class ListenerHandler {
                         JOptionPane.showMessageDialog(null, "Predmet nije selektovan!", "Izmena predmeta", JOptionPane.WARNING_MESSAGE);
                         return;
                     }
-                    ToolbarEditStudent editDialog = new ToolbarEditStudent();
-                    editDialog.setVisible();
+                    new ToolbarEditSubject();
                     return;
                 }
                 // TODO Auto-generated method stub
