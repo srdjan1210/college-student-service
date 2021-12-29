@@ -49,19 +49,16 @@ public class DataReader {
 		return entityList;
 	}
 
-	public ArrayList<Subject> readStudentSubjectsFromFile(String fileName) throws FileNotFoundException {
+	public void readStudentSubjectsFromFile(String fileName) throws FileNotFoundException {
 		Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-		ArrayList<Subject> failed = new ArrayList<Subject>();
+		//ArrayList<Subject> failed = new ArrayList<Subject>();
 		while (scanner.hasNextLine()) {
 			String scannedData = scanner.nextLine();
 			String[] data = splitScannedData(scannedData);
 			Student student = dm.getStudentById(data[0]);
 			Subject failedSubject = dm.getSubjectById(data[1]);
 			student.addFailedSubject(failedSubject);
-			if (!failed.contains(failedSubject))
-				failed.add(failedSubject);
 		}
-		return failed;
 	}
 
 	private Professor loadProfessorObject(String[] data) {

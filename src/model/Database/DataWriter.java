@@ -30,29 +30,27 @@ public class DataWriter {
 		}
 	}
 
-	public void writeFailedSubjectsToFile(String path, ArrayList<Subject> failedSubjects, ArrayList<Student> students) {
-		System.out.println(students.get(0).getFailedSubjects().size() +" "+ failedSubjects.size());
+	public void writeFailedSubjectsToFile(String path, ArrayList<Student> students) {
 		File file = new File(path);
 		try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
 			int writeNumber = 0;
 			int linesToWrite = DataModel.getInstance().getLinesOfFailedToWrite();
-			for (int i = 0; i < students.size(); i++) {
-				for (int j = 0; j < failedSubjects.size(); j++) {
-					if (students.get(i).getFailedSubjects().contains(failedSubjects.get(j))) {
+			for(Student student : DataModel.getInstance().getStudents()) {
+				if(!student.getFailedSubjects().isEmpty()) {
+					for(Subject failedSubject : student.getFailedSubjects()) {
 						if (writeNumber == 0) {
 							myWriter.write(
-									students.get(i).getIndexNumber() + "," + failedSubjects.get(j).getSubjectId());
+									student.getIndexNumber() + "," + failedSubject.getSubjectId());
 							writeNumber++;
 						} else {
 							myWriter.append(
-									students.get(i).getIndexNumber() + "," + failedSubjects.get(j).getSubjectId());
+									student.getIndexNumber() + "," + failedSubject.getSubjectId());
 							writeNumber++;
-						}
-						if (writeNumber != linesToWrite)
-							myWriter.newLine();
 					}
+						if (writeNumber != linesToWrite)
+						myWriter.newLine();
 				}
-
+			}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

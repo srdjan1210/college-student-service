@@ -110,7 +110,7 @@ public class StudentLogic {
         for (Student student : students) {
             if (student.getIndexNumber().equals(index)) {
                 student.addFailedSubject(subject);
-                dataModel.getFailedSubjects().add(subject);
+              //  dataModel.getFailedSubjects().add(subject);
                 dataModel.notifyEditTable();
             }
         }

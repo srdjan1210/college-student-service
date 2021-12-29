@@ -17,7 +17,6 @@ public class DataModel {
     private ArrayList<Department> departments;
     private ArrayList<Mark> marks;
     private ArrayList<Address> addresses;
-    private ArrayList<Subject> failedSubjects;
     //Observer tables
     private Tables tableObserver;
     private Tables editTableObserver;
@@ -39,7 +38,7 @@ public class DataModel {
             subjects = reader.readEntityFromFile("resources/predmeti.txt", "Subject");
             departments = reader.readEntityFromFile("resources/katedre.txt", "Department");
             marks = reader.readEntityFromFile("resources/ocene.txt", "Mark");
-            failedSubjects = reader.readStudentSubjectsFromFile("resources/nepolozeni.txt");
+            reader.readStudentSubjectsFromFile("resources/nepolozeni.txt");
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -54,7 +53,7 @@ public class DataModel {
         writer.writeEntitiesToFile("resources/katedre.txt", departments);
         writer.writeEntitiesToFile("resources/ocene.txt", marks);
         writer.writeEntitiesToFile("resources/profesori.txt", professors);
-        writer.writeFailedSubjectsToFile("resources/nepolozeni.txt", failedSubjects, students);
+        writer.writeFailedSubjectsToFile("resources/nepolozeni.txt", students);
     }
 
     // Entity find by unique id methods
@@ -194,7 +193,4 @@ public class DataModel {
     }
     public void setAddresses(ArrayList<Address> addresses) { this.addresses = addresses; }
 
-    public ArrayList<Subject> getFailedSubjects() {
-        return failedSubjects;
-    }
 }
