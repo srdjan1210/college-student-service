@@ -60,6 +60,7 @@ public class Screen extends JFrame {
 				} else {
 					studentTab.setAddingController(new AddSubjectController());
 					studentTab.setDeleteController(new DeleteSubjectController());
+					studentTab.setEditingController(new EditingSubjectController());
 					DataModel.getInstance().setTableObserver(studentTab.getSubjectTable());
 					statusBar.setTabName("Predmet");
 				}
