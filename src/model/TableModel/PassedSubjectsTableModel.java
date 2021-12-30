@@ -13,7 +13,6 @@ public class PassedSubjectsTableModel extends AbstractTableModel {
 
         int selectedRow = Screen.getInstance().getStudentTab().getStudentTable().getSelectedRow();
         int length = DataModel.getInstance().getStudents().get(selectedRow).getPassedSubjects().size();
-        System.out.println(length);
         return length;
     }
 

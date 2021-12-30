@@ -39,7 +39,8 @@ public class DataModel {
             departments = reader.readEntityFromFile("resources/katedre.txt", "Department");
             marks = reader.readEntityFromFile("resources/ocene.txt", "Mark");
 
-            reader.readStudentSubjectsFromFile("resources/nepolozeni.txt");
+            reader.readStudentSubjectsFromFile("resources/nepolozeni.txt", "nepolozeni");
+            reader.readStudentSubjectsFromFile("resources/polozeni.txt", "polozeni");
         } catch (Exception err) {
             err.printStackTrace();
         }
