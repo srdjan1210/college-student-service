@@ -4,15 +4,11 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import controller.ListenerHandler;
 import utils.Constants;
@@ -23,15 +19,15 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
-public class ToolbarEditStudentInfo extends JPanel {
-	String[] labelNames = Constants.studentLabelNames;
-	String[] finansingWay = Constants.finansingWayLabels;
-	String[] yearOfStudy = Constants.yearsLabels;
+public class ToolbarEditStudentInfoPanel extends JPanel {
+	private String[] labelNames = Constants.studentLabelNames;
+	private String[] finansingWay = Constants.finansingWayLabels;
+	private String[] yearOfStudy = Constants.yearsLabels;
 
-	Vector<JComponent> fieldsReferences;
-	ArrayList<ToolbarWinLabel> labelReferences;
-	ToolbarEnterExitPanel enterExit;
-	public ToolbarEditStudentInfo() {
+	private Vector<JComponent> fieldsReferences;
+	private ArrayList<ToolbarWinLabel> labelReferences;
+	private ToolbarEnterExitPanel enterExit;
+	public ToolbarEditStudentInfoPanel() {
 		super();
 		setPreferredSize(new Dimension(200, 800));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

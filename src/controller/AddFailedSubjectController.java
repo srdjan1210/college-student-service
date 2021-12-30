@@ -6,6 +6,7 @@ import view.Screen;
 import view.ToolbarComponent.ToolbarCustomComponents.SubjectListModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class AddFailedSubjectController {
@@ -19,9 +20,14 @@ public class AddFailedSubjectController {
             return;
         }
         JList selektor = new JList(new SubjectListModel(subjects));
-        int result = JOptionPane.showConfirmDialog(null, selektor,"Unesite stydenta", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        selektor.setPreferredSize(new Dimension(100, 300));
+        int result = JOptionPane.showConfirmDialog(null, new JScrollPane(selektor),"Izaberite predmet!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if(result == 0) {
+            if(selektor.getSelectedIndex() == -1) {
+                JOptionPane.showMessageDialog(null, "Niste selektovali predmet");
+                return;
+            }
             Subject subject = ((SubjectListModel) selektor.getModel()).getSelectedSubject(selektor.getSelectedIndex());
             DataModel.getInstance().addFailedSubjectToStudent(index, subject);
         }

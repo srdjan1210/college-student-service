@@ -49,17 +49,22 @@ public class DataReader {
 		return entityList;
 	}
 
-	public void readStudentSubjectsFromFile(String fileName) throws FileNotFoundException {
+	public void readStudentSubjectsFromFile(String fileName, String listName) throws FileNotFoundException {
 		Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-		//ArrayList<Subject> failed = new ArrayList<Subject>();
+
 		while (scanner.hasNextLine()) {
 			String scannedData = scanner.nextLine();
 			String[] data = splitScannedData(scannedData);
 			Student student = dm.getStudentById(data[0]);
-			Subject failedSubject = dm.getSubjectById(data[1]);
-			student.addFailedSubject(failedSubject);
+
+			Subject subject = dm.getSubjectById(data[1]);
+			if(listName.equals("nepolozeni"))
+				student.addFailedSubject(subject);
+			else
+				student.addPassedSubject(subject);
 		}
 	}
+
 
 	private Professor loadProfessorObject(String[] data) {
 		return new Professor(data[0], data[1], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4],

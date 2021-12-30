@@ -5,7 +5,7 @@
 ### Eclipse ###
 *.iml
 out/
-#src/resources/
+src/resources/
 .metadata
 *.iml
 bin/
@@ -19,7 +19,7 @@ local.properties
 .loadpath
 .recommenders
 .idea
-#src/resources/
+
 # External tool builders
 .externalToolBuilders/
 

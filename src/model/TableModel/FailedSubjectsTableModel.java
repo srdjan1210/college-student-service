@@ -5,7 +5,7 @@ import javax.swing.table.AbstractTableModel;
 import model.Database.DataModel;
 import utils.Constants;
 import view.Screen;
-import view.ToolbarComponent.Student.ToolbarEditStudentFailed;
+import view.ToolbarComponent.Student.ToolbarEditStudentFailedPanel;
 
 public class FailedSubjectsTableModel extends AbstractTableModel {
 
@@ -15,7 +15,7 @@ public class FailedSubjectsTableModel extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		return ToolbarEditStudentFailed.getSubjectsData(DataModel.getInstance()
+		return ToolbarEditStudentFailedPanel.getSubjectsData(DataModel.getInstance()
 				.getStudentById(Screen.getInstance().getStudentTab().getSelectedStudentIndex()).getFailedSubjects()).length;
 	}
 
@@ -28,7 +28,7 @@ public class FailedSubjectsTableModel extends AbstractTableModel {
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
-		return ToolbarEditStudentFailed.getSubjectsData(DataModel.getInstance()
+		return ToolbarEditStudentFailedPanel.getSubjectsData(DataModel.getInstance()
 				.getStudentById(Screen.getInstance().getStudentTab().getSelectedStudentIndex()).getFailedSubjects())[rowIndex][columnIndex];
 	}
 
