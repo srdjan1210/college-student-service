@@ -109,10 +109,14 @@ public class StudentLogic {
 
     public void addFailedSubjectToStudent(String index, Subject subject) {
         ArrayList<Student> students = dataModel.getStudents();
-        Student student = getStudentById(index);
-        student.addFailedSubject(subject);
-        dataModel.getFailedSubjects().add(subject);
-        dataModel.notifyEditTable();
+        for (Student student : students) {
+            if (student.getIndexNumber().equals(index)) {
+                student.addFailedSubject(subject);
+              //  dataModel.getFailedSubjects().add(subject);
+                dataModel.notifyEditTable();
+            }
+        }
+
     }
 
     public ArrayList<Subject> getNewSubjectsForStudent(String index) {
