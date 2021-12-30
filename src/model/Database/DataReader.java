@@ -56,13 +56,16 @@ public class DataReader {
 			String scannedData = scanner.nextLine();
 			String[] data = splitScannedData(scannedData);
 			Student student = dm.getStudentById(data[0]);
-			Subject failedSubject = dm.getSubjectById(data[1]);
-			student.addFailedSubject(failedSubject);
-			if (!failed.contains(failedSubject))
-				failed.add(failedSubject);
+			Subject subject = dm.getSubjectById(data[1]);
+			student.addFailedSubject(subject);
+			if (!failed.contains(subject))
+				failed.add(subject);
+
+
 		}
 		return failed;
 	}
+
 
 	private Professor loadProfessorObject(String[] data) {
 		return new Professor(data[0], data[1], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4],

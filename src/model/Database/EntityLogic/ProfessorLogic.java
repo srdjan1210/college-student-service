@@ -68,8 +68,6 @@ public class ProfessorLogic {
         removeProfessorFromSubjects(id);
     }
 
-
-
     private void removeProfessorFromSubjects(String id) {
         ArrayList<Subject> subjects = dataModel.getSubjects();
         for (Iterator<Subject> subIt = subjects.iterator(); subIt.hasNext(); ) {

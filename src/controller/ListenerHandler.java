@@ -1,6 +1,5 @@
 package controller;
 
-import java.awt.Dimension;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,15 +8,13 @@ import java.awt.event.FocusListener;
 
 import javax.swing.*;
 
-import utils.Constants;
 import view.Screen;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Professor.ToolbarEditProfessor;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
-import view.ToolbarComponent.Student.ToolbarEditStudentFailed;
-import view.ToolbarComponent.Student.ToolbarEditStudentInfo;
+import view.ToolbarComponent.Student.ToolbarEditStudentFailedPanel;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.Subject.ToolbarEditSubject;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
@@ -141,7 +138,7 @@ public class ListenerHandler {
 		};
 	}
 
-	public static ActionListener getButtonDeleteFailedSubjectListener(ToolbarEditStudentFailed failedPanel) {
+	public static ActionListener getButtonDeleteFailedSubjectListener(ToolbarEditStudentFailedPanel failedPanel) {
 		return new ActionListener() {
 
 			@Override

@@ -1,9 +1,11 @@
 package model.Database.EntityLogic;
 
 import model.Database.DataModel;
+import model.Professor;
 import model.Subject;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class SubjectLogic {
     private DataModel dataModel;
@@ -34,10 +36,39 @@ public class SubjectLogic {
         for (Subject subject : subjects) {
             if (subject.getSubjectId().equals(id)) {
                 subjects.remove(subject);
+                removeSubjectDependencies(id);
                 dataModel.notifyTable();
                 return true;
             }
         }
         return false;
+    }
+
+    public void removeSubjectDependencies(String id) {
+        removeSubjectFromProfessors(id);
+    }
+
+    public void removeSubjectFromProfessors(String id) {
+        ArrayList<Professor> professors = dataModel.getProfessors();
+        printProfessorsSubjectsSize();
+        for(Professor professor: professors) {
+            ArrayList<Subject> profSubjects = professor.getSubjects();
+            for(Iterator<Subject> its = profSubjects.iterator(); its.hasNext();) {
+                Subject subject = its.next();
+                if(subject.getSubjectId().equals(id)) {
+                    its.remove();
+                }
+            }
+
+        }
+        printProfessorsSubjectsSize();
+
+    }
+
+    private void printProfessorsSubjectsSize() {
+        for(Professor professor: dataModel.getProfessors()) {
+            System.out.println(professor.getSubjects().size());
+        }
+
     }
 }

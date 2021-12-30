@@ -1,14 +1,12 @@
 package view;
 
 import controller.DeleteFailedSubjectController;
-import view.Screen;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Professor.ToolbarEditProfessor;
-import view.ToolbarComponent.Professor.ToolbarEditProfessorInfo;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
-import view.ToolbarComponent.Student.ToolbarEditStudentFailed;
+import view.ToolbarComponent.Student.ToolbarEditStudentFailedPanel;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.Subject.ToolbarEditSubject;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
@@ -97,7 +95,7 @@ public class ListenerHandler {
         };
     }
 
-    public static ActionListener getAddFailedSubjectListener(ToolbarEditStudentFailed studentFailedPanel) {
+    public static ActionListener getAddFailedSubjectListener(ToolbarEditStudentFailedPanel studentFailedPanel) {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -147,7 +145,7 @@ public class ListenerHandler {
         };
     }
 
-    public static ActionListener getButtonDeleteFailedSubjectListener(ToolbarEditStudentFailed failedPanel) {
+    public static ActionListener getButtonDeleteFailedSubjectListener(ToolbarEditStudentFailedPanel failedPanel) {
         return new ActionListener() {
 
             @Override

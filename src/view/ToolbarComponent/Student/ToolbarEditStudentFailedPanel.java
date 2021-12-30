@@ -9,20 +9,18 @@ import javax.swing.JScrollPane;
 
 import controller.AddFailedSubjectController;
 import controller.DeleteFailedSubjectController;
-import model.Database.DataModel;
 import view.ListenerHandler;
 import model.Subject;
 import model.TableModel.FailedSubjectsTableModel;
 import view.EditStudentCustomComponents.FailedSubjectsButtons;
-import view.Screen;
 import view.TablesComponent.Tables;
 
-public class ToolbarEditStudentFailed extends JPanel {
+public class ToolbarEditStudentFailedPanel extends JPanel {
 	private Tables failedSubjectsTable;
 	private DeleteFailedSubjectController deleteController;
 	private AddFailedSubjectController addingController;
 
-	public ToolbarEditStudentFailed() {
+	public ToolbarEditStudentFailedPanel() {
 		super();
 		setPreferredSize(new Dimension(200, 800));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

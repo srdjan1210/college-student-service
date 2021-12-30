@@ -10,9 +10,11 @@ import java.util.Iterator;
 
 public class StudentLogic {
     private DataModel dataModel;
+
     public StudentLogic(DataModel dm) {
         dataModel = dm;
     }
+
     public void addStudentToList(Student newStudent) {
         dataModel.getStudents().add(newStudent);
         dataModel.notifyTable();
@@ -107,13 +109,10 @@ public class StudentLogic {
 
     public void addFailedSubjectToStudent(String index, Subject subject) {
         ArrayList<Student> students = dataModel.getStudents();
-        for (Student student : students) {
-            if (student.getIndexNumber().equals(index)) {
-                student.addFailedSubject(subject);
-                dataModel.getFailedSubjects().add(subject);
-                dataModel.notifyEditTable();
-            }
-        }
+        Student student = getStudentById(index);
+        student.addFailedSubject(subject);
+        dataModel.getFailedSubjects().add(subject);
+        dataModel.notifyEditTable();
     }
 
     public ArrayList<Subject> getNewSubjectsForStudent(String index) {

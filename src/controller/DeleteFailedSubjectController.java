@@ -5,12 +5,12 @@ import javax.swing.JOptionPane;
 import model.Database.DataModel;
 import view.Screen;
 import view.TablesComponent.Tables;
-import view.ToolbarComponent.Student.ToolbarEditStudentFailed;
+import view.ToolbarComponent.Student.ToolbarEditStudentFailedPanel;
 
 public class DeleteFailedSubjectController {
 	public static Tables failedSubjectsTable;
 
-	public DeleteFailedSubjectController(ToolbarEditStudentFailed editFailedPanel) {
+	public DeleteFailedSubjectController(ToolbarEditStudentFailedPanel editFailedPanel) {
 		int resp = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite ukloniti nepolozeni predmet?",
 				"Obrisi nepolozeni predmet?", JOptionPane.YES_NO_OPTION);
 		if (resp == 1)

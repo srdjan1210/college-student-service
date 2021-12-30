@@ -18,6 +18,7 @@ public class DataModel {
     private ArrayList<Mark> marks;
     private ArrayList<Address> addresses;
     private ArrayList<Subject> failedSubjects;
+    private ArrayList<Subject> passedSubjects;
     //Observer tables
     private Tables tableObserver;
     private Tables editTableObserver;
@@ -40,6 +41,8 @@ public class DataModel {
             departments = reader.readEntityFromFile("resources/katedre.txt", "Department");
             marks = reader.readEntityFromFile("resources/ocene.txt", "Mark");
             failedSubjects = reader.readStudentSubjectsFromFile("resources/nepolozeni.txt");
+            passedSubjects = reader.readStudentSubjectsFromFile("resources/polozeni.txt");
+
         } catch (Exception err) {
             err.printStackTrace();
         }
