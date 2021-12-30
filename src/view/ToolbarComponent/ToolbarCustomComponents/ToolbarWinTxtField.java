@@ -7,8 +7,6 @@ import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
 
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -22,6 +20,11 @@ public class ToolbarWinTxtField extends JTextField implements DocumentListener {
 		setName(name);
 		setPreferredSize(new Dimension(150, 30));
 		this.getDocument().addDocumentListener(this);
+	}
+	
+	public void setEdit(Boolean trueOrFalse) {
+		JTextField field = (JTextField)this;
+		field.setEditable(trueOrFalse);
 	}
 
 	@Override

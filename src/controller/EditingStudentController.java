@@ -32,10 +32,6 @@ public class EditingStudentController implements IEditingController {
 		try {
 			validate(dialog);
 			String studentIndexBeforeEdit = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
-			System.out.println(DataModel.getInstance().getStudentById(studentIndexBeforeEdit).getAddress().getCountry());
-			System.out.println(DataModel.getInstance().getStudentById(studentIndexBeforeEdit).getAddress().getCity());
-			System.out.println(DataModel.getInstance().getStudentById(studentIndexBeforeEdit).getAddress().getStreetNumber());
-			System.out.println(DataModel.getInstance().getStudentById(studentIndexBeforeEdit).getAddress().getStreet());
 			Student student = getEditedStudent(dialog);
 			DataModel model = DataModel.getInstance();
 			model.setEditedStudent(studentIndexBeforeEdit, student);

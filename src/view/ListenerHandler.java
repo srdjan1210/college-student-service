@@ -1,12 +1,14 @@
 package view;
 
 import controller.DeleteFailedSubjectController;
+import controller.TakingExamController;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Professor.ToolbarEditProfessor;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarEditStudentFailedPanel;
+import view.ToolbarComponent.Student.ToolbarEnteringMark;
 import view.ToolbarComponent.Student.ToolbarNewStudent;
 import view.ToolbarComponent.Subject.ToolbarEditSubject;
 import view.ToolbarComponent.Subject.ToolbarNewSubject;
@@ -52,8 +54,11 @@ public class ListenerHandler {
                 Window parent = SwingUtilities.getWindowAncestor(btnConfirm);
                 if (parent instanceof AddingScreen) {
                     Screen.getInstance().getStudentTab().addNewEntity((AddingScreen) parent);
-                } else if (parent instanceof EditingScreen) {
-                    Screen.getInstance().getStudentTab().editNewEntity((EditingScreen) parent);
+                } else if (parent instanceof ToolbarEditStudent || parent instanceof ToolbarEditProfessor || parent instanceof ToolbarEditSubject) {
+                    Screen.getInstance().getStudentTab().editNewEntity((ToolbarEditStudent) parent);
+                } else if (parent instanceof ToolbarEnteringMark) {
+                	ToolbarEnteringMark enteringMark = (ToolbarEnteringMark) parent;
+                	enteringMark.setExamController(new TakingExamController(enteringMark));
                 }
 
             }
@@ -78,9 +83,12 @@ public class ListenerHandler {
                     ToolbarEditStudent dialog = (ToolbarEditStudent) parent;
                     dialog.dispose();
                 } else if (parent instanceof ToolbarEditProfessor) {
-                	// new ToolbarEditSubject();
                 	ToolbarEditSubject dialog = (ToolbarEditSubject) parent;
                 	dialog.dispose();
+                } else if (parent instanceof ToolbarEnteringMark) {
+                	ToolbarEnteringMark dialog = (ToolbarEnteringMark) parent;
+                	dialog.dispose();
+                	
                 }
             }
         };
@@ -156,6 +164,23 @@ public class ListenerHandler {
             }
 
         };
+    }
+    
+    public static ActionListener getButtonTakingExamListener(ToolbarEditStudentFailedPanel failedPanel) {
+    	return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(failedPanel.getFailedSubjectsTable().getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(null, "Predmet nije selektovan!", "Polaganje predmeta", JOptionPane.WARNING_MESSAGE);
+                    return;
+				}
+				new ToolbarEnteringMark(failedPanel);
+				return;
+			}
+    		
+    	};
     }
 
     public static FocusListener getAdressScreenListener() {

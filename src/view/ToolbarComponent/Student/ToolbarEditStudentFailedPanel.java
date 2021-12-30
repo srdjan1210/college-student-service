@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 
 import controller.AddFailedSubjectController;
 import controller.DeleteFailedSubjectController;
+import controller.TakingExamController;
 import view.ListenerHandler;
 import model.Subject;
 import model.TableModel.FailedSubjectsTableModel;
@@ -19,6 +20,7 @@ public class ToolbarEditStudentFailedPanel extends JPanel {
 	private Tables failedSubjectsTable;
 	private DeleteFailedSubjectController deleteController;
 	private AddFailedSubjectController addingController;
+	private TakingExamController examController;
 
 	public ToolbarEditStudentFailedPanel() {
 		super();
@@ -34,6 +36,7 @@ public class ToolbarEditStudentFailedPanel extends JPanel {
 
 		buttons.getButtonDelete().addActionListener(ListenerHandler.getButtonDeleteFailedSubjectListener(this));
 		buttons.getButtonAdd().addActionListener(ListenerHandler.getAddFailedSubjectListener(this));
+		buttons.getButtonTakingExam().addActionListener(ListenerHandler.getButtonTakingExamListener(this));
 		setVisible(true);
 	}
 
@@ -48,6 +51,10 @@ public class ToolbarEditStudentFailedPanel extends JPanel {
 
 	public void setAddingController(AddFailedSubjectController addingController) {
 		this.addingController = addingController;
+	}
+	
+	public void setExamController(TakingExamController examController) {
+		this.examController = examController;
 	}
 
 	public Tables getFailedSubjectsTable() {
