@@ -14,22 +14,27 @@ public class AddPassedSubjectController {
     }
 
     public double calculateAverageMarkForStudent(String studId) {
-        double averageMark = 0;
         DataModel model = DataModel.getInstance();
         Student student = model.getStudentById(studId);
         ArrayList<Subject> subjectsPassed = student.getPassedSubjects();
         ArrayList<Mark> allMarks = model.getMarks();
+        double averageMark = 0;
         for(Mark mark: allMarks) {
             for(Subject subject: subjectsPassed) {
-                System.out.println(mark.getSubject().getSubjectId());
-                System.out.println(mark.getPassedExam().getIndexNumber());
-                if(mark.getSubject().getSubjectId().equals(subject.getSubjectId()) && mark.getPassedExam().getIndexNumber().equals(student.getIndexNumber())) {
-                    System.out.println("tu smo");
+                if(mark.getSubject().getSubjectId().equals(subject.getSubjectId())
+                        && mark.getPassedExam().getIndexNumber().equals(student.getIndexNumber())) {
                     averageMark += mark.getMark().getValue();
                 }
             }
         }
-        System.out.println(averageMark);
         return averageMark/(double) subjectsPassed.size();
+    }
+
+    public int calculateSumOfESPB(String studId) {
+        Student student = DataModel.getInstance().getStudentById(studId);
+        int count = 0;
+        for(Subject subject: student.getPassedSubjects())
+            count += subject.getEspb();
+        return count;
     }
 }

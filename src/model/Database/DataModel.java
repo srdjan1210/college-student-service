@@ -1,6 +1,7 @@
 package model.Database;
 
 import model.*;
+import model.Database.DTOs.PassedSubject;
 import model.Database.EntityLogic.ProfessorLogic;
 import model.Database.EntityLogic.StudentLogic;
 import model.Database.EntityLogic.SubjectLogic;
@@ -56,6 +57,7 @@ public class DataModel {
         writer.writeEntitiesToFile("resources/ocene.txt", marks);
         writer.writeEntitiesToFile("resources/profesori.txt", professors);
         writer.writeFailedSubjectsToFile("resources/nepolozeni.txt", students);
+        writer.writePassedSubjectsToFile("resources/polozeni.txt", getAllPassedSubjectsList());
     }
 
     // Entity find by unique id methods
@@ -122,6 +124,16 @@ public class DataModel {
         return lines;
     }
 
+    public ArrayList<PassedSubject> getAllPassedSubjectsList() {
+        ArrayList<PassedSubject> passedSubs = new ArrayList<>();
+        for(Student student: students) {
+            for(Subject subject: student.getPassedSubjects()) {
+                passedSubs.add(new PassedSubject(student.getIndexNumber(), subject.getSubjectId()));
+            }
+        }
+        return passedSubs;
+    }
+
     //Failed subjects logic
     public boolean removeFailedSubjectFromStudentSubjects(String subjectId, String studentId) {
         return studLogic.removeFailedSubjectFromStudentSubjects(subjectId, studentId);
@@ -129,6 +141,10 @@ public class DataModel {
 
     public void addFailedSubjectToStudent(String index, Subject subject) {
         studLogic.addFailedSubjectToStudent(index, subject);
+    }
+
+    public void undoMarkFromStudent(String subId, String studId) {
+        studLogic.undoMarkFromStudent(subId, studId);
     }
     //Singleton implementation
     public static DataModel getInstance() {

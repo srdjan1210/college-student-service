@@ -28,6 +28,12 @@ public class PassedSubjectsTableModel extends AbstractTableModel {
         return subject.getDataAt(columnIndex);
     }
 
+    public String getSelectedSubjectId(int rowIndex) {
+        int selectedRow = Screen.getInstance().getStudentTab().getStudentTable().getSelectedRow();
+        Subject subject = DataModel.getInstance().getStudents().get(selectedRow).getPassedSubjects().get(rowIndex);
+        return subject.getSubjectId();
+    }
+
     @Override
     public String getColumnName(int column) {
         return Constants.subjectColumnNames[column];

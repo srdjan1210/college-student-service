@@ -39,7 +39,7 @@ public class ToolbarEditStudent extends EditingScreen {
 
 				} else if (tab.getSelectedIndex() == 1) {
 					DataModel.getInstance()
-							.setEditTableObserver(tab.getToolbarEditStudentFailed().getFailedSubjectsTable());
+							.setEditTableObserver(tab.getToolbarEditStudentPassed().getPassedSubjectsTable());
 				} else if (tab.getSelectedIndex() == 2) {
 					DataModel.getInstance()
 							.setEditTableObserver(tab.getToolbarEditStudentFailed().getFailedSubjectsTable());

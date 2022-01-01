@@ -70,7 +70,6 @@ public class SubjectLogic {
 
     public void removeSubjectFromProfessors(String id) {
         ArrayList<Professor> professors = dataModel.getProfessors();
-        printProfessorsSubjectsSize();
         for(Professor professor: professors) {
             ArrayList<Subject> profSubjects = professor.getSubjects();
             for(Iterator<Subject> its = profSubjects.iterator(); its.hasNext();) {
@@ -81,14 +80,5 @@ public class SubjectLogic {
             }
 
         }
-        printProfessorsSubjectsSize();
-
-    }
-
-    private void printProfessorsSubjectsSize() {
-        for(Professor professor: dataModel.getProfessors()) {
-            System.out.println(professor.getSubjects().size());
-        }
-
     }
 }
