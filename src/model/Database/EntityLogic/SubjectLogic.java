@@ -2,6 +2,7 @@ package model.Database.EntityLogic;
 
 import model.Database.DataModel;
 import model.Professor;
+import model.Student;
 import model.Subject;
 
 import java.util.ArrayList;
@@ -45,7 +46,26 @@ public class SubjectLogic {
     }
 
     public void removeSubjectDependencies(String id) {
+        removeSubjectFromStudents(id);
         removeSubjectFromProfessors(id);
+    }
+
+    public void removeSubjectFromStudents(String id) {
+        ArrayList<Student> students = dataModel.getStudents();
+        for(Student student: students) {
+            ArrayList<Subject> passed = student.getPassedSubjects();
+            ArrayList<Subject> failed = student.getFailedSubjects();
+            for(Iterator<Subject> subIt = passed.iterator(); subIt.hasNext();) {
+                Subject subject = subIt.next();
+                if (subject.getSubjectId().equals(id))
+                    subIt.remove();
+            }
+            for(Iterator<Subject> subIt = failed.iterator(); subIt.hasNext();) {
+                Subject subject = subIt.next();
+                if (subject.getSubjectId().equals(id))
+                    subIt.remove();
+            }
+        }
     }
 
     public void removeSubjectFromProfessors(String id) {
