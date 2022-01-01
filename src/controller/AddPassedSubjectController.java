@@ -27,6 +27,7 @@ public class AddPassedSubjectController {
                 }
             }
         }
+        if(subjectsPassed.size() == 0) return 0;
         return averageMark/(double) subjectsPassed.size();
     }
 

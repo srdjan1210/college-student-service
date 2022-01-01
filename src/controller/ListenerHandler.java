@@ -108,6 +108,7 @@ public class ListenerHandler {
 			            return;
 			        }
 					ToolbarEditStudent editDialog = new ToolbarEditStudent();
+					editDialog.getEditStudentTab().getToolbarEditStudentPassed().setESPBAndAverage();
 					editDialog.setVisible();
 					return;
 				}

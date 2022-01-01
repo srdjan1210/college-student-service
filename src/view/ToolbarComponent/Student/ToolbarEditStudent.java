@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import controller.AddPassedSubjectController;
 import model.Database.DataModel;
 import utils.Constants;
 import view.TabComponent.EditStudentTab;
@@ -29,7 +30,7 @@ public class ToolbarEditStudent extends EditingScreen {
 		setLocationRelativeTo(null);
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
-		tab = new EditStudentTab();
+		tab = new EditStudentTab(new AddPassedSubjectController());
 		tab.addChangeListener(new ChangeListener() {
 
 			@Override
@@ -47,6 +48,7 @@ public class ToolbarEditStudent extends EditingScreen {
 
 			}
 		});
+		tab.getToolbarEditStudentPassed().setESPBAndAverage();
 		add(tab);
 		setVisible(false);
 	}
