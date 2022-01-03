@@ -9,8 +9,7 @@ import view.ToolbarComponent.Student.ToolbarEditStudentFailedPanel;
 
 public class DeleteFailedSubjectController {
 	public static Tables failedSubjectsTable;
-
-	public DeleteFailedSubjectController(ToolbarEditStudentFailedPanel editFailedPanel) {
+	public void deleteFailedSubject(ToolbarEditStudentFailedPanel editFailedPanel) {
 		int resp = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite ukloniti nepolozeni predmet?",
 				"Obrisi nepolozeni predmet?", JOptionPane.YES_NO_OPTION);
 		if (resp == 1)

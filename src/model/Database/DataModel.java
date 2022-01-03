@@ -92,6 +92,10 @@ public class DataModel {
     public void addSubjectToList(Subject newSubject) {
         subjLogic.addSubjectToList(newSubject);
     }
+    
+    public void addMarkToList(Mark mark) {
+    	marks.add(mark);
+    }
 
     // Editing entities methods
     public void setEditedStudent(String oldIndex, Student studentNewInfo) {
@@ -183,6 +187,11 @@ public class DataModel {
     public void undoMarkFromStudent(String subId, String studId) {
         studLogic.undoMarkFromStudent(subId, studId);
     }
+    
+    public void addPassedSubjectToStudent(String index,String subjectId) {
+    	studLogic.addPassedSubjectToStudent(index,subjectId);
+    }
+    
     //Singleton implementation
     public static DataModel getInstance() {
         if (instance == null)

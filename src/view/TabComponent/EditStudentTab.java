@@ -4,7 +4,9 @@ import javax.swing.JTabbedPane;
 
 import controller.AddFailedSubjectController;
 import controller.AddPassedSubjectController;
+import controller.DeleteFailedSubjectController;
 import controller.EditingStudentController;
+import controller.TakingExamController;
 import model.Database.DataModel;
 import model.Student;
 import view.Screen;
@@ -17,12 +19,11 @@ public class EditStudentTab extends JTabbedPane {
 	private ToolbarEditStudentFailedPanel editFailed;
 	private ToolbarEditStudentPassedPanel editPassed;
 
-	public EditStudentTab(AddPassedSubjectController addPassedSubjectController) {
+	public EditStudentTab(AddPassedSubjectController addPassedSubjectController,AddFailedSubjectController addingController,DeleteFailedSubjectController deleteController,TakingExamController examController) {
 		super();
 		editInfo = new ToolbarEditStudentInfoPanel();
-		editFailed = new ToolbarEditStudentFailedPanel();
+		editFailed = new ToolbarEditStudentFailedPanel(addingController,deleteController,examController);
 		editPassed = new ToolbarEditStudentPassedPanel(addPassedSubjectController);
-		editFailed.setAddingController(new AddFailedSubjectController());
 		String studentIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
 		DataModel instance = DataModel.getInstance();
 		Student student = instance.getStudentById(studentIndex);

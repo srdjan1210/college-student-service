@@ -34,15 +34,12 @@ public class ToolbarEnteringMark extends JDialog {
 	private Vector<JComponent> fieldsReferences;
 	private ToolbarEnterExitPanel enterExit;
 	private ToolbarEditStudentFailedPanel failedSubjectsPanel;
-	private TakingExamController examController;
-
+	
 	public TakingExamController getExamController() {
-		return examController;
+		return failedSubjectsPanel.getExamController();
+		
 	}
 
-	public void setExamController(TakingExamController examController) {
-		this.examController = examController;
-	}
 
 	public ToolbarEnteringMark(ToolbarEditStudentFailedPanel failedPanel) {
 		super();
@@ -58,10 +55,6 @@ public class ToolbarEnteringMark extends JDialog {
 		String failedSubjectIndex = failedSubjectsPanel.getSelectedSubjectId();
 		Subject subject = DataModel.getInstance().getSubjectById(failedSubjectIndex);
 		String subjectData[] = TakingExamController.findSubjectDataForFields(subject);
-		//String subjectIndex = Screen.getInstance().getStudentTab().getSelectedSubjectId();
-		//DataModel model = DataModel.getInstance();
-		//Subject subject = model.getSubjectById(subjectIndex);
-		//String subjectData[] = TakingExamController.findSubjectDataForFields(subject);
 		for (int i = 0; i < 4; i++) {
 			String labelName = labelNames[i];
 			if(i < 2) {
@@ -99,6 +92,7 @@ public class ToolbarEnteringMark extends JDialog {
 		}
 		else if(itemType.equals("Date")) {
 			ToolbarWinTxtField field = new ToolbarWinTxtField(labelName);
+			field.setText("");
 			PanelFieldError errPanel = new PanelFieldError(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
 			itemPanel.add(errPanel);
 			fieldsReferences.add(field);

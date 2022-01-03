@@ -60,7 +60,7 @@ public class ListenerHandler {
                     Screen.getInstance().getStudentTab().editNewEntity((EditingScreen) parent);
                 } else if (parent instanceof ToolbarEnteringMark) {
                 	ToolbarEnteringMark enteringMark = (ToolbarEnteringMark) parent;
-                	enteringMark.setExamController(new TakingExamController());
+                	enteringMark.getExamController().studentTakingExam(enteringMark);
                 }
 
             }
@@ -90,7 +90,9 @@ public class ListenerHandler {
                 } else if (parent instanceof ToolbarEnteringMark) {
                 	ToolbarEnteringMark dialog = (ToolbarEnteringMark) parent;
                 	dialog.dispose();
-                	
+                } else if (parent instanceof ToolbarEditSubject) {
+                	ToolbarEditSubject dialog = (ToolbarEditSubject) parent;
+                	dialog.dispose();
                 }
             }
         };
@@ -170,7 +172,7 @@ public class ListenerHandler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                failedPanel.setDeleteController(new DeleteFailedSubjectController(failedPanel));
+                failedPanel.getDeleteController().deleteFailedSubject(failedPanel);
                 return;
             }
 

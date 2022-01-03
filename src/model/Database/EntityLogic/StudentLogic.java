@@ -156,7 +156,30 @@ public class StudentLogic {
         }
         return false;
     }
-
+    
+    public boolean addPassedSubjectToStudent(String index,String subjectId) {
+    	for (Iterator<Student> studentIt = dataModel.getStudents().iterator(); studentIt.hasNext(); ) {
+    		Student student = studentIt.next();
+    		if (student.getIndexNumber().equals(index)) {
+    			student.addPassedSubject(dataModel.getSubjectById(subjectId));
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    public void addMarkToPassedSubject(String index,String subjectId,int markValue) {
+    	Subject subject = dataModel.getSubjectById(subjectId);
+        Student student = dataModel.getStudentById(index);
+        ArrayList<Mark> marks = dataModel.getMarks();
+        for(Iterator<Mark> markIt = marks.iterator(); markIt.hasNext();) {
+            Mark mark = markIt.next();
+            if(mark.getSubject().getSubjectId().equals(subjectId)) {
+                markIt.remove();
+            }
+        }
+    }
+    
     public void undoMarkFromStudent(String subjectId, String studentId) {
         Subject subject = dataModel.getSubjectById(subjectId);
         Student student = dataModel.getStudentById(studentId);

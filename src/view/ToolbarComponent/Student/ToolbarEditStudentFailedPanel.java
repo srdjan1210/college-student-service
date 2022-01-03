@@ -22,8 +22,11 @@ public class ToolbarEditStudentFailedPanel extends JPanel {
 	private AddFailedSubjectController addingController;
 	private TakingExamController examController;
 
-	public ToolbarEditStudentFailedPanel() {
+	public ToolbarEditStudentFailedPanel(AddFailedSubjectController addingController,DeleteFailedSubjectController deleteController,TakingExamController examController) {
 		super();
+		this.addingController = addingController;
+		this.deleteController = deleteController;
+		this.examController = examController;
 		setPreferredSize(new Dimension(200, 800));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -55,6 +58,24 @@ public class ToolbarEditStudentFailedPanel extends JPanel {
 	
 	public void setExamController(TakingExamController examController) {
 		this.examController = examController;
+	}
+	
+	
+
+	public DeleteFailedSubjectController getDeleteController() {
+		return deleteController;
+	}
+
+	public AddFailedSubjectController getAddingController() {
+		return addingController;
+	}
+
+	public TakingExamController getExamController() {
+		return examController;
+	}
+
+	public void setFailedSubjectsTable(Tables failedSubjectsTable) {
+		this.failedSubjectsTable = failedSubjectsTable;
 	}
 
 	public Tables getFailedSubjectsTable() {
