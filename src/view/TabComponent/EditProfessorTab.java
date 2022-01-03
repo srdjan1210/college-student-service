@@ -5,6 +5,7 @@ package view.TabComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.*;
 
+import controller.AddSubjectToProfessorController;
 import controller.EditingProfessorController;
 import model.Database.DataModel;
 import model.Professor;
@@ -22,6 +23,7 @@ public class EditProfessorTab extends JTabbedPane {
 		super();
 		editInfo = new ToolbarEditProfessorInfoPanel();
 		editSubjects = new ToolbarEditProfessorSubjectsPanel();
+		editSubjects.setAddingController(new AddSubjectToProfessorController());
 		String professorId = Screen.getInstance().getStudentTab().getSelectedProfessorId();
 		DataModel instance = DataModel.getInstance();
 		Professor professor = instance.getProfessorById(professorId);
@@ -29,12 +31,18 @@ public class EditProfessorTab extends JTabbedPane {
 		for (int i = 0; i < 10; i++)
 			editInfo.setTextField(i, professorData[i]);
 		add("Informacije", editInfo);
-		add("Predmeti", new ToolbarEditProfessorSubjectsPanel());
+		add("Predmeti",editSubjects);
 	}
 
 	public ToolbarEditProfessorInfoPanel getToolbarEditProfessorInfo() {
 		return editInfo;
 	}
+
+	public ToolbarEditProfessorSubjectsPanel getEditSubjects() {
+		return editSubjects;
+	}
+	
+	
 	
 	
 

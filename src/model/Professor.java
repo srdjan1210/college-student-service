@@ -123,6 +123,15 @@ public class Professor {
     public void addSubject(Subject subject) {
     	this.subjects.add(subject);
     }
+    
+    public void removeSubject(String subjectId) {
+    	for(int i=0;i<subjects.size();i++) {
+    		if(subjects.get(i).getSubjectId().equals(subjectId)) {
+    			subjects.remove(i);
+    			return;
+    		}
+    	}
+    }
     public String getDataAt(int index) {
         switch(index) {
             case 0: return firstName;

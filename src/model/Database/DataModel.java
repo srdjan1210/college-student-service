@@ -60,6 +60,7 @@ public class DataModel {
         writer.writeEntitiesToFile("resources/profesori.txt", professors);
         writer.writeFailedSubjectsToFile("resources/nepolozeni.txt", students);
         writer.writePassedSubjectsToFile("resources/polozeni.txt", getAllPassedSubjectsList());
+        writer.writeProfessorSubjectsToFile("resources/profesor_predmeti.txt",professors);
     }
 
     // Entity find by unique id methods
@@ -118,12 +119,24 @@ public class DataModel {
     public ArrayList<Subject> getNewSubjectsForStudent(String index) {
         return studLogic.getNewSubjectsForStudent(index);
     }
+    
+    public ArrayList<Subject> getNewSubjectsForProfessor(String id){
+    	return profLogic.getNewSubjectsForProfessor(id);
+    }
     public int getLinesOfFailedToWrite() {
         int lines = 0;
         for (Student student : students) {
             lines += student.getFailedSubjects().size();
         }
         return lines;
+    }
+    
+    public int getLinesOfProfessorSubjectsToWrite() {
+    	int lines = 0;
+    	for(Professor professor : professors) {
+    		lines+=professor.getSubjects().size();
+    	}
+    	return lines;
     }
 
     public ArrayList<PassedSubject> getAllPassedSubjectsList() {
@@ -145,6 +158,10 @@ public class DataModel {
 
         return null;
     }
+    
+    public boolean removeSubjectFromProfessorSubjects(String subjectId,String professorId) {
+    	return profLogic.removeSubjectFromProfessorSubjects(subjectId,professorId);
+    }
 
     //Failed subjects logic
     public boolean removeFailedSubjectFromStudentSubjects(String subjectId, String studentId) {
@@ -153,6 +170,10 @@ public class DataModel {
 
     public void addFailedSubjectToStudent(String index, Subject subject) {
         studLogic.addFailedSubjectToStudent(index, subject);
+    }
+    
+    public void addSubjectToProfessor(String id,Subject subject) {
+    	profLogic.addSubjectToProfessor(id,subject);
     }
 
     public void undoMarkFromStudent(String subId, String studId) {

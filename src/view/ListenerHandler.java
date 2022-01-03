@@ -1,10 +1,12 @@
 package view;
 
 import controller.DeleteFailedSubjectController;
+import controller.DeleteSubjectFromProfessorController;
 import controller.TakingExamController;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Professor.ToolbarEditProfessor;
+import view.ToolbarComponent.Professor.ToolbarEditProfessorSubjectsPanel;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
 import view.ToolbarComponent.Student.ToolbarEditStudent;
 import view.ToolbarComponent.Student.ToolbarEditStudentFailedPanel;
@@ -111,6 +113,15 @@ public class ListenerHandler {
             }
         };
     }
+    
+    public static ActionListener getAddSubjectToProfessorListener(ToolbarEditProfessorSubjectsPanel professorSubjectsPanel) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	professorSubjectsPanel.addSubject();
+            }
+        };
+    }
 
     public static ActionListener openEditDialogListener() {
         return new ActionListener() {
@@ -164,6 +175,19 @@ public class ListenerHandler {
             }
 
         };
+    }
+    
+    public static ActionListener getDeleteSubjectFromProfessorListener(ToolbarEditProfessorSubjectsPanel professorSubjectsPanel) {
+    	return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				professorSubjectsPanel.setDeleteController(new DeleteSubjectFromProfessorController(professorSubjectsPanel));
+                return;
+			}
+    		
+    	};
     }
     
     public static ActionListener getButtonTakingExamListener(ToolbarEditStudentFailedPanel failedPanel) {

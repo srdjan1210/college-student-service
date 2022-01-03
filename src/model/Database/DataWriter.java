@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.Database.DTOs.PassedSubject;
+import model.Professor;
 import model.Student;
 import model.Subject;
 
@@ -70,6 +71,32 @@ public class DataWriter {
 				if(i != subjects.size() - 1) myWriter.newLine();
 			}
 		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void writeProfessorSubjectsToFile(String path, ArrayList<Professor> professors) {
+		File file = new File(path);
+		try(BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))){
+			int writeNumber = 0;
+			int linesToWrite = DataModel.getInstance().getLinesOfProfessorSubjectsToWrite();
+			for(Professor professor : professors) {
+				if(!professor.getSubjects().isEmpty()) {
+					for(Subject subject : professor.getSubjects()) {
+						if(writeNumber == 0) {
+							myWriter.write(professor.getIdNumber() + "," + subject.getSubjectId());
+							writeNumber++;
+						} else {
+							myWriter.append(professor.getIdNumber() + "," + subject.getSubjectId());
+							writeNumber++;
+						}
+						  if(writeNumber != linesToWrite)
+							  myWriter.newLine();
+					}
+				}
+			}
+			}
+		catch(IOException e) {
 			e.printStackTrace();
 		}
 	}

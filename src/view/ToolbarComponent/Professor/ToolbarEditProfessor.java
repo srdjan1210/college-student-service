@@ -9,7 +9,10 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import model.Database.DataModel;
 import utils.Constants;
 import view.TabComponent.EditProfessorTab;
 import view.ToolbarComponent.EditingScreen;
@@ -28,6 +31,19 @@ public class ToolbarEditProfessor extends EditingScreen {
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
 		tab = new EditProfessorTab();
+		tab.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				if(tab.getSelectedIndex() == 0) {
+					
+				} else if (tab.getSelectedIndex() == 1) {
+					DataModel.getInstance().setEditTableObserver(tab.getEditSubjects().getProfessorSubjectsTable());
+				}
+				
+			}
+		});
 		add(tab);
 		setVisible(false);
 	}

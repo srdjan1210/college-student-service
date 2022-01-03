@@ -48,6 +48,38 @@ public class ProfessorLogic {
             }
         }
     }
+    
+    public void addSubjectToProfessor(String id,Subject subject) {
+    	ArrayList<Professor> professors = dataModel.getProfessors();
+    	for(Professor professor : professors) {
+    		if(professor.getIdNumber().equals(id)) {
+    			professor.addSubject(subject);
+    			dataModel.notifyEditTable();
+    		}
+    	}
+    }
+    
+    public ArrayList<Subject> getNewSubjectsForProfessor(String id){
+    	Professor professor = getProfessorById(id);
+    	ArrayList<Subject> subjects = dataModel.getSubjects();
+    	ArrayList<Subject> professorSubjects = professor.getSubjects();
+    	ArrayList<Subject> subjectsForAdding = new ArrayList<>();
+    	
+    	for(Subject subject : subjects) {
+    		if(!isSubjectFoundInList(subject.getSubjectId(), professorSubjects))
+    			subjectsForAdding.add(subject);
+    	}
+    	System.out.println(subjectsForAdding);
+    	return subjectsForAdding;
+    }
+    
+    public boolean isSubjectFoundInList(String subjectId, ArrayList<Subject> subjects) {
+        for (Subject subject : subjects) {
+            if (subject.getSubjectId().equals(subjectId))
+                return true;
+        }
+        return false;
+    }
 
     public boolean removeProfessorById(String id) {
         // Treba dodati uklanjanje svih zavisnosti entiteta u drugim listama
@@ -88,5 +120,17 @@ public class ProfessorLogic {
             }
         }
         return null;
+    }
+    
+    public boolean removeSubjectFromProfessorSubjects(String subjectId,String professorId) {
+    	for(Iterator<Professor> professorIt = dataModel.getProfessors().iterator();professorIt.hasNext();) {
+    		Professor professor = professorIt.next();
+    		if(professor.getIdNumber().equals(professorId)) {
+    			professor.removeSubject(subjectId);
+    			dataModel.notifyEditTable();
+    			return true;
+    		}
+    	}
+    	return false;
     }
 }

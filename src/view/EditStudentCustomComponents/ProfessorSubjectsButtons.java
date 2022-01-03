@@ -29,4 +29,12 @@ public class ProfessorSubjectsButtons extends JPanel{
         add(Box.createHorizontalStrut(20));
         add(btnDeleteSubject);
     }
+	public JButton getBtnAddSubject() {
+		return btnAddSubject;
+	}
+	public JButton getBtnDeleteSubject() {
+		return btnDeleteSubject;
+	}
+    
+    
 }
