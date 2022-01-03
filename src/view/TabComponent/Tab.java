@@ -2,14 +2,17 @@ package view.TabComponent;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.table.TableRowSorter;
 
 import interfaces.IAddingController;
 import interfaces.IDeleteController;
 import interfaces.IEditingController;
 import model.Database.DataModel;
+import model.Student;
 import model.TableModel.ProfessorTableModel;
 import model.TableModel.StudentTableModel;
 import model.TableModel.SubjectTableModel;
+import view.RowFilters.StudentRowFilter;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
@@ -33,6 +36,8 @@ public class Tab extends JTabbedPane {
 		studentTable = new Tables(new StudentTableModel());
 		professorTable = new Tables(new ProfessorTableModel());
 		subjectTable = new Tables(new SubjectTableModel());
+
+
 		DataModel.getInstance().setTableObserver(studentTable);
 
 		add("Student", new JScrollPane(studentTable));
@@ -42,19 +47,17 @@ public class Tab extends JTabbedPane {
 
 	public String getSelectedStudentIndex() {
 		StudentTableModel model = (StudentTableModel) studentTable.getModel();
-		return (String) model.getValueAt(studentTable.getSelectedRow(), 0);
+		return model.selectedStudentIndex();
 	}
 
 	public String getSelectedProfessorId() {
 		ProfessorTableModel model = (ProfessorTableModel) professorTable.getModel();
-		String emailAddress = (String) model.getValueAt(professorTable.getSelectedRow(), 3);
-		DataModel instance = DataModel.getInstance();
-		return instance.getProfessorIdFromEmail(emailAddress);
+		return model.getSelectedId();
 	}
 
 	public String getSelectedSubjectId() {
 		SubjectTableModel model = (SubjectTableModel) subjectTable.getModel();
-		return (String) model.getValueAt(subjectTable.getSelectedRow(), 0);
+		return model.getSelectedSubjectId();
 	}
 
 	public void addNewEntity(AddingScreen dialog) {
