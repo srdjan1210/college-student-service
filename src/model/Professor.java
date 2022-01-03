@@ -119,7 +119,10 @@ public class Professor {
     public void setSubjects(ArrayList<Subject> subjects) {
         this.subjects = subjects;
     }
-
+    
+    public void addSubject(Subject subject) {
+    	this.subjects.add(subject);
+    }
     public String getDataAt(int index) {
         switch(index) {
             case 0: return firstName;

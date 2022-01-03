@@ -42,6 +42,8 @@ public class DataModel {
 
             reader.readStudentSubjectsFromFile("resources/nepolozeni.txt", "nepolozeni");
             reader.readStudentSubjectsFromFile("resources/polozeni.txt", "polozeni");
+            
+            profLogic.addSubjectsToProfessor(subjects);
         } catch (Exception err) {
             err.printStackTrace();
         }

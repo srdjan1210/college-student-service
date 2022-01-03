@@ -20,34 +20,15 @@ import view.ToolbarComponent.Student.ToolbarEnteringMark;
 
 public class TakingExamController{
 	
-	public TakingExamController(ToolbarEnteringMark enteringMark) {
-		studentTakingExam(enteringMark);
-	}
 	
 	public void studentTakingExam(ToolbarEnteringMark dialog) {
 		try {
-			
 			validate(dialog);
 		}
 		catch (Exception e) {
 			JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
 		}
 		
-		
-		/*
-		try {
-			validate(dialog);
-			String studentIndexBeforeEdit = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
-			Student student = getEditedStudent(dialog);
-			DataModel model = DataModel.getInstance();
-			model.setEditedStudent(studentIndexBeforeEdit, student);
-			JOptionPane.showMessageDialog(dialog, "Informacije o studentu uspesno izmenjene!");
-			dialog.dispose();
-		}
-     catch (Exception e) {
-        JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
-    }
-		 */
 	}
 	
 	public static String[] findSubjectDataForFields(Subject subject) {
@@ -81,9 +62,12 @@ public class TakingExamController{
 
 	public void validate(ToolbarEnteringMark dialog) throws InvalidFieldException {
 		// TODO Auto-generated method stub
+		System.out.println("MOLIMMMMMMM");
 		 EntityValidator validator = new EntityValidator();
-	     Vector<JComponent> fields = dialog.getFieldsReferences();
-	    	 JTextField field = (JTextField) fields.get(3);
+	    	 JTextField field = dialog.getTextField(3);
+	    	 System.out.println(field.getText());
+	    	 validator.setEmptyMessage(field);
+	    	 /*
 	    	 if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !validator.isValidDate(field)) {
                  validator.throwInvalidValidation(field, "<html>Format datuma treba da bude <br>GGGG-MM-DD</html>");
 	    	 }
@@ -91,7 +75,7 @@ public class TakingExamController{
         	 if (field.getText().trim().equals("")) {
                  validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
         	 }
-        	 validator.setEmptyMessage(field);
+        	 validator.setEmptyMessage(field);*/
 	     }
 		
 	

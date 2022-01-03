@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import controller.AddProfessorSubjectsController;
 import utils.Constants;
 import view.TabComponent.EditProfessorTab;
 import view.ToolbarComponent.EditingScreen;
@@ -27,7 +28,7 @@ public class ToolbarEditProfessor extends EditingScreen {
 		setLocationRelativeTo(null);
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
-		tab = new EditProfessorTab();
+		tab = new EditProfessorTab(new AddProfessorSubjectsController());
 		add(tab);
 		setVisible(false);
 	}

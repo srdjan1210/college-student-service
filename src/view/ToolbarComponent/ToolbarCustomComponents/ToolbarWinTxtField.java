@@ -26,8 +26,7 @@ public class ToolbarWinTxtField extends JTextField implements DocumentListener {
 	}
 	
 	public void setEdit(Boolean trueOrFalse) {
-		JTextField field = (JTextField)this;
-		field.setEditable(trueOrFalse);
+		this.setEditable(trueOrFalse);
 	}
 
 	@Override
@@ -64,7 +63,6 @@ public class ToolbarWinTxtField extends JTextField implements DocumentListener {
 			EditingScreen editingScreen = (EditingScreen) window;
 			IEditingController controller = Screen.getInstance().getStudentTab().getEditingController();
 			try {
-				System.out.println(":(");
 				controller.validate(editingScreen);
 				editingScreen.getEnterExit().getButtonConfirm().setEnabled(true);
 			} catch(InvalidFieldException exception) {
@@ -76,13 +74,11 @@ public class ToolbarWinTxtField extends JTextField implements DocumentListener {
 			ToolbarEnteringMark editingScreen = (ToolbarEnteringMark) window;
 			TakingExamController controller = editingScreen.getExamController();
 			try {
-				System.out.println(":)");
 				controller.validate(editingScreen);
-				editingScreen.getEnterExit().getButtonConfirm().setVisible(true);
-				
+				editingScreen.getEnterExit().getButtonConfirm().setEnabled(true);
 			}
 			catch(InvalidFieldException excpetion) {
-				editingScreen.getEnterExit().getButtonConfirm().setVisible(false);
+				editingScreen.getEnterExit().getButtonConfirm().setEnabled(false);
 			}
 		}
 	}

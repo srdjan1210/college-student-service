@@ -64,6 +64,7 @@ public class DataReader {
 				student.addPassedSubject(subject);
 		}
 	}
+	
 
 
 	private Professor loadProfessorObject(String[] data) {

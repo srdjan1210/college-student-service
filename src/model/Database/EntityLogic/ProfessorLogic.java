@@ -89,4 +89,12 @@ public class ProfessorLogic {
         }
         return null;
     }
+    
+    public void addSubjectsToProfessor(ArrayList<Subject> subjects) {
+    	for (Subject subject : subjects) {
+    		Professor professor = subject.getProfessor();
+    		System.out.println(subject.getSubjectName());
+    		professor.addSubject(subject);
+    	}
+    }
 }
