@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import model.Database.DTOs.PassedSubject;
 import model.Student;
 import model.Subject;
 
@@ -53,6 +55,21 @@ public class DataWriter {
 			}
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	public void writePassedSubjectsToFile(String path, ArrayList<PassedSubject> subjects) {
+		File file = new File(path);
+		try(BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
+			for(int i = 0; i < subjects.size(); i++) {
+				PassedSubject pasSub = subjects.get(i);
+				if(i == 0) myWriter.write(pasSub.toString());
+				if(i != 0) myWriter.append(pasSub.toString());
+				if(i != subjects.size() - 1) myWriter.newLine();
+			}
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}

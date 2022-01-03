@@ -17,13 +17,12 @@ public class EditStudentTab extends JTabbedPane {
 	private ToolbarEditStudentFailedPanel editFailed;
 	private ToolbarEditStudentPassedPanel editPassed;
 
-	public EditStudentTab() {
+	public EditStudentTab(AddPassedSubjectController addPassedSubjectController) {
 		super();
 		editInfo = new ToolbarEditStudentInfoPanel();
 		editFailed = new ToolbarEditStudentFailedPanel();
-		editPassed = new ToolbarEditStudentPassedPanel();
+		editPassed = new ToolbarEditStudentPassedPanel(addPassedSubjectController);
 		editFailed.setAddingController(new AddFailedSubjectController());
-		editPassed.setAddPassedSubjectController(new AddPassedSubjectController());
 		String studentIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
 		DataModel instance = DataModel.getInstance();
 		Student student = instance.getStudentById(studentIndex);

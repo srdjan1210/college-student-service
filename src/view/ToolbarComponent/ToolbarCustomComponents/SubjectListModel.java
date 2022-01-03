@@ -10,7 +10,6 @@ public class SubjectListModel implements ListModel {
     private ArrayList<Subject> subjects;
     public SubjectListModel(ArrayList<Subject> subjects) {
         this.subjects = subjects;
-
     }
 
     public Subject getSelectedSubject(int index) {
