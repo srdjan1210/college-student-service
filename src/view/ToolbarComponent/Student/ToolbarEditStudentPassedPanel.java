@@ -1,13 +1,11 @@
 package view.ToolbarComponent.Student;
 
 import controller.AddPassedSubjectController;
-import model.Student;
 import model.TableModel.PassedSubjectsTableModel;
-import view.EditStudentCustomComponents.PassedExamInfoPanel;
-import view.EditStudentCustomComponents.PassedSubjectsButtons;
+import view.EditCustomComponents.PassedExamInfoPanel;
+import view.EditCustomComponents.PassedSubjectsButtons;
 import view.Screen;
 import view.TablesComponent.Tables;
-import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 
 import javax.swing.*;
 import java.awt.*;

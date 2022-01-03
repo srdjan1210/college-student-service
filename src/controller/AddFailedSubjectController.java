@@ -3,7 +3,7 @@ package controller;
 import model.Database.DataModel;
 import model.Subject;
 import view.Screen;
-import view.ToolbarComponent.ToolbarCustomComponents.SubjectListModel;
+import view.JListModels.SubjectListModel;
 
 import javax.swing.*;
 import java.awt.*;

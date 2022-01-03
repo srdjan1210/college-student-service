@@ -1,4 +1,4 @@
-package view.EditStudentCustomComponents;
+package view.EditCustomComponents;
 
 import java.awt.Dimension;
 

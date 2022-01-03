@@ -11,7 +11,7 @@ import controller.AddSubjectToProfessorController;
 import controller.DeleteSubjectFromProfessorController;
 import model.TableModel.ProfessorSubjectsTableModel;
 import view.ListenerHandler;
-import view.EditStudentCustomComponents.ProfessorSubjectsButtons;
+import view.EditCustomComponents.ProfessorSubjectsButtons;
 import view.TablesComponent.Tables;
 
 public class ToolbarEditProfessorSubjectsPanel extends JPanel {

@@ -1,4 +1,4 @@
-package view.EditStudentCustomComponents;
+package view.EditCustomComponents;
 
 import model.Database.DataModel;
 import model.TableModel.PassedSubjectsTableModel;

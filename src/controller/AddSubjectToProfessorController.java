@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import model.Subject;
 import model.Database.DataModel;
 import view.Screen;
-import view.ToolbarComponent.ToolbarCustomComponents.SubjectListModel;
+import view.JListModels.SubjectListModel;
 
 public class AddSubjectToProfessorController {
 	

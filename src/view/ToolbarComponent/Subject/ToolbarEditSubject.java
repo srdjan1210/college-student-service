@@ -4,12 +4,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.BoxLayout;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import controller.EditingStudentController;
 import controller.EditingSubjectController;
@@ -17,6 +12,8 @@ import model.Student;
 import model.Subject;
 import model.Database.DataModel;
 import utils.Constants;
+import view.EditCustomComponents.AddDeleteButtons;
+import view.EditCustomComponents.ErrorAddDelPanel;
 import view.ListenerHandler;
 import view.Screen;
 import view.ToolbarComponent.EditingScreen;
@@ -34,6 +31,7 @@ public class ToolbarEditSubject extends EditingScreen {
 	private ArrayList<ToolbarWinLabel> labelReferences;
 	private Vector<JComponent> fieldsReferences;
 	private ToolbarEnterExitPanel enterExit;
+	private ErrorAddDelPanel addRemovePanel;
 
 	public ToolbarEditSubject() {
 		super();
@@ -65,6 +63,7 @@ public class ToolbarEditSubject extends EditingScreen {
 		}
 		enterExit = new ToolbarEnterExitPanel();
 		add(enterExit);
+		switchAddDeleteButtons();
 		setVisible(true);
 	}
 	
@@ -92,6 +91,7 @@ public class ToolbarEditSubject extends EditingScreen {
 		JPanel panel = new JPanel();
 		ToolbarWinLabel lbl = new ToolbarWinLabel(labelName);
 		labelReferences.add(lbl);
+		if(itemType.equals("Professor")) panel.add(Box.createHorizontalStrut(75));
 		panel.add(lbl);
 		
 		if(itemType.equals("Text")) {
@@ -116,8 +116,9 @@ public class ToolbarEditSubject extends EditingScreen {
 		}
 		else if(itemType.equals("Professor")) {
 			ToolbarWinTxtField field = new ToolbarWinTxtField(labelName);
-			PanelFieldError errPanel = new PanelFieldError(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
-			panel.add(errPanel);
+			field.setText(subjectData);
+			addRemovePanel = new ErrorAddDelPanel(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
+			panel.add(addRemovePanel);
 			fieldsReferences.add(field);
 		}
 		return panel;
@@ -125,6 +126,15 @@ public class ToolbarEditSubject extends EditingScreen {
 	
 	public void setVisible() {
 		setVisible();
+	}
+
+	public void switchAddDeleteButtons() {
+		JTextField profTxt = (JTextField) fieldsReferences.get(3);
+		if(profTxt.getText().trim().equals("")) {
+			addRemovePanel.setEmptyFieldCase();
+		} else {
+			addRemovePanel.setFullFieldCase();
+		}
 	}
 	
 	public void setTextField(int index,String text) {
