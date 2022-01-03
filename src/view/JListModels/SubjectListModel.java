@@ -1,12 +1,13 @@
-package view.ToolbarComponent.ToolbarCustomComponents;
+package view.JListModels;
 
 import model.Subject;
 
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
+import java.util.AbstractList;
 import java.util.ArrayList;
 
-public class SubjectListModel implements ListModel {
+public class SubjectListModel extends AbstractListModel<String> {
     private ArrayList<Subject> subjects;
     public SubjectListModel(ArrayList<Subject> subjects) {
         this.subjects = subjects;
@@ -22,17 +23,8 @@ public class SubjectListModel implements ListModel {
     }
 
     @Override
-    public Object getElementAt(int index) {
+    public String getElementAt(int index) {
         return subjects.get(index).getSubjectName();
     }
 
-    @Override
-    public void addListDataListener(ListDataListener l) {
-
-    }
-
-    @Override
-    public void removeListDataListener(ListDataListener l) {
-
-    }
 }

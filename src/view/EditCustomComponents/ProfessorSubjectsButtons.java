@@ -1,15 +1,9 @@
-package view.EditStudentCustomComponents;
+package view.EditCustomComponents;
 
-import model.Database.DataModel;
-import model.TableModel.PassedSubjectsTableModel;
 import view.Screen;
-import view.TablesComponent.Tables;
-import view.ToolbarComponent.Student.ToolbarEditStudentPassedPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ProfessorSubjectsButtons extends JPanel{
     private JButton btnAddSubject;

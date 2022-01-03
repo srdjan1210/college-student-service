@@ -43,8 +43,7 @@ public class EditingSubjectController  implements IEditingController {
 		data[0] = subject.getSubjectId();
 		data[1] = subject.getSubjectName();
 		data[2] = subject.getSemester().getValue();
-	//	data[3] = subject.getProfessor().getFirstName() + " " + subject.getProfessor().getLastName();	//TODO : DODATI PROFESORA KADA BUDE GOTOVO DODAVANJE PROFESORA PREDMETU
-		data[3] = "";
+		if(subject.getProfessor() != null) data[3] = subject.getProfessor().getIdNumber();
 		data[4] = Integer.toString(subject.getEspb());
 		data[5] = Integer.toString(subject.getYearOfStudy());
 		return data;

@@ -1,7 +1,7 @@
 package view.ToolbarComponent.Professor;
 
 import model.TableModel.ProfessorSubjectsTableModel;
-import view.EditStudentCustomComponents.ProfessorSubjectsButtons;
+import view.EditCustomComponents.ProfessorSubjectsButtons;
 import view.TablesComponent.Tables;
 
 import javax.swing.*;

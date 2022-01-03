@@ -10,8 +10,8 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.ListenerHandler;
 import utils.Constants;
+import view.ListenerHandler;
 import view.ToolbarComponent.ToolbarCustomComponents.ErrorMessageLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.PanelFieldError;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;

@@ -12,7 +12,7 @@ import controller.DeleteFailedSubjectController;
 import view.ListenerHandler;
 import model.Subject;
 import model.TableModel.FailedSubjectsTableModel;
-import view.EditStudentCustomComponents.FailedSubjectsButtons;
+import view.EditCustomComponents.FailedSubjectsButtons;
 import view.TablesComponent.Tables;
 
 public class ToolbarEditStudentFailedPanel extends JPanel {

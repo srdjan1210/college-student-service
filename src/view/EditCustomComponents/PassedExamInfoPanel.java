@@ -1,4 +1,4 @@
-package view.EditStudentCustomComponents;
+package view.EditCustomComponents;
 
 import javax.swing.*;
 import java.awt.*;
