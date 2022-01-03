@@ -18,13 +18,13 @@ import view.Screen;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Student.ToolbarEnteringMark;
 
-public class TakingExamController implements IEditingController{
+public class TakingExamController{
 	
 	public TakingExamController(ToolbarEnteringMark enteringMark) {
 		studentTakingExam(enteringMark);
 	}
 	
-	public void studentTakingExam(EditingScreen dialog) {
+	public void studentTakingExam(ToolbarEnteringMark dialog) {
 		try {
 			
 			validate(dialog);
@@ -74,31 +74,26 @@ public class TakingExamController implements IEditingController{
 	}
 	 */
 
-	@Override
 	public void editEntity(EditingScreen dialog) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void validate(EditingScreen dialog) throws InvalidFieldException {
+	public void validate(ToolbarEnteringMark dialog) throws InvalidFieldException {
 		// TODO Auto-generated method stub
 		 EntityValidator validator = new EntityValidator();
 	     Vector<JComponent> fields = dialog.getFieldsReferences();
-	     for(int i=0;i<fields.size();i++) {
-	    	 System.out.println("BABAAAAAAA");
-	    	 JTextField field = (JTextField) fields.get(i);
+	    	 JTextField field = (JTextField) fields.get(3);
 	    	 if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !validator.isValidDate(field)) {
-	    		 System.out.println("uSAOO DATUMM");
                  validator.throwInvalidValidation(field, "<html>Format datuma treba da bude <br>GGGG-MM-DD</html>");
 	    	 }
         	 
-        	 if (field.getText().trim().equals(""))
+        	 if (field.getText().trim().equals("")) {
                  validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
+        	 }
         	 validator.setEmptyMessage(field);
 	     }
 		
-	}
 	
     /*public void addNewFailedSubject() {
         String index = Screen.getInstance().getStudentTab().getSelectedStudentIndex();

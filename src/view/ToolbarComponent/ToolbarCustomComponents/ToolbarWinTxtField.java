@@ -5,12 +5,15 @@ import interfaces.IEditingController;
 import view.Screen;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
+import view.ToolbarComponent.Student.ToolbarEnteringMark;
 
 import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import controller.TakingExamController;
 
 public class ToolbarWinTxtField extends JTextField implements DocumentListener {
 	
@@ -61,10 +64,25 @@ public class ToolbarWinTxtField extends JTextField implements DocumentListener {
 			EditingScreen editingScreen = (EditingScreen) window;
 			IEditingController controller = Screen.getInstance().getStudentTab().getEditingController();
 			try {
+				System.out.println(":(");
 				controller.validate(editingScreen);
 				editingScreen.getEnterExit().getButtonConfirm().setEnabled(true);
 			} catch(InvalidFieldException exception) {
 				editingScreen.getEnterExit().getButtonConfirm().setEnabled(false);
+			}
+		}
+		
+		else if(window instanceof ToolbarEnteringMark) {
+			ToolbarEnteringMark editingScreen = (ToolbarEnteringMark) window;
+			TakingExamController controller = editingScreen.getExamController();
+			try {
+				System.out.println(":)");
+				controller.validate(editingScreen);
+				editingScreen.getEnterExit().getButtonConfirm().setVisible(true);
+				
+			}
+			catch(InvalidFieldException excpetion) {
+				editingScreen.getEnterExit().getButtonConfirm().setVisible(false);
 			}
 		}
 	}

@@ -26,7 +26,7 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinCombo;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
-public class ToolbarEnteringMark extends EditingScreen {
+public class ToolbarEnteringMark extends JDialog {
 
 	private String[] labelNames = Constants.takingExamLabelNames;
 	private String[] markValue = Constants.marksLabels;
@@ -107,19 +107,16 @@ public class ToolbarEnteringMark extends EditingScreen {
 		return itemPanel;
 	}
 
-	@Override
 	public JTextField getTextField(int index) {
 		// TODO Auto-generated method stub
 		return (JTextField) fieldsReferences.get(index);
 	}
 
-	@Override
 	public JComboBox getComboBox(int index) {
 		// TODO Auto-generated method stub
 		return (JComboBox) fieldsReferences.get(index);
 	}
 
-	@Override
 	public Vector<JComponent> getFieldsReferences() {
 		// TODO Auto-generated method stub
 		return fieldsReferences;
@@ -129,7 +126,6 @@ public class ToolbarEnteringMark extends EditingScreen {
 		return labelReferences;
 	}
 
-	@Override
 	public ToolbarEnterExitPanel getEnterExit() {
 		// TODO Auto-generated method stub
 		return enterExit;

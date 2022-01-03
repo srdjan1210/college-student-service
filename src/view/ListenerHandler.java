@@ -55,7 +55,7 @@ public class ListenerHandler {
                 if (parent instanceof AddingScreen) {
                     Screen.getInstance().getStudentTab().addNewEntity((AddingScreen) parent);
                 } else if (parent instanceof ToolbarEditStudent || parent instanceof ToolbarEditProfessor || parent instanceof ToolbarEditSubject) {
-                    Screen.getInstance().getStudentTab().editNewEntity((ToolbarEditStudent) parent);
+                    Screen.getInstance().getStudentTab().editNewEntity((EditingScreen) parent);
                 } else if (parent instanceof ToolbarEnteringMark) {
                 	ToolbarEnteringMark enteringMark = (ToolbarEnteringMark) parent;
                 	enteringMark.setExamController(new TakingExamController(enteringMark));
