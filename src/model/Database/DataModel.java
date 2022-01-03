@@ -183,6 +183,10 @@ public class DataModel {
         model.fireTableDataChanged();
     }
 
+    //Search related logic
+    public Student findStudentThatContains(String word) {
+        return studLogic.findStudentThatContains(word);
+    }
     // Getters and setters
     public ArrayList<Student> getStudents() {
         return students;

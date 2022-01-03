@@ -2,6 +2,8 @@ package model.TableModel;
 
 import model.Database.DataModel;
 import utils.Constants;
+import view.Screen;
+import view.TablesComponent.Tables;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -24,5 +26,10 @@ public class SubjectTableModel extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         return Constants.subjectColumnNames[column];
+    }
+
+    public String getSelectedSubjectId() {
+        Tables table = Screen.getInstance().getStudentTab().getSubjectTable();
+        return (String)table.getValueAt(table.getSelectedRow(), 0);
     }
 }
