@@ -1,7 +1,6 @@
 package view.ToolbarComponent.Professor;
 
 import java.awt.Dimension;
-import java.net.http.WebSocket.Listener;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -18,7 +17,7 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
-public class ToolbarEditProfessorInfo extends JPanel {
+public class ToolbarEditProfessorInfoPanel extends JPanel {
 	String[] labelNames = Constants.professorLabelNames;
 	String[] finansingWay = Constants.finansingWayLabels;
 	String[] yearOfStudy = Constants.yearsLabels;
@@ -27,7 +26,7 @@ public class ToolbarEditProfessorInfo extends JPanel {
 	ArrayList<ToolbarWinLabel> labelReferences;
 	ToolbarEnterExitPanel enterExit;
 
-	public ToolbarEditProfessorInfo() {
+	public ToolbarEditProfessorInfoPanel() {
 		super();
 		setPreferredSize(new Dimension(200, 800));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

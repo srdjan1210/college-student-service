@@ -42,6 +42,7 @@ public class DataModel {
 
             reader.readStudentSubjectsFromFile("resources/nepolozeni.txt", "nepolozeni");
             reader.readStudentSubjectsFromFile("resources/polozeni.txt", "polozeni");
+            reader.readProfessorSubjectsFromFile("resources/profesor_predmeti.txt");
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -132,6 +133,16 @@ public class DataModel {
             }
         }
         return passedSubs;
+    }
+
+    public Mark getMarkByStudentAndSubject(String studId, String subId) {
+        for(Mark mark: marks) {
+            if(mark.getSubject().getSubjectId().equals(subId) && mark.getPassedExam().getIndexNumber().equals(studId)) {
+                return mark;
+            }
+        }
+
+        return null;
     }
 
     //Failed subjects logic

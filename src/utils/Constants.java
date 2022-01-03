@@ -57,6 +57,7 @@ public class Constants {
             "Godine iskustva*"};
     public static String[] subjectLabelNames = {"Id predmeta*", "Naziv predmeta*", "Semestar*", "Profesor*", "Espb*",
             "Godina studija*"};
+    public static String[] passedExamsColumnNames = {"Id predmeta", "Naziv predmeta", "ESPB", "Ocena", "Datum"};
     public static String[] semesterValues = {"ZIMSKI", "LETNJI"};
     public static String[] studentColumnNames = {"Indeks", "Ime", "Prezime", "Godina studija", "Status", "Prosek"};
     public static String[] professorColumnNames = {"Ime", "Prezime", "Titula", "E-mail adresa"};

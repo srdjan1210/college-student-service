@@ -1,5 +1,6 @@
 package model.Database;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -63,6 +64,17 @@ public class DataReader {
 			else
 				student.addPassedSubject(subject);
 		}
+	}
+
+	public void readProfessorSubjectsFromFile(String fileName) throws FileNotFoundException {
+		Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
+		while(scanner.hasNextLine()) {
+			String rowData = scanner.nextLine();
+			String[] dataSplit = rowData.split(",");
+			Professor professor = dm.getProfessorById(dataSplit[0]);
+			professor.getSubjects().add(dm.getSubjectById(dataSplit[1]));
+		}
+		scanner.close();
 	}
 
 

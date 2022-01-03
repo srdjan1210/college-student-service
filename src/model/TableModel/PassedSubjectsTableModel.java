@@ -1,6 +1,7 @@
 package model.TableModel;
 
 import model.Database.DataModel;
+import model.Mark;
 import model.Subject;
 import utils.Constants;
 import view.Screen;
@@ -18,14 +19,16 @@ public class PassedSubjectsTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return Constants.subjectColumnNames.length;
+        return Constants.passedExamsColumnNames.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         int selectedRow = Screen.getInstance().getStudentTab().getStudentTable().getSelectedRow();
+        String studIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
         Subject subject = DataModel.getInstance().getStudents().get(selectedRow).getPassedSubjects().get(rowIndex);
-        return subject.getDataAt(columnIndex);
+        Mark mark = DataModel.getInstance().getMarkByStudentAndSubject(studIndex, subject.getSubjectId());
+        return mark.getDataAt(columnIndex);
     }
 
     public String getSelectedSubjectId(int rowIndex) {
@@ -36,6 +39,6 @@ public class PassedSubjectsTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-        return Constants.subjectColumnNames[column];
+        return Constants.passedExamsColumnNames[column];
     }
 }
