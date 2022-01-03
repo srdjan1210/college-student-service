@@ -1,19 +1,19 @@
 package controller;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.Vector;
 
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import exceptions.InvalidFieldException;
-import interfaces.IAddingController;
 import interfaces.IEditingController;
-import model.Address;
-import model.Student;
+import model.Professor;
 import model.Subject;
 import model.Database.DataModel;
-import utils.Constants;
+import utils.Constants.Semester;
 import utils.EnumConversion;
 import view.Screen;
 import view.ToolbarComponent.EditingScreen;
@@ -25,12 +25,11 @@ public class EditingSubjectController  implements IEditingController {
 		// TODO Auto-generated method stub
 		try {
 			validate(dialog);
-			String studentIndexBeforeEdit = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
 			String subjectIndexBeforeEdit = Screen.getInstance().getStudentTab().getSelectedSubjectId();
-			//Subject subject = getEditedSubject(dialog);
+			Subject subject = getEditedSubject(dialog);
 			DataModel model = DataModel.getInstance();
-			//model.setEditedStudent(studentIndexBeforeEdit, student);
-			JOptionPane.showMessageDialog(dialog, "Informacije o studentu uspesno izmenjene!");
+			model.setEditedSubject(subjectIndexBeforeEdit, subject);
+			JOptionPane.showMessageDialog(dialog, "Informacije o predmetu uspesno izmenjene!");
 			dialog.dispose();
 		}
      catch (Exception e) {
@@ -49,31 +48,34 @@ public class EditingSubjectController  implements IEditingController {
 		return data;
 	}
 	
-	/*public Subject getEditedSubject(EditingScreen dialog) {
-			String subjectId = dialog.getTextField(0).getText();
-	}*/
-	
-	/*
-	 	public Student getEditedStudent(EditingScreen dialog) {
-		String firstName = dialog.getTextField(0).getText();
-		String lastName = dialog.getTextField(1).getText();
-		LocalDate birthDate = LocalDate.parse(dialog.getTextField(2).getText());
-		Address address = createAddressFromAddressString(dialog.getTextField(3).getText());
-		String phoneNum = dialog.getTextField(4).getText();
-		String email = dialog.getTextField(5).getText();
-		String indexNum = dialog.getTextField(6).getText();
-		int startingYear = Integer.parseInt(dialog.getTextField(7).getText());
-		int currentYear = Integer.parseInt(dialog.getComboBox(8).getSelectedItem().toString());
-		Constants.Status financing = EnumConversion.stringToStatus(dialog.getComboBox(9).getSelectedItem().toString());
-		return new Student(firstName, lastName, birthDate, address, phoneNum, email, indexNum, startingYear,
-				currentYear, financing, 0);
+	public Subject getEditedSubject(EditingScreen dialog) {
+		String subjectId = dialog.getTextField(0).getText();
+		String subjectName = dialog.getTextField(1).getText();
+		Semester semester = EnumConversion.stringToSemester(dialog.getComboBox(2).getSelectedItem().toString());
+		int yearOfStudy = Integer.parseInt(dialog.getComboBox(5).getSelectedItem().toString());
+		Professor professor = DataModel.getInstance().getProfessorById(dialog.getTextField(3).getText());
+		int espb = Integer.parseInt(dialog.getTextField(4).getText());
+		
+		return new Subject(subjectId,subjectName,semester,yearOfStudy,professor,espb);
 	}
-	 */
+	
 
 	@Override
 	public void validate(EditingScreen dialog) throws InvalidFieldException {
 		// TODO Auto-generated method stub
+		 EntityValidator validator = new EntityValidator();
+	     Vector<JComponent> fields = dialog.getFieldsReferences();
+	     for(int i=0;i<fields.size();i++) {
+	    	 if(i==2 || i==3 || i==5)
+	    		 continue;
+	    	 JTextField field = (JTextField) fields.get(i);
+	    	 if (field.getText().trim().equals(""))
+	             validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
+	    	 if(!validator.isValidNumberField(field))
+                 validator.throwInvalidValidation(field, "Polje treba biti broj!");
+	    	 validator.setEmptyMessage(field);
+	    	 }
+	     }
 		
 	}
 
-}

@@ -30,6 +30,21 @@ public class SubjectLogic {
         }
         return null;
     }
+    
+    public void setEditedSubject(String oldId,Subject subjectNewInfo) {
+    	ArrayList<Subject> subjects = dataModel.getSubjects();
+    	for(int i=0;i<subjects.size();i++) {
+    		if(subjects.get(i).getSubjectId().equals(oldId)) {
+    			subjects.get(i).setSubjectId(subjectNewInfo.getSubjectId());
+    			subjects.get(i).setSubjectName(subjectNewInfo.getSubjectName());
+    			subjects.get(i).setSemester(subjectNewInfo.getSemester());
+    			subjects.get(i).setProfessor(subjectNewInfo.getProfessor());
+    			subjects.get(i).setEspb(subjectNewInfo.getEspb());
+    			subjects.get(i).setYearOfStudy(subjectNewInfo.getYearOfStudy());
+    			dataModel.notifyTable();
+    		}
+    	}
+    }
 
     public boolean removeSubjectById(String id) {
         // Treba dodati uklanjanje svih zavisnosti entiteta u drugim listama

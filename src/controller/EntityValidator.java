@@ -114,6 +114,13 @@ public class EntityValidator {
         if(subject == null) return true;
         return false;
     }
+    
+    public boolean isValidProfessor(JTextField field) {
+    	DataModel database = DataModel.getInstance();
+    	Professor professor = database.getProfessorById(field.getText());
+    	if(professor == null) return false;
+    	return true;
+    }
 
 
 }

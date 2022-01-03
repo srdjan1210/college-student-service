@@ -101,6 +101,10 @@ public class DataModel {
     public void setEditedProfessor(String oldId, Professor professorNewInfo) {
         profLogic.setEditedProfessor(oldId, professorNewInfo);
     }
+    
+    public void setEditedSubject(String oldId,Subject subjectNewInfo) {
+    	subjLogic.setEditedSubject(oldId,subjectNewInfo);
+    }
 
     // Deleting entities methods
     public boolean removeStudentByIndex(String index) {

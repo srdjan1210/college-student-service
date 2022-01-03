@@ -62,6 +62,7 @@ public class ToolbarEditSubject extends EditingScreen {
 				add(createOneItem(name, "Professor", subjectData[i]));
 		}
 		enterExit = new ToolbarEnterExitPanel();
+		enterExit.getButtonConfirm().setEnabled(true);
 		add(enterExit);
 		switchAddDeleteButtons();
 		setVisible(true);
@@ -116,7 +117,8 @@ public class ToolbarEditSubject extends EditingScreen {
 		}
 		else if(itemType.equals("Professor")) {
 			ToolbarWinTxtField field = new ToolbarWinTxtField(labelName);
-			field.setText(subjectData);
+			JTextField fieldTxt =(JTextField) field;
+			fieldTxt.setText(subjectData);
 			addRemovePanel = new ErrorAddDelPanel(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
 			panel.add(addRemovePanel);
 			fieldsReferences.add(field);
