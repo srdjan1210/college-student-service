@@ -70,7 +70,6 @@ public class Constants {
     public static String[] professorSubjectsColumnNames = {"Sifra","Naziv","Godina studija","Semestar"};
     public static String[] departmentColumnNames = {"Id katedre", "Naziv katedre", "Sef katedre"};
     public static String[] departmentLabelNames = {"Id katedre*", "Naziv katedre*", "Sef katedre*"};
-
     
     public static String[] getStudentLabelNames() {
     	return new String[]{Screen.getInstance().getResourceBundle().getString("lblStudentName0"),Screen.getInstance().getResourceBundle().getString("lblStudentName1"),
@@ -102,6 +101,24 @@ public class Constants {
     public static String[] getNumberFields() {
     	return new String[]{Screen.getInstance().getResourceBundle().getString("lblSubjectName4"),Screen.getInstance().getResourceBundle().getString("lblStudentName7"),
     			Screen.getInstance().getResourceBundle().getString("lblStudentName8"),Screen.getInstance().getResourceBundle().getString("lblProfessorName9")};
+    }
+    
+    public static String[] getDepartmentLabels() {
+    	return new String[]{Screen.getInstance().getResourceBundle().getString("lblDepartment0"),Screen.getInstance().getResourceBundle().getString("lblDepartment1"),
+    			Screen.getInstance().getResourceBundle().getString("lblDepartment2")};
+    }
+    
+    public static String getDepartmentColumnNames(int index) {
+    	switch(index) {
+    	case 0:
+    		return Screen.getInstance().getResourceBundle().getString("lblDepartment0");
+		case 1:
+    		return Screen.getInstance().getResourceBundle().getString("lblDepartment1");
+		case 2:
+    		return Screen.getInstance().getResourceBundle().getString("lblDepartment2");
+		default:
+    		return "";
+    	}
     }
     
     public static String getProfessorSubjectColumnName(int index) {

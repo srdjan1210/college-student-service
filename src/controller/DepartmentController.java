@@ -4,6 +4,7 @@ import exceptions.InvalidFieldException;
 import model.Database.DataModel;
 import model.Department;
 import model.Professor;
+import view.Screen;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.Department.EditSingleDepartmentDialog;
 
@@ -19,7 +20,7 @@ public class DepartmentController {
             Department department = createDepartmentObject(depWin);
             String depid = (String)depTable.getModel().getValueAt(depTable.getSelectedRow(), 0);
             DataModel.getInstance().editDepartment(department, depid);
-            JOptionPane.showMessageDialog(null, "Uspjesno editovana katedra");
+            JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("departmentEditSuccess"));
             AbstractTableModel tm = (AbstractTableModel) depTable.getModel();
             tm.fireTableDataChanged();
         } catch(Exception e) {
@@ -51,7 +52,7 @@ public class DepartmentController {
             JTextField field = depWin.getTextField(i);
             if(i == 2) continue;
             if (field.getText().trim().equals(""))
-                validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
+            	validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("emptyField"));
             validator.setEmptyMessage(field);
         }
 

@@ -23,6 +23,6 @@ public class DepartmentTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-        return Constants.departmentColumnNames[column];
+        return Constants.getDepartmentColumnNames(column);
     }
 }

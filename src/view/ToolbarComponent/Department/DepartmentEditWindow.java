@@ -3,6 +3,7 @@ package view.ToolbarComponent.Department;
 import controller.DepartmentController;
 import model.TableModel.DepartmentTableModel;
 import utils.Constants;
+import view.Screen;
 import view.TablesComponent.Tables;
 
 import javax.swing.*;
@@ -16,12 +17,12 @@ public class DepartmentEditWindow extends JDialog {
     public DepartmentEditWindow() {
         super();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        setTitle("Izmena katedre");
+        setTitle(Screen.getInstance().getResourceBundle().getString("departmentTitle"));
         setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
         setLocationRelativeTo(null);
         departmentsTable = new Tables(new DepartmentTableModel());
         departmentsTable.setPreferredSize(getSize());
-        editButton = new JButton("Edituj katedru");
+        editButton = new JButton(Screen.getInstance().getResourceBundle().getString("btnDepartmentEdit"));
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

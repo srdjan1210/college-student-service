@@ -2,6 +2,7 @@ package view.ToolbarComponent.Department;
 
 import controller.DepartmentController;
 import utils.Constants;
+import view.Screen;
 import view.JListModels.DepHeadList;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.ToolbarCustomComponents.*;
@@ -17,7 +18,7 @@ import java.util.Vector;
 public class EditSingleDepartmentDialog extends JDialog {
     private Vector<JComponent> fieldsReferences;
     private ToolbarEnterExitPanel tenex;
-    private String[] labelNames = Constants.departmentLabelNames;
+    private String[] labelNames = Constants.getDepartmentLabels();
     private DepartmentController departmentController;
     private EditSingleDepartmentDialog ref = this;
     private JButton buttonConfirm;
@@ -37,8 +38,8 @@ public class EditSingleDepartmentDialog extends JDialog {
         }
 
         JPanel bottomPanel = new JPanel();
-        buttonConfirm = new JButton("Potvrdi");
-        JButton buttonCancel = new JButton("Otkazi");
+        buttonConfirm = new JButton(Screen.getInstance().getResourceBundle().getString("btnConfirm"));
+        JButton buttonCancel = new JButton(Screen.getInstance().getResourceBundle().getString("btnCancel"));
 
         buttonConfirm.addActionListener(new ActionListener() {
             @Override
