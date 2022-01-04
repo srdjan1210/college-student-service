@@ -96,6 +96,7 @@ public class DataReader {
 	}
 
 	private Department loadDepartmentObject(String[] data) {
+		System.out.println(data[0]+ " " +data[1] + " " +data[2]);
 		return new Department(data[0], data[1], dm.getProfessorById(data[2]));
 	}
 

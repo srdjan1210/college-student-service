@@ -7,6 +7,7 @@ import model.Database.EntityLogic.StudentLogic;
 import model.Database.EntityLogic.SubjectLogic;
 import view.TablesComponent.Tables;
 
+import javax.lang.model.type.ArrayType;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
@@ -39,7 +40,6 @@ public class DataModel {
             subjects = reader.readEntityFromFile("resources/predmeti.txt", "Subject");
             departments = reader.readEntityFromFile("resources/katedre.txt", "Department");
             marks = reader.readEntityFromFile("resources/ocene.txt", "Mark");
-
             reader.readStudentSubjectsFromFile("resources/nepolozeni.txt", "nepolozeni");
             reader.readStudentSubjectsFromFile("resources/polozeni.txt", "polozeni");
             
@@ -76,9 +76,15 @@ public class DataModel {
         return subjLogic.getSubjectById(id);
     }
 
+    public Department getDepartmentById(String id) {
+        for(Department department: departments)
+            if(department.getDepartmentId().equals(id)) return department;
+        return null;
+    }
     public String getProfessorIdFromEmail(String email) {
         return profLogic.getProfessorIdFromEmail(email);
     }
+
 
     // Adding entities methods
     public void addProfessorToList(Professor newProfessor) {
@@ -166,7 +172,13 @@ public class DataModel {
 
         return null;
     }
-    
+
+    public void editDepartment(Department department, String oldDepId) {
+        Department dep = getDepartmentById(oldDepId);
+        dep.setDepartmentId(department.getDepartmentId());
+        dep.setDepartmentName(department.getDepartmentName());
+        dep.setHeadOfTheDepartment(department.getHeadOfTheDepartment());
+    }
     public boolean removeSubjectFromProfessorSubjects(String subjectId,String professorId) {
     	return profLogic.removeSubjectFromProfessorSubjects(subjectId,professorId);
     }
@@ -191,6 +203,19 @@ public class DataModel {
     public void addPassedSubjectToStudent(String index,String subjectId) {
     	studLogic.addPassedSubjectToStudent(index,subjectId);
     }
+
+    public void deleteProfessorFromSubject(String professorId, String subjectId) {
+        subjLogic.deleteProfessorFromSubject(professorId, subjectId);
+    }
+
+    public void addProfessorToSubject(String professorId, String subjectId) {
+        subjLogic.addProfessorToSubject(professorId, subjectId);
+    }
+
+    public ArrayList<Professor> filterProfessorForHeadOfDep() {
+        return profLogic.filterProfessorForHeadOfDep();
+    }
+
     
     //Singleton implementation
     public static DataModel getInstance() {

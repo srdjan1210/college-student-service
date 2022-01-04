@@ -58,6 +58,7 @@ public class MenuBar extends JMenuBar {
 		englishItem = new MenuItems("Engleski","Icons/US.png","CTRL + W",'W');
 		englishItem.addActionListener(ListenerHandler.getChangeToUsListener());
 
+		departmentsItem.addActionListener(ListenerHandler.getDepartmentWindowListener());
 		openMenuButton.add(studentsItem);
 		openMenuButton.add(subjectsItem);
 		openMenuButton.add(professorsItem);

@@ -24,7 +24,7 @@ public class ToolbarEditStudentPassedPanel extends JPanel {
         setPreferredSize(new Dimension(200, 800));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        PassedSubjectsButtons buttons = new PassedSubjectsButtons();
+        PassedSubjectsButtons buttons = new PassedSubjectsButtons(addPassedSubjectController);
         add(buttons);
         add(new JScrollPane(passedSubjectsTable));
         add(infoPanel);
@@ -44,11 +44,7 @@ public class ToolbarEditStudentPassedPanel extends JPanel {
     }
 
     public void setESPBAndAverage() {
-        JLabel lblAvg = infoPanel.getAverageField();
-        JLabel lblEspb = infoPanel.getEspbField();
-        String studIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
-        lblAvg.setText(addPassedSubjectController.calculateAverageMarkForStudent(studIndex) + "");
-        lblEspb.setText(addPassedSubjectController.calculateSumOfESPB(studIndex) + "");
+        addPassedSubjectController.setESPBAndAverage(infoPanel);
     }
 
 
