@@ -1,5 +1,0 @@
-Borisa,Selakovicaa,2000-10-13,Srbija:Novi Sad:Liman:4,0665045747,darkoselakovic2000@gmail.com,Sajlovo:Srbija:Novi Sad:4,11101012,Docent,12
-SaraS,Sinjeri2,2000-04-14,Janka Cmelika:Novi Sad:Srbija:56,0603308330,sarasinjeri140400@gmail.com,Sajlovo:Srbija:Novi Sad:4,11101013,Docent,12
-Moravac,Jovance,2001-08-10,Bulvr Despota Stefana:Novi Sad:Srbija:7,0628165873,josanamoravac@gmail.com,Sajlovo:Srbija:Novi Sad:4,11101015,Docent,12
-ASD,ASD,1965-04-03,ASD:ASD:ASD:4,123123,ASDASD,AS:ASD:ASD:4,0000011111,Redovni Profesor,20
-asdasd,asdasd,2000-12-12,asd:asd:asd:1,asdasd,asdasd,asdasd:asdasdasd:asdasd:12,asdasda,asdasd,12

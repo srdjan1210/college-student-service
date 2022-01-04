@@ -7,6 +7,7 @@ import model.Professor;
 import model.Subject;
 import utils.Constants;
 import utils.EnumConversion;
+import view.Screen;
 import view.ToolbarComponent.AddingScreen;
 
 import javax.swing.*;
@@ -20,10 +21,10 @@ public class AddSubjectController implements IAddingController {
             validate(dialog);
             Subject subject = createSubjectObjectFromFields(dialog);
             DataModel.getInstance().addSubjectToList(subject);
-            JOptionPane.showMessageDialog((JDialog) dialog, "Predmet uspjesno dodan u listu!");
+            JOptionPane.showMessageDialog((JDialog) dialog, Screen.getInstance().getResourceBundle().getString("subjectToList"));
             dialog.dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), Screen.getInstance().getResourceBundle().getString("error"), JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -46,14 +47,14 @@ public class AddSubjectController implements IAddingController {
             if (i == 2)
                 continue;
             JTextField field = (JTextField) fields.get(i);
-            if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !validator.isValidDate(field))
-                validator.throwInvalidValidation(field, "<html>Format datuma treba da bude <br>GGGG-MM-DD</html>");
+            if ((field.getName().toLowerCase(Locale.ROOT).contains("datum") || field.getName().toLowerCase(Locale.ROOT).contains("date")) && !validator.isValidDate(field))
+                validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("dateFormat"));
             if (field.getText().trim().equals(""))
-                validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
+                validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("emptyField"));
             if(!validator.isValidNumberField(field))
-                validator.throwInvalidValidation(field, "Polje treba biti broj!");
-            if(field.getName().toLowerCase().contains("id predmeta") && !validator.isValidSubjectId(field))
-                validator.throwInvalidValidation(field, "Sifra predmeta vec zauzeta!");
+                validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("numberFormat"));
+            if((field.getName().toLowerCase().contains("id predmeta") || field.getName().toLowerCase().contains("subject id")) && !validator.isValidSubjectId(field))
+                validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("idSubjectFormat"));
 
             validator.setEmptyMessage(field);
 

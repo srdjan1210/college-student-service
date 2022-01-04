@@ -1,6 +1,8 @@
 package view.ToolbarComponent;
 
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+
 import javax.swing.Box;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
@@ -9,7 +11,7 @@ import javax.swing.SwingConstants;
 import utils.Constants;
 
 import view.ListenerHandler;
-
+import view.Screen;
 import view.ToolbarComponent.ToolbarCustomComponents.CustomSeparator;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarIconButton;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarSearch;
@@ -29,10 +31,10 @@ public class Toolbar extends JToolBar {
 		setPreferredSize(new Dimension(Constants.SCREEN_WIDTH * 3 / 4, 30));
 		setFloatable(false);
 
-		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png", "Add Entity", 'N');
-		btnEdit = new ToolbarIconButton("Icons/EditMenuItem.png", "Edit Entity", 'E');
-		btnDelete = new ToolbarIconButton("Icons/DeleteMenuitem.png", "Delete Entity", 'D');
-		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Search", 'F');
+		btnNew = new ToolbarIconButton("Icons/NewMenuItem.png", "Dodaj entitet", 'N');
+		btnEdit = new ToolbarIconButton("Icons/EditMenuItem.png", "Izmeni entitet", 'E');
+		btnDelete = new ToolbarIconButton("Icons/DeleteMenuitem.png", "Izbrisi entitet", 'D');
+		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Pretrazi", 'F');
 
 		searchField = new ToolbarSearch();
 		btnNew.addActionListener(ListenerHandler.openWindowListener());
@@ -58,6 +60,14 @@ public class Toolbar extends JToolBar {
 		add(new CustomSeparator());
 		
 
+	}
+	
+	public void changeLanguage() {
+		btnNew.setToolTipText(Screen.getInstance().getResourceBundle().getString("tipNew"));
+		btnEdit.setToolTipText(Screen.getInstance().getResourceBundle().getString("tipEdit"));
+		btnDelete.setToolTipText(Screen.getInstance().getResourceBundle().getString("tipDelete"));
+		btnSearch.setToolTipText(Screen.getInstance().getResourceBundle().getString("tipSearch"));
+		searchField.setToolTipText(Screen.getInstance().getResourceBundle().getString("tipSearch"));
 	}
 
 	public ToolbarIconButton getBtnNew() {

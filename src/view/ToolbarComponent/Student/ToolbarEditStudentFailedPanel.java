@@ -7,19 +7,26 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controller.AddFailedSubjectController;
 import controller.DeleteFailedSubjectController;
+import controller.TakingExamController;
 import view.ListenerHandler;
 import model.Subject;
 import model.TableModel.FailedSubjectsTableModel;
-import view.EditStudentCustomComponents.FailedSubjectsButtons;
+import view.EditCustomComponents.FailedSubjectsButtons;
 import view.TablesComponent.Tables;
 
-public class ToolbarEditStudentFailed extends JPanel {
+public class ToolbarEditStudentFailedPanel extends JPanel {
 	private Tables failedSubjectsTable;
 	private DeleteFailedSubjectController deleteController;
+	private AddFailedSubjectController addingController;
+	private TakingExamController examController;
 
-	public ToolbarEditStudentFailed() {
+	public ToolbarEditStudentFailedPanel(AddFailedSubjectController addingController,DeleteFailedSubjectController deleteController,TakingExamController examController) {
 		super();
+		this.addingController = addingController;
+		this.deleteController = deleteController;
+		this.examController = examController;
 		setPreferredSize(new Dimension(200, 800));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -31,6 +38,8 @@ public class ToolbarEditStudentFailed extends JPanel {
 		add(new JScrollPane(failedSubjectsTable));
 
 		buttons.getButtonDelete().addActionListener(ListenerHandler.getButtonDeleteFailedSubjectListener(this));
+		buttons.getButtonAdd().addActionListener(ListenerHandler.getAddFailedSubjectListener(this));
+		buttons.getButtonTakingExam().addActionListener(ListenerHandler.getButtonTakingExamListener(this));
 		setVisible(true);
 	}
 
@@ -41,6 +50,32 @@ public class ToolbarEditStudentFailed extends JPanel {
 
 	public void setDeleteController(DeleteFailedSubjectController deleteController) {
 		this.deleteController = deleteController;
+	}
+
+	public void setAddingController(AddFailedSubjectController addingController) {
+		this.addingController = addingController;
+	}
+	
+	public void setExamController(TakingExamController examController) {
+		this.examController = examController;
+	}
+	
+	
+
+	public DeleteFailedSubjectController getDeleteController() {
+		return deleteController;
+	}
+
+	public AddFailedSubjectController getAddingController() {
+		return addingController;
+	}
+
+	public TakingExamController getExamController() {
+		return examController;
+	}
+
+	public void setFailedSubjectsTable(Tables failedSubjectsTable) {
+		this.failedSubjectsTable = failedSubjectsTable;
 	}
 
 	public Tables getFailedSubjectsTable() {
@@ -59,5 +94,9 @@ public class ToolbarEditStudentFailed extends JPanel {
 			i++;
 		}
 		return data;
+	}
+
+	public void addFailedSubject() {
+		addingController.addNewFailedSubject();
 	}
 }

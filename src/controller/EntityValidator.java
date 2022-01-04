@@ -2,6 +2,7 @@ package controller;
 
 import exceptions.InvalidFieldException;
 import model.Database.DataModel;
+import utils.Constants;
 import view.Screen;
 import model.Professor;
 import model.Student;
@@ -14,7 +15,7 @@ import java.util.Arrays;
 
 public class EntityValidator {
 
-    private String[] numberFields = {"Espb*", "Godina upisa*", "Godina studija*", "Godine iskustva*"};
+    private String[] numberFields = Constants.getNumberFields();
 
     public EntityValidator() {
 
@@ -113,6 +114,13 @@ public class EntityValidator {
         Subject subject = database.getSubjectById(field.getText());
         if(subject == null) return true;
         return false;
+    }
+    
+    public boolean isValidProfessor(JTextField field) {
+    	DataModel database = DataModel.getInstance();
+    	Professor professor = database.getProfessorById(field.getText());
+    	if(professor == null) return false;
+    	return true;
     }
 
 

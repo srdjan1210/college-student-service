@@ -9,8 +9,12 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import model.Database.DataModel;
 import utils.Constants;
+import view.Screen;
 import view.TabComponent.EditProfessorTab;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
@@ -22,12 +26,25 @@ public class ToolbarEditProfessor extends EditingScreen {
 		// TODO Auto-generated constructor stub
 		super();
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setTitle("Izmena profesora");
+		setTitle(Screen.getInstance().getResourceBundle().getString("editingProfessorTitle"));
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
 		setLocationRelativeTo(null);
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
 		tab = new EditProfessorTab();
+		tab.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				if(tab.getSelectedIndex() == 0) {
+					
+				} else if (tab.getSelectedIndex() == 1) {
+					DataModel.getInstance().setEditTableObserver(tab.getEditSubjects().getProfessorSubjectsTable());
+				}
+				
+			}
+		});
 		add(tab);
 		setVisible(false);
 	}

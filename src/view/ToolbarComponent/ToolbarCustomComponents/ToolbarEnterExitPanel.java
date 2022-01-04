@@ -2,6 +2,7 @@ package view.ToolbarComponent.ToolbarCustomComponents;
 
 
 import view.ListenerHandler;
+import view.Screen;
 
 import javax.swing.*;
 
@@ -16,9 +17,9 @@ public class ToolbarEnterExitPanel extends JPanel{
 		setLayout(layout);
 
 
-		buttonConfirm = new JButton("Potvrdi");
+		buttonConfirm = new JButton(Screen.getInstance().getResourceBundle().getString("btnConfirm"));
 		buttonConfirm.setEnabled(false);
-		buttonCancel = new JButton("Otkazi");
+		buttonCancel = new JButton(Screen.getInstance().getResourceBundle().getString("btnCancel"));
 
 		buttonConfirm.addActionListener(ListenerHandler.getButtonConfirmListener(buttonConfirm));
 		buttonCancel.addActionListener(ListenerHandler.getButtonCancelListener(buttonCancel));
