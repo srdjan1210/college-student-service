@@ -37,7 +37,16 @@ public class StudentTableModel extends AbstractTableModel {
    @Override
 	public Class<?> getColumnClass(int columnIndex) {
 		// TODO Auto-generated method stub
-		return getValueAt(0,columnIndex).getClass();
+	   switch (columnIndex)
+       {
+           case 0: return String.class;
+           case 1: return String.class;
+           case 2: return String.class;
+           case 3: return Integer.class;
+           case 4: return String.class;
+           case 5: return Double.class;
+       }
+	   return super.getColumnClass(columnIndex);
 	}
 
 	public String selectedStudentIndex() {

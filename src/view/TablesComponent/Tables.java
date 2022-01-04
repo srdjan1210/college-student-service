@@ -1,6 +1,7 @@
 package view.TablesComponent;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JLabel;
@@ -30,6 +31,22 @@ public class Tables extends JTable {
 		if(tableModel instanceof StudentTableModel) {
 			setAutoCreateRowSorter(true);
 			TableRowSorter<StudentTableModel> rowSorter = new TableRowSorter<StudentTableModel>((StudentTableModel) tableModel);
+			rowSorter.setComparator(0, new Comparator<String>() {
+
+				@Override
+				public int compare(String o1, String o2) {
+					// TODO Auto-generated method stub
+					int value1 = Integer.parseInt("0"+o1.replaceAll("[^0-9]", ""));
+					int value2 = Integer.parseInt("0"+o2.replaceAll("[^0-9]", ""));
+					if(value1 < value2)
+						return -1;
+					else if(value1 == value2)
+						return 0;
+					else
+						return 1;
+				}
+				
+			});
 			rowSorter.setRowFilter(new StudentRowFilter());
 			rowSorter.setSortsOnUpdates(true);
 			setRowSorter(rowSorter);
