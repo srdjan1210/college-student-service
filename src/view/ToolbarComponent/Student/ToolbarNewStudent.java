@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import view.ListenerHandler;
+import view.Screen;
 import utils.Constants;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.*;
 
 public class ToolbarNewStudent extends AddingScreen {
-	private String[] labelNames = Constants.studentLabelNames;
+	private String[] labelNames = Constants.getStudentLabelNames();
 	private String[] finansingWay = Constants.finansingWayLabels;
 	private String[] years = Constants.yearsLabels;
 	private ArrayList<ToolbarWinLabel> labelReferences;
@@ -23,7 +24,7 @@ public class ToolbarNewStudent extends AddingScreen {
 		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
 		BoxLayout layout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(layout);
-		setTitle("Dodavanje studenta");
+		setTitle(Screen.getInstance().getResourceBundle().getString("addingStudentTitle"));
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
 		setLocationRelativeTo(null);
 		fieldsReferences = new ArrayList<>();

@@ -1,5 +1,6 @@
 package model.Database;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -49,20 +50,34 @@ public class DataReader {
 		return entityList;
 	}
 
-	public ArrayList<Subject> readStudentSubjectsFromFile(String fileName) throws FileNotFoundException {
+	public void readStudentSubjectsFromFile(String fileName, String listName) throws FileNotFoundException {
 		Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-		ArrayList<Subject> failed = new ArrayList<Subject>();
+
 		while (scanner.hasNextLine()) {
 			String scannedData = scanner.nextLine();
 			String[] data = splitScannedData(scannedData);
 			Student student = dm.getStudentById(data[0]);
-			Subject failedSubject = dm.getSubjectById(data[1]);
-			student.addFailedSubject(failedSubject);
-			if (!failed.contains(failedSubject))
-				failed.add(failedSubject);
+
+			Subject subject = dm.getSubjectById(data[1]);
+			if(listName.equals("nepolozeni"))
+				student.addFailedSubject(subject);
+			else
+				student.addPassedSubject(subject);
 		}
-		return failed;
 	}
+	
+
+	public void readProfessorSubjectsFromFile(String fileName) throws FileNotFoundException {
+		Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
+		while(scanner.hasNextLine()) {
+			String rowData = scanner.nextLine();
+			String[] dataSplit = rowData.split(",");
+			Professor professor = dm.getProfessorById(dataSplit[0]);
+			professor.getSubjects().add(dm.getSubjectById(dataSplit[1]));
+		}
+		scanner.close();
+	}
+
 
 	private Professor loadProfessorObject(String[] data) {
 		return new Professor(data[0], data[1], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4],
@@ -81,6 +96,7 @@ public class DataReader {
 	}
 
 	private Department loadDepartmentObject(String[] data) {
+		System.out.println(data[0]+ " " +data[1] + " " +data[2]);
 		return new Department(data[0], data[1], dm.getProfessorById(data[2]));
 	}
 

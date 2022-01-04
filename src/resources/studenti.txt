@@ -1,9 +1,0 @@
-Srdjan,Stjepanovic,2000-10-12,Srbija:Novi Sad:Sajlovo:4,0665045747,stjepanovicsrdjan2000@gmail.com,RA 168-2018,2018,3,BUDZET,9.0
-Borisa,Selak,2000-11-21,Byugars:ewfds:dsad:32,31313131,darkoselakovic2000@gmail.com,RA 33-2019,2019,3,BUDZET,10.0
-Sara,Sinjeri2,2000-04-14,Janka Cmelika:Novi Sad:Srbija:56,0603308330,sarasinjeri140400@gmail.com,RA 76-2019,2019,3,BUDZET,0.0
-Moravac,Jovance,2001-08-10,Bulvr Despota Stefana:Novi Sad:Srbija:7,0628165873,josanamoravac@gmail.com,MH 14-2020,2020,2,SAMOFINANSIRANJE,0.0
-Sara,Sinjeri,2000-04-14,Jan.Cmel.:NS:Srb:56,0603308330,sarasinjeri140400@gmail.com,RA 76-2019,2019,3,BUDZET,0.0
-Srdjan2,Stjepanovic2,2019-12-12,Janka Cmelika:NS:Srbija:12,06693409304,asdasdasd,RA 150-2019,2019,3,BUDZET,0.0
-asda,asd,2019-12-12,Janka necega:Beograd:Srbija:12,123123,stjepan@gmail.com,RA 204-2019,2019,3,BUDZET,0.0
-Jovan,asdasdasd,2019-12-10,Janka Cmelika:NS:Srbija:56,2314141234,asdasdasd,RA 168-2019,2019,1,BUDZET,0.0
-fsdaf,fsdaf,2000-11-11,fasdsa:fsada:dsads:11,3321341,fsadfsdafsdf,RA 33/2019,2019,3,SAMOFINANSIRANJE,0.0

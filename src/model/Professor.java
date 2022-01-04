@@ -119,8 +119,20 @@ public class Professor {
     public void setSubjects(ArrayList<Subject> subjects) {
         this.subjects = subjects;
     }
-
-    public String getDataAt(int index) {
+    
+    public void addSubject(Subject subject) {
+    	this.subjects.add(subject);
+    }
+    
+    public void removeSubject(String subjectId) {
+    	for(int i=0;i<subjects.size();i++) {
+    		if(subjects.get(i).getSubjectId().equals(subjectId)) {
+    			subjects.remove(i);
+    			return;
+    		}
+    	}
+    }
+    public Object getDataAt(int index) {
         switch(index) {
             case 0: return firstName;
             case 1: return lastName;

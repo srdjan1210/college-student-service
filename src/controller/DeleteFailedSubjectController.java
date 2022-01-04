@@ -5,14 +5,13 @@ import javax.swing.JOptionPane;
 import model.Database.DataModel;
 import view.Screen;
 import view.TablesComponent.Tables;
-import view.ToolbarComponent.Student.ToolbarEditStudentFailed;
+import view.ToolbarComponent.Student.ToolbarEditStudentFailedPanel;
 
 public class DeleteFailedSubjectController {
 	public static Tables failedSubjectsTable;
-
-	public DeleteFailedSubjectController(ToolbarEditStudentFailed editFailedPanel) {
-		int resp = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da zelite ukloniti nepolozeni predmet?",
-				"Obrisi nepolozeni predmet?", JOptionPane.YES_NO_OPTION);
+	public void deleteFailedSubject(ToolbarEditStudentFailedPanel editFailedPanel) {
+		int resp = JOptionPane.showConfirmDialog(null, Screen.getInstance().getResourceBundle().getString("areYouSureProfessor"),
+				Screen.getInstance().getResourceBundle().getString("deleteFailedSubject"), JOptionPane.YES_NO_OPTION);
 		if (resp == 1)
 			return;
 		String selectedSubjectId = editFailedPanel.getSelectedSubjectId();
@@ -20,8 +19,10 @@ public class DeleteFailedSubjectController {
 		Boolean success = model.removeFailedSubjectFromStudentSubjects(selectedSubjectId,
 				Screen.getInstance().getStudentTab().getSelectedStudentIndex());
 		if (success) {
-			JOptionPane.showMessageDialog(null, "Predmet " + selectedSubjectId + " uspjesno uklonjen!");
+			JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("tabSubject") +" "+ selectedSubjectId +
+					Screen.getInstance().getResourceBundle().getString("successDelete"));
 		} else
-			JOptionPane.showMessageDialog(null, "Predmet " + selectedSubjectId + " nije pronadjen!");
+			JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("tabSubject") +" "+ selectedSubjectId +
+					Screen.getInstance().getResourceBundle().getString("successDelete"));
 	}
 }

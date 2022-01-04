@@ -1,6 +1,7 @@
 package view.ToolbarComponent.Subject;
 
 import utils.Constants;
+import view.Screen;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.*;
 
@@ -9,7 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ToolbarNewSubject extends AddingScreen {
-    private String[] labelNames = Constants.subjectLabelNames;
+    private String[] labelNames = Constants.getSubjectLabelNames();
     private String[] semesterValues = Constants.semesterValues;
     private ArrayList<ToolbarWinLabel> labelsReferences;
     private ToolbarEnterExitPanel tenex;
@@ -20,7 +21,7 @@ public class ToolbarNewSubject extends AddingScreen {
         setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
         BoxLayout layout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
         setLayout(layout);
-        setTitle("Dodavanje Predmeta");
+        setTitle(Screen.getInstance().getResourceBundle().getString("addingSubjectTitle"));
         setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
         setLocationRelativeTo(null);
         fieldsReferences = new ArrayList<>();
