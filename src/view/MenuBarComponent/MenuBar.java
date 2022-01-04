@@ -45,6 +45,7 @@ public class MenuBar extends JMenuBar {
 		MenuItems professorsItem = new MenuItems("Profesori", "Icons/ProfessorMenuItems.png", "CTRL + R", 'R');
 		MenuItems departmentsItem = new MenuItems("Katedre", "Icons/DepartmentMenuItem.png", "CTRL + K", 'K');
 
+		departmentsItem.addActionListener(ListenerHandler.getDepartmentWindowListener());
 		openMenuButton.add(studentsItem);
 		openMenuButton.add(subjectsItem);
 		openMenuButton.add(professorsItem);

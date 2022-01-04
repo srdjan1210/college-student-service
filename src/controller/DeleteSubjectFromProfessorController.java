@@ -10,6 +10,10 @@ import view.ToolbarComponent.Professor.ToolbarEditProfessorSubjectsPanel;
 public class DeleteSubjectFromProfessorController {
 	public static Tables professorSubjectsTable;
 	public DeleteSubjectFromProfessorController(ToolbarEditProfessorSubjectsPanel editProfessorSubjectsPanel) {
+		if(editProfessorSubjectsPanel.getProfessorSubjectsTable().getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(null, "Nije selektovan predmet!");
+			return;
+		}
 		int resp = JOptionPane.showConfirmDialog(null, "Da li ste sigurni?","Ukloni predmet",JOptionPane.YES_NO_OPTION);
 		if (resp == 1)
 			return;
@@ -17,6 +21,7 @@ public class DeleteSubjectFromProfessorController {
 		DataModel model = DataModel.getInstance();
 		Boolean success = model.removeSubjectFromProfessorSubjects(selectedSubjectId,
 				Screen.getInstance().getStudentTab().getSelectedProfessorId());
+		DataModel.getInstance().deleteProfessorFromSubject(Screen.getInstance().getStudentTab().getSelectedProfessorId(),selectedSubjectId);
 		if(success)
 			JOptionPane.showMessageDialog(null, "Predmet " + selectedSubjectId + " uspjesno uklonjen!");
 		else

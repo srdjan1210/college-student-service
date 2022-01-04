@@ -1,5 +1,6 @@
 package controller;
 
+import model.Database.DataModel;
 import model.Professor;
 import view.JListModels.ProfessorListModel;
 import view.JListModels.SubjectListModel;

@@ -96,4 +96,17 @@ public class SubjectLogic {
 
         }
     }
+
+    public void deleteProfessorFromSubject(String professorId, String subjectId) {
+        Subject subject = dataModel.getSubjectById(subjectId);
+        if(subject.getProfessor().getIdNumber().equals(professorId)) {
+            subject.setProfessor(null);
+        }
+    }
+
+    public void addProfessorToSubject(String professorId, String subjectId) {
+        Subject subject = dataModel.getSubjectById(subjectId);
+        subject.setProfessor(dataModel.getProfessorById(professorId));
+    }
+
 }

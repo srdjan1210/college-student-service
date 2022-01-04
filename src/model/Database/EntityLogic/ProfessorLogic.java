@@ -6,6 +6,7 @@ import model.Subject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Locale;
 
 public class ProfessorLogic {
     private DataModel dataModel;
@@ -133,4 +134,18 @@ public class ProfessorLogic {
     	}
     	return false;
     }
+
+    public ArrayList<Professor> filterProfessorForHeadOfDep() {
+        ArrayList<Professor> filtered = new ArrayList<>();
+        ArrayList<Professor> professors = dataModel.getProfessors();
+        for(Professor professor: professors) {
+            if(professor.getWorkingYears() > 5 && (professor.getTitle().toLowerCase().equals("redovni profesor")
+                    || professor.getTitle().toLowerCase(Locale.ROOT).equals("vanredni profesor"))) {
+                filtered.add(professor);
+            }
+        }
+
+        return filtered;
+    }
+
 }

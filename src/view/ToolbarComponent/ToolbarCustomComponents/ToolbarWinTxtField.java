@@ -1,9 +1,11 @@
 package view.ToolbarComponent.ToolbarCustomComponents;
+import controller.DepartmentController;
 import exceptions.InvalidFieldException;
 import interfaces.IAddingController;
 import interfaces.IEditingController;
 import view.Screen;
 import view.ToolbarComponent.AddingScreen;
+import view.ToolbarComponent.Department.EditSingleDepartmentDialog;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Student.ToolbarEnteringMark;
 
@@ -79,6 +81,15 @@ public class ToolbarWinTxtField extends JTextField implements DocumentListener {
 			}
 			catch(InvalidFieldException excpetion) {
 				editingScreen.getEnterExit().getButtonConfirm().setEnabled(false);
+			}
+		} else if (window instanceof EditSingleDepartmentDialog) {
+			EditSingleDepartmentDialog editingScreen = (EditSingleDepartmentDialog) window;
+			DepartmentController controller = editingScreen.getDepartmentController();
+			try {
+				controller.validate(editingScreen);
+				editingScreen.getButtonConfirm().setEnabled(true);
+			} catch(InvalidFieldException exception) {
+				editingScreen.getButtonConfirm().setEnabled(false);
 			}
 		}
 	}

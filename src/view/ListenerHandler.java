@@ -4,6 +4,7 @@ import controller.DeleteFailedSubjectController;
 import controller.DeleteSubjectFromProfessorController;
 import controller.TakingExamController;
 import view.ToolbarComponent.AddingScreen;
+import view.ToolbarComponent.Department.DepartmentEditWindow;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Professor.ToolbarEditProfessor;
 import view.ToolbarComponent.Professor.ToolbarEditProfessorSubjectsPanel;
@@ -208,6 +209,16 @@ public class ListenerHandler {
     		
     	};
     }
+
+    public static ActionListener getDepartmentWindowListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new DepartmentEditWindow();
+            }
+        };
+    }
+
 
     public static FocusListener getAdressScreenListener() {
         return new FocusListener() {

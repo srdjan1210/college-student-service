@@ -66,5 +66,8 @@ public class Constants {
     public static String[] subjectColumnNames = {"Sifra predmeta", "Naziv predmeta", "Broj ESPB bodova",
             "Godina na kojoj se predmet izvodi", "Semestar u kome se predmet izvodi"};
     public static String[] professorSubjectsColumnNames = {"Sifra","Naziv","Godina studija","Semestar"};
+    public static String[] departmentColumnNames = {"Id katedre", "Naziv katedre", "Sef katedre"};
+    public static String[] departmentLabelNames = {"Id katedre*", "Naziv katedre*", "Sef katedre*"};
+
     
 }
