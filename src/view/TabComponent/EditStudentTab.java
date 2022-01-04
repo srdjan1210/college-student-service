@@ -33,9 +33,9 @@ public class EditStudentTab extends JTabbedPane {
 
 		editInfo.setComboBox(8, studentData[8]);
 		editInfo.setComboBox(9, studentData[9]);
-		add("Informacije", editInfo);
-		add("Polozeni", editPassed);
-		add("Nepolozeni", editFailed);
+		add(Screen.getInstance().getResourceBundle().getString("info"), editInfo);
+		add(Screen.getInstance().getResourceBundle().getString("passed"), editPassed);
+		add(Screen.getInstance().getResourceBundle().getString("failed"), editFailed);
 
 	}
 

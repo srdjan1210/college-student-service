@@ -1,6 +1,9 @@
 package view.EditCustomComponents;
 
 import javax.swing.*;
+
+import view.Screen;
+
 import java.awt.*;
 
 public class PassedExamInfoPanel extends JPanel {
@@ -10,13 +13,13 @@ public class PassedExamInfoPanel extends JPanel {
         super();
         setLayoutForComponent(this, BoxLayout.Y_AXIS);
         JPanel panelAverage = new JPanel();
-        JLabel avgText = new JLabel("Prosjecna ocjena je: ");
+        JLabel avgText = new JLabel(Screen.getInstance().getResourceBundle().getString("averageMark"));
         averageField = new JLabel("");
         panelAverage.add(avgText, BorderLayout.CENTER);
         panelAverage.add(averageField, BorderLayout.EAST);
 
         JPanel panelEspb = new JPanel();
-        JLabel espbText = new JLabel("Broj espb poena je: ");
+        JLabel espbText = new JLabel(Screen.getInstance().getResourceBundle().getString("espbNum"));
         espbField = new JLabel("");
         panelEspb.add(espbText);
         panelEspb.add(espbField);

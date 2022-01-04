@@ -2,6 +2,8 @@ package utils;
 
 import java.awt.*;
 
+import view.Screen;
+
 public class Constants {
     public enum MarksValue {
         SEST(6), SEDAM(7), OSAM(8), DEVET(9), DESET(10);
@@ -67,4 +69,87 @@ public class Constants {
             "Godina na kojoj se predmet izvodi", "Semestar u kome se predmet izvodi"};
     public static String[] professorSubjectsColumnNames = {"Sifra","Naziv","Godina studija","Semestar"};
     
+    public static String[] getStudentLabelNames() {
+    	return new String[]{Screen.getInstance().getResourceBundle().getString("lblStudentName0"),Screen.getInstance().getResourceBundle().getString("lblStudentName1"),
+    			Screen.getInstance().getResourceBundle().getString("lblStudentName2"),Screen.getInstance().getResourceBundle().getString("lblStudentName3"),
+    			Screen.getInstance().getResourceBundle().getString("lblStudentName4"),Screen.getInstance().getResourceBundle().getString("lblStudentName5"),
+    			Screen.getInstance().getResourceBundle().getString("lblStudentName6"),Screen.getInstance().getResourceBundle().getString("lblStudentName7"),
+    			Screen.getInstance().getResourceBundle().getString("lblStudentName8"),Screen.getInstance().getResourceBundle().getString("lblStudentName9")};
+    }
+    
+    public static String[] getProfessorLabelNames() {
+    	return new String[]{Screen.getInstance().getResourceBundle().getString("lblProfessorName0"),Screen.getInstance().getResourceBundle().getString("lblProfessorName1"),
+    			Screen.getInstance().getResourceBundle().getString("lblProfessorName2"),Screen.getInstance().getResourceBundle().getString("lblProfessorName3"),
+    			Screen.getInstance().getResourceBundle().getString("lblProfessorName4"),Screen.getInstance().getResourceBundle().getString("lblProfessorName5"),
+    			Screen.getInstance().getResourceBundle().getString("lblProfessorName6"),Screen.getInstance().getResourceBundle().getString("lblProfessorName7"),
+    			Screen.getInstance().getResourceBundle().getString("lblProfessorName8"),Screen.getInstance().getResourceBundle().getString("lblProfessorName9")};
+    }
+    
+    public static String[] getSubjectLabelNames() {
+    	return new String[]{Screen.getInstance().getResourceBundle().getString("lblSubjectName0"),Screen.getInstance().getResourceBundle().getString("lblSubjectName1"),
+    			Screen.getInstance().getResourceBundle().getString("lblSubjectName2"),Screen.getInstance().getResourceBundle().getString("lblSubjectName3"),
+    			Screen.getInstance().getResourceBundle().getString("lblSubjectName4"),Screen.getInstance().getResourceBundle().getString("lblSubjectName5")};
+    }
+    
+    public static String[] getTakingExamLabelNames() {
+    	return new String[]{Screen.getInstance().getResourceBundle().getString("lblExamName0"),Screen.getInstance().getResourceBundle().getString("lblExamName1"),
+    			Screen.getInstance().getResourceBundle().getString("lblExamName2"),Screen.getInstance().getResourceBundle().getString("lblExamName3")};
+    }
+    
+    public static String[] getNumberFields() {
+    	return new String[]{Screen.getInstance().getResourceBundle().getString("lblSubjectName4"),Screen.getInstance().getResourceBundle().getString("lblStudentName7"),
+    			Screen.getInstance().getResourceBundle().getString("lblStudentName8"),Screen.getInstance().getResourceBundle().getString("lblProfessorName9")};
+    }
+    
+    public static String getProfessorSubjectColumnName(int index) {
+    	switch(index) {
+    	case 0:
+    		return Screen.getInstance().getResourceBundle().getString("lblProfSubj0");
+		case 1:
+    		return Screen.getInstance().getResourceBundle().getString("lblProfSubj1");
+		case 2:
+    		return Screen.getInstance().getResourceBundle().getString("lblProfSubj2");
+		case 3:
+    		return Screen.getInstance().getResourceBundle().getString("lblProfSubj3");
+		case 4:
+    		return Screen.getInstance().getResourceBundle().getString("lblProfSubj4");
+		default:
+    		return "";
+    	}
+    }
+    
+    public static String getPassedExamColumnName(int index) {
+    	switch(index) {
+    	case 0:
+    		return Screen.getInstance().getResourceBundle().getString("colPassed0");
+		case 1:
+    		return Screen.getInstance().getResourceBundle().getString("colPassed1");
+		case 2:
+    		return Screen.getInstance().getResourceBundle().getString("colPassed2");
+		case 3:
+    		return Screen.getInstance().getResourceBundle().getString("colPassed3");
+		case 4:
+    		return Screen.getInstance().getResourceBundle().getString("colPassed4");
+		default:
+    		return "";
+    	}
+    }
+    
+    public static String getFailedColumnName(int index) {
+    	switch(index) {
+    	case 0:
+    		return Screen.getInstance().getResourceBundle().getString("colFailed0");
+		case 1:
+    		return Screen.getInstance().getResourceBundle().getString("colFailed1");
+		case 2:
+    		return Screen.getInstance().getResourceBundle().getString("colFailed2");
+		case 3:
+    		return Screen.getInstance().getResourceBundle().getString("colFailed3");
+		case 4:
+    		return Screen.getInstance().getResourceBundle().getString("colFailed4");
+		default:
+    		return "";
+    	}
+    }
+
 }

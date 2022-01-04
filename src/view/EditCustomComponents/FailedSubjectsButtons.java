@@ -7,6 +7,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import view.Screen;
+
 public class FailedSubjectsButtons extends JPanel {
 	private JButton buttonAdd;
 	private JButton buttonDelete;
@@ -18,9 +20,9 @@ public class FailedSubjectsButtons extends JPanel {
 		BoxLayout layout = new BoxLayout(this, BoxLayout.X_AXIS);
 		setLayout(layout);
 
-		buttonAdd = new JButton("Dodaj");
-		buttonDelete = new JButton("Obrisi");
-		buttonTakingExam = new JButton("Polaganje");
+		buttonAdd = new JButton(Screen.getInstance().getResourceBundle().getString("add"));
+		buttonDelete = new JButton(Screen.getInstance().getResourceBundle().getString("itemDelete"));
+		buttonTakingExam = new JButton(Screen.getInstance().getResourceBundle().getString("takingExam"));
 
 		add(buttonAdd);
 		add(Box.createHorizontalStrut(50));

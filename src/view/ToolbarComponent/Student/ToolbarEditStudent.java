@@ -18,6 +18,7 @@ import controller.DeleteFailedSubjectController;
 import controller.TakingExamController;
 import model.Database.DataModel;
 import utils.Constants;
+import view.Screen;
 import view.TabComponent.EditStudentTab;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarEnterExitPanel;
@@ -28,7 +29,7 @@ public class ToolbarEditStudent extends EditingScreen {
 	public ToolbarEditStudent() {
 		super();
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setTitle("Izmena studenta");
+		setTitle(Screen.getInstance().getResourceBundle().getString("editingStudentTitle"));
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
 		setLocationRelativeTo(null);
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));

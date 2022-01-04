@@ -20,17 +20,19 @@ public class PassedSubjectsButtons extends JPanel {
         BoxLayout layout = new BoxLayout(this, BoxLayout.X_AXIS);
         setLayout(layout);
 
-        removeFromPassed = new JButton("Ponisti ocenu");
+        removeFromPassed = new JButton(Screen.getInstance().getResourceBundle().getString("removeMark"));
         removeFromPassed.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ToolbarEditStudentPassedPanel studPassedPanel = (ToolbarEditStudentPassedPanel) reference.getParent();
                 Tables marksTable = studPassedPanel.getPassedSubjectsTable();
                 if(marksTable.getSelectedRow() == -1) {
-                    JOptionPane.showMessageDialog(null, "Predmet nije selektovan!");
+                    JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
+                    		Screen.getInstance().getResourceBundle().getString("advice"), JOptionPane.INFORMATION_MESSAGE);
                     return;
                 }
-                int result = JOptionPane.showConfirmDialog(null, "Da li zelite ponistiti ocjenu iz obiljezenog predmeta", "Ponistavanje", JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(null, Screen.getInstance().getResourceBundle().getString("areYouSureRemove"),
+                		Screen.getInstance().getResourceBundle().getString("annulment"), JOptionPane.YES_NO_OPTION);
                 if(result != 0) return;
                 PassedSubjectsTableModel pstm = (PassedSubjectsTableModel) marksTable.getModel();
                 String subId = pstm.getSelectedSubjectId(marksTable.getSelectedRow());

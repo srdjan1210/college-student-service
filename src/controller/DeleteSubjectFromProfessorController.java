@@ -10,7 +10,8 @@ import view.ToolbarComponent.Professor.ToolbarEditProfessorSubjectsPanel;
 public class DeleteSubjectFromProfessorController {
 	public static Tables professorSubjectsTable;
 	public DeleteSubjectFromProfessorController(ToolbarEditProfessorSubjectsPanel editProfessorSubjectsPanel) {
-		int resp = JOptionPane.showConfirmDialog(null, "Da li ste sigurni?","Ukloni predmet",JOptionPane.YES_NO_OPTION);
+		int resp = JOptionPane.showConfirmDialog(null, Screen.getInstance().getResourceBundle().getString("areYouSure")
+				,Screen.getInstance().getResourceBundle().getString("btnRemoveSubject"),JOptionPane.YES_NO_OPTION);
 		if (resp == 1)
 			return;
 		String selectedSubjectId = editProfessorSubjectsPanel.getSelectedSubjectId();
@@ -18,8 +19,10 @@ public class DeleteSubjectFromProfessorController {
 		Boolean success = model.removeSubjectFromProfessorSubjects(selectedSubjectId,
 				Screen.getInstance().getStudentTab().getSelectedProfessorId());
 		if(success)
-			JOptionPane.showMessageDialog(null, "Predmet " + selectedSubjectId + " uspjesno uklonjen!");
+			JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("tabSubject") + " " +selectedSubjectId + 
+					Screen.getInstance().getResourceBundle().getString("successDelete"));
 		else
-			JOptionPane.showMessageDialog(null, "Predmet " + selectedSubjectId + " nije pronadjen!");
+			JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("tabSubject") + " " +selectedSubjectId +
+					Screen.getInstance().getResourceBundle().getString("notFounded"));
 	}
 }

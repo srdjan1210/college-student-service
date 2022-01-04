@@ -20,7 +20,7 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
 public class ToolbarEditStudentInfoPanel extends JPanel {
-	private String[] labelNames = Constants.studentLabelNames;
+	private String[] labelNames = Constants.getStudentLabelNames();
 	private String[] finansingWay = Constants.finansingWayLabels;
 	private String[] yearOfStudy = Constants.yearsLabels;
 

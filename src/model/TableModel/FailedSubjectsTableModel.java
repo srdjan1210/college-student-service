@@ -34,7 +34,8 @@ public class FailedSubjectsTableModel extends AbstractTableModel {
 
 	@Override
 	public String getColumnName(int column) {
-		return Constants.subjectColumnNames[column];
+		//return Constants.subjectColumnNames[column];
+		return Constants.getFailedColumnName(column);
 	}
 
 }

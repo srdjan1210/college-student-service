@@ -30,8 +30,8 @@ public class EditProfessorTab extends JTabbedPane {
 		String[] professorData = EditingProfessorController.findProfessorDataForFields(professor);
 		for (int i = 0; i < 10; i++)
 			editInfo.setTextField(i, professorData[i]);
-		add("Informacije", editInfo);
-		add("Predmeti",editSubjects);
+		add(Screen.getInstance().getResourceBundle().getString("info"), editInfo);
+		add(Screen.getInstance().getResourceBundle().getString("subjects"),editSubjects);
 	}
 
 	public ToolbarEditProfessorInfoPanel getToolbarEditProfessorInfo() {

@@ -18,16 +18,16 @@ public class AddSubjectToProfessorController {
 		String id = Screen.getInstance().getStudentTab().getSelectedProfessorId();
 		ArrayList<Subject> subjects = DataModel.getInstance().getNewSubjectsForProfessor(id);
 		if(subjects.size() == 0) {
-			JOptionPane.showMessageDialog(null, "Nema predmeta za dodavanje");
+			JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("noSubject"));
 			return;
 		}
 		JList selektor = new JList(new SubjectListModel(subjects));
 		selektor.setPreferredSize(new Dimension(100,300));
-		int result = JOptionPane.showConfirmDialog(null, new JScrollPane(selektor),"Izaberi predmet!", JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
+		int result = JOptionPane.showConfirmDialog(null, new JScrollPane(selektor),Screen.getInstance().getResourceBundle().getString("chooseSubject"), JOptionPane.OK_CANCEL_OPTION,JOptionPane.PLAIN_MESSAGE);
 		
 		if(result == 0) {
 			if(selektor.getSelectedIndex() == -1) {
-				JOptionPane.showMessageDialog(null, "Niste selektovali predmet");
+				JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"));
 				return;
 			}
 			Subject subject = ((SubjectListModel) selektor.getModel()).getSelectedSubject(selektor.getSelectedIndex());

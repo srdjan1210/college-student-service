@@ -7,6 +7,7 @@ import model.Database.DataModel;
 import model.Student;
 import utils.Constants;
 import utils.EnumConversion;
+import view.Screen;
 import view.ToolbarComponent.AddingScreen;
 
 import javax.swing.*;
@@ -21,10 +22,10 @@ public class AddStudentController implements IAddingController {
             validate(dialog);
             Student student = createStudentObjectFromFields(dialog);
             DataModel.getInstance().addStudentToList(student);
-            JOptionPane.showMessageDialog((JDialog) dialog, "Student uspjesno dodan u listu!");
+            JOptionPane.showMessageDialog((JDialog) dialog, Screen.getInstance().getResourceBundle().getString("studentToList"));
             dialog.dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), Screen.getInstance().getResourceBundle().getString("error"), JOptionPane.WARNING_MESSAGE);
         }
     }
 
@@ -54,22 +55,22 @@ public class AddStudentController implements IAddingController {
         for (int i = 0; i < fields.size() - 2; i++) {
             JTextField field = (JTextField) fields.get(i);
 
-            if (field.getName().toLowerCase(Locale.ROOT).contains("datum") && !validator.isValidDate(field))
-                validator.throwInvalidValidation(field, "<html>Format datuma treba da bude <br>GGGG-MM-DD</html>");
+            if ((field.getName().toLowerCase(Locale.ROOT).contains("datum") || field.getName().toLowerCase(Locale.ROOT).contains("date")) && !validator.isValidDate(field))
+                validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("dateFormat"));
 
             if (field.getText().trim().equals(""))
-                validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
+                validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("emptyField"));
 
-            if (field.getName().toLowerCase(Locale.ROOT).contains("adresa")
+            if ((field.getName().toLowerCase(Locale.ROOT).contains("adresa") || field.getName().toLowerCase(Locale.ROOT).contains("address"))
                     && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail")
                     && !validator.isValidAdressNumber(field))
-                validator.throwInvalidValidation(field, "<html>Adresa treba biti u formatu<br>(Drzava:Grad:Ulica:Broj Ulice)</html>");
+                validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("addressFormat"));
 
             if(!validator.isValidNumberField(field))
-                validator.throwInvalidValidation(field, "Polje treba biti broj!");
+                validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("numberFormat"));
 
-            if(field.getName().toLowerCase().contains("indeks") && !validator.isValidIndexNumber(field))
-                validator.throwInvalidValidation(field, "Broj indeksa vec zauzet!");
+            if((field.getName().toLowerCase().contains("indeks") || field.getName().toLowerCase().contains("index")) && !validator.isValidIndexNumber(field))
+                validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("indexFormat"));
             validator.setEmptyMessage(field);
         }
     }

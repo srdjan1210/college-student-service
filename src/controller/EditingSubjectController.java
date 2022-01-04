@@ -29,11 +29,11 @@ public class EditingSubjectController  implements IEditingController {
 			Subject subject = getEditedSubject(dialog);
 			DataModel model = DataModel.getInstance();
 			model.setEditedSubject(subjectIndexBeforeEdit, subject);
-			JOptionPane.showMessageDialog(dialog, "Informacije o predmetu uspesno izmenjene!");
+			JOptionPane.showMessageDialog(dialog, Screen.getInstance().getResourceBundle().getString("successEditSubject"));
 			dialog.dispose();
 		}
      catch (Exception e) {
-        JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), "Greska", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog((JDialog) dialog, e.getMessage(), Screen.getInstance().getResourceBundle().getString("error"), JOptionPane.WARNING_MESSAGE);
     }
 	}
 	
@@ -70,9 +70,9 @@ public class EditingSubjectController  implements IEditingController {
 	    		 continue;
 	    	 JTextField field = (JTextField) fields.get(i);
 	    	 if (field.getText().trim().equals(""))
-	             validator.throwInvalidValidation(field, "Polje mora biti popunjeno!");
+	             validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("emptyField"));
 	    	 if(!validator.isValidNumberField(field))
-                 validator.throwInvalidValidation(field, "Polje treba biti broj!");
+                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("numberFormat"));
 	    	 validator.setEmptyMessage(field);
 	    	 }
 	     }

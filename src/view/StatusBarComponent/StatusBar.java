@@ -10,16 +10,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import view.Screen;
+
 public class StatusBar extends JPanel {
 	private JLabel tabName;
 	private JLabel currentDateLabel;
+	private JLabel appNameLabel;
 
 	public StatusBar(JFrame frame) {
 		super();
 		setPreferredSize(new Dimension(frame.getWidth(), 18));
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-		JLabel appNameLabel = new JLabel("Studentska Sluzba");
-		tabName = new JLabel("Student");
+		appNameLabel = new JLabel("Studentska Sluzba");
+		tabName = new JLabel("Studenti");
 		currentDateLabel = new JLabel();
 
 		add(Box.createHorizontalStrut(10));
@@ -40,7 +43,7 @@ public class StatusBar extends JPanel {
 					while (true) {
 						Calendar calendar = new GregorianCalendar();
 						int day = calendar.get(Calendar.DAY_OF_MONTH);
-						int month = calendar.get(Calendar.MONTH);
+						int month = calendar.get(Calendar.MONTH) + 1;
 						int year = calendar.get(Calendar.YEAR);
 
 						int second = calendar.get(Calendar.SECOND);
@@ -63,5 +66,10 @@ public class StatusBar extends JPanel {
 
 	public void setTabName(String name) {
 		tabName.setText(name);
+	}
+	
+	public void changeLanguage(String tabName) {
+		appNameLabel.setText(Screen.getInstance().getResourceBundle().getString("lblAppName"));
+		setTabName(tabName);
 	}
 }

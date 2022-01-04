@@ -7,43 +7,56 @@ import javax.swing.*;
 
 import utils.ImageUtils;
 import view.ListenerHandler;
+import view.Screen;
 
 public class MenuBar extends JMenuBar {
 	private MenuBar context = this;
+	private JMenu fileMenuButton,editMenuButton,helpMenuButton,changeLanguageButton;
+	private MenuItems newMenuItem,saveMenuItem,closeMenuItem,editMenuItem,deleteMenuItem,helpMenuItem,aboutMenuItem;
+	private MenuItems studentsItem,subjectsItem,professorsItem,departmentsItem;
+	private MenuItems serbianItem,englishItem;
+	private JMenu openMenuButton;
 
 	public MenuBar() {
 		super();
-		JMenu fileMenuButton = new JMenu("File");
-		JMenu editMenuButton = new JMenu("Edit");
-		JMenu helpMenuButton = new JMenu("Help");
+		fileMenuButton = new JMenu("Fajl");
+		editMenuButton = new JMenu("Izmena");
+		helpMenuButton = new JMenu("Pomoc");
+		changeLanguageButton = new JMenu("Jezik");
 
 		fileMenuButton.setMnemonic('F');
 		editMenuButton.setMnemonic('E');
 		helpMenuButton.setMnemonic('H');
+		helpMenuButton.setMnemonic('L');
 
-		MenuItems newMenuItem = new MenuItems("New", "Icons/NewMenuItem.png", "CTRL + N", 'N');
+		newMenuItem = new MenuItems("Novo", "Icons/NewMenuItem.png", "CTRL + N", 'N');
 		newMenuItem.addActionListener(ListenerHandler.openWindowListener());
-		MenuItems saveMenuItem = new MenuItems("Save", "Icons/SaveMenuItem.png", "CTRL + S", 'S');
-		MenuItems closeMenuItem = new MenuItems("Close", "Icons/CloseMenuItem.png", "CTRL + C", 'C');
+		saveMenuItem = new MenuItems("Sacuvaj", "Icons/SaveMenuItem.png", "CTRL + S", 'S');
+		closeMenuItem = new MenuItems("Zatvori", "Icons/CloseMenuItem.png", "CTRL + C", 'C');
 
-		MenuItems editMenuItem = new MenuItems("Edit", "Icons/EditMenuItem.png", "CTRL + E", 'E');
+		editMenuItem = new MenuItems("Izmena", "Icons/EditMenuItem.png", "CTRL + E", 'E');
 		editMenuItem.addActionListener(ListenerHandler.openEditDialogListener());
-		MenuItems deleteMenuItem = new MenuItems("Delete", "Icons/DeleteMenuItem.png", "CTRL + D", 'D');
+		deleteMenuItem = new MenuItems("Izbrisi", "Icons/DeleteMenuItem.png", "CTRL + D", 'D');
 		deleteMenuItem.addActionListener(ListenerHandler.getButtonDeleteListener());
 
-		MenuItems helpMenuItem = new MenuItems("Help", "Icons/HelpMenuItem.png", "CTRL + H", 'H');
-		MenuItems aboutMenuItem = new MenuItems("About", "Icons/AboutMenuItem.png", "CTRL + A", 'A');
+		helpMenuItem = new MenuItems("Pomoc", "Icons/HelpMenuItem.png", "CTRL + H", 'H');
+		aboutMenuItem = new MenuItems("O nama", "Icons/AboutMenuItem.png", "CTRL + A", 'A');
 
-		JMenu openMenuButton = new JMenu("Open");
+		openMenuButton = new JMenu("Otovori");
 
 		ImageIcon imageIcon = ImageUtils.readImageIcon("Icons/OpenMenuItem.png");
 		Image image = imageIcon.getImage().getScaledInstance(13, 13, Image.SCALE_SMOOTH);
 		openMenuButton.setIcon(new ImageIcon(image));
 
-		MenuItems studentsItem = new MenuItems("Studenti", "Icons/StudentMenuItem.png", "CTRL + T", 'T');
-		MenuItems subjectsItem = new MenuItems("Predmeti", "Icons/SubjectMenuItem.png", "CTRL + P", 'P');
-		MenuItems professorsItem = new MenuItems("Profesori", "Icons/ProfessorMenuItems.png", "CTRL + R", 'R');
-		MenuItems departmentsItem = new MenuItems("Katedre", "Icons/DepartmentMenuItem.png", "CTRL + K", 'K');
+		studentsItem = new MenuItems("Studenti", "Icons/StudentMenuItem.png", "CTRL + T", 'T');
+		subjectsItem = new MenuItems("Predmeti", "Icons/SubjectMenuItem.png", "CTRL + P", 'P');
+		professorsItem = new MenuItems("Profesori", "Icons/ProfessorMenuItems.png", "CTRL + R", 'R');
+		departmentsItem = new MenuItems("Katedre", "Icons/DepartmentMenuItem.png", "CTRL + K", 'K');
+		
+		serbianItem = new MenuItems("Srpski","Icons/Serbia.png","CTRL + Q",'Q');
+		serbianItem.addActionListener(ListenerHandler.getChangeToSerbianListener());
+		englishItem = new MenuItems("Engleski","Icons/US.png","CTRL + W",'W');
+		englishItem.addActionListener(ListenerHandler.getChangeToUsListener());
 
 		openMenuButton.add(studentsItem);
 		openMenuButton.add(subjectsItem);
@@ -61,10 +74,40 @@ public class MenuBar extends JMenuBar {
 
 		helpMenuButton.add(helpMenuItem);
 		helpMenuButton.add(aboutMenuItem);
+		
+		changeLanguageButton.add(serbianItem);
+		changeLanguageButton.add(englishItem);
 
 		this.add(fileMenuButton);
 		this.add(editMenuButton);
 		this.add(helpMenuButton);
+		this.add(changeLanguageButton);
 
+	}
+	/*
+	 * 	private MenuItems newMenuItem,saveMenuItem,closeMenuItem,editMenuItem,deleteMenuItem,helpMenuItem,aboutMenuItem;
+	private MenuItems studentsItem,subjectsItem,professorsItem,departmentsItem;
+	private MenuItems serbianItem,englishItem;
+	 */
+	public void changeLanguage() {
+		fileMenuButton.setText(Screen.getInstance().getResourceBundle().getString("btnFile"));
+		editMenuButton.setText(Screen.getInstance().getResourceBundle().getString("btnEdit"));
+		helpMenuButton.setText(Screen.getInstance().getResourceBundle().getString("btnHelp"));
+		changeLanguageButton.setText(Screen.getInstance().getResourceBundle().getString("btnLanguage"));
+		newMenuItem.setText(Screen.getInstance().getResourceBundle().getString("itemNew"));
+		saveMenuItem.setText(Screen.getInstance().getResourceBundle().getString("itemSave"));
+		closeMenuItem.setText(Screen.getInstance().getResourceBundle().getString("itemClose"));
+		editMenuItem.setText(Screen.getInstance().getResourceBundle().getString("itemEdit"));
+		deleteMenuItem.setText(Screen.getInstance().getResourceBundle().getString("itemDelete"));
+		helpMenuItem.setText(Screen.getInstance().getResourceBundle().getString("itemHelp"));
+		aboutMenuItem.setText(Screen.getInstance().getResourceBundle().getString("itemAbout"));
+		serbianItem.setText(Screen.getInstance().getResourceBundle().getString("itemSerbian"));
+		englishItem.setText(Screen.getInstance().getResourceBundle().getString("itemEnglish"));
+		openMenuButton.setText(Screen.getInstance().getResourceBundle().getString("btnOpen"));
+		studentsItem.setText(Screen.getInstance().getResourceBundle().getString("itemStudents"));
+		subjectsItem.setText(Screen.getInstance().getResourceBundle().getString("itemSubjects"));
+		professorsItem.setText(Screen.getInstance().getResourceBundle().getString("itemProfessors"));
+		departmentsItem.setText(Screen.getInstance().getResourceBundle().getString("itemDepartments"));
+		
 	}
 }

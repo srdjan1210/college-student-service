@@ -27,7 +27,7 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
 public class ToolbarEnteringMark extends JDialog {
 
-	private String[] labelNames = Constants.takingExamLabelNames;
+	private String[] labelNames = Constants.getTakingExamLabelNames();
 	private String[] markValue = Constants.marksLabels;
 	private String[] subjectData;
 	private ArrayList<ToolbarWinLabel> labelReferences;
@@ -44,7 +44,7 @@ public class ToolbarEnteringMark extends JDialog {
 	public ToolbarEnteringMark(ToolbarEditStudentFailedPanel failedPanel) {
 		super();
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setTitle("Unos ocene");
+		setTitle(Screen.getInstance().getResourceBundle().getString("takingExamTitle"));
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 8, Constants.SCREEN_HEIGHT * 3 / 6));
 		setLocationRelativeTo(null);
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));

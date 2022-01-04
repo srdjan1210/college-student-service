@@ -1,6 +1,7 @@
 package controller;
 
 import model.Professor;
+import view.Screen;
 import view.JListModels.ProfessorListModel;
 import view.JListModels.SubjectListModel;
 import view.ToolbarComponent.Subject.ToolbarEditSubject;
@@ -15,7 +16,8 @@ public class AddProfessorToSubjectController {
 
     public void addNewProfessorToSubject(ToolbarEditSubject editDialog) {
         JList selection = new JList(new ProfessorListModel());
-        int result = JOptionPane.showConfirmDialog(null, new JScrollPane(selection),"Izaberite predmet!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(null, new JScrollPane(selection),Screen.getInstance().getResourceBundle().getString("chooseSubject"),
+        		JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if(result == 0) {
             Professor professor = ((ProfessorListModel)selection.getModel()).getObjectAt(selection.getSelectedIndex());

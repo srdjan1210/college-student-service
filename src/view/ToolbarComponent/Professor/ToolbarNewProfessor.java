@@ -1,6 +1,7 @@
 package view.ToolbarComponent.Professor;
 
 import view.ListenerHandler;
+import view.Screen;
 import utils.Constants;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.ToolbarCustomComponents.*;
@@ -10,7 +11,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class ToolbarNewProfessor extends AddingScreen {
-	private String[] labelNames = Constants.professorLabelNames;
+	private String[] labelNames = Constants.getProfessorLabelNames();
 	private ArrayList<ToolbarWinLabel> labelReferences;
 	private ToolbarEnterExitPanel tenex;
 
@@ -20,7 +21,7 @@ public class ToolbarNewProfessor extends AddingScreen {
 		setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
 		BoxLayout layout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
 		setLayout(layout);
-		setTitle("Dodavanje Profesora");
+		setTitle(Screen.getInstance().getResourceBundle().getString("addingProfessorTitle"));
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
 		setLocationRelativeTo(null);
 

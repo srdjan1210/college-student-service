@@ -12,6 +12,7 @@ import model.Student;
 import model.TableModel.ProfessorTableModel;
 import model.TableModel.StudentTableModel;
 import model.TableModel.SubjectTableModel;
+import view.Screen;
 import view.RowFilters.StudentRowFilter;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.AddingScreen;
@@ -25,7 +26,7 @@ public class Tab extends JTabbedPane {
 	private Tables studentTable;
 	private Tables professorTable;
 	private Tables subjectTable;
-
+	
 	public Tab(IAddingController addingController, IEditingController editingController,
 			IDeleteController deleteController) {
 		super();
@@ -37,12 +38,38 @@ public class Tab extends JTabbedPane {
 		professorTable = new Tables(new ProfessorTableModel());
 		subjectTable = new Tables(new SubjectTableModel());
 
-
 		DataModel.getInstance().setTableObserver(studentTable);
 
 		add("Student", new JScrollPane(studentTable));
 		add("Profesor", new JScrollPane(professorTable));
-		add("Predmeti", new JScrollPane(subjectTable));
+		add("Predmet", new JScrollPane(subjectTable));
+		
+	}
+	
+	public void changeLanguage() {
+		this.setTitleAt(0, Screen.getInstance().getResourceBundle().getString("tabStudent"));
+		this.setTitleAt(1, Screen.getInstance().getResourceBundle().getString("tabProfessor"));
+		this.setTitleAt(2, Screen.getInstance().getResourceBundle().getString("tabSubject"));
+		
+		studentTable.getColumnModel().getColumn(0).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colStudent0"));
+		studentTable.getColumnModel().getColumn(1).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colStudent1"));
+		studentTable.getColumnModel().getColumn(2).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colStudent2"));
+		studentTable.getColumnModel().getColumn(3).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colStudent3"));
+		studentTable.getColumnModel().getColumn(4).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colStudent4"));
+		studentTable.getColumnModel().getColumn(5).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colStudent5"));
+		
+		professorTable.getColumnModel().getColumn(0).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colProfessor0"));
+		professorTable.getColumnModel().getColumn(1).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colProfessor1"));
+		professorTable.getColumnModel().getColumn(2).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colProfessor2"));
+		professorTable.getColumnModel().getColumn(3).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colProfessor3"));
+		
+		subjectTable.getColumnModel().getColumn(0).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colSubject0"));
+		subjectTable.getColumnModel().getColumn(1).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colSubject1"));
+		subjectTable.getColumnModel().getColumn(2).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colSubject2"));
+		subjectTable.getColumnModel().getColumn(3).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colSubject3"));
+		subjectTable.getColumnModel().getColumn(4).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colSubject4"));
+		
+		
 	}
 
 	public String getSelectedStudentIndex() {

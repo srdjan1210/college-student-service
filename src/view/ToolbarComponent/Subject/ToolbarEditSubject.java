@@ -25,7 +25,7 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
 public class ToolbarEditSubject extends EditingScreen {
-	private String[] labelNames = Constants.subjectLabelNames;
+	private String[] labelNames = Constants.getSubjectLabelNames();
 	private String[] years = Constants.yearsLabels;
 	private String[] semester = Constants.semesterValues;
 	private ArrayList<ToolbarWinLabel> labelReferences;
@@ -36,7 +36,7 @@ public class ToolbarEditSubject extends EditingScreen {
 	public ToolbarEditSubject() {
 		super();
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setTitle("Izmena predmeta");
+		setTitle(Screen.getInstance().getResourceBundle().getString("editingSubjectTitle"));
 		setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
 		setLocationRelativeTo(null);
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));

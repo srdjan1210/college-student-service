@@ -17,7 +17,7 @@ import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinLabel;
 import view.ToolbarComponent.ToolbarCustomComponents.ToolbarWinTxtField;
 
 public class ToolbarEditProfessorInfoPanel extends JPanel {
-	String[] labelNames = Constants.professorLabelNames;
+	String[] labelNames = Constants.getProfessorLabelNames();
 	String[] finansingWay = Constants.finansingWayLabels;
 	String[] yearOfStudy = Constants.yearsLabels;
 	
