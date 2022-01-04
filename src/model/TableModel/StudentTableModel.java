@@ -42,7 +42,7 @@ public class StudentTableModel extends AbstractTableModel {
 
 	public String selectedStudentIndex() {
         Tables table = Screen.getInstance().getStudentTab().getStudentTable();
-        System.out.println((String) table.getValueAt(table.getSelectedRow(), 0));
+        if(table.getSelectedRow() == -1) return "";
         return (String) table.getValueAt(table.getSelectedRow(), 0);
     }
 

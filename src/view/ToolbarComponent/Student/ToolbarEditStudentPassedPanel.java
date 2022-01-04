@@ -44,11 +44,7 @@ public class ToolbarEditStudentPassedPanel extends JPanel {
     }
 
     public void setESPBAndAverage() {
-        JLabel lblAvg = infoPanel.getAverageField();
-        JLabel lblEspb = infoPanel.getEspbField();
-        String studIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
-        lblAvg.setText(addPassedSubjectController.calculateAverageMarkForStudent(studIndex) + "");
-        lblEspb.setText(addPassedSubjectController.calculateSumOfESPB(studIndex) + "");
+        addPassedSubjectController.setESPBAndAverage(infoPanel);
     }
 
 

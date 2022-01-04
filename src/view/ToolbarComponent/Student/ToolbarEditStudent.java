@@ -40,15 +40,16 @@ public class ToolbarEditStudent extends EditingScreen {
 			public void stateChanged(ChangeEvent e) {
 				// TODO Auto-generated method stub
 				if (tab.getSelectedIndex() == 0) {
-
 				} else if (tab.getSelectedIndex() == 1) {
 					DataModel.getInstance()
 							.setEditTableObserver(tab.getToolbarEditStudentPassed().getPassedSubjectsTable());
 					DataModel.getInstance().notifyEditTable();
+					tab.getToolbarEditStudentPassed().setESPBAndAverage();
 				} else if (tab.getSelectedIndex() == 2) {
 					DataModel.getInstance()
 							.setEditTableObserver(tab.getToolbarEditStudentFailed().getFailedSubjectsTable());
 					DataModel.getInstance().notifyEditTable();
+
 				}
 
 			}
