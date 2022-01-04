@@ -132,7 +132,7 @@ public class Professor {
     		}
     	}
     }
-    public String getDataAt(int index) {
+    public Object getDataAt(int index) {
         switch(index) {
             case 0: return firstName;
             case 1: return lastName;

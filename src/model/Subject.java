@@ -91,16 +91,16 @@ public class Subject {
 		this.yearOfStudy = yearOfStudy;
 	}
 
-	public String getDataAt(int index) {
+	public Object getDataAt(int index) {
 		switch (index) {
 		case 0:
 			return subjectId;
 		case 1:
 			return subjectName;
 		case 2:
-			return Integer.toString(espb);
+			return espb;
 		case 3:
-			return Integer.toString(yearOfStudy);
+			return yearOfStudy;
 		case 4:
 			return semester.getValue();
 		default:

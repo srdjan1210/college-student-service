@@ -27,6 +27,12 @@ public class SubjectTableModel extends AbstractTableModel {
     public String getColumnName(int column) {
         return Constants.subjectColumnNames[column];
     }
+    
+    @Override
+ 	public Class<?> getColumnClass(int columnIndex) {
+ 		// TODO Auto-generated method stub
+ 		return getValueAt(0,columnIndex).getClass();
+ 	}
 
     public String getSelectedSubjectId() {
         Tables table = Screen.getInstance().getStudentTab().getSubjectTable();

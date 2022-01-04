@@ -7,6 +7,8 @@ import view.Screen;
 import view.TablesComponent.Tables;
 
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableRowSorter;
+
 import java.util.HashMap;
 
 public class StudentTableModel extends AbstractTableModel {
@@ -29,8 +31,16 @@ public class StudentTableModel extends AbstractTableModel {
     public String getColumnName(int column) {
         return Constants.studentColumnNames[column];
     }
+    
+    
 
-    public String selectedStudentIndex() {
+   @Override
+	public Class<?> getColumnClass(int columnIndex) {
+		// TODO Auto-generated method stub
+		return getValueAt(0,columnIndex).getClass();
+	}
+
+	public String selectedStudentIndex() {
         Tables table = Screen.getInstance().getStudentTab().getStudentTable();
         System.out.println((String) table.getValueAt(table.getSelectedRow(), 0));
         return (String) table.getValueAt(table.getSelectedRow(), 0);

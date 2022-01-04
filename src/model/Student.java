@@ -158,7 +158,7 @@ public class Student {
 		}
 	}
 
-	public String getDataAt(int index) {
+	public Object getDataAt(int index) {
 		switch (index) {
 		case 0:
 			return indexNumber;
@@ -167,11 +167,11 @@ public class Student {
 		case 2:
 			return lastName;
 		case 3:
-			return Integer.toString(studyYear);
+			return studyYear;
 		case 4:
 			return status.getValue();
 		case 5:
-			return Double.toString(averageMark);
+			return averageMark;
 		default:
 			return "";
 		}
