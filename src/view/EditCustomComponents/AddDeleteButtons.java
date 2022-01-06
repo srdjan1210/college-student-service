@@ -22,22 +22,6 @@ public class AddDeleteButtons extends JPanel {
         btnDelete = new JButton("-");
         btnDelete.setEnabled(false);
 
-        btnAdd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ToolbarEditSubject toolbarEditSubject = (ToolbarEditSubject) SwingUtilities.getWindowAncestor(btnDelete);
-                addProfessorToSubjectController.addNewProfessorToSubject(toolbarEditSubject);
-            }
-        });
-
-        btnDelete.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ToolbarEditSubject toolbarEditSubject = (ToolbarEditSubject) SwingUtilities.getWindowAncestor(btnDelete);
-                ((JTextField) toolbarEditSubject.getFieldsReferences().get(3)).setText("");
-                toolbarEditSubject.switchAddDeleteButtons();
-            }
-        });
 
 
         add(btnAdd);
@@ -52,5 +36,10 @@ public class AddDeleteButtons extends JPanel {
 
     public JButton getBtnDelete() {
         return btnDelete;
+    }
+
+    public void setListeners(ActionListener deleteListener, ActionListener confirmListener) {
+        btnAdd.addActionListener(confirmListener);
+        btnDelete.addActionListener(deleteListener);
     }
 }

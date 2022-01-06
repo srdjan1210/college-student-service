@@ -225,11 +225,4 @@ public class StudentLogic {
         if (savedStud != null) subject.getStudentsFailed().add(savedStud);
     }
 
-    public Student findStudentThatContains(String word) {
-        for (Student student : dataModel.getStudents()) {
-            if (student.getIndexNumber().toLowerCase().contains(word.toLowerCase(Locale.ROOT))) return student;
-        }
-        return null;
-    }
-
 }

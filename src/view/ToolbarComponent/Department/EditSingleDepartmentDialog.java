@@ -2,7 +2,9 @@ package view.ToolbarComponent.Department;
 
 import controller.DepartmentController;
 import utils.Constants;
+import view.EditCustomComponents.AddDeleteButtons;
 import view.JListModels.DepHeadList;
+import view.ListenerHandler;
 import view.Screen;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.ToolbarCustomComponents.*;
@@ -32,6 +34,7 @@ public class EditSingleDepartmentDialog extends JDialog {
         setLocationRelativeTo(null);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
         fieldsReferences = new Vector<>();
+
 
         for (String lblName : labelNames) {
             add(createRow(lblName));
@@ -71,35 +74,21 @@ public class EditSingleDepartmentDialog extends JDialog {
         ToolbarWinLabel lbl = new ToolbarWinLabel(lblText);
         row.add(lbl);
         ToolbarWinTxtField field = new ToolbarWinTxtField(lblText);
-        if (lblText.equals("Sef katedre*"))
-            addActionListenerForHead(field);
         PanelFieldError errPanel = new PanelFieldError(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
+
+        if (lblText.equals("Šef katedre*")) {
+            AddDeleteButtons addDeleteButtons = new AddDeleteButtons();
+            addDeleteButtons.setListeners(ListenerHandler.deleteDepartmentListener(field,addDeleteButtons), ListenerHandler.addDepartmentListener(departmentController, field, addDeleteButtons));
+            JPanel upperWrapper = new JPanel();
+            upperWrapper.setLayout(new BoxLayout(upperWrapper, BoxLayout.X_AXIS));
+            upperWrapper.add(field);
+            upperWrapper.add(addDeleteButtons);
+            errPanel.add(upperWrapper);
+        }
+
         row.add(errPanel);
         fieldsReferences.add(field);
-
         return row;
-    }
-
-    private void addActionListenerForHead(JTextField field) {
-        System.out.println(field.getName());
-        field.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (!field.getText().equals("")) return;
-                JList lista = new JList(new DepHeadList());
-                int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), "Izaberite profesora!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if (result == 0) {
-                    DepHeadList model = (DepHeadList) lista.getModel();
-                    if (lista.getSelectedIndex() == -1) return;
-                    field.setText(model.getObjectAt(lista.getSelectedIndex()).getIdNumber());
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-
-            }
-        });
     }
 
     public JTextField getTextField(int index) {

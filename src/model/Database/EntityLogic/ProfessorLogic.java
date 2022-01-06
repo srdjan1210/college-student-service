@@ -1,6 +1,7 @@
 package model.Database.EntityLogic;
 
 import model.Database.DataModel;
+import model.Department;
 import model.Professor;
 import model.Subject;
 
@@ -56,7 +57,24 @@ public class ProfessorLogic {
         for (Professor professor : professors) {
             if (professor.getIdNumber().equals(id)) {
                 professor.addSubject(subject);
+                subject.setProfessor(professor);
+                cleanLeftSubjects(professor, subject);
                 dataModel.notifyEditTable();
+            }
+        }
+    }
+
+
+
+    public void cleanLeftSubjects(Professor exceptedProfessor, Subject newSubject) {
+        ArrayList<Professor> professors = dataModel.getProfessors();
+        for(Professor professor: professors) {
+            if(professor.getIdNumber().equals(exceptedProfessor.getIdNumber())) continue;
+            for(Subject subject: professor.getSubjects()) {
+                if(subject.getSubjectId().equals(newSubject.getSubjectId())) {
+                    professor.getSubjects().remove(subject);
+                    break;
+                }
             }
         }
     }
@@ -140,13 +158,22 @@ public class ProfessorLogic {
         ArrayList<Professor> filtered = new ArrayList<>();
         ArrayList<Professor> professors = dataModel.getProfessors();
         for (Professor professor : professors) {
-            if (professor.getWorkingYears() > 5 && (professor.getTitle().toLowerCase().equals("redovni profesor")
-                    || professor.getTitle().toLowerCase(Locale.ROOT).equals("vanredni profesor"))) {
+            if (professor.getWorkingYears() > 5 && !professorIsHead(professor.getIdNumber()) && professor.getTitle().toLowerCase().equals("redovni profesor")
+                    || professor.getTitle().toLowerCase(Locale.ROOT).equals("vanredni profesor")) {
                 filtered.add(professor);
             }
         }
 
         return filtered;
+    }
+
+    public boolean professorIsHead(String professorId) {
+        ArrayList<Department> departments = dataModel.getDepartments();
+        for(Department department: departments) {
+            if(department.getHeadOfTheDepartment() == null) continue;
+            if(department.getHeadOfTheDepartment().getIdNumber().equals(professorId)) return true;
+        }
+        return false;
     }
 
 }

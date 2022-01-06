@@ -36,7 +36,7 @@ public class Tables extends JTable {
                         return 0;
                     else
                         return 1;
-                }
+               }
 
             });
             rowSorter.setRowFilter(new StudentRowFilter());

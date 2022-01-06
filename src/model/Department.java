@@ -63,6 +63,6 @@ public class Department {
 
     @Override
     public String toString() {
-        return departmentId + "," + departmentName + "," + headOfTheDepartment.getIdNumber();
+        return departmentId + "," + departmentName + "," + (headOfTheDepartment == null ? "null" : headOfTheDepartment.getIdNumber());
     }
 }

@@ -17,12 +17,15 @@ import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableRowSorter;
 
+import controller.AddProfessorToSubjectController;
 import controller.DeleteSubjectFromProfessorController;
+import controller.DepartmentController;
 import model.Database.DataModel;
 import model.Professor;
 import model.TableModel.ProfessorTableModel;
 import model.TableModel.StudentTableModel;
 import model.TableModel.SubjectTableModel;
+import view.EditCustomComponents.AddDeleteButtons;
 import view.RowFilters.ProfessorRowFilter;
 import view.RowFilters.StudentRowFilter;
 import view.RowFilters.SubjectRowFilter;
@@ -369,6 +372,48 @@ public class ListenerHandler {
                 }
                 DataModel.getInstance().notifyTable();
 
+            }
+        };
+    }
+
+    public static ActionListener deleteProfessorListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddProfessorToSubjectController addProfessorToSubjectController = new AddProfessorToSubjectController();
+                ToolbarEditSubject toolbarEditSubject = (ToolbarEditSubject) SwingUtilities.getWindowAncestor((JButton)e.getSource());
+                addProfessorToSubjectController.addNewProfessorToSubject(toolbarEditSubject);
+            }
+        };
+    }
+
+    public static ActionListener addProfessorToFieldListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ToolbarEditSubject toolbarEditSubject = (ToolbarEditSubject) SwingUtilities.getWindowAncestor((JButton)e.getSource());
+                ((JTextField) toolbarEditSubject.getFieldsReferences().get(3)).setText("");
+                toolbarEditSubject.switchAddDeleteButtons();
+            }
+        };
+    }
+
+    public static ActionListener deleteDepartmentListener(JTextField field, AddDeleteButtons addDeleteButtons) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addDeleteButtons.getBtnDelete().setEnabled(false);
+                addDeleteButtons.getBtnAdd().setEnabled(true);
+                field.setText("");
+            }
+        };
+    }
+
+    public static ActionListener addDepartmentListener(DepartmentController departmentController, JTextField field, AddDeleteButtons addDeleteButtons) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                departmentController.chooseHead(field, addDeleteButtons);
             }
         };
     }

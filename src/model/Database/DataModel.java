@@ -85,7 +85,6 @@ public class DataModel {
         return profLogic.getProfessorIdFromEmail(email);
     }
 
-
     // Adding entities methods
     public void addProfessorToList(Professor newProfessor) {
         profLogic.addProfessorToList(newProfessor);
@@ -244,12 +243,6 @@ public class DataModel {
         AbstractTableModel model = (AbstractTableModel) editTableObserver.getModel();
         model.fireTableDataChanged();
     }
-
-    //Search related logic
-    public Student findStudentThatContains(String word) {
-        return studLogic.findStudentThatContains(word);
-    }
-
     // Getters and setters
     public ArrayList<Student> getStudents() {
         return students;

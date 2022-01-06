@@ -4,6 +4,8 @@ import exceptions.InvalidFieldException;
 import model.Database.DataModel;
 import model.Department;
 import model.Professor;
+import view.EditCustomComponents.AddDeleteButtons;
+import view.JListModels.DepHeadList;
 import view.Screen;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.Department.EditSingleDepartmentDialog;
@@ -56,5 +58,17 @@ public class DepartmentController {
             validator.setEmptyMessage(field);
         }
 
+    }
+
+    public void chooseHead(JTextField field, AddDeleteButtons addDeleteButtons) {
+        JList lista = new JList(new DepHeadList());
+        int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), "Izaberite profesora!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (result == 0) {
+            DepHeadList model = (DepHeadList) lista.getModel();
+            if (lista.getSelectedIndex() == -1) return;
+            field.setText(model.getObjectAt(lista.getSelectedIndex()).getIdNumber());
+            addDeleteButtons.getBtnAdd().setEnabled(false);
+            addDeleteButtons.getBtnDelete().setEnabled(true);
+        }
     }
 }
