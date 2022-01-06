@@ -29,6 +29,6 @@ public class ProfessorSubjectsTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-    	return Constants.getProfessorSubjectColumnName(column);
+        return Constants.getProfessorSubjectColumnName(column);
     }
 }

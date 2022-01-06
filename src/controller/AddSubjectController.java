@@ -51,9 +51,9 @@ public class AddSubjectController implements IAddingController {
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("dateFormat"));
             if (field.getText().trim().equals(""))
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("emptyField"));
-            if(!validator.isValidNumberField(field))
+            if (!validator.isValidNumberField(field))
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("numberFormat"));
-            if((field.getName().toLowerCase().contains("id predmeta") || field.getName().toLowerCase().contains("subject id")) && !validator.isValidSubjectId(field))
+            if ((field.getName().toLowerCase().contains("id predmeta") || field.getName().toLowerCase().contains("subject id")) && !validator.isValidSubjectId(field))
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("idSubjectFormat"));
 
             validator.setEmptyMessage(field);

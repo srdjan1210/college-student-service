@@ -1,14 +1,14 @@
 package view.EditCustomComponents;
 
-import javax.swing.*;
-
 import view.Screen;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class PassedExamInfoPanel extends JPanel {
     private JLabel averageField;
     private JLabel espbField;
+
     public PassedExamInfoPanel() {
         super();
         setLayoutForComponent(this, BoxLayout.Y_AXIS);

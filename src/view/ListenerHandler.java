@@ -14,9 +14,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableRowSorter;
 
 import controller.DeleteSubjectFromProfessorController;
 import model.Database.DataModel;
+import model.Professor;
+import model.TableModel.ProfessorTableModel;
+import model.TableModel.StudentTableModel;
+import model.TableModel.SubjectTableModel;
+import view.RowFilters.ProfessorRowFilter;
+import view.RowFilters.StudentRowFilter;
+import view.RowFilters.SubjectRowFilter;
+import view.TabComponent.Tab;
+import view.TablesComponent.Tables;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.Department.DepartmentEditWindow;
 import view.ToolbarComponent.EditingScreen;
@@ -333,4 +344,32 @@ public class ListenerHandler {
         };
     }
 
+    public static ActionListener searchTables() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Tab tab = Screen.getInstance().getStudentTab();
+                String filterWord = Screen.getInstance().getToolbar().getSearchField().getText();
+                int selectedIndex = tab.getSelectedIndex();
+                if (selectedIndex == 0) {
+                    Tables table = tab.getStudentTable();
+                    TableRowSorter<StudentTableModel> rowSorter = (TableRowSorter<StudentTableModel>) table.getRowSorter();
+                    StudentRowFilter filter = (StudentRowFilter) rowSorter.getRowFilter();
+                    filter.setFilterWord(filterWord);
+                } else if (selectedIndex == 1) {
+                    Tables table = tab.getProfessorTable();
+                    TableRowSorter<ProfessorTableModel> rowSorter = (TableRowSorter<ProfessorTableModel>) table.getRowSorter();
+                    ProfessorRowFilter filter = (ProfessorRowFilter) rowSorter.getRowFilter();
+                    filter.setFilterWord(filterWord);
+                } else if (selectedIndex == 2) {
+                    Tables table = tab.getSubjectTable();
+                    TableRowSorter<SubjectTableModel> rowSorter = (TableRowSorter<SubjectTableModel>) table.getRowSorter();
+                    SubjectRowFilter filter = (SubjectRowFilter) rowSorter.getRowFilter();
+                    filter.setFilterWord(filterWord);
+                }
+                DataModel.getInstance().notifyTable();
+
+            }
+        };
+    }
 }

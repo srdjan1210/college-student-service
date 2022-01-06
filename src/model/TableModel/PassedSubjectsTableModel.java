@@ -39,7 +39,7 @@ public class PassedSubjectsTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-       // return Constants.passedExamsColumnNames[column];
-          return Constants.getPassedExamColumnName(column);
+        // return Constants.passedExamsColumnNames[column];
+        return Constants.getPassedExamColumnName(column);
     }
 }

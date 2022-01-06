@@ -2,8 +2,8 @@ package view.ToolbarComponent.Department;
 
 import controller.DepartmentController;
 import utils.Constants;
-import view.Screen;
 import view.JListModels.DepHeadList;
+import view.Screen;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.ToolbarCustomComponents.*;
 
@@ -71,7 +71,7 @@ public class EditSingleDepartmentDialog extends JDialog {
         ToolbarWinLabel lbl = new ToolbarWinLabel(lblText);
         row.add(lbl);
         ToolbarWinTxtField field = new ToolbarWinTxtField(lblText);
-        if(lblText.equals("Sef katedre*"))
+        if (lblText.equals("Sef katedre*"))
             addActionListenerForHead(field);
         PanelFieldError errPanel = new PanelFieldError(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
         row.add(errPanel);
@@ -85,12 +85,12 @@ public class EditSingleDepartmentDialog extends JDialog {
         field.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if(!field.getText().equals("")) return;
+                if (!field.getText().equals("")) return;
                 JList lista = new JList(new DepHeadList());
-                int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista),"Izaberite profesora!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-                if(result == 0) {
-                    DepHeadList model =(DepHeadList) lista.getModel();
-                    if(lista.getSelectedIndex() == -1) return;
+                int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), "Izaberite profesora!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                if (result == 0) {
+                    DepHeadList model = (DepHeadList) lista.getModel();
+                    if (lista.getSelectedIndex() == -1) return;
                     field.setText(model.getObjectAt(lista.getSelectedIndex()).getIdNumber());
                 }
             }

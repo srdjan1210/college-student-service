@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 public class DepartmentEditWindow extends JDialog {
     private Tables departmentsTable;
     private JButton editButton;
+
     public DepartmentEditWindow() {
         super();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -26,7 +27,7 @@ public class DepartmentEditWindow extends JDialog {
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(departmentsTable.getSelectedRow() == -1) return;
+                if (departmentsTable.getSelectedRow() == -1) return;
                 new EditSingleDepartmentDialog(departmentsTable, new DepartmentController());
             }
         });
@@ -43,7 +44,6 @@ public class DepartmentEditWindow extends JDialog {
     public Tables getDepartmentsTable() {
         return departmentsTable;
     }
-
 
 
 }

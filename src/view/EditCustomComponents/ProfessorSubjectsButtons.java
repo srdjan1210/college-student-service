@@ -5,9 +5,10 @@ import view.Screen;
 import javax.swing.*;
 import java.awt.*;
 
-public class ProfessorSubjectsButtons extends JPanel{
+public class ProfessorSubjectsButtons extends JPanel {
     private JButton btnAddSubject;
     private JButton btnDeleteSubject;
+
     public ProfessorSubjectsButtons() {
         super();
         btnAddSubject = new JButton(Screen.getInstance().getResourceBundle().getString("btnAddSubject"));
@@ -23,12 +24,14 @@ public class ProfessorSubjectsButtons extends JPanel{
         add(Box.createHorizontalStrut(20));
         add(btnDeleteSubject);
     }
-	public JButton getBtnAddSubject() {
-		return btnAddSubject;
-	}
-	public JButton getBtnDeleteSubject() {
-		return btnDeleteSubject;
-	}
-    
-    
+
+    public JButton getBtnAddSubject() {
+        return btnAddSubject;
+    }
+
+    public JButton getBtnDeleteSubject() {
+        return btnDeleteSubject;
+    }
+
+
 }

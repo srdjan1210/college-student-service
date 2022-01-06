@@ -1,10 +1,9 @@
 package utils;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class ImageUtils {
 

@@ -2,11 +2,11 @@ package controller;
 
 import exceptions.InvalidFieldException;
 import model.Database.DataModel;
-import utils.Constants;
-import view.Screen;
 import model.Professor;
 import model.Student;
 import model.Subject;
+import utils.Constants;
+import view.Screen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,48 +79,48 @@ public class EntityValidator {
     public boolean isValidIndexNumber(JTextField field) {
         DataModel database = DataModel.getInstance();
         Student student = database.getStudentById(field.getText());
-        if(student == null) return true;
+        if (student == null) return true;
         return false;
     }
-    
+
     public boolean isValidIndexNumberForEditing(JTextField field) {
-    	String selectedStudentIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
+        String selectedStudentIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
         DataModel database = DataModel.getInstance();
         Student student = database.getStudentById(field.getText());
-        if(student == null) return true;
-        	else if(student.getIndexNumber() == selectedStudentIndex) return true;
+        if (student == null) return true;
+        else if (student.getIndexNumber() == selectedStudentIndex) return true;
         return false;
     }
 
     public boolean isValidLBO(JTextField field) {
         DataModel database = DataModel.getInstance();
         Professor professor = database.getProfessorById(field.getText());
-        if(professor == null) return true;
+        if (professor == null) return true;
         return false;
     }
-    
+
     public boolean isValidLBOForEditing(JTextField field) {
-    	String selectedProfessorIndex = Screen.getInstance().getStudentTab().getSelectedProfessorId();
+        String selectedProfessorIndex = Screen.getInstance().getStudentTab().getSelectedProfessorId();
         DataModel database = DataModel.getInstance();
         Professor professor = database.getProfessorById(field.getText());
-        if(professor == null) return true;
-        	else if(professor.getIdNumber() == selectedProfessorIndex) return true;
+        if (professor == null) return true;
+        else if (professor.getIdNumber() == selectedProfessorIndex) return true;
         return false;
     }
-    
+
 
     public boolean isValidSubjectId(JTextField field) {
         DataModel database = DataModel.getInstance();
         Subject subject = database.getSubjectById(field.getText());
-        if(subject == null) return true;
+        if (subject == null) return true;
         return false;
     }
-    
+
     public boolean isValidProfessor(JTextField field) {
-    	DataModel database = DataModel.getInstance();
-    	Professor professor = database.getProfessorById(field.getText());
-    	if(professor == null) return false;
-    	return true;
+        DataModel database = DataModel.getInstance();
+        Professor professor = database.getProfessorById(field.getText());
+        if (professor == null) return false;
+        return true;
     }
 
 
