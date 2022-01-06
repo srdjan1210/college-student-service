@@ -32,7 +32,9 @@ public class MenuBar extends JMenuBar {
 		newMenuItem = new MenuItems("Novo", "Icons/NewMenuItem.png", "CTRL + N", 'N');
 		newMenuItem.addActionListener(ListenerHandler.openWindowListener());
 		saveMenuItem = new MenuItems("Sacuvaj", "Icons/SaveMenuItem.png", "CTRL + S", 'S');
+		saveMenuItem.addActionListener(ListenerHandler.saveFilesListener());
 		closeMenuItem = new MenuItems("Zatvori", "Icons/CloseMenuItem.png", "CTRL + C", 'C');
+		closeMenuItem.addActionListener(ListenerHandler.closeAppListener());
 
 		editMenuItem = new MenuItems("Izmena", "Icons/EditMenuItem.png", "CTRL + E", 'E');
 		editMenuItem.addActionListener(ListenerHandler.openEditDialogListener());

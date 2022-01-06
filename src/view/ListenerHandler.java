@@ -13,8 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 import controller.DeleteSubjectFromProfessorController;
+import model.Database.DataModel;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.Department.DepartmentEditWindow;
 import view.ToolbarComponent.EditingScreen;
@@ -53,9 +55,34 @@ public class ListenerHandler {
             }
 
         };
-        
-        
     }
+        
+    public static ActionListener saveFilesListener() {
+    	return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				DataModel.getInstance().writeDataToFiles();
+			}
+    		
+    	};
+    }
+    
+    public static ActionListener closeAppListener() {
+    	return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+    		
+    	};
+    }
+        
+        
+
     
     public static ActionListener getChangeToSerbianListener() {
     	return new ActionListener() {
