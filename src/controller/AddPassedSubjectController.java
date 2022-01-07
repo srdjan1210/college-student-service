@@ -33,13 +33,19 @@ public class AddPassedSubjectController {
     }
 
     public void undoMark(PassedSubjectsButtons reference) {
+        System.out.println("Usli u undo Mark");
+
         ToolbarEditStudentPassedPanel studPassedPanel = (ToolbarEditStudentPassedPanel) reference.getParent();
         Tables marksTable = studPassedPanel.getPassedSubjectsTable();
+        System.out.println(marksTable);
         if (marksTable.getSelectedRow() == -1) {
-            JOptionPane.showMessageDialog(null, "Predmet nije selektovan!");
+            System.out.println("Predmet nije seektovan");
+            JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
+                    Screen.getInstance().getResourceBundle().getString("advice"), JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        int result = JOptionPane.showConfirmDialog(null, "Da li zelite ponistiti ocjenu iz obiljezenog predmeta", "Ponistavanje", JOptionPane.YES_NO_OPTION);
+        int result = JOptionPane.showConfirmDialog(null, Screen.getInstance().getResourceBundle().getString("areYouSureRemove"),
+                Screen.getInstance().getResourceBundle().getString("annulment"), JOptionPane.YES_NO_OPTION);
         if (result != 0) return;
         PassedSubjectsTableModel pstm = (PassedSubjectsTableModel) marksTable.getModel();
         String subId = pstm.getSelectedSubjectId(marksTable.getSelectedRow());
