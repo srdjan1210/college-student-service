@@ -70,6 +70,7 @@ public class Constants {
     public static String[] professorSubjectsColumnNames = {"Sifra","Naziv","Godina studija","Semestar"};
     public static String[] departmentColumnNames = {"Id katedre", "Naziv katedre", "Sef katedre"};
     public static String[] departmentLabelNames = {"Id katedre*", "Naziv katedre*", "Sef katedre*"};
+    public static String[] creators = {"Srdjan","Darko"};
     
     public static String[] getStudentLabelNames() {
     	return new String[]{Screen.getInstance().getResourceBundle().getString("lblStudentName0"),Screen.getInstance().getResourceBundle().getString("lblStudentName1"),
@@ -106,6 +107,39 @@ public class Constants {
     public static String[] getDepartmentLabels() {
     	return new String[]{Screen.getInstance().getResourceBundle().getString("lblDepartment0"),Screen.getInstance().getResourceBundle().getString("lblDepartment1"),
     			Screen.getInstance().getResourceBundle().getString("lblDepartment2")};
+    }
+    
+    public static String[] getCreatorsLabels() {
+    	return new String[]{Screen.getInstance().getResourceBundle().getString("lblCreators0"),Screen.getInstance().getResourceBundle().getString("lblCreators1"),
+    			Screen.getInstance().getResourceBundle().getString("lblCreators2"),Screen.getInstance().getResourceBundle().getString("lblCreators3"),
+    			Screen.getInstance().getResourceBundle().getString("lblCreators4"),Screen.getInstance().getResourceBundle().getString("lblCreators5"),
+    			Screen.getInstance().getResourceBundle().getString("lblCreators6"),Screen.getInstance().getResourceBundle().getString("lblCreators7")};
+    }
+    
+    public static String[] getSrdjanInfo() {
+    	return new String[] {Screen.getInstance().getResourceBundle().getString("srdjanInfo0"),Screen.getInstance().getResourceBundle().getString("srdjanInfo1"),
+    			Screen.getInstance().getResourceBundle().getString("srdjanInfo2"),Screen.getInstance().getResourceBundle().getString("srdjanInfo3"),
+    			Screen.getInstance().getResourceBundle().getString("srdjanInfo4"),Screen.getInstance().getResourceBundle().getString("srdjanInfo5"),
+    			Screen.getInstance().getResourceBundle().getString("srdjanInfo6"),Screen.getInstance().getResourceBundle().getString("srdjanInfo7")};
+    	}
+    
+    public static String[] getDarkoInfo() {
+    	return new String[] {Screen.getInstance().getResourceBundle().getString("darkoInfo0"),Screen.getInstance().getResourceBundle().getString("darkoInfo1"),
+    			Screen.getInstance().getResourceBundle().getString("darkoInfo2"),Screen.getInstance().getResourceBundle().getString("darkoInfo3"),
+    			Screen.getInstance().getResourceBundle().getString("darkoInfo4"),Screen.getInstance().getResourceBundle().getString("darkoInfo5"),
+    			Screen.getInstance().getResourceBundle().getString("darkoInfo6"),Screen.getInstance().getResourceBundle().getString("darkoInfo7")};
+    	}
+    
+    public static String[] getAppInfo() {
+    	return new String[] {Screen.getInstance().getResourceBundle().getString("appInfo0"),Screen.getInstance().getResourceBundle().getString("appInfo1"),
+    			Screen.getInstance().getResourceBundle().getString("appInfo2"),Screen.getInstance().getResourceBundle().getString("appInfo3"),
+    			Screen.getInstance().getResourceBundle().getString("appInfo4")};
+    }
+    
+    public static String[] getAppLabels() {
+    	return new String[] {Screen.getInstance().getResourceBundle().getString("appInfoLbl0"),Screen.getInstance().getResourceBundle().getString("appInfoLbl1"),
+    			Screen.getInstance().getResourceBundle().getString("appInfoLbl2"),Screen.getInstance().getResourceBundle().getString("appInfoLbl3"),
+    			Screen.getInstance().getResourceBundle().getString("appInfoLbl4")};
     }
     
     public static String getDepartmentColumnNames(int index) {

@@ -13,13 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 
 import controller.DeleteSubjectFromProfessorController;
 import model.Database.DataModel;
+import view.AboutWindow.AboutWindow;
+import view.HelpWindow.HelpWindow;
 import view.ToolbarComponent.AddingScreen;
-import view.ToolbarComponent.Department.DepartmentEditWindow;
 import view.ToolbarComponent.EditingScreen;
+import view.ToolbarComponent.Department.DepartmentEditWindow;
 import view.ToolbarComponent.Professor.ToolbarEditProfessor;
 import view.ToolbarComponent.Professor.ToolbarEditProfessorSubjectsPanel;
 import view.ToolbarComponent.Professor.ToolbarNewProfessor;
@@ -56,6 +57,42 @@ public class ListenerHandler {
 
         };
     }
+    
+    public static ActionListener getOpenStudentTabListener() {
+    	return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Screen.getInstance().getStudentTab().setSelectedIndex(0);
+			}
+    		
+    	};
+    }
+    
+    public static ActionListener getOpenProfessorTabListener() {
+    	return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Screen.getInstance().getStudentTab().setSelectedIndex(1);
+			}
+    		
+    	};
+    }
+    
+    public static ActionListener getOpenSubjectTabListener() {
+    	return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Screen.getInstance().getStudentTab().setSelectedIndex(2);
+			}
+    		
+    	};
+    }
         
     public static ActionListener saveFilesListener() {
     	return new ActionListener() {
@@ -76,6 +113,30 @@ public class ListenerHandler {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				System.exit(0);
+			}
+    		
+    	};
+    }
+    
+    public static ActionListener openHelpFrame() {
+    	return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new HelpWindow();
+			}
+    		
+    	};
+    }
+    
+    public static ActionListener openAboutFrame() {
+    	return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new AboutWindow();
 			}
     		
     	};

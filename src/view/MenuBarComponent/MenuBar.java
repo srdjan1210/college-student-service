@@ -42,7 +42,9 @@ public class MenuBar extends JMenuBar {
 		deleteMenuItem.addActionListener(ListenerHandler.getButtonDeleteListener());
 
 		helpMenuItem = new MenuItems("Pomoc", "Icons/HelpMenuItem.png", "CTRL + H", 'H');
+		helpMenuItem.addActionListener(ListenerHandler.openHelpFrame());
 		aboutMenuItem = new MenuItems("O nama", "Icons/AboutMenuItem.png", "CTRL + A", 'A');
+		aboutMenuItem.addActionListener(ListenerHandler.openAboutFrame());
 
 		openMenuButton = new JMenu("Otovori");
 
@@ -51,8 +53,11 @@ public class MenuBar extends JMenuBar {
 		openMenuButton.setIcon(new ImageIcon(image));
 
 		studentsItem = new MenuItems("Studenti", "Icons/StudentMenuItem.png", "CTRL + T", 'T');
+		studentsItem.addActionListener(ListenerHandler.getOpenStudentTabListener());
 		subjectsItem = new MenuItems("Predmeti", "Icons/SubjectMenuItem.png", "CTRL + P", 'P');
+		subjectsItem.addActionListener(ListenerHandler.getOpenSubjectTabListener());
 		professorsItem = new MenuItems("Profesori", "Icons/ProfessorMenuItems.png", "CTRL + R", 'R');
+		professorsItem.addActionListener(ListenerHandler.getOpenProfessorTabListener());
 		departmentsItem = new MenuItems("Katedre", "Icons/DepartmentMenuItem.png", "CTRL + K", 'K');
 		
 		serbianItem = new MenuItems("Srpski","Icons/Serbia.png","CTRL + Q",'Q');

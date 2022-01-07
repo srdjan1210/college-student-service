@@ -1,9 +1,11 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Image;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
@@ -21,6 +23,7 @@ import controller.EditingStudentController;
 import controller.EditingSubjectController;
 import model.Database.DataModel;
 import utils.Constants;
+import utils.ImageUtils;
 import view.MenuBarComponent.MenuBar;
 import view.StatusBarComponent.StatusBar;
 import view.TabComponent.Tab;
