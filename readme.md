@@ -11,6 +11,7 @@ Darko Selakovic:
 10. Dodavanje predmeta profesoru
 11. Uklanjanje predmeta sa liste predmeta
 12. Lokalizacija
+13. Help/About
 
 Srdjan Stjepanovic:
 1. Model(Subject, Mark, Department)
