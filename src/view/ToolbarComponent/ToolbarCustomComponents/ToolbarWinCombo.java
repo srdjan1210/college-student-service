@@ -1,17 +1,16 @@
 package view.ToolbarComponent.ToolbarCustomComponents;
 
-import java.awt.Dimension;
-
-import javax.swing.JComboBox;
+import javax.swing.*;
+import java.awt.*;
 
 public class ToolbarWinCombo extends JComboBox {
 
-	
-	public ToolbarWinCombo(String[] dataList) {
-		super(dataList);
-		setPreferredSize(new Dimension(150, 30));
+
+    public ToolbarWinCombo(String[] dataList) {
+        super(dataList);
+        setPreferredSize(new Dimension(150, 30));
 
 
-	}
+    }
 
 }

@@ -7,34 +7,35 @@ import view.Screen;
 import javax.swing.*;
 
 
-public class ToolbarEnterExitPanel extends JPanel{
+public class ToolbarEnterExitPanel extends JPanel {
 
-	private JButton buttonConfirm;
-	private JButton buttonCancel;
-	public ToolbarEnterExitPanel() {
-		super();
-		BoxLayout layout = new BoxLayout(this, BoxLayout.X_AXIS);
-		setLayout(layout);
+    private JButton buttonConfirm;
+    private JButton buttonCancel;
+
+    public ToolbarEnterExitPanel() {
+        super();
+        BoxLayout layout = new BoxLayout(this, BoxLayout.X_AXIS);
+        setLayout(layout);
 
 
-		buttonConfirm = new JButton(Screen.getInstance().getResourceBundle().getString("btnConfirm"));
-		buttonConfirm.setEnabled(false);
-		buttonCancel = new JButton(Screen.getInstance().getResourceBundle().getString("btnCancel"));
+        buttonConfirm = new JButton(Screen.getInstance().getResourceBundle().getString("btnConfirm"));
+        buttonConfirm.setEnabled(false);
+        buttonCancel = new JButton(Screen.getInstance().getResourceBundle().getString("btnCancel"));
 
-		buttonConfirm.addActionListener(ListenerHandler.getButtonConfirmListener(buttonConfirm));
-		buttonCancel.addActionListener(ListenerHandler.getButtonCancelListener(buttonCancel));
+        buttonConfirm.addActionListener(ListenerHandler.getButtonConfirmListener(buttonConfirm));
+        buttonCancel.addActionListener(ListenerHandler.getButtonCancelListener(buttonCancel));
 
-		add(buttonConfirm);
-		add(Box.createHorizontalStrut(50));
-		add(buttonCancel);
-	}
-	
-	
-	public JButton getButtonConfirm() {
-		return buttonConfirm; 
-	}
-	
-	public JButton getButtonCancel() {
-		return buttonCancel;
-	}
+        add(buttonConfirm);
+        add(Box.createHorizontalStrut(50));
+        add(buttonCancel);
+    }
+
+
+    public JButton getButtonConfirm() {
+        return buttonConfirm;
+    }
+
+    public JButton getButtonCancel() {
+        return buttonCancel;
+    }
 }

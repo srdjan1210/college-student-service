@@ -113,7 +113,7 @@ public class StudentLogic {
         for (Student student : students) {
             if (student.getIndexNumber().equals(index)) {
                 student.addFailedSubject(subject);
-              //  dataModel.getFailedSubjects().add(subject);
+                //  dataModel.getFailedSubjects().add(subject);
                 dataModel.notifyEditTable();
             }
         }
@@ -156,30 +156,30 @@ public class StudentLogic {
         }
         return false;
     }
-    
-    public boolean addPassedSubjectToStudent(String index,String subjectId) {
-    	for (Iterator<Student> studentIt = dataModel.getStudents().iterator(); studentIt.hasNext(); ) {
-    		Student student = studentIt.next();
-    		if (student.getIndexNumber().equals(index)) {
-    			student.addPassedSubject(dataModel.getSubjectById(subjectId));
-    			return true;
-    		}
-    	}
-    	return false;
+
+    public boolean addPassedSubjectToStudent(String index, String subjectId) {
+        for (Iterator<Student> studentIt = dataModel.getStudents().iterator(); studentIt.hasNext(); ) {
+            Student student = studentIt.next();
+            if (student.getIndexNumber().equals(index)) {
+                student.addPassedSubject(dataModel.getSubjectById(subjectId));
+                return true;
+            }
+        }
+        return false;
     }
-    
-    public void addMarkToPassedSubject(String index,String subjectId,int markValue) {
-    	Subject subject = dataModel.getSubjectById(subjectId);
+
+    public void addMarkToPassedSubject(String index, String subjectId, int markValue) {
+        Subject subject = dataModel.getSubjectById(subjectId);
         Student student = dataModel.getStudentById(index);
         ArrayList<Mark> marks = dataModel.getMarks();
-        for(Iterator<Mark> markIt = marks.iterator(); markIt.hasNext();) {
+        for (Iterator<Mark> markIt = marks.iterator(); markIt.hasNext(); ) {
             Mark mark = markIt.next();
-            if(mark.getSubject().getSubjectId().equals(subjectId)) {
+            if (mark.getSubject().getSubjectId().equals(subjectId)) {
                 markIt.remove();
             }
         }
     }
-    
+
     public void undoMarkFromStudent(String subjectId, String studentId) {
         Subject subject = dataModel.getSubjectById(subjectId);
         Student student = dataModel.getStudentById(studentId);
@@ -191,9 +191,9 @@ public class StudentLogic {
 
     public void removeMarkForStudent(String subjectId) {
         ArrayList<Mark> marks = dataModel.getMarks();
-        for(Iterator<Mark> markIt = marks.iterator(); markIt.hasNext();) {
+        for (Iterator<Mark> markIt = marks.iterator(); markIt.hasNext(); ) {
             Mark mark = markIt.next();
-            if(mark.getSubject().getSubjectId().equals(subjectId)) {
+            if (mark.getSubject().getSubjectId().equals(subjectId)) {
                 markIt.remove();
             }
         }
@@ -201,35 +201,28 @@ public class StudentLogic {
 
     public void switchSubjectFromPassedToFailed(String id, Student student) {
         Subject savedSub = null;
-        for(Iterator<Subject> subIt = student.getPassedSubjects().iterator(); subIt.hasNext();) {
+        for (Iterator<Subject> subIt = student.getPassedSubjects().iterator(); subIt.hasNext(); ) {
             Subject subject = subIt.next();
-            if(subject.getSubjectId().equals(id)) {
+            if (subject.getSubjectId().equals(id)) {
                 savedSub = subject;
                 subIt.remove();
                 break;
             }
         }
-        if(savedSub != null) student.addFailedSubject(savedSub);
+        if (savedSub != null) student.addFailedSubject(savedSub);
     }
 
     public void switchStudentFromPassedToFailed(Student student, Subject subject) {
         Student savedStud = null;
-        for(Iterator<Student> studIt = subject.getStudentsPassed().iterator(); studIt.hasNext();) {
+        for (Iterator<Student> studIt = subject.getStudentsPassed().iterator(); studIt.hasNext(); ) {
             Student stud = studIt.next();
-            if(stud.getIndexNumber().equals(student.getIndexNumber())) {
+            if (stud.getIndexNumber().equals(student.getIndexNumber())) {
                 studIt.remove();
                 savedStud = stud;
                 break;
             }
         }
-        if(savedStud != null) subject.getStudentsFailed().add(savedStud);
-    }
-
-    public Student findStudentThatContains(String word) {
-        for(Student student: dataModel.getStudents()) {
-            if(student.getIndexNumber().toLowerCase().contains(word.toLowerCase(Locale.ROOT))) return student;
-        }
-        return null;
+        if (savedStud != null) subject.getStudentsFailed().add(savedStud);
     }
 
 }

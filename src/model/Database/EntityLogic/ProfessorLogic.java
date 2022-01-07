@@ -1,6 +1,7 @@
 package model.Database.EntityLogic;
 
 import model.Database.DataModel;
+import model.Department;
 import model.Professor;
 import model.Subject;
 
@@ -10,6 +11,7 @@ import java.util.Locale;
 
 public class ProfessorLogic {
     private DataModel dataModel;
+
     public ProfessorLogic(DataModel dm) {
         dataModel = dm;
     }
@@ -49,31 +51,48 @@ public class ProfessorLogic {
             }
         }
     }
-    
-    public void addSubjectToProfessor(String id,Subject subject) {
-    	ArrayList<Professor> professors = dataModel.getProfessors();
-    	for(Professor professor : professors) {
-    		if(professor.getIdNumber().equals(id)) {
-    			professor.addSubject(subject);
-    			dataModel.notifyEditTable();
-    		}
-    	}
+
+    public void addSubjectToProfessor(String id, Subject subject) {
+        ArrayList<Professor> professors = dataModel.getProfessors();
+        for (Professor professor : professors) {
+            if (professor.getIdNumber().equals(id)) {
+                professor.addSubject(subject);
+                subject.setProfessor(professor);
+                cleanLeftSubjects(professor, subject);
+                dataModel.notifyEditTable();
+            }
+        }
     }
-    
-    public ArrayList<Subject> getNewSubjectsForProfessor(String id){
-    	Professor professor = getProfessorById(id);
-    	ArrayList<Subject> subjects = dataModel.getSubjects();
-    	ArrayList<Subject> professorSubjects = professor.getSubjects();
-    	ArrayList<Subject> subjectsForAdding = new ArrayList<>();
-    	
-    	for(Subject subject : subjects) {
-    		if(!isSubjectFoundInList(subject.getSubjectId(), professorSubjects))
-    			subjectsForAdding.add(subject);
-    	}
-    	System.out.println(subjectsForAdding);
-    	return subjectsForAdding;
+
+
+
+    public void cleanLeftSubjects(Professor exceptedProfessor, Subject newSubject) {
+        ArrayList<Professor> professors = dataModel.getProfessors();
+        for(Professor professor: professors) {
+            if(professor.getIdNumber().equals(exceptedProfessor.getIdNumber())) continue;
+            for(Subject subject: professor.getSubjects()) {
+                if(subject.getSubjectId().equals(newSubject.getSubjectId())) {
+                    professor.getSubjects().remove(subject);
+                    break;
+                }
+            }
+        }
     }
-    
+
+    public ArrayList<Subject> getNewSubjectsForProfessor(String id) {
+        Professor professor = getProfessorById(id);
+        ArrayList<Subject> subjects = dataModel.getSubjects();
+        ArrayList<Subject> professorSubjects = professor.getSubjects();
+        ArrayList<Subject> subjectsForAdding = new ArrayList<>();
+
+        for (Subject subject : subjects) {
+            if (!isSubjectFoundInList(subject.getSubjectId(), professorSubjects))
+                subjectsForAdding.add(subject);
+        }
+        System.out.println(subjectsForAdding);
+        return subjectsForAdding;
+    }
+
     public boolean isSubjectFoundInList(String subjectId, ArrayList<Subject> subjects) {
         for (Subject subject : subjects) {
             if (subject.getSubjectId().equals(subjectId))
@@ -122,30 +141,39 @@ public class ProfessorLogic {
         }
         return null;
     }
-    
-    public boolean removeSubjectFromProfessorSubjects(String subjectId,String professorId) {
-    	for(Iterator<Professor> professorIt = dataModel.getProfessors().iterator();professorIt.hasNext();) {
-    		Professor professor = professorIt.next();
-    		if(professor.getIdNumber().equals(professorId)) {
-    			professor.removeSubject(subjectId);
-    			dataModel.notifyEditTable();
-    			return true;
-    		}
-    	}
-    	return false;
+
+    public boolean removeSubjectFromProfessorSubjects(String subjectId, String professorId) {
+        for (Iterator<Professor> professorIt = dataModel.getProfessors().iterator(); professorIt.hasNext(); ) {
+            Professor professor = professorIt.next();
+            if (professor.getIdNumber().equals(professorId)) {
+                professor.removeSubject(subjectId);
+                dataModel.notifyEditTable();
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<Professor> filterProfessorForHeadOfDep() {
         ArrayList<Professor> filtered = new ArrayList<>();
         ArrayList<Professor> professors = dataModel.getProfessors();
-        for(Professor professor: professors) {
-            if(professor.getWorkingYears() > 5 && (professor.getTitle().toLowerCase().equals("redovni profesor")
-                    || professor.getTitle().toLowerCase(Locale.ROOT).equals("vanredni profesor"))) {
+        for (Professor professor : professors) {
+            if (professor.getWorkingYears() > 5 && !professorIsHead(professor.getIdNumber()) && professor.getTitle().toLowerCase().equals("redovni profesor")
+                    || professor.getTitle().toLowerCase(Locale.ROOT).equals("vanredni profesor")) {
                 filtered.add(professor);
             }
         }
 
         return filtered;
+    }
+
+    public boolean professorIsHead(String professorId) {
+        ArrayList<Department> departments = dataModel.getDepartments();
+        for(Department department: departments) {
+            if(department.getHeadOfTheDepartment() == null) continue;
+            if(department.getHeadOfTheDepartment().getIdNumber().equals(professorId)) return true;
+        }
+        return false;
     }
 
 }

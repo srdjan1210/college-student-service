@@ -36,6 +36,8 @@ public class Toolbar extends JToolBar {
 		btnDelete = new ToolbarIconButton("Icons/DeleteMenuitem.png", "Izbrisi entitet", 'D');
 		btnSearch = new ToolbarIconButton("Icons/SearchIconItem.png", "Pretrazi", 'F');
 
+		btnSearch.addActionListener(ListenerHandler.searchTables());
+
 		searchField = new ToolbarSearch();
 		btnNew.addActionListener(ListenerHandler.openWindowListener());
 		btnEdit.addActionListener(ListenerHandler.openEditDialogListener());

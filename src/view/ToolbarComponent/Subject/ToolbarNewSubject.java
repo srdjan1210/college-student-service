@@ -49,15 +49,12 @@ public class ToolbarNewSubject extends AddingScreen {
         if (compType.equals("Semester")) {
             fieldsReferences.add(new ToolbarWinCombo(semesterValues));
             row.add(fieldsReferences.get(fieldsReferences.size() - 1));
-        }
-        else {
+        } else {
             ToolbarWinTxtField field = new ToolbarWinTxtField(labelName);
             PanelFieldError errPanel = new PanelFieldError(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
             row.add(errPanel);
             fieldsReferences.add(field);
         }
-
-
 
 
         return row;

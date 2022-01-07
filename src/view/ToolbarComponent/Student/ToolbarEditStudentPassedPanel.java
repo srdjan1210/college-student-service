@@ -4,7 +4,6 @@ import controller.AddPassedSubjectController;
 import model.TableModel.PassedSubjectsTableModel;
 import view.EditCustomComponents.PassedExamInfoPanel;
 import view.EditCustomComponents.PassedSubjectsButtons;
-import view.Screen;
 import view.TablesComponent.Tables;
 
 import javax.swing.*;

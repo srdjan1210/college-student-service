@@ -4,6 +4,8 @@ import exceptions.InvalidFieldException;
 import model.Database.DataModel;
 import model.Department;
 import model.Professor;
+import view.EditCustomComponents.AddDeleteButtons;
+import view.JListModels.DepHeadList;
 import view.Screen;
 import view.TablesComponent.Tables;
 import view.ToolbarComponent.Department.EditSingleDepartmentDialog;
@@ -18,21 +20,21 @@ public class DepartmentController {
         try {
             validate(depWin);
             Department department = createDepartmentObject(depWin);
-            String depid = (String)depTable.getModel().getValueAt(depTable.getSelectedRow(), 0);
+            String depid = (String) depTable.getModel().getValueAt(depTable.getSelectedRow(), 0);
             DataModel.getInstance().editDepartment(department, depid);
             JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("departmentEditSuccess"));
             AbstractTableModel tm = (AbstractTableModel) depTable.getModel();
             tm.fireTableDataChanged();
-        } catch(Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 
     public void setFieldsValues(EditSingleDepartmentDialog depWin, Tables depTable) {
-        Department dep = DataModel.getInstance().getDepartmentById((String)depTable.getValueAt(depTable.getSelectedRow(), 0));
+        Department dep = DataModel.getInstance().getDepartmentById((String) depTable.getValueAt(depTable.getSelectedRow(), 0));
         depWin.getTextField(0).setText(dep.getDepartmentId());
         depWin.getTextField(1).setText(dep.getDepartmentName());
-        if(dep.getHeadOfTheDepartment() == null) depWin.getTextField(2).setText("");
+        if (dep.getHeadOfTheDepartment() == null) depWin.getTextField(2).setText("");
         else depWin.getTextField(2).setText(dep.getHeadOfTheDepartment().getIdNumber());
     }
 
@@ -48,13 +50,25 @@ public class DepartmentController {
 
     public void validate(EditSingleDepartmentDialog depWin) throws InvalidFieldException {
         EntityValidator validator = new EntityValidator();
-        for(int i = 0; i < depWin.getFieldsReferences().size(); i++) {
+        for (int i = 0; i < depWin.getFieldsReferences().size(); i++) {
             JTextField field = depWin.getTextField(i);
-            if(i == 2) continue;
+            if (i == 2) continue;
             if (field.getText().trim().equals(""))
-            	validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("emptyField"));
+                validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("emptyField"));
             validator.setEmptyMessage(field);
         }
 
+    }
+
+    public void chooseHead(JTextField field, AddDeleteButtons addDeleteButtons) {
+        JList lista = new JList(new DepHeadList());
+        int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), "Izaberite profesora!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (result == 0) {
+            DepHeadList model = (DepHeadList) lista.getModel();
+            if (lista.getSelectedIndex() == -1) return;
+            field.setText(model.getObjectAt(lista.getSelectedIndex()).getIdNumber());
+            addDeleteButtons.getBtnAdd().setEnabled(false);
+            addDeleteButtons.getBtnDelete().setEnabled(true);
+        }
     }
 }

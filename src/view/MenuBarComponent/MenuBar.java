@@ -1,13 +1,11 @@
 package view.MenuBarComponent;
 
-import java.awt.Image;
-import java.net.http.WebSocket.Listener;
-
-import javax.swing.*;
-
 import utils.ImageUtils;
 import view.ListenerHandler;
 import view.Screen;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class MenuBar extends JMenuBar {
 	private MenuBar context = this;

@@ -30,20 +30,20 @@ public class SubjectLogic {
         }
         return null;
     }
-    
-    public void setEditedSubject(String oldId,Subject subjectNewInfo) {
-    	ArrayList<Subject> subjects = dataModel.getSubjects();
-    	for(int i=0;i<subjects.size();i++) {
-    		if(subjects.get(i).getSubjectId().equals(oldId)) {
-    			subjects.get(i).setSubjectId(subjectNewInfo.getSubjectId());
-    			subjects.get(i).setSubjectName(subjectNewInfo.getSubjectName());
-    			subjects.get(i).setSemester(subjectNewInfo.getSemester());
-    			subjects.get(i).setProfessor(subjectNewInfo.getProfessor());
-    			subjects.get(i).setEspb(subjectNewInfo.getEspb());
-    			subjects.get(i).setYearOfStudy(subjectNewInfo.getYearOfStudy());
-    			dataModel.notifyTable();
-    		}
-    	}
+
+    public void setEditedSubject(String oldId, Subject subjectNewInfo) {
+        ArrayList<Subject> subjects = dataModel.getSubjects();
+        for (int i = 0; i < subjects.size(); i++) {
+            if (subjects.get(i).getSubjectId().equals(oldId)) {
+                subjects.get(i).setSubjectId(subjectNewInfo.getSubjectId());
+                subjects.get(i).setSubjectName(subjectNewInfo.getSubjectName());
+                subjects.get(i).setSemester(subjectNewInfo.getSemester());
+                subjects.get(i).setProfessor(subjectNewInfo.getProfessor());
+                subjects.get(i).setEspb(subjectNewInfo.getEspb());
+                subjects.get(i).setYearOfStudy(subjectNewInfo.getYearOfStudy());
+                dataModel.notifyTable();
+            }
+        }
     }
 
     public boolean removeSubjectById(String id) {
@@ -67,15 +67,15 @@ public class SubjectLogic {
 
     public void removeSubjectFromStudents(String id) {
         ArrayList<Student> students = dataModel.getStudents();
-        for(Student student: students) {
+        for (Student student : students) {
             ArrayList<Subject> passed = student.getPassedSubjects();
             ArrayList<Subject> failed = student.getFailedSubjects();
-            for(Iterator<Subject> subIt = passed.iterator(); subIt.hasNext();) {
+            for (Iterator<Subject> subIt = passed.iterator(); subIt.hasNext(); ) {
                 Subject subject = subIt.next();
                 if (subject.getSubjectId().equals(id))
                     subIt.remove();
             }
-            for(Iterator<Subject> subIt = failed.iterator(); subIt.hasNext();) {
+            for (Iterator<Subject> subIt = failed.iterator(); subIt.hasNext(); ) {
                 Subject subject = subIt.next();
                 if (subject.getSubjectId().equals(id))
                     subIt.remove();
@@ -85,11 +85,11 @@ public class SubjectLogic {
 
     public void removeSubjectFromProfessors(String id) {
         ArrayList<Professor> professors = dataModel.getProfessors();
-        for(Professor professor: professors) {
+        for (Professor professor : professors) {
             ArrayList<Subject> profSubjects = professor.getSubjects();
-            for(Iterator<Subject> its = profSubjects.iterator(); its.hasNext();) {
+            for (Iterator<Subject> its = profSubjects.iterator(); its.hasNext(); ) {
                 Subject subject = its.next();
-                if(subject.getSubjectId().equals(id)) {
+                if (subject.getSubjectId().equals(id)) {
                     its.remove();
                 }
             }
@@ -99,7 +99,7 @@ public class SubjectLogic {
 
     public void deleteProfessorFromSubject(String professorId, String subjectId) {
         Subject subject = dataModel.getSubjectById(subjectId);
-        if(subject.getProfessor().getIdNumber().equals(professorId)) {
+        if (subject.getProfessor().getIdNumber().equals(professorId)) {
             subject.setProfessor(null);
         }
     }

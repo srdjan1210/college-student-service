@@ -13,11 +13,26 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableRowSorter;
 
+import controller.AddProfessorToSubjectController;
 import controller.DeleteSubjectFromProfessorController;
+import controller.DepartmentController;
 import model.Database.DataModel;
 import view.AboutWindow.AboutWindow;
 import view.HelpWindow.HelpWindow;
+import model.Professor;
+import model.TableModel.ProfessorTableModel;
+import model.TableModel.StudentTableModel;
+import model.TableModel.SubjectTableModel;
+import view.EditCustomComponents.AddDeleteButtons;
+import view.RowFilters.ProfessorRowFilter;
+import view.RowFilters.StudentRowFilter;
+import view.RowFilters.SubjectRowFilter;
+import view.TabComponent.Tab;
+import view.TablesComponent.Tables;
 import view.ToolbarComponent.AddingScreen;
 import view.ToolbarComponent.EditingScreen;
 import view.ToolbarComponent.Department.DepartmentEditWindow;
@@ -394,4 +409,74 @@ public class ListenerHandler {
         };
     }
 
+    public static ActionListener searchTables() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Tab tab = Screen.getInstance().getStudentTab();
+                String filterWord = Screen.getInstance().getToolbar().getSearchField().getText();
+                int selectedIndex = tab.getSelectedIndex();
+                if (selectedIndex == 0) {
+                    Tables table = tab.getStudentTable();
+                    TableRowSorter<StudentTableModel> rowSorter = (TableRowSorter<StudentTableModel>) table.getRowSorter();
+                    StudentRowFilter filter = (StudentRowFilter) rowSorter.getRowFilter();
+                    filter.setFilterWord(filterWord);
+                } else if (selectedIndex == 1) {
+                    Tables table = tab.getProfessorTable();
+                    TableRowSorter<ProfessorTableModel> rowSorter = (TableRowSorter<ProfessorTableModel>) table.getRowSorter();
+                    ProfessorRowFilter filter = (ProfessorRowFilter) rowSorter.getRowFilter();
+                    filter.setFilterWord(filterWord);
+                } else if (selectedIndex == 2) {
+                    Tables table = tab.getSubjectTable();
+                    TableRowSorter<SubjectTableModel> rowSorter = (TableRowSorter<SubjectTableModel>) table.getRowSorter();
+                    SubjectRowFilter filter = (SubjectRowFilter) rowSorter.getRowFilter();
+                    filter.setFilterWord(filterWord);
+                }
+                DataModel.getInstance().notifyTable();
+
+            }
+        };
+    }
+
+    public static ActionListener deleteProfessorListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddProfessorToSubjectController addProfessorToSubjectController = new AddProfessorToSubjectController();
+                ToolbarEditSubject toolbarEditSubject = (ToolbarEditSubject) SwingUtilities.getWindowAncestor((JButton)e.getSource());
+                addProfessorToSubjectController.addNewProfessorToSubject(toolbarEditSubject);
+            }
+        };
+    }
+
+    public static ActionListener addProfessorToFieldListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ToolbarEditSubject toolbarEditSubject = (ToolbarEditSubject) SwingUtilities.getWindowAncestor((JButton)e.getSource());
+                ((JTextField) toolbarEditSubject.getFieldsReferences().get(3)).setText("");
+                toolbarEditSubject.switchAddDeleteButtons();
+            }
+        };
+    }
+
+    public static ActionListener deleteDepartmentListener(JTextField field, AddDeleteButtons addDeleteButtons) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addDeleteButtons.getBtnDelete().setEnabled(false);
+                addDeleteButtons.getBtnAdd().setEnabled(true);
+                field.setText("");
+            }
+        };
+    }
+
+    public static ActionListener addDepartmentListener(DepartmentController departmentController, JTextField field, AddDeleteButtons addDeleteButtons) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                departmentController.chooseHead(field, addDeleteButtons);
+            }
+        };
+    }
 }

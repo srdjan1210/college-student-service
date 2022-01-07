@@ -1,5 +1,8 @@
 package view.EditCustomComponents;
 
+import controller.AddProfessorToSubjectController;
+import view.ListenerHandler;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,6 +11,7 @@ public class ErrorAddDelPanel extends JPanel {
 
     public ErrorAddDelPanel(JTextField field, JLabel label) {
         addDeleteButtons = new AddDeleteButtons();
+        addDeleteButtons.setListeners(ListenerHandler.addProfessorToFieldListener(), ListenerHandler.deleteProfessorListener());
         this.setPreferredSize(new Dimension(field.getPreferredSize().width + addDeleteButtons.getPreferredSize().width,
                 field.getPreferredSize().height + label.getPreferredSize().height));
         BoxLayout layout = new BoxLayout(this, BoxLayout.Y_AXIS);

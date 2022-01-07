@@ -66,10 +66,10 @@ public class AddStudentController implements IAddingController {
                     && !validator.isValidAdressNumber(field))
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("addressFormat"));
 
-            if(!validator.isValidNumberField(field))
+            if (!validator.isValidNumberField(field))
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("numberFormat"));
 
-            if((field.getName().toLowerCase().contains("indeks") || field.getName().toLowerCase().contains("index")) && !validator.isValidIndexNumber(field))
+            if ((field.getName().toLowerCase().contains("indeks") || field.getName().toLowerCase().contains("index")) && !validator.isValidIndexNumber(field))
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("indexFormat"));
             validator.setEmptyMessage(field);
         }

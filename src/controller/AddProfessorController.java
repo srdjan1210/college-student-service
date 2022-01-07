@@ -60,10 +60,10 @@ public class AddProfessorController implements IAddingController {
             if ((field.getName().toLowerCase(Locale.ROOT).contains("adresa") || field.getName().toLowerCase(Locale.ROOT).contains("address")) && !field.getName().toLowerCase(Locale.ROOT).contains("e-mail") && !validator.isValidAdressNumber(field))
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("addressFormat"));
 
-            if(!validator.isValidNumberField(field))
+            if (!validator.isValidNumberField(field))
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("numberFormat"));
 
-            if((field.getName().toLowerCase().contains("broj licne karte") || field.getName().toLowerCase().contains("id number")) && !validator.isValidLBO(field))
+            if ((field.getName().toLowerCase().contains("broj licne karte") || field.getName().toLowerCase().contains("id number")) && !validator.isValidLBO(field))
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("idFormat"));
             validator.setEmptyMessage(field);
         }

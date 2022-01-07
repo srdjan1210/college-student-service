@@ -7,7 +7,6 @@ import model.Database.EntityLogic.StudentLogic;
 import model.Database.EntityLogic.SubjectLogic;
 import view.TablesComponent.Tables;
 
-import javax.lang.model.type.ArrayType;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
@@ -42,7 +41,7 @@ public class DataModel {
             marks = reader.readEntityFromFile("resources/ocene.txt", "Mark");
             reader.readStudentSubjectsFromFile("resources/nepolozeni.txt", "nepolozeni");
             reader.readStudentSubjectsFromFile("resources/polozeni.txt", "polozeni");
-            
+
             reader.readProfessorSubjectsFromFile("resources/profesor_predmeti.txt");
         } catch (Exception err) {
             err.printStackTrace();
@@ -60,7 +59,7 @@ public class DataModel {
         writer.writeEntitiesToFile("resources/profesori.txt", professors);
         writer.writeFailedSubjectsToFile("resources/nepolozeni.txt", students);
         writer.writePassedSubjectsToFile("resources/polozeni.txt", getAllPassedSubjectsList());
-        writer.writeProfessorSubjectsToFile("resources/profesor_predmeti.txt",professors);
+        writer.writeProfessorSubjectsToFile("resources/profesor_predmeti.txt", professors);
     }
 
     // Entity find by unique id methods
@@ -77,14 +76,14 @@ public class DataModel {
     }
 
     public Department getDepartmentById(String id) {
-        for(Department department: departments)
-            if(department.getDepartmentId().equals(id)) return department;
+        for (Department department : departments)
+            if (department.getDepartmentId().equals(id)) return department;
         return null;
     }
+
     public String getProfessorIdFromEmail(String email) {
         return profLogic.getProfessorIdFromEmail(email);
     }
-
 
     // Adding entities methods
     public void addProfessorToList(Professor newProfessor) {
@@ -98,9 +97,9 @@ public class DataModel {
     public void addSubjectToList(Subject newSubject) {
         subjLogic.addSubjectToList(newSubject);
     }
-    
+
     public void addMarkToList(Mark mark) {
-    	marks.add(mark);
+        marks.add(mark);
     }
 
     // Editing entities methods
@@ -111,9 +110,9 @@ public class DataModel {
     public void setEditedProfessor(String oldId, Professor professorNewInfo) {
         profLogic.setEditedProfessor(oldId, professorNewInfo);
     }
-    
-    public void setEditedSubject(String oldId,Subject subjectNewInfo) {
-    	subjLogic.setEditedSubject(oldId,subjectNewInfo);
+
+    public void setEditedSubject(String oldId, Subject subjectNewInfo) {
+        subjLogic.setEditedSubject(oldId, subjectNewInfo);
     }
 
     // Deleting entities methods
@@ -133,10 +132,11 @@ public class DataModel {
     public ArrayList<Subject> getNewSubjectsForStudent(String index) {
         return studLogic.getNewSubjectsForStudent(index);
     }
-    
-    public ArrayList<Subject> getNewSubjectsForProfessor(String id){
-    	return profLogic.getNewSubjectsForProfessor(id);
+
+    public ArrayList<Subject> getNewSubjectsForProfessor(String id) {
+        return profLogic.getNewSubjectsForProfessor(id);
     }
+
     public int getLinesOfFailedToWrite() {
         int lines = 0;
         for (Student student : students) {
@@ -144,19 +144,19 @@ public class DataModel {
         }
         return lines;
     }
-    
+
     public int getLinesOfProfessorSubjectsToWrite() {
-    	int lines = 0;
-    	for(Professor professor : professors) {
-    		lines+=professor.getSubjects().size();
-    	}
-    	return lines;
+        int lines = 0;
+        for (Professor professor : professors) {
+            lines += professor.getSubjects().size();
+        }
+        return lines;
     }
 
     public ArrayList<PassedSubject> getAllPassedSubjectsList() {
         ArrayList<PassedSubject> passedSubs = new ArrayList<>();
-        for(Student student: students) {
-            for(Subject subject: student.getPassedSubjects()) {
+        for (Student student : students) {
+            for (Subject subject : student.getPassedSubjects()) {
                 passedSubs.add(new PassedSubject(student.getIndexNumber(), subject.getSubjectId()));
             }
         }
@@ -164,8 +164,8 @@ public class DataModel {
     }
 
     public Mark getMarkByStudentAndSubject(String studId, String subId) {
-        for(Mark mark: marks) {
-            if(mark.getSubject().getSubjectId().equals(subId) && mark.getPassedExam().getIndexNumber().equals(studId)) {
+        for (Mark mark : marks) {
+            if (mark.getSubject().getSubjectId().equals(subId) && mark.getPassedExam().getIndexNumber().equals(studId)) {
                 return mark;
             }
         }
@@ -179,8 +179,9 @@ public class DataModel {
         dep.setDepartmentName(department.getDepartmentName());
         dep.setHeadOfTheDepartment(department.getHeadOfTheDepartment());
     }
-    public boolean removeSubjectFromProfessorSubjects(String subjectId,String professorId) {
-    	return profLogic.removeSubjectFromProfessorSubjects(subjectId,professorId);
+
+    public boolean removeSubjectFromProfessorSubjects(String subjectId, String professorId) {
+        return profLogic.removeSubjectFromProfessorSubjects(subjectId, professorId);
     }
 
     //Failed subjects logic
@@ -191,17 +192,17 @@ public class DataModel {
     public void addFailedSubjectToStudent(String index, Subject subject) {
         studLogic.addFailedSubjectToStudent(index, subject);
     }
-    
-    public void addSubjectToProfessor(String id,Subject subject) {
-    	profLogic.addSubjectToProfessor(id,subject);
+
+    public void addSubjectToProfessor(String id, Subject subject) {
+        profLogic.addSubjectToProfessor(id, subject);
     }
 
     public void undoMarkFromStudent(String subId, String studId) {
         studLogic.undoMarkFromStudent(subId, studId);
     }
-    
-    public void addPassedSubjectToStudent(String index,String subjectId) {
-    	studLogic.addPassedSubjectToStudent(index,subjectId);
+
+    public void addPassedSubjectToStudent(String index, String subjectId) {
+        studLogic.addPassedSubjectToStudent(index, subjectId);
     }
 
     public void deleteProfessorFromSubject(String professorId, String subjectId) {
@@ -216,7 +217,7 @@ public class DataModel {
         return profLogic.filterProfessorForHeadOfDep();
     }
 
-    
+
     //Singleton implementation
     public static DataModel getInstance() {
         if (instance == null)
@@ -242,15 +243,11 @@ public class DataModel {
         AbstractTableModel model = (AbstractTableModel) editTableObserver.getModel();
         model.fireTableDataChanged();
     }
-
-    //Search related logic
-    public Student findStudentThatContains(String word) {
-        return studLogic.findStudentThatContains(word);
-    }
     // Getters and setters
     public ArrayList<Student> getStudents() {
         return students;
     }
+
     public void setStudents(ArrayList<Student> students) {
         this.students = students;
     }
@@ -258,6 +255,7 @@ public class DataModel {
     public ArrayList<Professor> getProfessors() {
         return professors;
     }
+
     public void setProfessors(ArrayList<Professor> professors) {
         this.professors = professors;
     }
@@ -265,11 +263,15 @@ public class DataModel {
     public ArrayList<Subject> getSubjects() {
         return subjects;
     }
-    public void setSubjects(ArrayList<Subject> subjects) { this.subjects = subjects; }
+
+    public void setSubjects(ArrayList<Subject> subjects) {
+        this.subjects = subjects;
+    }
 
     public ArrayList<Department> getDepartments() {
         return departments;
     }
+
     public void setDepartments(ArrayList<Department> departments) {
         this.departments = departments;
     }
@@ -277,6 +279,7 @@ public class DataModel {
     public ArrayList<Mark> getMarks() {
         return marks;
     }
+
     public void setMarks(ArrayList<Mark> marks) {
         this.marks = marks;
     }
@@ -284,6 +287,9 @@ public class DataModel {
     public ArrayList<Address> getAddresses() {
         return addresses;
     }
-    public void setAddresses(ArrayList<Address> addresses) { this.addresses = addresses; }
+
+    public void setAddresses(ArrayList<Address> addresses) {
+        this.addresses = addresses;
+    }
 
 }

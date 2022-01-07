@@ -51,15 +51,22 @@ public class Mark {
     }
 
     public String getDataAt(int columnIndex) {
-        switch(columnIndex) {
-            case 0: return subject.getSubjectId();
-            case 1: return subject.getSubjectName();
-            case 2: return subject.getEspb() + "";
-            case 3: return mark.getValue() + "";
-            case 4: return dateOfExam.toString();
-            default: return "";
-       }
+        switch (columnIndex) {
+            case 0:
+                return subject.getSubjectId();
+            case 1:
+                return subject.getSubjectName();
+            case 2:
+                return subject.getEspb() + "";
+            case 3:
+                return mark.getValue() + "";
+            case 4:
+                return dateOfExam.toString();
+            default:
+                return "";
+        }
     }
+
     @Override
     public String toString() {
         return passedExam.getIndexNumber() + "," + subject.getSubjectId() + "," + mark.getValue() + "," + dateOfExam;

@@ -1,9 +1,5 @@
 package model.Database.DTOs;
 
-import model.Subject;
-
-import java.util.ArrayList;
-
 public class PassedSubject {
     private String id;
     private String subjectId;

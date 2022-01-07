@@ -1,10 +1,7 @@
 package utils;
 
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
+import javax.swing.*;
+import java.awt.*;
 
 public class PropertyFactory {
 	public static void addBlackBorder(JComponent comp, int thickness) {
