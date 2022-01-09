@@ -1,7 +1,7 @@
 package interfaces;
 
 import exceptions.InvalidFieldException;
-import view.ToolbarComponent.AddingScreen;
+import view.entity.AddingScreen;
 
 public interface IAddingController {
     void addNewEntity(AddingScreen dialog);

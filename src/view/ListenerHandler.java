@@ -13,38 +13,35 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableRowSorter;
 
-import controller.AddProfessorToSubjectController;
-import controller.DeleteSubjectFromProfessorController;
-import controller.DepartmentController;
-import model.Database.DataModel;
-import view.AboutWindow.AboutWindow;
-import view.HelpWindow.HelpWindow;
-import model.Professor;
-import model.TableModel.ProfessorTableModel;
-import model.TableModel.StudentTableModel;
-import model.TableModel.SubjectTableModel;
-import view.EditCustomComponents.AddDeleteButtons;
-import view.RowFilters.ProfessorRowFilter;
-import view.RowFilters.StudentRowFilter;
-import view.RowFilters.SubjectRowFilter;
-import view.TabComponent.Tab;
-import view.TablesComponent.Tables;
-import view.ToolbarComponent.AddingScreen;
-import view.ToolbarComponent.EditingScreen;
-import view.ToolbarComponent.Department.DepartmentEditWindow;
-import view.ToolbarComponent.Professor.ToolbarEditProfessor;
-import view.ToolbarComponent.Professor.ToolbarEditProfessorSubjectsPanel;
-import view.ToolbarComponent.Professor.ToolbarNewProfessor;
-import view.ToolbarComponent.Student.ToolbarEditStudent;
-import view.ToolbarComponent.Student.ToolbarEditStudentFailedPanel;
-import view.ToolbarComponent.Student.ToolbarEnteringMark;
-import view.ToolbarComponent.Student.ToolbarNewStudent;
-import view.ToolbarComponent.Subject.ToolbarEditSubject;
-import view.ToolbarComponent.Subject.ToolbarNewSubject;
+import controller.subject.AddProfessorToSubjectController;
+import controller.professor.DeleteSubjectFromProfessorController;
+import controller.department.EditDepartmentController;
+import model.database.DataModel;
+import view.about.AboutWindow;
+import view.entity.subject.SubjectEditDialog;
+import view.help.HelpWindow;
+import view.entity.abstract_model.table_model.ProfessorTableModel;
+import view.entity.abstract_model.table_model.StudentTableModel;
+import view.entity.abstract_model.table_model.SubjectTableModel;
+import view.entity.custom.edit_custom.AddDeleteButtons;
+import view.entity.filters.ProfessorRowFilter;
+import view.entity.filters.StudentRowFilter;
+import view.entity.filters.SubjectRowFilter;
+import view.tabs.MainTab;
+import view.entity.table.Table;
+import view.entity.AddingScreen;
+import view.entity.department.DepartmentEditDialog;
+import view.entity.EditingScreen;
+import view.entity.professor.ProfessorEditDialog;
+import view.entity.professor.ProfessorEditSubjectsPanel;
+import view.entity.professor.ProfessorNewDialog;
+import view.entity.student.StudentEditDialog;
+import view.entity.student.StudentEditFailedPanel;
+import view.entity.student.StudentEnteringMark;
+import view.entity.student.StudentNewDialog;
+import view.entity.subject.SubjectNewDialog;
 
 public class ListenerHandler {
 
@@ -54,17 +51,17 @@ public class ListenerHandler {
             public void actionPerformed(ActionEvent e) {
                 Screen frame = Screen.getInstance();
                 if (frame.getSelectedTab() == 0) {
-                	new ToolbarNewStudent();
+                	new StudentNewDialog();
                     return;
                 }
 
                 if (frame.getSelectedTab() == 1) {
-                    new ToolbarNewProfessor();
+                    new ProfessorNewDialog();
                     return;
                 }
 
                 if (frame.getSelectedTab() == 2) {
-                    new ToolbarNewSubject();
+                    new SubjectNewDialog();
                     return;
                 }
 
@@ -79,7 +76,7 @@ public class ListenerHandler {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Screen.getInstance().getStudentTab().setSelectedIndex(0);
+				Screen.getInstance().getMainTab().setSelectedIndex(0);
 			}
     		
     	};
@@ -91,7 +88,7 @@ public class ListenerHandler {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Screen.getInstance().getStudentTab().setSelectedIndex(1);
+				Screen.getInstance().getMainTab().setSelectedIndex(1);
 			}
     		
     	};
@@ -103,7 +100,7 @@ public class ListenerHandler {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				Screen.getInstance().getStudentTab().setSelectedIndex(2);
+				Screen.getInstance().getMainTab().setSelectedIndex(2);
 			}
     		
     	};
@@ -192,11 +189,11 @@ public class ListenerHandler {
             public void actionPerformed(ActionEvent e) {
                 Window parent = SwingUtilities.getWindowAncestor(btnConfirm);
                 if (parent instanceof AddingScreen) {
-                    Screen.getInstance().getStudentTab().addNewEntity((AddingScreen) parent);
-                } else if (parent instanceof ToolbarEditStudent || parent instanceof ToolbarEditProfessor || parent instanceof ToolbarEditSubject) {
-                    Screen.getInstance().getStudentTab().editNewEntity((EditingScreen) parent);
-                } else if (parent instanceof ToolbarEnteringMark) {
-                	ToolbarEnteringMark enteringMark = (ToolbarEnteringMark) parent;
+                    Screen.getInstance().getMainTab().addNewEntity((AddingScreen) parent);
+                } else if (parent instanceof EditingScreen) {
+                    Screen.getInstance().getMainTab().editNewEntity((EditingScreen) parent);
+                } else if (parent instanceof StudentEnteringMark) {
+                	StudentEnteringMark enteringMark = (StudentEnteringMark) parent;
                 	enteringMark.getExamController().studentTakingExam(enteringMark);
                 }
 
@@ -209,27 +206,30 @@ public class ListenerHandler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Window parent = SwingUtilities.getWindowAncestor(cancelButton);
-                if (parent instanceof ToolbarNewStudent) {
-                    ToolbarNewStudent dialog = (ToolbarNewStudent) parent;
+                if (parent instanceof StudentNewDialog) {
+                    StudentNewDialog dialog = (StudentNewDialog) parent;
                     dialog.dispose();
-                } else if (parent instanceof ToolbarNewProfessor) {
-                    ToolbarNewProfessor dialog = (ToolbarNewProfessor) parent;
+                } else if (parent instanceof ProfessorNewDialog) {
+                    ProfessorNewDialog dialog = (ProfessorNewDialog) parent;
                     dialog.dispose();
-                } else if (parent instanceof ToolbarNewSubject) {
-                    ToolbarNewSubject dialog = (ToolbarNewSubject) parent;
+                } else if (parent instanceof SubjectNewDialog) {
+                    SubjectNewDialog dialog = (SubjectNewDialog) parent;
                     dialog.dispose();
-                } else if (parent instanceof ToolbarEditStudent) {
-                    ToolbarEditStudent dialog = (ToolbarEditStudent) parent;
+                } else if (parent instanceof StudentEditDialog) {
+                    StudentEditDialog dialog = (StudentEditDialog) parent;
                     dialog.dispose();
-                } else if (parent instanceof ToolbarEditProfessor) {
-                	ToolbarEditSubject dialog = (ToolbarEditSubject) parent;
+                } else if (parent instanceof ProfessorEditDialog) {
+                	SubjectEditDialog dialog = (SubjectEditDialog) parent;
                 	dialog.dispose();
-                } else if (parent instanceof ToolbarEnteringMark) {
-                	ToolbarEnteringMark dialog = (ToolbarEnteringMark) parent;
+                } else if (parent instanceof StudentEnteringMark) {
+                	StudentEnteringMark dialog = (StudentEnteringMark) parent;
                 	dialog.dispose();
-                } else if (parent instanceof ToolbarEditSubject) {
-                	ToolbarEditSubject dialog = (ToolbarEditSubject) parent;
+                } else if (parent instanceof SubjectEditDialog) {
+                	SubjectEditDialog dialog = (SubjectEditDialog) parent;
                 	dialog.dispose();
+                } else if (parent instanceof DepartmentEditDialog) {
+                    DepartmentEditDialog dialog = (DepartmentEditDialog) parent;
+                    dialog.dispose();
                 }
             }
         };
@@ -239,12 +239,12 @@ public class ListenerHandler {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Screen.getInstance().getStudentTab().deleteEntity();
+                Screen.getInstance().getMainTab().deleteEntity();
             }
         };
     }
 
-    public static ActionListener getAddFailedSubjectListener(ToolbarEditStudentFailedPanel studentFailedPanel) {
+    public static ActionListener getAddFailedSubjectListener(StudentEditFailedPanel studentFailedPanel) {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -253,7 +253,7 @@ public class ListenerHandler {
         };
     }
     
-    public static ActionListener getAddSubjectToProfessorListener(ToolbarEditProfessorSubjectsPanel professorSubjectsPanel) {
+    public static ActionListener getAddSubjectToProfessorListener(ProfessorEditSubjectsPanel professorSubjectsPanel) {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -269,34 +269,44 @@ public class ListenerHandler {
             public void actionPerformed(ActionEvent e) {
                 Screen frame = Screen.getInstance();
                 if (frame.getSelectedTab() == 0) {
-                    if (Screen.getInstance().getStudentTab().getStudentTable().getSelectedRow() == -1) {
+                    if (Screen.getInstance().getMainTab().getStudentTable().getSelectedRow() == -1) {
                         JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedStudent"),
                         		Screen.getInstance().getResourceBundle().getString("editingStudentTitle"), JOptionPane.WARNING_MESSAGE);
                         return;
                     }
-                    ToolbarEditStudent editDialog = new ToolbarEditStudent();
+                    StudentEditDialog editDialog = new StudentEditDialog();
                     editDialog.setVisible();
                     return;
                 }
 
                 if (frame.getSelectedTab() == 1) {
-                    if (Screen.getInstance().getStudentTab().getProfessorTable().getSelectedRow() == -1) {
+                    if (Screen.getInstance().getMainTab().getProfessorTable().getSelectedRow() == -1) {
                         JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedProfessor"),
                         		Screen.getInstance().getResourceBundle().getString("editingProfessorTitle"), JOptionPane.WARNING_MESSAGE);
                         return;
                     }
-                    ToolbarEditProfessor editDialog = new ToolbarEditProfessor();
+                    ProfessorEditDialog editDialog = new ProfessorEditDialog();
                     editDialog.setVisible();
                     return;
                 }
 
                 if (frame.getSelectedTab() == 2) {
-                    if (Screen.getInstance().getStudentTab().getSubjectTable().getSelectedRow() == -1) {
+                    if (Screen.getInstance().getMainTab().getSubjectTable().getSelectedRow() == -1) {
                         JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
                         		Screen.getInstance().getResourceBundle().getString("editingSubjectTitle"), JOptionPane.WARNING_MESSAGE);
                         return;
                     }
-                    new ToolbarEditSubject();
+                    new SubjectEditDialog();
+                    return;
+                }
+
+                if(frame.getSelectedTab() == 3) {
+                    if(Screen.getInstance().getMainTab().getDepartmentTable().getSelectedRow() == -1) {
+                        JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedDepartment"),
+                                Screen.getInstance().getResourceBundle().getString("editingDepartmentTitle"), JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    new DepartmentEditDialog(new EditDepartmentController());
                     return;
                 }
                 // TODO Auto-generated method stub
@@ -306,7 +316,7 @@ public class ListenerHandler {
         };
     }
 
-    public static ActionListener getButtonDeleteFailedSubjectListener(ToolbarEditStudentFailedPanel failedPanel) {
+    public static ActionListener getButtonDeleteFailedSubjectListener(StudentEditFailedPanel failedPanel) {
         return new ActionListener() {
 
             @Override
@@ -324,7 +334,7 @@ public class ListenerHandler {
         };
     }
     
-    public static ActionListener getDeleteSubjectFromProfessorListener(ToolbarEditProfessorSubjectsPanel professorSubjectsPanel) {
+    public static ActionListener getDeleteSubjectFromProfessorListener(ProfessorEditSubjectsPanel professorSubjectsPanel) {
     	return new ActionListener() {
 
 			@Override
@@ -342,7 +352,7 @@ public class ListenerHandler {
     	};
     }
     
-    public static ActionListener getButtonTakingExamListener(ToolbarEditStudentFailedPanel failedPanel) {
+    public static ActionListener getButtonTakingExamListener(StudentEditFailedPanel failedPanel) {
     	return new ActionListener() {
 
 			@Override
@@ -353,22 +363,12 @@ public class ListenerHandler {
 							Screen.getInstance().getResourceBundle().getString("takingExam"), JOptionPane.INFORMATION_MESSAGE);
                     return;
 				}
-				new ToolbarEnteringMark(failedPanel);
+				new StudentEnteringMark(failedPanel);
 				return;
 			}
     		
     	};
     }
-
-    public static ActionListener getDepartmentWindowListener() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new DepartmentEditWindow();
-            }
-        };
-    }
-
 
     public static FocusListener getAdressScreenListener() {
         return new FocusListener() {
@@ -413,21 +413,21 @@ public class ListenerHandler {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Tab tab = Screen.getInstance().getStudentTab();
+                MainTab tab = Screen.getInstance().getMainTab();
                 String filterWord = Screen.getInstance().getToolbar().getSearchField().getText();
                 int selectedIndex = tab.getSelectedIndex();
                 if (selectedIndex == 0) {
-                    Tables table = tab.getStudentTable();
+                    Table table = tab.getStudentTable();
                     TableRowSorter<StudentTableModel> rowSorter = (TableRowSorter<StudentTableModel>) table.getRowSorter();
                     StudentRowFilter filter = (StudentRowFilter) rowSorter.getRowFilter();
                     filter.setFilterWord(filterWord);
                 } else if (selectedIndex == 1) {
-                    Tables table = tab.getProfessorTable();
+                    Table table = tab.getProfessorTable();
                     TableRowSorter<ProfessorTableModel> rowSorter = (TableRowSorter<ProfessorTableModel>) table.getRowSorter();
                     ProfessorRowFilter filter = (ProfessorRowFilter) rowSorter.getRowFilter();
                     filter.setFilterWord(filterWord);
                 } else if (selectedIndex == 2) {
-                    Tables table = tab.getSubjectTable();
+                    Table table = tab.getSubjectTable();
                     TableRowSorter<SubjectTableModel> rowSorter = (TableRowSorter<SubjectTableModel>) table.getRowSorter();
                     SubjectRowFilter filter = (SubjectRowFilter) rowSorter.getRowFilter();
                     filter.setFilterWord(filterWord);
@@ -438,24 +438,38 @@ public class ListenerHandler {
         };
     }
 
-    public static ActionListener deleteProfessorListener() {
+    public static ActionListener addEntityToFieldListener() {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddProfessorToSubjectController addProfessorToSubjectController = new AddProfessorToSubjectController();
-                ToolbarEditSubject toolbarEditSubject = (ToolbarEditSubject) SwingUtilities.getWindowAncestor((JButton)e.getSource());
-                addProfessorToSubjectController.addNewProfessorToSubject(toolbarEditSubject);
+                Window window = SwingUtilities.getWindowAncestor((JButton)e.getSource());
+                if(window instanceof SubjectEditDialog) {
+                    AddProfessorToSubjectController addProfessorToSubjectController = new AddProfessorToSubjectController();
+                    SubjectEditDialog subjectEdit = (SubjectEditDialog) window;
+                    addProfessorToSubjectController.addNewProfessorToSubject(subjectEdit);
+                } else if(window instanceof DepartmentEditDialog) {
+                    DepartmentEditDialog departmentEdit = (DepartmentEditDialog) window;
+                    departmentEdit.showList();
+                }
             }
         };
     }
 
-    public static ActionListener addProfessorToFieldListener() {
+    public static ActionListener deleteEntityFromFieldListener() {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ToolbarEditSubject toolbarEditSubject = (ToolbarEditSubject) SwingUtilities.getWindowAncestor((JButton)e.getSource());
-                ((JTextField) toolbarEditSubject.getFieldsReferences().get(3)).setText("");
-                toolbarEditSubject.switchAddDeleteButtons();
+                Window window = SwingUtilities.getWindowAncestor((JButton) e.getSource());
+                if(window instanceof SubjectEditDialog) {
+                    SubjectEditDialog subjectEdit = (SubjectEditDialog) window;
+                    ((JTextField) subjectEdit.getFieldsReferences().get(3)).setText("");
+                    subjectEdit.switchAddDeleteButtons();
+                } else if(window instanceof DepartmentEditDialog) {
+                    DepartmentEditDialog departmentEdit = (DepartmentEditDialog) window;
+                    JTextField txtField = departmentEdit.getTextField(2);
+                    txtField.setText("");
+                    departmentEdit.switchAddDeleteButtons();
+                }
             }
         };
     }
@@ -471,12 +485,4 @@ public class ListenerHandler {
         };
     }
 
-    public static ActionListener addDepartmentListener(DepartmentController departmentController, JTextField field, AddDeleteButtons addDeleteButtons) {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                departmentController.chooseHead(field, addDeleteButtons);
-            }
-        };
-    }
 }

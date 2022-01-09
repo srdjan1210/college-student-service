@@ -1,45 +1,37 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Image;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import controller.AddProfessorController;
-import controller.AddStudentController;
-import controller.AddSubjectController;
-import controller.DeleteProfessorController;
-import controller.DeleteStudentController;
-import controller.DeleteSubjectController;
-import controller.EditingProfessorController;
-import controller.EditingStudentController;
-import controller.EditingSubjectController;
-import controller.*;
-import model.Database.DataModel;
+import controller.department.DeleteDepartmentController;
+import controller.professor.AddProfessorController;
+import controller.student.AddStudentController;
+import controller.subject.AddSubjectController;
+import controller.professor.DeleteProfessorController;
+import controller.student.DeleteStudentController;
+import controller.subject.DeleteSubjectController;
+import controller.professor.EditingProfessorController;
+import controller.student.EditingStudentController;
+import controller.subject.EditingSubjectController;
+import controller.department.AddDepartmentController;
+import controller.department.EditDepartmentController;
+import model.database.DataModel;
 import utils.Constants;
-import utils.ImageUtils;
-import view.MenuBarComponent.MenuBar;
-import view.StatusBarComponent.StatusBar;
-import view.TabComponent.Tab;
-import view.ToolbarComponent.Toolbar;
-
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import java.awt.*;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import view.menubar.MenuBar;
+import view.statusbar.StatusBar;
+import view.tabs.MainTab;
+import view.toolbar.Toolbar;
 
 public class Screen extends JFrame {
     private int selectedTab = 0;
-    private Tab studentTab;
+    private MainTab mainTab;
     private static Screen instance;
     private ResourceBundle resourceBundle;
     private Toolbar toolbar;
@@ -50,7 +42,7 @@ public class Screen extends JFrame {
     private Screen() {
         super();
         Locale.setDefault(new Locale("sr", "RS"));
-        resourceBundle = ResourceBundle.getBundle("view.MessageResources.language", Locale.getDefault());
+        resourceBundle = ResourceBundle.getBundle("view.localization.language", Locale.getDefault());
 
         setSize(Constants.SCREEN_WIDTH * 3 / 4, Constants.SCREEN_HEIGHT * 3 / 4);
         setLocation(Constants.SCREEN_WIDTH / 8, Constants.SCREEN_HEIGHT / 8);
@@ -69,42 +61,50 @@ public class Screen extends JFrame {
 
         // Tables
 
-        studentTab = new Tab(new AddStudentController(), new EditingStudentController(), new DeleteStudentController());
+        mainTab = new MainTab(new AddStudentController(), new EditingStudentController(), new DeleteStudentController());
 
-        studentTab.addChangeListener(new ChangeListener() {
+        mainTab.addChangeListener(new ChangeListener() {
 
             @Override
             public void stateChanged(ChangeEvent e) {
                 // TODO Auto-generated method stub
-                selectedTab = studentTab.getSelectedIndex();
-                if (studentTab.getSelectedIndex() == 0) {
+                selectedTab = mainTab.getSelectedIndex();
+                if (mainTab.getSelectedIndex() == 0) {
                     activeTab = "Studenti";
-                    studentTab.setAddingController(new AddStudentController());
-                    studentTab.setDeleteController(new DeleteStudentController());
-                    studentTab.setEditingController(new EditingStudentController());
-                    DataModel.getInstance().setTableObserver(studentTab.getStudentTable());
+                    mainTab.setAddingController(new AddStudentController());
+                    mainTab.setDeleteController(new DeleteStudentController());
+                    mainTab.setEditingController(new EditingStudentController());
+                    DataModel.getInstance().setTableObserver(mainTab.getStudentTable());
                     tabName = getTabName("Studenti");
                     statusBar.setTabName(tabName);
-                } else if (studentTab.getSelectedIndex() == 1) {
+                } else if (mainTab.getSelectedIndex() == 1) {
                     activeTab = "Profesori";
-                    studentTab.setAddingController(new AddProfessorController());
-                    studentTab.setDeleteController(new DeleteProfessorController());
-                    studentTab.setEditingController(new EditingProfessorController());
-                    DataModel.getInstance().setTableObserver(studentTab.getProfessorTable());
+                    mainTab.setAddingController(new AddProfessorController());
+                    mainTab.setDeleteController(new DeleteProfessorController());
+                    mainTab.setEditingController(new EditingProfessorController());
+                    DataModel.getInstance().setTableObserver(mainTab.getProfessorTable());
                     tabName = getTabName("Profesori");
                     statusBar.setTabName(tabName);
-                } else {
+                } else if(mainTab.getSelectedIndex() == 2) {
                     activeTab = "Predmeti";
-                    studentTab.setAddingController(new AddSubjectController());
-                    studentTab.setDeleteController(new DeleteSubjectController());
-                    studentTab.setEditingController(new EditingSubjectController());
-                    DataModel.getInstance().setTableObserver(studentTab.getSubjectTable());
+                    mainTab.setAddingController(new AddSubjectController());
+                    mainTab.setDeleteController(new DeleteSubjectController());
+                    mainTab.setEditingController(new EditingSubjectController());
+                    DataModel.getInstance().setTableObserver(mainTab.getSubjectTable());
                     tabName = getTabName("Predmeti");
                     statusBar.setTabName(tabName);
+                } else {
+                    activeTab="Department";
+                    mainTab.setAddingController(new AddDepartmentController());
+                    mainTab.setDeleteController(new DeleteDepartmentController());
+                    mainTab.setEditingController(new EditDepartmentController());
+                    DataModel.getInstance().setTableObserver(mainTab.getDepartmentTable());
+                    tabName = getTabName("Katedre");
+                    statusBar.setTabName("Katedre");
                 }
             }
         });
-        add(studentTab);
+        add(mainTab);
 
         // Screen title and close operation
         setTitle("Studentska Sluzba");
@@ -118,13 +118,13 @@ public class Screen extends JFrame {
     }
 
     public void changeLanguage() {
-        resourceBundle = ResourceBundle.getBundle("view.MessageResources.language", Locale.getDefault());
+        resourceBundle = ResourceBundle.getBundle("view.localization.language", Locale.getDefault());
         //statusBar.setTabName(getTabName(activeTab));
         setTitle(resourceBundle.getString("naslovAplikacije"));
         menu.changeLanguage();
         toolbar.changeLanguage();
         statusBar.changeLanguage(getTabName(activeTab));
-        studentTab.changeLanguage();
+        mainTab.changeLanguage();
 
         UIManager.put("OptionPane.yesButtonText", resourceBundle.getObject("yesOption"));
         UIManager.put("OptionPane.noButtonText", resourceBundle.getObject("noOption"));
@@ -158,8 +158,8 @@ public class Screen extends JFrame {
         return selectedTab;
     }
 
-    public Tab getStudentTab() {
-        return studentTab;
+    public MainTab getMainTab() {
+        return mainTab;
     }
 
     public static Screen getInstance() {

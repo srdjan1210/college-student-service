@@ -3,6 +3,8 @@ package utils;
 import view.Screen;
 
 import java.awt.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Constants {
     public enum MarksValue {
@@ -105,8 +107,9 @@ public class Constants {
     }
 
     public static String[] getDepartmentLabels() {
-        return new String[]{Screen.getInstance().getResourceBundle().getString("lblDepartment0"), Screen.getInstance().getResourceBundle().getString("lblDepartment1"),
-                Screen.getInstance().getResourceBundle().getString("lblDepartment2")};
+        ResourceBundle bundle = ResourceBundle.getBundle("view.MessageResources.language", Locale.getDefault());
+        return new String[]{bundle.getString("lblDepartment0"), bundle.getString("lblDepartment1"),
+                bundle.getString("lblDepartment2")};
     }
     
     public static String[] getCreatorsLabels() {
@@ -142,13 +145,14 @@ public class Constants {
     			Screen.getInstance().getResourceBundle().getString("appInfoLbl4")};
     }
     public static String getDepartmentColumnNames(int index) {
+        ResourceBundle bundle = ResourceBundle.getBundle("view.localization.language", Locale.getDefault());
         switch (index) {
             case 0:
-                return Screen.getInstance().getResourceBundle().getString("lblDepartment0");
+                return bundle.getString("lblDepartment0");
             case 1:
-                return Screen.getInstance().getResourceBundle().getString("lblDepartment1");
+                return bundle.getString("lblDepartment1");
             case 2:
-                return Screen.getInstance().getResourceBundle().getString("lblDepartment2");
+                return bundle.getString("lblDepartment2");
             default:
                 return "";
         }

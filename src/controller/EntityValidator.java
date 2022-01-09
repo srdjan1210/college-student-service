@@ -1,7 +1,7 @@
 package controller;
 
 import exceptions.InvalidFieldException;
-import model.Database.DataModel;
+import model.database.DataModel;
 import model.Professor;
 import model.Student;
 import model.Subject;
@@ -84,7 +84,7 @@ public class EntityValidator {
     }
 
     public boolean isValidIndexNumberForEditing(JTextField field) {
-        String selectedStudentIndex = Screen.getInstance().getStudentTab().getSelectedStudentIndex();
+        String selectedStudentIndex = Screen.getInstance().getMainTab().getSelectedStudentIndex();
         DataModel database = DataModel.getInstance();
         Student student = database.getStudentById(field.getText());
         if (student == null) return true;
@@ -100,7 +100,7 @@ public class EntityValidator {
     }
 
     public boolean isValidLBOForEditing(JTextField field) {
-        String selectedProfessorIndex = Screen.getInstance().getStudentTab().getSelectedProfessorId();
+        String selectedProfessorIndex = Screen.getInstance().getMainTab().getSelectedProfessorId();
         DataModel database = DataModel.getInstance();
         Professor professor = database.getProfessorById(field.getText());
         if (professor == null) return true;
