@@ -70,7 +70,7 @@ public class EditDepartmentController implements IEditingController {
 
     public void chooseHead(DepartmentEditDialog departmentEdit) {
         JList lista = new JList(new DepartmentListModel());
-        int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), "Izaberite profesora!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), Screen.getInstance().getResourceBundle().getString("editHeadOfDepartmentTitle"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == 0) {
             DepartmentListModel model = (DepartmentListModel) lista.getModel();
             if (lista.getSelectedIndex() == -1) return;

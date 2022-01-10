@@ -5,8 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.beans.PropertyChangeListener;
 import java.util.Locale;
 
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -101,6 +103,18 @@ public class ListenerHandler {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				Screen.getInstance().getMainTab().setSelectedIndex(2);
+			}
+    		
+    	};
+    }
+    
+    public static ActionListener getOpenDepartmentTabListener() {
+    	return new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Screen.getInstance().getMainTab().setSelectedIndex(3);
 			}
     		
     	};

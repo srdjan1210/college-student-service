@@ -57,6 +57,7 @@ public class MenuBar extends JMenuBar {
 		professorsItem = new MenuItems("Profesori", "Icons/ProfessorMenuItems.png", "CTRL + R", 'R');
 		professorsItem.addActionListener(ListenerHandler.getOpenProfessorTabListener());
 		departmentsItem = new MenuItems("Katedre", "Icons/DepartmentMenuItem.png", "CTRL + K", 'K');
+		departmentsItem.addActionListener(ListenerHandler.getOpenDepartmentTabListener());
 		
 		serbianItem = new MenuItems("Srpski","Icons/Serbia.png","CTRL + Q",'Q');
 		serbianItem.addActionListener(ListenerHandler.getChangeToSerbianListener());

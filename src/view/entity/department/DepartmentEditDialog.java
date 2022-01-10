@@ -14,7 +14,7 @@ import java.util.Vector;
 public class DepartmentEditDialog extends EditingScreen {
     private Vector<JComponent> fieldsReferences;
     private EnterExitPanel tenex;
-    private String[] departmentLabelNames = Constants.departmentLabelNames;
+    private String[] departmentLabelNames = Constants.getDepartmentLabelNames();
     private EditDepartmentController editDepartmentController;
     private ErrorAddDelPanel addRemovePanel;
 
@@ -55,7 +55,7 @@ public class DepartmentEditDialog extends EditingScreen {
 
         panel.add(left);
 
-        if (labelName.equals("Sef katedre*")) {
+        if (labelName.equals(Screen.getInstance().getResourceBundle().getString("lblDepartmentName2"))) {
             addRemovePanel = new ErrorAddDelPanel(txtField, new ErrorMessageLabel("", txtField.getPreferredSize().width, 20));
             panel.add(addRemovePanel);
         } else {
