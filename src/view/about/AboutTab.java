@@ -2,6 +2,8 @@ package view.about;
 
 import javax.swing.JTabbedPane;
 
+import view.Screen;
+
 public class AboutTab extends JTabbedPane {
 	private AboutSrdjan aboutSrdjanTab;
 	private AboutDarko aboutDarkoTab;
@@ -10,7 +12,7 @@ public class AboutTab extends JTabbedPane {
 		aboutSrdjanTab = new AboutSrdjan();
 		aboutDarkoTab = new AboutDarko();
 		aboutApp = new AboutApp();
-		add("O aplikaciji", aboutApp);
+		add(Screen.getInstance().getResourceBundle().getString("aboutAppTabTitle"), aboutApp);
 		add("Srdjan", aboutSrdjanTab);
 		add("Darko", aboutDarkoTab);
 	}
