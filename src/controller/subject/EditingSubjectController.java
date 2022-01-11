@@ -10,6 +10,7 @@ import utils.Constants.Semester;
 import utils.EnumConversion;
 import view.Screen;
 import view.entity.EditingScreen;
+import view.entity.subject.SubjectEditDialog;
 
 import javax.swing.*;
 import java.util.Vector;
@@ -32,14 +33,20 @@ public class EditingSubjectController implements IEditingController {
         }
     }
 
-    public static String[] findSubjectDataForFields(Subject subject) {
+    public static String[] findSubjectDataForFields(Subject subject, SubjectEditDialog dialog) {
         String data[] = {"", "", "", "", "", ""};
         data[0] = subject.getSubjectId();
         data[1] = subject.getSubjectName();
         data[2] = subject.getSemester().getValue();
-        if (subject.getProfessor() != null) data[3] = subject.getProfessor().getIdNumber();
+        if (subject.getProfessor() != null) {
+            data[3] = subject.getProfessor().getFirstName() + " " + subject.getProfessor().getLastName();
+            dialog.setChoosenProfessor(subject.getProfessor().getIdNumber());
+        } else {
+            dialog.setChoosenProfessor("");
+        }
         data[4] = Integer.toString(subject.getEspb());
         data[5] = Integer.toString(subject.getYearOfStudy());
+
         return data;
     }
 
@@ -49,6 +56,7 @@ public class EditingSubjectController implements IEditingController {
         Semester semester = EnumConversion.stringToSemester(dialog.getComboBox(2).getSelectedItem().toString());
         int yearOfStudy = Integer.parseInt(dialog.getComboBox(5).getSelectedItem().toString());
         Professor professor = DataModel.getInstance().getProfessorById(dialog.getTextField(3).getText());
+        System.out.println(professor);
         int espb = Integer.parseInt(dialog.getTextField(4).getText());
 
         return new Subject(subjectId, subjectName, semester, yearOfStudy, professor, espb);

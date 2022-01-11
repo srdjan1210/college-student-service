@@ -22,15 +22,17 @@ public class SubjectNewDialog extends AddingScreen {
         BoxLayout layout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS);
         setLayout(layout);
         setTitle(Screen.getInstance().getResourceBundle().getString("addingSubjectTitle"));
-        setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
+        setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 1 / 2));
         setLocationRelativeTo(null);
         fieldsReferences = new ArrayList<>();
         labelsReferences = new ArrayList<>();
 
         for (int i = 0; i < labelNames.length; i++) {
             String labelName = labelNames[i];
+            add(Box.createVerticalStrut(5));
             if (i == 2) {
                 add(createRow(labelName, "Semester"));
+                add(Box.createVerticalStrut(20));
                 continue;
             }
             add(createRow(labelName, ""));
@@ -41,10 +43,12 @@ public class SubjectNewDialog extends AddingScreen {
     }
 
     private JPanel createRow(String labelName, String compType) {
-        JPanel row = new JPanel();
+
         CustomLabel label = new CustomLabel(labelName);
+        CustomRowPanel row = new CustomRowPanel(label);
+
         labelsReferences.add(label);
-        row.add(label);
+
 
         if (compType.equals("Semester")) {
             fieldsReferences.add(new CustomCombo(semesterValues));

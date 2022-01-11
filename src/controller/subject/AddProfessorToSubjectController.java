@@ -20,7 +20,8 @@ public class AddProfessorToSubjectController {
 
         if (result == 0) {
             Professor professor = ((ProfessorListModel) selection.getModel()).getObjectAt(selection.getSelectedIndex());
-            ((JTextField) editDialog.getFieldsReferences().get(3)).setText(professor.getIdNumber());
+            ((JTextField) editDialog.getFieldsReferences().get(3)).setText(professor.getFirstName() + " " + professor.getLastName());
+            editDialog.setChoosenProfessor(professor.getIdNumber());
             editDialog.switchAddDeleteButtons();
         }
     }

@@ -25,7 +25,7 @@ public class ProfessorEditInfoPanel extends JPanel {
 
         fieldsReferences = new Vector<JComponent>();
         labelReferences = new ArrayList<>();
-
+        add(Box.createVerticalStrut(5));
         for (int i = 0; i < 10; i++) {
             String labelName = labelNames[i];
             add(createOneItem(labelName));
@@ -37,10 +37,9 @@ public class ProfessorEditInfoPanel extends JPanel {
     }
 
     public JPanel createOneItem(String labelName) {
-        JPanel itemPanel = new JPanel();
         CustomLabel label = new CustomLabel(labelName);
+        CustomRowPanel itemPanel = new CustomRowPanel(label);
         labelReferences.add(label);
-        itemPanel.add(label);
 
         CustomTxtField field = new CustomTxtField(labelName);
         PanelFieldError errPanel = new PanelFieldError(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));

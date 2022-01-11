@@ -46,7 +46,6 @@ public class StudentEditDialog extends EditingScreen {
                     DataModel.getInstance().notifyEditTable();
 
                 }
-
             }
         });
         tab.getToolbarEditStudentPassed().setESPBAndAverage();

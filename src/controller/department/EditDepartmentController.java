@@ -8,12 +8,14 @@ import model.Department;
 import model.Professor;
 import view.entity.abstract_model.list_model.DepartmentListModel;
 import view.Screen;
+import view.entity.subject.SubjectEditDialog;
 import view.entity.table.Table;
 import view.entity.department.DepartmentEditDialog;
 import view.entity.EditingScreen;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.xml.crypto.Data;
 
 public class EditDepartmentController implements IEditingController {
     @Override
@@ -43,8 +45,11 @@ public class EditDepartmentController implements IEditingController {
         Department dep = DataModel.getInstance().getDepartmentById((String) depTable.getValueAt(depTable.getSelectedRow(), 0));
         depWin.getTextField(0).setText(dep.getDepartmentId());
         depWin.getTextField(1).setText(dep.getDepartmentName());
-        if (dep.getHeadOfTheDepartment() == null) depWin.getTextField(2).setText("");
-        else depWin.getTextField(2).setText(dep.getHeadOfTheDepartment().getIdNumber());
+        if (dep.getHeadOfTheDepartment() != null) {
+            Professor professor = dep.getHeadOfTheDepartment();
+            depWin.getTextField(2).setText(professor.getFirstName() + " " + professor.getLastName());
+            ((DepartmentEditDialog)depWin).setChoosenProfessor(professor.getIdNumber());
+        }
     }
 
     private Department createDepartmentObject(EditingScreen depWin) {
@@ -74,7 +79,9 @@ public class EditDepartmentController implements IEditingController {
         if (result == 0) {
             DepartmentListModel model = (DepartmentListModel) lista.getModel();
             if (lista.getSelectedIndex() == -1) return;
-            departmentEdit.getTextField(2).setText(model.getObjectAt(lista.getSelectedIndex()).getIdNumber());
+            Professor professor = DataModel.getInstance().getProfessorById(model.getObjectAt(lista.getSelectedIndex()).getIdNumber());
+            departmentEdit.getTextField(2).setText(professor.getFirstName() + " " + professor.getLastName());
+            departmentEdit.setChoosenProfessor(professor.getIdNumber());
             departmentEdit.switchAddDeleteButtons();
         }
     }

@@ -31,9 +31,11 @@ public class StudentNewDialog extends AddingScreen {
 
         for (int i = 0; i < labelNames.length; i++) {
             String name = labelNames[i];
-            if (i >= 9)
+            add(Box.createVerticalStrut(5));
+            if (i >= 9) {
+                add(Box.createVerticalStrut(20));
                 add(createRow(name, "ComboFinancing"));
-            else if (i >= 8)
+            } else if (i >= 8)
                 add(createRow(name, "ComboYears"));
             else
                 add(createRow(name, "Text"));
@@ -46,10 +48,11 @@ public class StudentNewDialog extends AddingScreen {
 
 
     private JPanel createRow(String name, String fieldType) {
-        JPanel row = new JPanel();
+
         CustomLabel lbl = new CustomLabel(name);
+        CustomRowPanel row = new CustomRowPanel(lbl);
+
         labelReferences.add(lbl);
-        row.add(lbl);
 
         if (fieldType.equals("Text")) {
             CustomTxtField field = new CustomTxtField(name);

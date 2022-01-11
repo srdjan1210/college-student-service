@@ -17,6 +17,7 @@ public class DepartmentEditDialog extends EditingScreen {
     private String[] departmentLabelNames = Constants.getDepartmentLabelNames();
     private EditDepartmentController editDepartmentController;
     private ErrorAddDelPanel addRemovePanel;
+    private String choosenProfessor = "";
 
     public DepartmentEditDialog(EditDepartmentController editDepartmentController) {
         this.editDepartmentController = editDepartmentController;
@@ -56,6 +57,7 @@ public class DepartmentEditDialog extends EditingScreen {
         panel.add(left);
 
         if (labelName.equals(Screen.getInstance().getResourceBundle().getString("lblDepartmentName2"))) {
+            txtField.setEnabled(false);
             addRemovePanel = new ErrorAddDelPanel(txtField, new ErrorMessageLabel("", txtField.getPreferredSize().width, 20));
             panel.add(addRemovePanel);
         } else {
@@ -68,6 +70,14 @@ public class DepartmentEditDialog extends EditingScreen {
 
     public void showList() {
         editDepartmentController.addDepartmentToField(this);
+    }
+
+    public void setChoosenProfessor(String professorId) {
+        this.choosenProfessor = professorId;
+    }
+
+    public void switchProfessorNameWithId() {
+        getTextField(2).setText(choosenProfessor);
     }
 
     public void switchAddDeleteButtons() {

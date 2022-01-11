@@ -9,6 +9,8 @@ import view.entity.abstract_model.table_model.ProfessorTableModel;
 import view.entity.abstract_model.table_model.StudentTableModel;
 import view.entity.abstract_model.table_model.SubjectTableModel;
 import view.Screen;
+import view.entity.department.DepartmentEditDialog;
+import view.entity.subject.SubjectEditDialog;
 import view.entity.table.Table;
 import view.entity.AddingScreen;
 import view.entity.EditingScreen;
@@ -102,6 +104,7 @@ public class MainTab extends JTabbedPane {
     }
 
     public void editNewEntity(EditingScreen dialog) {
+        additionalPreparation(dialog);
         this.editingController.editEntity(dialog);
     }
 
@@ -151,5 +154,15 @@ public class MainTab extends JTabbedPane {
 
     public void setDepartmentTable(Table departmentTable) {
         this.departmentTable = departmentTable;
+    }
+
+    public void additionalPreparation(EditingScreen dialog) {
+        if(dialog instanceof SubjectEditDialog) {
+            SubjectEditDialog subjectEditDialog = ((SubjectEditDialog)dialog);
+            subjectEditDialog.switchProfessorNameWithId();
+        } else if(dialog instanceof DepartmentEditDialog) {
+            DepartmentEditDialog departmentEditDialog = ((DepartmentEditDialog) dialog);
+            departmentEditDialog.switchProfessorNameWithId();
+        }
     }
 }

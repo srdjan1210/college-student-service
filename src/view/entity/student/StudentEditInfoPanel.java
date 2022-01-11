@@ -28,11 +28,14 @@ public class StudentEditInfoPanel extends JPanel {
 
         for (int i = 0; i < 10; i++) {
             String labelName = labelNames[i];
-            if (i == 8)
+            add(Box.createVerticalStrut(5));
+            if (i == 8) {
                 add(createOneItem(labelName, "ComboYearOfStudy"));
-            else if (i == 9)
+                add(Box.createVerticalStrut(20));
+            } else if (i == 9) {
                 add(createOneItem(labelName, "ComboFinansingWay"));
-            else
+                add(Box.createVerticalStrut(20));
+            } else
                 add(createOneItem(labelName, "TextField"));
         }
 
@@ -48,10 +51,10 @@ public class StudentEditInfoPanel extends JPanel {
     }
 
     public JPanel createOneItem(String labelName, String itemType) {
-        JPanel itemPanel = new JPanel();
+
         CustomLabel label = new CustomLabel(labelName);
+        CustomRowPanel itemPanel = new CustomRowPanel(label);
         labelReferences.add(label);
-        itemPanel.add(label);
 
         if (itemType.equals("ComboFinansingWay")) {
             fieldsReferences.add(new CustomCombo(finansingWay));

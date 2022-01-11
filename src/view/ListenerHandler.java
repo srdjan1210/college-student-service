@@ -477,11 +477,13 @@ public class ListenerHandler {
                 if(window instanceof SubjectEditDialog) {
                     SubjectEditDialog subjectEdit = (SubjectEditDialog) window;
                     ((JTextField) subjectEdit.getFieldsReferences().get(3)).setText("");
+                    subjectEdit.setChoosenProfessor("");
                     subjectEdit.switchAddDeleteButtons();
                 } else if(window instanceof DepartmentEditDialog) {
                     DepartmentEditDialog departmentEdit = (DepartmentEditDialog) window;
                     JTextField txtField = departmentEdit.getTextField(2);
                     txtField.setText("");
+                    departmentEdit.setChoosenProfessor("");
                     departmentEdit.switchAddDeleteButtons();
                 }
             }

@@ -29,6 +29,7 @@ public class ProfessorNewDialog extends AddingScreen {
         labelReferences = new ArrayList<CustomLabel>();
 
         for (int i = 0; i < labelNames.length; i++) {
+            add(Box.createVerticalStrut(5));
             String name = labelNames[i];
             add(createRow(name));
         }
@@ -39,8 +40,9 @@ public class ProfessorNewDialog extends AddingScreen {
     }
 
     private JPanel createRow(String name) {
-        JPanel row = new JPanel();
+
         CustomLabel lbl = new CustomLabel(name);
+        CustomRowPanel row = new CustomRowPanel(lbl);
         labelReferences.add(lbl);
 
         CustomTxtField field = new CustomTxtField(name);
@@ -53,7 +55,6 @@ public class ProfessorNewDialog extends AddingScreen {
         if (fieldsReferences.size() == 7) {
             fieldsReferences.get(6).addFocusListener(ListenerHandler.getAdressScreenListener());
         }
-        row.add(lbl);
         row.add(errPanel);
         //row.add(fieldsReferences.get(fieldsReferences.size() - 1));
         return row;

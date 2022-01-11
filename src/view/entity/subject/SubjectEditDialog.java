@@ -1,6 +1,7 @@
 package view.entity.subject;
 
 import controller.subject.EditingSubjectController;
+import model.Professor;
 import model.database.DataModel;
 import model.Subject;
 import utils.Constants;
@@ -22,12 +23,13 @@ public class SubjectEditDialog extends EditingScreen {
     private Vector<JComponent> fieldsReferences;
     private EnterExitPanel enterExit;
     private ErrorAddDelPanel addRemovePanel;
+    private String choosenProfessor = "";
 
     public SubjectEditDialog() {
         super();
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setTitle(Screen.getInstance().getResourceBundle().getString("editingSubjectTitle"));
-        setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 3 / 4));
+        setSize(new Dimension(Constants.SCREEN_WIDTH * 2 / 5, Constants.SCREEN_HEIGHT * 1 / 2));
         setLocationRelativeTo(null);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
         setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
@@ -37,18 +39,22 @@ public class SubjectEditDialog extends EditingScreen {
         String subjectIndex = Screen.getInstance().getMainTab().getSelectedSubjectId();
         DataModel model = DataModel.getInstance();
         Subject subject = model.getSubjectById(subjectIndex);
-        String subjectData[] = EditingSubjectController.findSubjectDataForFields(subject);
+        String subjectData[] = EditingSubjectController.findSubjectDataForFields(subject, this);
 
 
         for (int i = 0; i < labelNames.length; i++) {
             String name = labelNames[i];
+            add(Box.createVerticalStrut(5));
             if (i <= 1 || i == 4)
                 add(createOneItem(name, "Text", subjectData[i]));
-            else if (i == 2)
+            else if (i == 2) {
                 add(createOneItem(name, "ComboSemester", subjectData[i]));
-            else if (i == 5)
+                add(Box.createVerticalStrut(20));
+            }
+            else if (i == 5) {
                 add(createOneItem(name, "ComboYears", subjectData[i]));
-            else
+                add(Box.createVerticalStrut(20));
+            } else
                 add(createOneItem(name, "Professor", subjectData[i]));
         }
         enterExit = new EnterExitPanel();
@@ -58,32 +64,12 @@ public class SubjectEditDialog extends EditingScreen {
         setVisible(true);
     }
 
-    public void setLabelNames(String[] labelNames) {
-        this.labelNames = labelNames;
-    }
 
-    public void setYears(String[] years) {
-        this.years = years;
-    }
-
-    public void setSemester(String[] semester) {
-        this.semester = semester;
-    }
-
-    public void setLabelReferences(ArrayList<CustomLabel> labelReferences) {
-        this.labelReferences = labelReferences;
-    }
-
-    public void setFieldsReferences(Vector<JComponent> fieldsReferences) {
-        this.fieldsReferences = fieldsReferences;
-    }
 
     public JPanel createOneItem(String labelName, String itemType, String subjectData) {
-        JPanel panel = new JPanel();
         CustomLabel lbl = new CustomLabel(labelName);
+        CustomRowPanel panel = new CustomRowPanel(lbl);
         labelReferences.add(lbl);
-        if (itemType.equals("Professor")) panel.add(Box.createHorizontalStrut(75));
-        panel.add(lbl);
 
         if (itemType.equals("Text")) {
             CustomTxtField field = new CustomTxtField(labelName);
@@ -105,12 +91,41 @@ public class SubjectEditDialog extends EditingScreen {
         } else if (itemType.equals("Professor")) {
             CustomTxtField field = new CustomTxtField(labelName);
             JTextField fieldTxt = (JTextField) field;
+            field.setEnabled(false);
             fieldTxt.setText(subjectData);
             addRemovePanel = new ErrorAddDelPanel(field, new ErrorMessageLabel("", field.getPreferredSize().width, 20));
             panel.add(addRemovePanel);
             fieldsReferences.add(field);
         }
         return panel;
+    }
+
+    public void setChoosenProfessor(String professorId) {
+        this.choosenProfessor = professorId;
+    }
+
+    public void switchProfessorNameWithId() {
+        getTextField(3).setText(choosenProfessor);
+    }
+
+    public void setLabelNames(String[] labelNames) {
+        this.labelNames = labelNames;
+    }
+
+    public void setYears(String[] years) {
+        this.years = years;
+    }
+
+    public void setSemester(String[] semester) {
+        this.semester = semester;
+    }
+
+    public void setLabelReferences(ArrayList<CustomLabel> labelReferences) {
+        this.labelReferences = labelReferences;
+    }
+
+    public void setFieldsReferences(Vector<JComponent> fieldsReferences) {
+        this.fieldsReferences = fieldsReferences;
     }
 
     public void setVisible() {
