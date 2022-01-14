@@ -4,6 +4,7 @@ import interfaces.IAddingController;
 import interfaces.IDeleteController;
 import interfaces.IEditingController;
 import model.database.DataModel;
+import utils.PropertyFactory;
 import view.entity.abstract_model.table_model.DepartmentTableModel;
 import view.entity.abstract_model.table_model.ProfessorTableModel;
 import view.entity.abstract_model.table_model.StudentTableModel;
@@ -16,6 +17,7 @@ import view.entity.AddingScreen;
 import view.entity.EditingScreen;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainTab extends JTabbedPane {
 
@@ -41,11 +43,25 @@ public class MainTab extends JTabbedPane {
 
         DataModel.getInstance().setTableObserver(studentTable);
 
-        add("Student", new JScrollPane(studentTable));
-        add("Profesor", new JScrollPane(professorTable));
-        add("Predmet", new JScrollPane(subjectTable));
-        add("Katedra", new JScrollPane(departmentTable));
 
+
+
+        add("Student", createPaddingAroundTable(studentTable));
+        add("Profesor", createPaddingAroundTable(professorTable));
+        add("Predmet", createPaddingAroundTable(subjectTable));
+        add("Katedra", createPaddingAroundTable(departmentTable));
+
+    }
+
+    private JPanel createPaddingAroundTable(Table table) {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(Box.createHorizontalStrut(20), BorderLayout.EAST);
+        panel.add(Box.createHorizontalStrut(20), BorderLayout.WEST);
+        panel.add(Box.createVerticalStrut(20), BorderLayout.NORTH);
+        panel.add(Box.createVerticalStrut(20), BorderLayout.SOUTH);
+        panel.add(new JScrollPane(table), BorderLayout.CENTER);
+
+        return panel;
     }
 
     public void changeLanguage() {
