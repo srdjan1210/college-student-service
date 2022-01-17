@@ -47,7 +47,7 @@ public class AddStudentController implements IAddingController {
 
     private Address createAddressFromAddressString(String addString) {
         String[] addressParts = addString.split(":");
-        return new Address(addressParts[0], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[2]);
+        return new Address(addressParts[0], addressParts[1], addressParts[2], addressParts[3]);
     }
 
     public void validate(AddingScreen window) throws InvalidFieldException {

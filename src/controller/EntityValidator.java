@@ -68,11 +68,6 @@ public class EntityValidator {
                 || txtSpl[3].trim().equals("")) {
             return false;
         }
-        try {
-            Integer.parseInt(txtSpl[3]);
-        } catch (Exception e) {
-            return false;
-        }
         return true;
     }
 

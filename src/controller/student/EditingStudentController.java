@@ -54,7 +54,7 @@ public class EditingStudentController implements IEditingController {
 
     public static String addressToString(Address address) {
         String data = "";
-        data = address.getCountry() + ":" + address.getCity() + ":" + address.getStreet() + ":" + Integer.toString(address.getStreetNumber());
+        data = address.getCountry() + ":" + address.getCity() + ":" + address.getStreet() + ":" + address.getStreetNumber();
         return data;
     }
 
@@ -75,7 +75,7 @@ public class EditingStudentController implements IEditingController {
 
     public static Address createAddressFromAddressString(String addressString) {
         String[] addressParts = addressString.split(":");
-        return new Address(addressParts[2], Integer.parseInt(addressParts[3]), addressParts[1], addressParts[0]);
+        return new Address(addressParts[0], addressParts[1], addressParts[2], addressParts[3]);
     }
 
     public static boolean checkIfFieldsIsEmpty(EditingScreen dialog) {

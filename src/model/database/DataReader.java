@@ -5,6 +5,7 @@ import utils.DataUtils;
 import utils.EnumConversion;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class DataReader {
     public <T> ArrayList<T> readEntityFromFile(String fileName, String className) throws FileNotFoundException {
         ArrayList<T> entityList = new ArrayList<T>();
         //Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-        Scanner scanner = new Scanner(new File(fileName));	
+        Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");	
         while (scanner.hasNextLine()) {
             String scannedData = scanner.nextLine();
             String[] data = splitScannedData(scannedData);
@@ -47,7 +48,7 @@ public class DataReader {
 
     public void readStudentSubjectsFromFile(String fileName, String listName) throws FileNotFoundException {
         //Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-    	Scanner scanner = new Scanner(new File(fileName));	
+    	Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");	
         while (scanner.hasNextLine()) {
             String scannedData = scanner.nextLine();
             String[] data = splitScannedData(scannedData);
@@ -64,7 +65,7 @@ public class DataReader {
 
     public void readProfessorSubjectsFromFile(String fileName) throws FileNotFoundException {
         //Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-    	Scanner scanner = new Scanner(new File(fileName));	
+    	Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");	
     	while (scanner.hasNextLine()) {
             String rowData = scanner.nextLine();
             String[] dataSplit = rowData.split(",");
@@ -101,7 +102,7 @@ public class DataReader {
     }
 
     private Address loadAddressObject(String[] data) {
-        return new Address(data[0], Integer.parseInt(data[3]), data[2], data[1]);
+        return new Address(data[0], data[1], data[2], data[3]);
     }
 
     private Subject loadFailedSubjectsObject(String[] data) {
@@ -117,7 +118,7 @@ public class DataReader {
 
     private Address convertStringToAddress(String data) {
         String[] addressChunks = data.split(":");
-        return new Address(addressChunks[2], Integer.parseInt(addressChunks[3]), addressChunks[1], addressChunks[0]);
+        return new Address(addressChunks[0], addressChunks[1], addressChunks[2], addressChunks[3]);
     }
 
     private String[] splitScannedData(String data) {
