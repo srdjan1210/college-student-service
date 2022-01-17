@@ -21,8 +21,7 @@ public class DataReader {
     public <T> ArrayList<T> readEntityFromFile(String fileName, String className) throws FileNotFoundException {
         ArrayList<T> entityList = new ArrayList<T>();
         //Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-        Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");
-        if(scanner.hasNextLine() == false) return entityList;
+        Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");	
         while (scanner.hasNextLine()) {
             String scannedData = scanner.nextLine();
             if(scannedData.trim().equals("")) return entityList;

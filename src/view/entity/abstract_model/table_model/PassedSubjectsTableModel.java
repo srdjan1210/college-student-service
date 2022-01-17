@@ -11,9 +11,8 @@ import javax.swing.table.AbstractTableModel;
 public class PassedSubjectsTableModel extends AbstractTableModel {
     @Override
     public int getRowCount() {
-
-        int selectedRow = Screen.getInstance().getMainTab().getStudentTable().getSelectedRow();
-        int length = DataModel.getInstance().getStudents().get(selectedRow).getPassedSubjects().size();
+        String studIndex = Screen.getInstance().getMainTab().getSelectedStudentIndex();
+        int length = DataModel.getInstance().getStudentById(studIndex).getPassedSubjects().size();
         return length;
     }
 
@@ -24,9 +23,8 @@ public class PassedSubjectsTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        int selectedRow = Screen.getInstance().getMainTab().getStudentTable().getSelectedRow();
         String studIndex = Screen.getInstance().getMainTab().getSelectedStudentIndex();
-        Subject subject = DataModel.getInstance().getStudents().get(selectedRow).getPassedSubjects().get(rowIndex);
+        Subject subject = DataModel.getInstance().getStudentById(studIndex).getPassedSubjects().get(rowIndex);
         Mark mark = DataModel.getInstance().getMarkByStudentAndSubject(studIndex, subject.getSubjectId());
         return mark.getDataAt(columnIndex);
     }

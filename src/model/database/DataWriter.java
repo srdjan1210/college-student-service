@@ -82,7 +82,7 @@ public class DataWriter {
 
     public void writeProfessorSubjectsToFile(String path, ArrayList<Professor> professors) {
     	File file = new File(path);
-        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
+        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file,StandardCharsets.UTF_8))) {
             int writeNumber = 0;
             int linesToWrite = DataModel.getInstance().getLinesOfProfessorSubjectsToWrite();
             for (Professor professor : professors) {
