@@ -2,11 +2,11 @@ package model;
 
 public class Address {
     private String street;
-    private int streetNumber;
+    private String streetNumber;
     private String city;
     private String country;
 
-    public Address(String street, int streetNumber, String city, String country) {
+    public Address(String country, String city, String street, String streetNumber) {
         super();
         this.street = street;
         this.streetNumber = streetNumber;
@@ -22,11 +22,11 @@ public class Address {
         this.street = street;
     }
 
-    public int getStreetNumber() {
+    public String getStreetNumber() {
         return streetNumber;
     }
 
-    public void setStreetNumber(int streetNumber) {
+    public void setStreetNumber(String streetNumber) {
         this.streetNumber = streetNumber;
     }
 

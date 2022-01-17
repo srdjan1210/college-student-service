@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class DataWriter {
@@ -18,7 +19,7 @@ public class DataWriter {
 
     public void writeEntitiesToFile(String path, ArrayList<?> list) {
         File file = new File(path);
-        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
             for (int i = 0; i < list.size(); i++) {
                 Object entity = list.get(i);
                 if (i == 0)
@@ -39,7 +40,7 @@ public class DataWriter {
 
     public void writeFailedSubjectsToFile(String path, ArrayList<Student> students) {
     	File file = new File(path);
-        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
             int writeNumber = 0;
             int linesToWrite = DataModel.getInstance().getLinesOfFailedToWrite();
             for (Student student : DataModel.getInstance().getStudents()) {
@@ -67,7 +68,7 @@ public class DataWriter {
 
     public void writePassedSubjectsToFile(String path, ArrayList<PassedSubject> subjects) {
     	File file = new File(path);
-        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
             for (int i = 0; i < subjects.size(); i++) {
                 PassedSubject pasSub = subjects.get(i);
                 if (i == 0) myWriter.write(pasSub.toString());
@@ -81,7 +82,7 @@ public class DataWriter {
 
     public void writeProfessorSubjectsToFile(String path, ArrayList<Professor> professors) {
     	File file = new File(path);
-        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8))) {
             int writeNumber = 0;
             int linesToWrite = DataModel.getInstance().getLinesOfProfessorSubjectsToWrite();
             for (Professor professor : professors) {
