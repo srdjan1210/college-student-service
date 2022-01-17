@@ -4,6 +4,7 @@ import model.*;
 import utils.DataUtils;
 import utils.EnumConversion;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,8 +19,8 @@ public class DataReader {
 
     public <T> ArrayList<T> readEntityFromFile(String fileName, String className) throws FileNotFoundException {
         ArrayList<T> entityList = new ArrayList<T>();
-        Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-
+        //Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
+        Scanner scanner = new Scanner(new File(fileName));	
         while (scanner.hasNextLine()) {
             String scannedData = scanner.nextLine();
             String[] data = splitScannedData(scannedData);
@@ -45,8 +46,8 @@ public class DataReader {
     }
 
     public void readStudentSubjectsFromFile(String fileName, String listName) throws FileNotFoundException {
-        Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-
+        //Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
+    	Scanner scanner = new Scanner(new File(fileName));	
         while (scanner.hasNextLine()) {
             String scannedData = scanner.nextLine();
             String[] data = splitScannedData(scannedData);
@@ -62,8 +63,9 @@ public class DataReader {
 
 
     public void readProfessorSubjectsFromFile(String fileName) throws FileNotFoundException {
-        Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-        while (scanner.hasNextLine()) {
+        //Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
+    	Scanner scanner = new Scanner(new File(fileName));	
+    	while (scanner.hasNextLine()) {
             String rowData = scanner.nextLine();
             String[] dataSplit = rowData.split(",");
             Professor professor = dm.getProfessorById(dataSplit[0]);

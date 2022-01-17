@@ -9,6 +9,9 @@ import model.database.entity_logic.SubjectLogic;
 import view.entity.table.Table;
 
 import javax.swing.table.AbstractTableModel;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class DataModel {
@@ -37,15 +40,18 @@ public class DataModel {
         subjLogic = new SubjectLogic(this);
         depLogic = new DepartmentLogic(this);
         try {
-            students = reader.readEntityFromFile("resources/studenti.txt", "Student");
-            professors = reader.readEntityFromFile("resources/profesori.txt", "Professor");
-            subjects = reader.readEntityFromFile("resources/predmeti.txt", "Subject");
-            departments = reader.readEntityFromFile("resources/katedre.txt", "Department");
-            marks = reader.readEntityFromFile("resources/ocene.txt", "Mark");
-            reader.readStudentSubjectsFromFile("resources/nepolozeni.txt", "nepolozeni");
-            reader.readStudentSubjectsFromFile("resources/polozeni.txt", "polozeni");
+            students = reader.readEntityFromFile("src/resources/studenti.txt", "Student");
+            professors = reader.readEntityFromFile("src/resources/profesori.txt", "Professor");
+            subjects = reader.readEntityFromFile("src/resources/predmeti.txt", "Subject");
+            departments = reader.readEntityFromFile("src/resources/katedre.txt", "Department");
+            marks = reader.readEntityFromFile("src/resources/ocene.txt", "Mark");
+            reader.readStudentSubjectsFromFile("src/resources/nepolozeni.txt", "nepolozeni");
+            reader.readStudentSubjectsFromFile("src/resources/polozeni.txt", "polozeni");
+            reader.readProfessorSubjectsFromFile("src/resources/profesor_predmeti.txt");
+            studLogic.calculateAverageForStudents();
 
-            reader.readProfessorSubjectsFromFile("resources/profesor_predmeti.txt");
+
+
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -54,15 +60,14 @@ public class DataModel {
     // Writing data to files
     public void writeDataToFiles() {
         DataWriter writer = new DataWriter();
-        writer.writeEntitiesToFile("resources/studenti.txt", students);
-        writer.writeEntitiesToFile("resources/profesori.txt", professors);
-        writer.writeEntitiesToFile("resources/predmeti.txt", subjects);
-        writer.writeEntitiesToFile("resources/katedre.txt", departments);
-        writer.writeEntitiesToFile("resources/ocene.txt", marks);
-        writer.writeEntitiesToFile("resources/profesori.txt", professors);
-        writer.writeFailedSubjectsToFile("resources/nepolozeni.txt", students);
-        writer.writePassedSubjectsToFile("resources/polozeni.txt", getAllPassedSubjectsList());
-        writer.writeProfessorSubjectsToFile("resources/profesor_predmeti.txt", professors);
+        writer.writeEntitiesToFile("src/resources/studenti.txt", students);
+        writer.writeEntitiesToFile("src/resources/profesori.txt", professors);
+        writer.writeEntitiesToFile("src/resources/predmeti.txt", subjects);
+        writer.writeEntitiesToFile("src/resources/katedre.txt", departments);
+        writer.writeEntitiesToFile("src/resources/ocene.txt", marks);
+        writer.writeFailedSubjectsToFile("src/resources/nepolozeni.txt", students);
+        writer.writePassedSubjectsToFile("src/resources/polozeni.txt", getAllPassedSubjectsList());
+        writer.writeProfessorSubjectsToFile("src/resources/profesor_predmeti.txt", professors);
     }
 
     // Entity find by unique id methods

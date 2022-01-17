@@ -17,8 +17,7 @@ public class DataWriter {
     }
 
     public void writeEntitiesToFile(String path, ArrayList<?> list) {
-       // File file = new File(path);
-    	File file = DataUtils.readDataFile(path);
+        File file = new File(path);
         try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
             for (int i = 0; i < list.size(); i++) {
                 Object entity = list.get(i);
@@ -28,14 +27,18 @@ public class DataWriter {
                     myWriter.append(entity.toString());
                 if (i != list.size() - 1)
                     myWriter.newLine();
+
+                //myWriter.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
     public void writeFailedSubjectsToFile(String path, ArrayList<Student> students) {
-    	File file = DataUtils.readDataFile(path);
+    	File file = new File(path);
         try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
             int writeNumber = 0;
             int linesToWrite = DataModel.getInstance().getLinesOfFailedToWrite();
@@ -63,7 +66,7 @@ public class DataWriter {
 
 
     public void writePassedSubjectsToFile(String path, ArrayList<PassedSubject> subjects) {
-    	File file = DataUtils.readDataFile(path);
+    	File file = new File(path);
         try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
             for (int i = 0; i < subjects.size(); i++) {
                 PassedSubject pasSub = subjects.get(i);
@@ -77,7 +80,7 @@ public class DataWriter {
     }
 
     public void writeProfessorSubjectsToFile(String path, ArrayList<Professor> professors) {
-    	File file = DataUtils.readDataFile(path);
+    	File file = new File(path);
         try (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file))) {
             int writeNumber = 0;
             int linesToWrite = DataModel.getInstance().getLinesOfProfessorSubjectsToWrite();

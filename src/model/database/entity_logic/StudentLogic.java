@@ -224,4 +224,23 @@ public class StudentLogic {
         if (savedStud != null) subject.getStudentsFailed().add(savedStud);
     }
 
+    public void calculateAverageForStudents() {
+        ArrayList<Student> students = dataModel.getStudents();
+        for(Student student: students) {
+            ArrayList<Subject> passed = student.getPassedSubjects();
+            if(passed.size() == 0) {
+                student.setAverageMark(0);
+                break;
+            }
+            double average = 0;
+            for(Subject subject: passed) {
+                Mark mark = dataModel.getMarkByStudentAndSubject(student.getIndexNumber(), subject.getSubjectId());
+                average += mark.getMark().getValue();
+            }
+
+            average = average/passed.size();
+            student.setAverageMark(average);
+        }
+    }
+
 }
