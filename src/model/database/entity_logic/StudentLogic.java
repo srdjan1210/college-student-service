@@ -5,6 +5,7 @@ import model.Mark;
 import model.Student;
 import model.Subject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -229,18 +230,28 @@ public class StudentLogic {
         for(Student student: students) {
             ArrayList<Subject> passed = student.getPassedSubjects();
             if(passed.size() == 0) {
+
                 student.setAverageMark(0);
-                break;
+                continue;
             }
             double average = 0;
             for(Subject subject: passed) {
                 Mark mark = dataModel.getMarkByStudentAndSubject(student.getIndexNumber(), subject.getSubjectId());
+                if(mark == null) {
+                    continue;
+                }
                 average += mark.getMark().getValue();
             }
 
             average = average/passed.size();
-            student.setAverageMark(average);
+            student.setAverageMark(cutDoubleTo2Decimal(average));
         }
+    }
+
+    private double cutDoubleTo2Decimal(double num) {
+        int temp = (int)(num*100.0);
+        double shortDouble = ((double)temp)/100.0;
+        return shortDouble;
     }
 
 }
