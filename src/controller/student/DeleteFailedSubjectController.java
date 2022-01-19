@@ -11,7 +11,7 @@ public class DeleteFailedSubjectController {
     public static Table failedSubjectsTable;
 
     public void deleteFailedSubject(StudentEditFailedPanel editFailedPanel) {
-        int resp = JOptionPane.showConfirmDialog(null, Screen.getInstance().getResourceBundle().getString("areYouSureProfessor"),
+        int resp = JOptionPane.showConfirmDialog(null, Screen.getInstance().getResourceBundle().getString("areYouSureSubject"),
                 Screen.getInstance().getResourceBundle().getString("deleteFailedSubject"), JOptionPane.YES_NO_OPTION);
         if (resp == 1)
             return;

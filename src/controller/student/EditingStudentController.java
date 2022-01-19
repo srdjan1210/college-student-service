@@ -53,6 +53,7 @@ public class EditingStudentController implements IEditingController {
     }
 
     public static String addressToString(Address address) {
+        if(address == null) return "null";
         String data = "";
         data = address.getCountry() + ":" + address.getCity() + ":" + address.getStreet() + ":" + address.getStreetNumber();
         return data;

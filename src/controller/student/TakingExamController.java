@@ -30,7 +30,7 @@ public class TakingExamController {
             dataModel.addPassedSubjectToStudent(studentIndex, subjectId);
             Mark newMark = createMarkForStudent(dialog, subjectId, studentIndex);
             dataModel.addMarkToList(newMark);
-            System.out.println(dataModel.getMarks());
+            dataModel.addStudentToSubjectPassedList(studentIndex, subjectId);
 
             JOptionPane.showMessageDialog(dialog, Screen.getInstance().getResourceBundle().getString("takingExamSuccess"));
             dialog.dispose();

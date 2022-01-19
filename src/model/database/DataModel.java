@@ -6,6 +6,7 @@ import model.database.entity_logic.DepartmentLogic;
 import model.database.entity_logic.ProfessorLogic;
 import model.database.entity_logic.StudentLogic;
 import model.database.entity_logic.SubjectLogic;
+import utils.Constants;
 import view.entity.table.Table;
 
 import javax.swing.table.AbstractTableModel;
@@ -40,14 +41,15 @@ public class DataModel {
         subjLogic = new SubjectLogic(this);
         depLogic = new DepartmentLogic(this);
         try {
-            students = reader.readEntityFromFile("src/resources/studenti.txt", "Student");
-            professors = reader.readEntityFromFile("src/resources/profesori.txt", "Professor");
-            subjects = reader.readEntityFromFile("src/resources/predmeti.txt", "Subject");
-            departments = reader.readEntityFromFile("src/resources/katedre.txt", "Department");
-            marks = reader.readEntityFromFile("src/resources/ocene.txt", "Mark");
-            reader.readStudentSubjectsFromFile("src/resources/nepolozeni.txt", "nepolozeni");
-            reader.readStudentSubjectsFromFile("src/resources/polozeni.txt", "polozeni");
-            reader.readProfessorSubjectsFromFile("src/resources/profesor_predmeti.txt");
+            String basepath = Constants.basepath;
+            students = reader.readEntityFromFile(basepath + "studenti.txt", "Student");
+            professors = reader.readEntityFromFile(basepath + "profesori.txt", "Professor");
+            subjects = reader.readEntityFromFile(basepath + "predmeti.txt", "Subject");
+            departments = reader.readEntityFromFile(basepath + "katedre.txt", "Department");
+            marks = reader.readEntityFromFile(basepath + "ocene.txt", "Mark");
+            reader.readStudentSubjectsFromFile(basepath + "nepolozeni.txt", "nepolozeni");
+            reader.readStudentSubjectsFromFile(basepath + "polozeni.txt", "polozeni");
+            reader.readProfessorSubjectsFromFile(basepath + "profesor_predmeti.txt");
             studLogic.calculateAverageForStudents();
 
 
@@ -60,14 +62,15 @@ public class DataModel {
     // Writing data to files
     public void writeDataToFiles() {
         DataWriter writer = new DataWriter();
-        writer.writeEntitiesToFile("src/resources/studenti.txt", students);
-        writer.writeEntitiesToFile("src/resources/profesori.txt", professors);
-        writer.writeEntitiesToFile("src/resources/predmeti.txt", subjects);
-        writer.writeEntitiesToFile("src/resources/katedre.txt", departments);
-        writer.writeEntitiesToFile("src/resources/ocene.txt", marks);
-        writer.writeFailedSubjectsToFile("src/resources/nepolozeni.txt", students);
-        writer.writePassedSubjectsToFile("src/resources/polozeni.txt", getAllPassedSubjectsList());
-        writer.writeProfessorSubjectsToFile("src/resources/profesor_predmeti.txt", professors);
+        String basepath = Constants.basepath;
+        writer.writeEntitiesToFile(basepath + "studenti.txt", students);
+        writer.writeEntitiesToFile(basepath + "profesori.txt", professors);
+        writer.writeEntitiesToFile(basepath + "predmeti.txt", subjects);
+        writer.writeEntitiesToFile(basepath + "katedre.txt", departments);
+        writer.writeEntitiesToFile(basepath + "ocene.txt", marks);
+        writer.writeFailedSubjectsToFile(basepath + "nepolozeni.txt", students);
+        writer.writePassedSubjectsToFile(basepath + "polozeni.txt", getAllPassedSubjectsList());
+        writer.writeProfessorSubjectsToFile(basepath + "profesor_predmeti.txt", professors);
     }
 
     // Entity find by unique id methods
@@ -210,6 +213,10 @@ public class DataModel {
 
     public void deleteProfessorFromSubject(String professorId, String subjectId) {
         subjLogic.deleteProfessorFromSubject(professorId, subjectId);
+    }
+
+    public void addStudentToSubjectPassedList(String studentIndex, String subjectId) {
+        subjLogic.addStudentToSubjectPassedList(studentIndex, subjectId);
     }
 
     public void addProfessorToSubject(String professorId, String subjectId) {

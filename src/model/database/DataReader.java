@@ -102,6 +102,7 @@ public class DataReader {
     }
 
     private Address loadAddressObject(String[] data) {
+        if(data.length == 1 && data[0].trim().equals("null")) return null;
         return new Address(data[0], data[1], data[2], data[3]);
     }
 
@@ -117,6 +118,7 @@ public class DataReader {
     }
 
     private Address convertStringToAddress(String data) {
+        if(data.trim().equals("null")) return null;
         String[] addressChunks = data.split(":");
         return new Address(addressChunks[0], addressChunks[1], addressChunks[2], addressChunks[3]);
     }

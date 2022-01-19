@@ -150,7 +150,9 @@ public class Professor {
 
     @Override
     public String toString() {
-        return firstName + "," + lastName + "," + birthDay + "," + address + ","
-                + phoneNumber + "," + emailAddress + "," + officeAddress + "," + idNumber + "," + title + "," + workingYears;
+        return firstName + "," + lastName + "," + birthDay + "," + (address != null ? address.toString():"null") + ","
+                + phoneNumber + "," + emailAddress + "," + (officeAddress != null ? address.toString():"null") + ","
+                + idNumber + "," + title + "," + workingYears;
+
     }
 }

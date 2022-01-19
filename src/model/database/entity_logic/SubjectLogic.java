@@ -109,4 +109,11 @@ public class SubjectLogic {
         subject.setProfessor(dataModel.getProfessorById(professorId));
     }
 
+    public void addStudentToSubjectPassedList(String studentIndex, String subjectId) {
+        Student student = dataModel.getStudentById(studentIndex);
+        Subject subject = getSubjectById(subjectId);
+        subject.getStudentsPassed().add(student);
+    }
+
+
 }

@@ -183,7 +183,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return firstName + "," + lastName + "," + birthDay + "," + address.toString() + "," + phoneNumber + ","
+        return firstName + "," + lastName + "," + birthDay + "," + (address != null?address.toString():"null") + "," + phoneNumber + ","
                 + emailAddress + "," + indexNumber + "," + entryYear + "," + studyYear + "," + status.getValue() + ","
                 + averageMark;
     }
