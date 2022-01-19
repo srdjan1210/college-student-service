@@ -31,6 +31,7 @@ public class ProfessorTableModel extends AbstractTableModel {
 
     public String getSelectedId() {
         Table table = Screen.getInstance().getMainTab().getProfessorTable();
+        if (table.getSelectedRow() == -1) return "";
         return DataModel.getInstance().getProfessorIdFromEmail((String) table.getValueAt(table.getSelectedRow(), 3));
     }
 

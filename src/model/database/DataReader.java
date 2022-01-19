@@ -24,6 +24,7 @@ public class DataReader {
         Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");	
         while (scanner.hasNextLine()) {
             String scannedData = scanner.nextLine();
+            if(scannedData.trim().equals("")) return entityList;
             String[] data = splitScannedData(scannedData);
             T obj = null;
             if (className.equals("Student"))
