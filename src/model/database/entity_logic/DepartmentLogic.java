@@ -35,10 +35,32 @@ public class DepartmentLogic {
         return filtered;
     }
 
+    public ArrayList<Professor> filterProfessorsWithoutDepartment() {
+        ArrayList<Professor> professors = dataModel.getProfessors();
+        ArrayList<Professor> filtered = new ArrayList<>();
+        for(Professor professor: professors)
+            if(professor.getDepartment() == null) filtered.add(professor);
+        return filtered;
+    }
+
     public void editDepartment(Department department, String oldDepId) {
         Department dep = getDepartmentById(oldDepId);
         dep.setDepartmentId(department.getDepartmentId());
         dep.setDepartmentName(department.getDepartmentName());
         dep.setHeadOfTheDepartment(department.getHeadOfTheDepartment());
+    }
+
+    public void loadProfessorsToDepartments() {
+        ArrayList<Department> departments = dataModel.getDepartments();
+        ArrayList<Professor> professors = dataModel.getProfessors();
+        for(Department department: departments) {
+            ArrayList<Professor> depProfs = new ArrayList<>();
+            for(Professor professor: professors) {
+                if(department.getDepartmentId().equals(professor.getDepartment())) {
+                    depProfs.add(professor);
+                }
+            }
+            department.setProfessorsList(depProfs);
+        }
     }
 }

@@ -16,6 +16,7 @@ import view.entity.EditingScreen;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.xml.crypto.Data;
+import java.util.ArrayList;
 
 public class EditDepartmentController implements IEditingController {
     @Override
@@ -74,7 +75,9 @@ public class EditDepartmentController implements IEditingController {
     }
 
     public void chooseHead(DepartmentEditDialog departmentEdit) {
-        JList lista = new JList(new DepartmentListModel());
+        String depId = Screen.getInstance().getMainTab().getSelectedDepartmentId();
+        ArrayList<Professor> filteredProfs =  DataModel.getInstance().filterProfessorForHeadOfDep(depId);
+        JList lista = new JList(new DepartmentListModel(filteredProfs));
         int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), Screen.getInstance().getResourceBundle().getString("editHeadOfDepartmentTitle"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == 0) {
             DepartmentListModel model = (DepartmentListModel) lista.getModel();
@@ -83,6 +86,18 @@ public class EditDepartmentController implements IEditingController {
             departmentEdit.getTextField(2).setText(professor.getFirstName() + " " + professor.getLastName());
             departmentEdit.setChoosenProfessor(professor.getIdNumber());
             departmentEdit.switchAddDeleteButtons();
+        }
+    }
+
+    public void addProfessorToDepartment(DepartmentEditDialog departmentEdit) {
+        JList lista = new JList(new DepartmentListModel(DataModel.getInstance().filterProfessorsWithoutDepartment()));
+        int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), Screen.getInstance().getResourceBundle().getString("editHeadOfDepartmentTitle"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (result == 0) {
+            DepartmentListModel model = (DepartmentListModel) lista.getModel();
+            if (lista.getSelectedIndex() == -1) return;
+            Professor professor = DataModel.getInstance().getProfessorById(model.getObjectAt(lista.getSelectedIndex()).getIdNumber());
+            String depId = Screen.getInstance().getMainTab().getSelectedDepartmentId();
+            professor.setDepartment(depId);
         }
     }
 }

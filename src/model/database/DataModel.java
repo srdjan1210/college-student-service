@@ -50,8 +50,8 @@ public class DataModel {
             reader.readStudentSubjectsFromFile(basepath + "nepolozeni.txt", "nepolozeni");
             reader.readStudentSubjectsFromFile(basepath + "polozeni.txt", "polozeni");
             reader.readProfessorSubjectsFromFile(basepath + "profesor_predmeti.txt");
+            depLogic.loadProfessorsToDepartments();
             studLogic.calculateAverageForStudents();
-
         } catch (Exception err) {
             err.printStackTrace();
         }
@@ -219,6 +219,10 @@ public class DataModel {
 
     public void addProfessorToSubject(String professorId, String subjectId) {
         subjLogic.addProfessorToSubject(professorId, subjectId);
+    }
+
+    public ArrayList<Professor> filterProfessorsWithoutDepartment() {
+        return depLogic.filterProfessorsWithoutDepartment();
     }
 
     public ArrayList<Professor> filterProfessorForHeadOfDep(String depId) {

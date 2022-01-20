@@ -129,7 +129,7 @@ public class StudentLogic {
         for (Subject subject : subjects) {
             if (!isSubjectFoundInList(subject.getSubjectId(), student.getFailedSubjects()) &&
                     !isSubjectFoundInList(subject.getSubjectId(), student.getPassedSubjects()) &&
-                    student.getStudyYear() == subject.getYearOfStudy()) {
+                    student.getStudyYear() >= subject.getYearOfStudy()) {
                 resultList.add(subject);
             }
         }

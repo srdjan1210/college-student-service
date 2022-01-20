@@ -53,7 +53,7 @@ public class ListenerHandler {
             public void actionPerformed(ActionEvent e) {
                 Screen frame = Screen.getInstance();
                 if (frame.getSelectedTab() == 0) {
-                	new StudentNewDialog();
+                    new StudentNewDialog();
                     return;
                 }
 
@@ -71,130 +71,128 @@ public class ListenerHandler {
 
         };
     }
-    
+
     public static ActionListener getOpenStudentTabListener() {
-    	return new ActionListener() {
+        return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				Screen.getInstance().getMainTab().setSelectedIndex(0);
-			}
-    		
-    	};
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                Screen.getInstance().getMainTab().setSelectedIndex(0);
+            }
+
+        };
     }
-    
+
     public static ActionListener getOpenProfessorTabListener() {
-    	return new ActionListener() {
+        return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				Screen.getInstance().getMainTab().setSelectedIndex(1);
-			}
-    		
-    	};
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                Screen.getInstance().getMainTab().setSelectedIndex(1);
+            }
+
+        };
     }
-    
+
     public static ActionListener getOpenSubjectTabListener() {
-    	return new ActionListener() {
+        return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				Screen.getInstance().getMainTab().setSelectedIndex(2);
-			}
-    		
-    	};
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                Screen.getInstance().getMainTab().setSelectedIndex(2);
+            }
+
+        };
     }
-    
+
     public static ActionListener getOpenDepartmentTabListener() {
-    	return new ActionListener() {
+        return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				Screen.getInstance().getMainTab().setSelectedIndex(3);
-			}
-    		
-    	};
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                Screen.getInstance().getMainTab().setSelectedIndex(3);
+            }
+
+        };
     }
-        
+
     public static ActionListener saveFilesListener() {
-    	return new ActionListener() {
+        return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				DataModel.getInstance().writeDataToFiles();
-			}
-    		
-    	};
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                DataModel.getInstance().writeDataToFiles();
+            }
+
+        };
     }
-    
+
     public static ActionListener closeAppListener() {
-    	return new ActionListener() {
+        return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				System.exit(0);
-			}
-    		
-    	};
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                System.exit(0);
+            }
+
+        };
     }
-    
+
     public static ActionListener openHelpFrame() {
-    	return new ActionListener() {
+        return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				new HelpWindow();
-			}
-    		
-    	};
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                new HelpWindow();
+            }
+
+        };
     }
-    
+
     public static ActionListener openAboutFrame() {
-    	return new ActionListener() {
+        return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				new AboutWindow();
-			}
-    		
-    	};
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                new AboutWindow();
+            }
+
+        };
     }
-        
-        
 
-    
+
     public static ActionListener getChangeToSerbianListener() {
-    	return new ActionListener() {
+        return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				Locale.setDefault(new Locale("sr","RS"));
-				Screen.getInstance().changeLanguage();
-			}
-    		
-    	};
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                Locale.setDefault(new Locale("sr", "RS"));
+                Screen.getInstance().changeLanguage();
+            }
+
+        };
     }
-    
-    public static ActionListener getChangeToUsListener() {
-    	return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				Locale.setDefault(new Locale("en","US"));
-				Screen.getInstance().changeLanguage();
-			}
-    		
-    	};
+    public static ActionListener getChangeToUsListener() {
+        return new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                Locale.setDefault(new Locale("en", "US"));
+                Screen.getInstance().changeLanguage();
+            }
+
+        };
     }
 
     public static ActionListener getButtonConfirmListener(JButton btnConfirm) {
@@ -207,8 +205,8 @@ public class ListenerHandler {
                 } else if (parent instanceof EditingScreen) {
                     Screen.getInstance().getMainTab().editNewEntity((EditingScreen) parent);
                 } else if (parent instanceof StudentEnteringMark) {
-                	StudentEnteringMark enteringMark = (StudentEnteringMark) parent;
-                	enteringMark.getExamController().studentTakingExam(enteringMark);
+                    StudentEnteringMark enteringMark = (StudentEnteringMark) parent;
+                    enteringMark.getExamController().studentTakingExam(enteringMark);
                 }
 
             }
@@ -234,13 +232,13 @@ public class ListenerHandler {
                     dialog.dispose();
                 } else if (parent instanceof ProfessorEditDialog) {
                     ProfessorEditDialog dialog = (ProfessorEditDialog) parent;
-                	dialog.dispose();
+                    dialog.dispose();
                 } else if (parent instanceof StudentEnteringMark) {
-                	StudentEnteringMark dialog = (StudentEnteringMark) parent;
-                	dialog.dispose();
+                    StudentEnteringMark dialog = (StudentEnteringMark) parent;
+                    dialog.dispose();
                 } else if (parent instanceof SubjectEditDialog) {
-                	SubjectEditDialog dialog = (SubjectEditDialog) parent;
-                	dialog.dispose();
+                    SubjectEditDialog dialog = (SubjectEditDialog) parent;
+                    dialog.dispose();
                 } else if (parent instanceof DepartmentEditDialog) {
                     DepartmentEditDialog dialog = (DepartmentEditDialog) parent;
                     dialog.dispose();
@@ -266,12 +264,12 @@ public class ListenerHandler {
             }
         };
     }
-    
+
     public static ActionListener getAddSubjectToProfessorListener(ProfessorEditSubjectsPanel professorSubjectsPanel) {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	professorSubjectsPanel.addSubject();
+                professorSubjectsPanel.addSubject();
             }
         };
     }
@@ -285,7 +283,7 @@ public class ListenerHandler {
                 if (frame.getSelectedTab() == 0) {
                     if (Screen.getInstance().getMainTab().getStudentTable().getSelectedRow() == -1) {
                         JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedStudent"),
-                        		Screen.getInstance().getResourceBundle().getString("editingStudentTitle"), JOptionPane.WARNING_MESSAGE);
+                                Screen.getInstance().getResourceBundle().getString("editingStudentTitle"), JOptionPane.WARNING_MESSAGE);
                         return;
                     }
                     StudentEditDialog editDialog = new StudentEditDialog();
@@ -296,7 +294,7 @@ public class ListenerHandler {
                 if (frame.getSelectedTab() == 1) {
                     if (Screen.getInstance().getMainTab().getProfessorTable().getSelectedRow() == -1) {
                         JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedProfessor"),
-                        		Screen.getInstance().getResourceBundle().getString("editingProfessorTitle"), JOptionPane.WARNING_MESSAGE);
+                                Screen.getInstance().getResourceBundle().getString("editingProfessorTitle"), JOptionPane.WARNING_MESSAGE);
                         return;
                     }
                     ProfessorEditDialog editDialog = new ProfessorEditDialog();
@@ -307,15 +305,15 @@ public class ListenerHandler {
                 if (frame.getSelectedTab() == 2) {
                     if (Screen.getInstance().getMainTab().getSubjectTable().getSelectedRow() == -1) {
                         JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
-                        		Screen.getInstance().getResourceBundle().getString("editingSubjectTitle"), JOptionPane.WARNING_MESSAGE);
+                                Screen.getInstance().getResourceBundle().getString("editingSubjectTitle"), JOptionPane.WARNING_MESSAGE);
                         return;
                     }
                     new SubjectEditDialog();
                     return;
                 }
 
-                if(frame.getSelectedTab() == 3) {
-                    if(Screen.getInstance().getMainTab().getDepartmentTable().getSelectedRow() == -1) {
+                if (frame.getSelectedTab() == 3) {
+                    if (Screen.getInstance().getMainTab().getDepartmentTable().getSelectedRow() == -1) {
                         JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedDepartment"),
                                 Screen.getInstance().getResourceBundle().getString("editingDepartmentTitle"), JOptionPane.WARNING_MESSAGE);
                         return;
@@ -336,52 +334,52 @@ public class ListenerHandler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-            	if(failedPanel.getFailedSubjectsTable().getSelectedRow() == -1) {
-            		JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
-            				Screen.getInstance().getResourceBundle().getString("deletingSubjectTitle"), JOptionPane.INFORMATION_MESSAGE);
+                if (failedPanel.getFailedSubjectsTable().getSelectedRow() == -1) {
+                    JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
+                            Screen.getInstance().getResourceBundle().getString("deletingSubjectTitle"), JOptionPane.INFORMATION_MESSAGE);
                     return;
-            	}
+                }
                 failedPanel.getDeleteController().deleteFailedSubject(failedPanel);
                 return;
             }
 
         };
     }
-    
+
     public static ActionListener getDeleteSubjectFromProfessorListener(ProfessorEditSubjectsPanel professorSubjectsPanel) {
-    	return new ActionListener() {
+        return new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(professorSubjectsPanel.getProfessorSubjectsTable().getSelectedRow() == -1){
-					JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
-							Screen.getInstance().getResourceBundle().getString("notice"), JOptionPane.INFORMATION_MESSAGE);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                if (professorSubjectsPanel.getProfessorSubjectsTable().getSelectedRow() == -1) {
+                    JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
+                            Screen.getInstance().getResourceBundle().getString("notice"), JOptionPane.INFORMATION_MESSAGE);
                     return;
-				}
-				professorSubjectsPanel.setDeleteController(new DeleteSubjectFromProfessorController(professorSubjectsPanel));
+                }
+                professorSubjectsPanel.setDeleteController(new DeleteSubjectFromProfessorController(professorSubjectsPanel));
                 return;
-			}
-    		
-    	};
-    }
-    
-    public static ActionListener getButtonTakingExamListener(StudentEditFailedPanel failedPanel) {
-    	return new ActionListener() {
+            }
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(failedPanel.getFailedSubjectsTable().getSelectedRow() == -1) {
-					JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
-							Screen.getInstance().getResourceBundle().getString("takingExam"), JOptionPane.INFORMATION_MESSAGE);
+        };
+    }
+
+    public static ActionListener getButtonTakingExamListener(StudentEditFailedPanel failedPanel) {
+        return new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                if (failedPanel.getFailedSubjectsTable().getSelectedRow() == -1) {
+                    JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
+                            Screen.getInstance().getResourceBundle().getString("takingExam"), JOptionPane.INFORMATION_MESSAGE);
                     return;
-				}
-				new StudentEnteringMark(failedPanel);
-				return;
-			}
-    		
-    	};
+                }
+                new StudentEnteringMark(failedPanel);
+                return;
+            }
+
+        };
     }
 
     public static FocusListener getAdressScreenListener() {
@@ -456,12 +454,12 @@ public class ListenerHandler {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Window window = SwingUtilities.getWindowAncestor((JButton)e.getSource());
-                if(window instanceof SubjectEditDialog) {
+                Window window = SwingUtilities.getWindowAncestor((JButton) e.getSource());
+                if (window instanceof SubjectEditDialog) {
                     AddProfessorToSubjectController addProfessorToSubjectController = new AddProfessorToSubjectController();
                     SubjectEditDialog subjectEdit = (SubjectEditDialog) window;
                     addProfessorToSubjectController.addNewProfessorToSubject(subjectEdit);
-                } else if(window instanceof DepartmentEditDialog) {
+                } else if (window instanceof DepartmentEditDialog) {
                     DepartmentEditDialog departmentEdit = (DepartmentEditDialog) window;
                     departmentEdit.showList();
                 }
@@ -474,12 +472,19 @@ public class ListenerHandler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Window window = SwingUtilities.getWindowAncestor((JButton) e.getSource());
-                if(window instanceof SubjectEditDialog) {
+                if (window instanceof SubjectEditDialog) {
                     SubjectEditDialog subjectEdit = (SubjectEditDialog) window;
+
+                    int resp = JOptionPane.showConfirmDialog(null, Screen.getInstance().getResourceBundle().getString("questionDeletingProfessor"),
+                            Screen.getInstance().getResourceBundle().getString("areYouSureProfessor"), JOptionPane.YES_NO_OPTION);
+
+                    if (resp != 0) return;
                     ((JTextField) subjectEdit.getFieldsReferences().get(3)).setText("");
                     subjectEdit.setChoosenProfessor("");
                     subjectEdit.switchAddDeleteButtons();
-                } else if(window instanceof DepartmentEditDialog) {
+
+
+                } else if (window instanceof DepartmentEditDialog) {
                     DepartmentEditDialog departmentEdit = (DepartmentEditDialog) window;
                     JTextField txtField = departmentEdit.getTextField(2);
                     txtField.setText("");
