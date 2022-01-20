@@ -14,11 +14,15 @@ public class StatusBar extends JPanel {
 
     public StatusBar(JFrame frame) {
         super();
+        setBackground(new Color(32,136,203));
         setPreferredSize(new Dimension(frame.getWidth(), 18));
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         appNameLabel = new JLabel("Studentska Sluzba");
+        appNameLabel.setForeground(Color.white);
         tabName = new JLabel("Studenti");
+        tabName.setForeground(Color.white);
         currentDateLabel = new JLabel();
+        currentDateLabel.setForeground(Color.white);
 
         add(Box.createHorizontalStrut(10));
         add(appNameLabel);

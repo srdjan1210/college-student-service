@@ -17,10 +17,16 @@ public class MenuBar extends JMenuBar {
 
 	public MenuBar() {
 		super();
+		UIManager.put("MenuItem.selectionBackground", new Color(232,57,95));
+		setBackground(new Color(32,136,203));
 		fileMenuButton = new JMenu("Fajl");
+		fileMenuButton.setForeground(Color.white);
 		editMenuButton = new JMenu("Izmena");
+		editMenuButton.setForeground(Color.white);
 		helpMenuButton = new JMenu("Pomoc");
+		helpMenuButton.setForeground(Color.white);
 		changeLanguageButton = new JMenu("Jezik");
+		changeLanguageButton.setForeground(Color.white);
 
 		fileMenuButton.setMnemonic('F');
 		editMenuButton.setMnemonic('E');
@@ -45,6 +51,9 @@ public class MenuBar extends JMenuBar {
 		aboutMenuItem.addActionListener(ListenerHandler.openAboutFrame());
 
 		openMenuButton = new JMenu("Otvori");
+		openMenuButton.setOpaque(true);
+		openMenuButton.setBackground(new Color(32,136,203));
+		openMenuButton.setForeground(Color.white);
 
 		ImageIcon imageIcon = ImageUtils.readImageIcon("Icons/OpenMenuItem.png");
 		Image image = imageIcon.getImage().getScaledInstance(13, 13, Image.SCALE_SMOOTH);
