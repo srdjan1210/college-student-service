@@ -1,6 +1,7 @@
 package controller;
 
 import exceptions.InvalidFieldException;
+import model.Department;
 import model.database.DataModel;
 import model.Professor;
 import model.Student;
@@ -115,6 +116,13 @@ public class EntityValidator {
         DataModel database = DataModel.getInstance();
         Professor professor = database.getProfessorById(field.getText());
         if (professor == null) return false;
+        return true;
+    }
+
+    public boolean isValidDepartment(JTextField field) {
+        DataModel database = DataModel.getInstance();
+        Department department = database.getDepartmentById(field.getText());
+        if(department == null) return false;
         return true;
     }
 
