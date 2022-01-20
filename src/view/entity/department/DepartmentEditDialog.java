@@ -60,12 +60,12 @@ public class DepartmentEditDialog extends EditingScreen {
             txtField.setEnabled(false);
             addRemovePanel = new ErrorAddDelPanel(txtField, new ErrorMessageLabel("", txtField.getPreferredSize().width, 20));
             panel.add(addRemovePanel);
-        }/* else if(labelName.equals(Screen.getInstance().getResourceBundle().getString("lblDepartmentName3"))) {
-        	txtField.setEnabled(false);
-            addRemovePanelProfessor = new ErrorAddDelPanel(txtField, new ErrorMessageLabel("", txtField.getPreferredSize().width, 20));
-            panel.add(addRemovePanelProfessor);
-        }*/
-        else {
+        }else if(labelName.equals(Screen.getInstance().getResourceBundle().getString("lblDepartmentName3"))) {
+            DepSetterButton depSetterButton = new DepSetterButton(editDepartmentController, this);
+            JPanel setterWrapper = new JPanel();
+        	setterWrapper.add(depSetterButton);
+            panel.add(setterWrapper);
+        } else {
             PanelFieldError errPanel = new PanelFieldError(txtField, new ErrorMessageLabel("", txtField.getPreferredSize().width, 20));
             panel.add(errPanel);
         }

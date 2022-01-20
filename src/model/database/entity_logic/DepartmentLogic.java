@@ -16,18 +16,16 @@ public class DepartmentLogic {
 
     public Department getDepartmentById(String id) {
         ArrayList<Department> departments = dataModel.getDepartments();
-        System.out.println(departments);
         for (Department department : departments)
             if (department.getDepartmentId().equals(id)) return department;
         return null;
     }
     public ArrayList<Professor> filterProfessorForHeadOfDep(String depId) {
         ArrayList<Professor> filtered = new ArrayList<>();
-        ArrayList<Professor> professors = dataModel.getProfessors();
-
-        for(Professor professor : professors) {
-            if(professor.getDepartment().equals(depId) && professor.getWorkingYears() > 5
-                && (professor.getTitle().toLowerCase().equals("redovni_profesor") || professor.getTitle().toLowerCase().equals("vanredni_profesor"))) {
+//        ArrayList<Professor> professors = dataModel.getProfessors();
+        Department department = getDepartmentById(depId);
+        for(Professor professor : department.getProfessorsList()) {
+            if(professor.getWorkingYears() > 5 && (professor.getTitle().toLowerCase().equals("redovni_profesor") || professor.getTitle().toLowerCase().equals("vanredni_profesor"))) {
                 filtered.add(professor);
             }
         }
@@ -39,7 +37,8 @@ public class DepartmentLogic {
         ArrayList<Professor> professors = dataModel.getProfessors();
         ArrayList<Professor> filtered = new ArrayList<>();
         for(Professor professor: professors)
-            if(professor.getDepartment() == null) filtered.add(professor);
+            if (professor.getDepartment().equals("null")) filtered.add(professor);
+
         return filtered;
     }
 

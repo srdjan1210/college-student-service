@@ -67,7 +67,7 @@ public class EditDepartmentController implements IEditingController {
         EntityValidator validator = new EntityValidator();
         for (int i = 0; i < dialog.getFieldsReferences().size(); i++) {
             JTextField field = dialog.getTextField(i);
-            if (i == 2) continue;
+            if (i == 2 || i == 3) continue;
             if (field.getText().trim().equals(""))
                 validator.throwInvalidValidation(field, Screen.getInstance().getResourceBundle().getString("emptyField"));
             validator.setEmptyMessage(field);
@@ -79,7 +79,7 @@ public class EditDepartmentController implements IEditingController {
         ArrayList<Professor> filteredProfs =  DataModel.getInstance().filterProfessorForHeadOfDep(depId);
         JList lista = new JList(new DepartmentListModel(filteredProfs));
         int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), Screen.getInstance().getResourceBundle().getString("editHeadOfDepartmentTitle"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-        if (result == 0) {
+        if (result == 0 && lista.getSelectedIndex() != -1) {
             DepartmentListModel model = (DepartmentListModel) lista.getModel();
             if (lista.getSelectedIndex() == -1) return;
             Professor professor = DataModel.getInstance().getProfessorById(model.getObjectAt(lista.getSelectedIndex()).getIdNumber());
@@ -92,7 +92,8 @@ public class EditDepartmentController implements IEditingController {
     public void addProfessorToDepartment(DepartmentEditDialog departmentEdit) {
         JList lista = new JList(new DepartmentListModel(DataModel.getInstance().filterProfessorsWithoutDepartment()));
         int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), Screen.getInstance().getResourceBundle().getString("editHeadOfDepartmentTitle"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-        if (result == 0) {
+        if (result == 0 && lista.getSelectedIndex() != -1) {
+            JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("professorToList"));
             DepartmentListModel model = (DepartmentListModel) lista.getModel();
             if (lista.getSelectedIndex() == -1) return;
             Professor professor = DataModel.getInstance().getProfessorById(model.getObjectAt(lista.getSelectedIndex()).getIdNumber());
