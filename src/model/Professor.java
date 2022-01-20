@@ -145,6 +145,8 @@ public class Professor {
                 return title;
             case 3:
                 return emailAddress;
+            case 4:
+            	return departmentId;
             default:
                 return "";
         }

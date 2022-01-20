@@ -81,7 +81,7 @@ public class MainTab extends JTabbedPane {
         professorTable.getColumnModel().getColumn(1).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colProfessor1"));
         professorTable.getColumnModel().getColumn(2).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colProfessor2"));
         professorTable.getColumnModel().getColumn(3).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colProfessor3"));
-        professorTable.getColumnModel().getColumn(4).setHeaderValue(Screen.getInstance().getResourceBundle().getString("w"));
+        professorTable.getColumnModel().getColumn(4).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colProfessor4"));
 
         subjectTable.getColumnModel().getColumn(0).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colSubject0"));
         subjectTable.getColumnModel().getColumn(1).setHeaderValue(Screen.getInstance().getResourceBundle().getString("colSubject1"));
