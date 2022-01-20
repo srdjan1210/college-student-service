@@ -12,11 +12,12 @@ public class DepartmentLogic {
 
     public DepartmentLogic(DataModel dataModel) {
         this.dataModel = dataModel;
-
     }
 
     public Department getDepartmentById(String id) {
-        for (Department department : dataModel.getDepartments())
+        ArrayList<Department> departments = dataModel.getDepartments();
+        System.out.println(departments);
+        for (Department department : departments)
             if (department.getDepartmentId().equals(id)) return department;
         return null;
     }
@@ -25,8 +26,8 @@ public class DepartmentLogic {
         ArrayList<Professor> professors = dataModel.getProfessors();
         for (Professor professor : professors) {
             if (professor.getWorkingYears() > 5 && !professorIsHead(professor.getIdNumber(), depId)
-                    && professor.getTitle().toLowerCase().equals("redovni profesor")
-                    || professor.getTitle().toLowerCase(Locale.ROOT).equals("vanredni profesor")) {
+                    && professor.getTitle().toLowerCase().equals("redovni")
+                    || professor.getTitle().toLowerCase(Locale.ROOT).equals("vanredni_profesor")) {
                 filtered.add(professor);
             }
         }

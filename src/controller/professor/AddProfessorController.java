@@ -39,7 +39,8 @@ public class AddProfessorController implements IAddingController {
         String id = profWin.getTextField(7).getText();
         String title = profWin.getTextField(8).getText();
         int experience = Integer.parseInt(profWin.getTextField(9).getText());
-        return new Professor(firstName, secondName, birthDate, address, phone, email, office, id, title, experience);
+
+        return new Professor(firstName, secondName, birthDate, address, phone, email, office, id, title, experience, null);
     }
 
     private Address createAddressFromAddressString(String addString) {
