@@ -230,7 +230,6 @@ public class StudentLogic {
         for(Student student: students) {
             ArrayList<Subject> passed = student.getPassedSubjects();
             if(passed.size() == 0) {
-
                 student.setAverageMark(0);
                 continue;
             }
