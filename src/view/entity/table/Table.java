@@ -11,6 +11,9 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableRowSorter;
+
+import java.awt.Color;
+import java.awt.Font;
 import java.util.Comparator;
 
 public class Table extends JTable {
@@ -19,6 +22,16 @@ public class Table extends JTable {
         setModel(tableModel);
         setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setColumnSelectionAllowed(false);
+        //DODAO
+        setSelectionBackground(new Color(232,57,95));
+        setShowVerticalLines(false);
+        
+        getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,12));
+        getTableHeader().setOpaque(false);
+        getTableHeader().setBackground(new Color(32,136,203));
+        getTableHeader().setForeground(new Color(255,255,255));
+        setRowHeight(20);
+        //
         centerText();
         if (tableModel instanceof StudentTableModel) {
             setAutoCreateRowSorter(true);
@@ -56,7 +69,7 @@ public class Table extends JTable {
         }
     }
 
-    private void centerText() {
+	private void centerText() {
         for (int i = 0; i < getModel().getColumnCount(); i++) {
             DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment(JLabel.CENTER);
