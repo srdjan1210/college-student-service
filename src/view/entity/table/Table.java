@@ -24,6 +24,7 @@ public class Table extends JTable {
         setColumnSelectionAllowed(false);
         //DODAO
         setSelectionBackground(new Color(232,57,95));
+        setSelectionForeground(Color.white);
         setShowVerticalLines(false);
         
         getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,12));
