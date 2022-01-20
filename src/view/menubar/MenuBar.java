@@ -25,7 +25,7 @@ public class MenuBar extends JMenuBar {
 		fileMenuButton.setMnemonic('F');
 		editMenuButton.setMnemonic('E');
 		helpMenuButton.setMnemonic('H');
-		helpMenuButton.setMnemonic('L');
+		changeLanguageButton.setMnemonic('L');
 
 		newMenuItem = new MenuItems("Novo", "Icons/NewMenuItem.png", "CTRL + N", 'N');
 		newMenuItem.addActionListener(ListenerHandler.openWindowListener());
