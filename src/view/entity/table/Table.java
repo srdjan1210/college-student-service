@@ -26,6 +26,7 @@ public class Table extends JTable {
         setSelectionBackground(new Color(232,57,95));
         setSelectionForeground(Color.white);
         setShowVerticalLines(false);
+        setShowGrid(false);
         
         getTableHeader().setFont(new Font("Segoe UI",Font.BOLD,12));
         getTableHeader().setOpaque(false);
@@ -58,7 +59,26 @@ public class Table extends JTable {
             setRowSorter(rowSorter);
 
         } else if (tableModel instanceof SubjectTableModel) {
+        	setAutoCreateRowSorter(true);
             TableRowSorter<SubjectTableModel> rowSorter = new TableRowSorter<SubjectTableModel>((SubjectTableModel) tableModel);
+            rowSorter.setComparator(0, new Comparator<String>() {
+
+				@Override
+				public int compare(String o1, String o2) {
+					// TODO Auto-generated method stub
+                    int value1 = Integer.parseInt("0" + o1.replaceAll("[^0-9]", ""));
+                    int value2 = Integer.parseInt("0" + o2.replaceAll("[^0-9]", ""));
+                    if (value1 < value2)
+                        return -1;
+                    else if (value1 == value2)
+                        return 0;
+                    else
+                        return 1;
+				}
+            	
+			});
+            
+            
             rowSorter.setRowFilter(new SubjectRowFilter<>());
             rowSorter.setSortsOnUpdates(true);
             setRowSorter(rowSorter);

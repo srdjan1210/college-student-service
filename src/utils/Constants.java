@@ -99,7 +99,7 @@ public class Constants {
     
     public static String[] getDepartmentLabelNames() {
     	 return new String[]{Screen.getInstance().getResourceBundle().getString("lblDepartmentName0"), Screen.getInstance().getResourceBundle().getString("lblDepartmentName1"),
-                 Screen.getInstance().getResourceBundle().getString("lblDepartmentName2")};
+                 Screen.getInstance().getResourceBundle().getString("lblDepartmentName2"), Screen.getInstance().getResourceBundle().getString("lblDepartmentName3")};
     }
 //public static String[] departmentLabelNames = {"Id katedre*", "Naziv katedre*", "Sef katedre*"};
     public static String[] getTakingExamLabelNames() {
