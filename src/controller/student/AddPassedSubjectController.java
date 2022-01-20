@@ -33,13 +33,11 @@ public class AddPassedSubjectController {
     }
 
     public void undoMark(PassedSubjectsButtons reference) {
-        System.out.println("Usli u undo Mark");
 
         StudentEditPassedPanel studPassedPanel = (StudentEditPassedPanel) reference.getParent();
         Table marksTable = studPassedPanel.getPassedSubjectsTable();
-        System.out.println(marksTable);
+
         if (marksTable.getSelectedRow() == -1) {
-            System.out.println("Predmet nije seektovan");
             JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("notSelectedSubject"),
                     Screen.getInstance().getResourceBundle().getString("advice"), JOptionPane.INFORMATION_MESSAGE);
             return;

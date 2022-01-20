@@ -1,5 +1,6 @@
 package model.database.entity_logic;
 
+import model.Department;
 import model.database.DataModel;
 import model.Professor;
 import model.Subject;
@@ -116,6 +117,15 @@ public class ProfessorLogic {
 
     private void removeProfessorDependencies(String id) {
         removeProfessorFromSubjects(id);
+        removeProfessorFromDepartment(id);
+    }
+
+    private void removeProfessorFromDepartment(String id) {
+        ArrayList<Department> departments = dataModel.getDepartments();
+        for(Department department: departments) {
+            if(department.getHeadOfTheDepartment().getIdNumber().equals(id))
+                department.setHeadOfTheDepartment(null);
+        }
     }
 
     private void removeProfessorFromSubjects(String id) {

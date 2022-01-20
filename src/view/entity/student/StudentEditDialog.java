@@ -48,9 +48,11 @@ public class StudentEditDialog extends EditingScreen {
                 }
             }
         });
+        addWindowListener(this);
         tab.getToolbarEditStudentPassed().setESPBAndAverage();
         add(tab);
         setVisible(false);
+
     }
 
     public StudentEditTab getEditStudentTab() {

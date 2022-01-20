@@ -183,17 +183,17 @@ public class StudentLogic {
     public void undoMarkFromStudent(String subjectId, String studentId) {
         Subject subject = dataModel.getSubjectById(subjectId);
         Student student = dataModel.getStudentById(studentId);
-        removeMarkForStudent(subjectId);
+        removeMarkForStudent(subjectId, studentId);
         switchSubjectFromPassedToFailed(subject.getSubjectId(), student);
         switchStudentFromPassedToFailed(student, subject);
         dataModel.notifyEditTable();
     }
 
-    public void removeMarkForStudent(String subjectId) {
+    public void removeMarkForStudent(String subjectId, String studIndex) {
         ArrayList<Mark> marks = dataModel.getMarks();
         for (Iterator<Mark> markIt = marks.iterator(); markIt.hasNext(); ) {
             Mark mark = markIt.next();
-            if (mark.getSubject().getSubjectId().equals(subjectId)) {
+            if (mark.getSubject().getSubjectId().equals(subjectId) && mark.getPassedExam().getIndexNumber().equals(studIndex)) {
                 markIt.remove();
             }
         }

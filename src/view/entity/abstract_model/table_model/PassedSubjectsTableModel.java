@@ -30,8 +30,8 @@ public class PassedSubjectsTableModel extends AbstractTableModel {
     }
 
     public String getSelectedSubjectId(int rowIndex) {
-        int selectedRow = Screen.getInstance().getMainTab().getStudentTable().getSelectedRow();
-        Subject subject = DataModel.getInstance().getStudents().get(selectedRow).getPassedSubjects().get(rowIndex);
+        String studentIndex = Screen.getInstance().getMainTab().getSelectedStudentIndex();
+        Subject subject = DataModel.getInstance().getStudentById(studentIndex).getPassedSubjects().get(rowIndex);
         return subject.getSubjectId();
     }
 

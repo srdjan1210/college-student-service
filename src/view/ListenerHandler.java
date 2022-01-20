@@ -233,7 +233,7 @@ public class ListenerHandler {
                     StudentEditDialog dialog = (StudentEditDialog) parent;
                     dialog.dispose();
                 } else if (parent instanceof ProfessorEditDialog) {
-                	SubjectEditDialog dialog = (SubjectEditDialog) parent;
+                    ProfessorEditDialog dialog = (ProfessorEditDialog) parent;
                 	dialog.dispose();
                 } else if (parent instanceof StudentEnteringMark) {
                 	StudentEnteringMark dialog = (StudentEnteringMark) parent;
