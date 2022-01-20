@@ -44,7 +44,7 @@ public class MenuBar extends JMenuBar {
 		aboutMenuItem = new MenuItems("O nama", "Icons/AboutMenuItem.png", "CTRL + A", 'A');
 		aboutMenuItem.addActionListener(ListenerHandler.openAboutFrame());
 
-		openMenuButton = new JMenu("Otovori");
+		openMenuButton = new JMenu("Otvori");
 
 		ImageIcon imageIcon = ImageUtils.readImageIcon("Icons/OpenMenuItem.png");
 		Image image = imageIcon.getImage().getScaledInstance(13, 13, Image.SCALE_SMOOTH);
