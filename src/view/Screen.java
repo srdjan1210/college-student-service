@@ -95,13 +95,13 @@ public class Screen extends JFrame {
                     tabName = getTabName("Predmeti");
                     statusBar.setTabName(tabName);
                 } else {
-                    activeTab="Department";
+                    activeTab="Katedre";
                     mainTab.setAddingController(new AddDepartmentController());
                     mainTab.setDeleteController(new DeleteDepartmentController());
                     mainTab.setEditingController(new EditDepartmentController());
                     DataModel.getInstance().setTableObserver(mainTab.getDepartmentTable());
                     tabName = getTabName("Katedre");
-                    statusBar.setTabName("Katedre");
+                    statusBar.setTabName(tabName);
                 }
             }
         });
@@ -135,22 +135,15 @@ public class Screen extends JFrame {
 
     public String getTabName(String name) {
         if (name.equals("Studenti")) {
-            if (Locale.getDefault().getCountry() == "US")
-                return "Students";
-            else
-                return "Studenti";
+        	return Screen.getInstance().getResourceBundle().getString("tabStudent");
 
         } else if (name.equals("Profesori")) {
-            if (Locale.getDefault().getCountry() == "US")
-                return "Professors";
-            else
-                return "Profesori";
+        	return Screen.getInstance().getResourceBundle().getString("tabProfessor");
 
         } else if (name.equals("Predmeti")) {
-            if (Locale.getDefault().getCountry() == "US")
-                return "Subjects";
-            else
-                return "Predmeti";
+        	return Screen.getInstance().getResourceBundle().getString("tabSubject");
+        } else if(name.equals("Katedre")) {
+        	return Screen.getInstance().getResourceBundle().getString("tabDepartment");
         }
         return "";
     }
