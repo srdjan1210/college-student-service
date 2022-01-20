@@ -144,12 +144,22 @@ public class ProfessorLogic {
         for (Iterator<Professor> professorIt = dataModel.getProfessors().iterator(); professorIt.hasNext(); ) {
             Professor professor = professorIt.next();
             if (professor.getIdNumber().equals(professorId)) {
-                professor.removeSubject(subjectId);
+                removeSubjectFromProfessor(professor, subjectId);
                 dataModel.notifyEditTable();
                 return true;
             }
         }
         return false;
+    }
+
+    public void removeSubjectFromProfessor(Professor professor, String subjectId) {
+        ArrayList<Subject> subjects = professor.getSubjects();
+        for (int i = 0; i < subjects.size(); i++) {
+            if (subjects.get(i).getSubjectId().equals(subjectId)) {
+                subjects.remove(i);
+                return;
+            }
+        }
     }
 
 }

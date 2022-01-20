@@ -79,7 +79,7 @@ public class DataReader {
 
     private Professor loadProfessorObject(String[] data) {
         return new Professor(data[0], data[1], LocalDate.parse(data[2]), convertStringToAddress(data[3]), data[4],
-                data[5], loadAddressObject(data[6].split(":")), data[7], data[8], Integer.parseInt(data[9]));
+                data[5], loadAddressObject(data[6].split(":")), data[7], data[8], Integer.parseInt(data[9]), data[10]);
     }
 
     private Student loadStudentObject(String[] data) {

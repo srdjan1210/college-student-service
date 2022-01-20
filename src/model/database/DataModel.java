@@ -52,8 +52,6 @@ public class DataModel {
             reader.readProfessorSubjectsFromFile(basepath + "profesor_predmeti.txt");
             studLogic.calculateAverageForStudents();
 
-
-
         } catch (Exception err) {
             err.printStackTrace();
         }

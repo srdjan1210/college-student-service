@@ -15,9 +15,10 @@ public class Professor {
     private String title;
     private int workingYears;
     private ArrayList<Subject> subjects;
+    private String departmentId;
 
     public Professor(String firstName, String lastName, LocalDate birthDay, Address address, String phoneNumber,
-                     String emailAddress, Address officeAddress, String idNumber, String title, int workingYears) {
+                     String emailAddress, Address officeAddress, String idNumber, String title, int workingYears, String department) {
         super();
         this.lastName = lastName;
         this.firstName = firstName;
@@ -29,6 +30,7 @@ public class Professor {
         this.idNumber = idNumber;
         this.title = title;
         this.workingYears = workingYears;
+        this.departmentId = department;
         this.subjects = new ArrayList<Subject>();
     }
 
@@ -124,14 +126,14 @@ public class Professor {
         this.subjects.add(subject);
     }
 
-    public void removeSubject(String subjectId) {
-        for (int i = 0; i < subjects.size(); i++) {
-            if (subjects.get(i).getSubjectId().equals(subjectId)) {
-                subjects.remove(i);
-                return;
-            }
-        }
+    public String getDepartment() {
+        return departmentId;
     }
+
+    public void setDepartment(String department) {
+        this.departmentId = department;
+    }
+
 
     public Object getDataAt(int index) {
         switch (index) {
@@ -152,7 +154,7 @@ public class Professor {
     public String toString() {
         return firstName + "," + lastName + "," + birthDay + "," + (address != null ? address.toString():"null") + ","
                 + phoneNumber + "," + emailAddress + "," + (officeAddress != null ? address.toString():"null") + ","
-                + idNumber + "," + title + "," + workingYears;
+                + idNumber + "," + title + "," + workingYears + "," + departmentId;
 
     }
 }
