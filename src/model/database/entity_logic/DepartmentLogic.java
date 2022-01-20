@@ -22,7 +22,6 @@ public class DepartmentLogic {
     }
     public ArrayList<Professor> filterProfessorForHeadOfDep(String depId) {
         ArrayList<Professor> filtered = new ArrayList<>();
-//        ArrayList<Professor> professors = dataModel.getProfessors();
         Department department = getDepartmentById(depId);
         for(Professor professor : department.getProfessorsList()) {
             if(professor.getWorkingYears() > 5 && (professor.getTitle().toLowerCase().equals("redovni_profesor") || professor.getTitle().toLowerCase().equals("vanredni_profesor"))) {
