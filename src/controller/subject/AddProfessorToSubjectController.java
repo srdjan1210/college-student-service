@@ -5,6 +5,8 @@ import view.entity.abstract_model.list_model.ProfessorListModel;
 import view.Screen;
 import view.entity.subject.SubjectEditDialog;
 
+import java.awt.Color;
+
 import javax.swing.*;
 
 public class AddProfessorToSubjectController {
@@ -15,6 +17,9 @@ public class AddProfessorToSubjectController {
 
     public void addNewProfessorToSubject(SubjectEditDialog editDialog) {
         JList selection = new JList(new ProfessorListModel());
+        selection.setSelectionBackground(new Color(232,57,95));
+        selection.setSelectionForeground(Color.white);
+        
         int result = JOptionPane.showConfirmDialog(null, new JScrollPane(selection), Screen.getInstance().getResourceBundle().getString("chooseSubject"),
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 

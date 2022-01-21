@@ -16,6 +16,8 @@ import view.entity.EditingScreen;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import javax.xml.crypto.Data;
+
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class EditDepartmentController implements IEditingController {
@@ -78,6 +80,8 @@ public class EditDepartmentController implements IEditingController {
         String depId = Screen.getInstance().getMainTab().getSelectedDepartmentId();
         ArrayList<Professor> filteredProfs =  DataModel.getInstance().filterProfessorForHeadOfDep(depId);
         JList lista = new JList(new DepartmentListModel(filteredProfs));
+        lista.setSelectionBackground(new Color(232,57,95));
+        lista.setSelectionForeground(Color.white);
         int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), Screen.getInstance().getResourceBundle().getString("editHeadOfDepartmentTitle"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == 0 && lista.getSelectedIndex() != -1) {
             DepartmentListModel model = (DepartmentListModel) lista.getModel();
@@ -91,6 +95,8 @@ public class EditDepartmentController implements IEditingController {
 
     public void addProfessorToDepartment(DepartmentEditDialog departmentEdit) {
         JList lista = new JList(new DepartmentListModel(DataModel.getInstance().filterProfessorsWithoutDepartment()));
+        lista.setSelectionBackground(new Color(232,57,95));
+        lista.setSelectionForeground(Color.white);
         int result = JOptionPane.showConfirmDialog(null, new JScrollPane(lista), Screen.getInstance().getResourceBundle().getString("editHeadOfDepartmentTitle"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == 0 && lista.getSelectedIndex() != -1) {
             JOptionPane.showMessageDialog(null, Screen.getInstance().getResourceBundle().getString("professorToList"));

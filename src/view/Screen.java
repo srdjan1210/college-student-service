@@ -63,6 +63,14 @@ public class Screen extends JFrame {
         // Tables
 
         mainTab = new MainTab(new AddStudentController(), new EditingStudentController(), new DeleteStudentController());
+        
+        mainTab.setForegroundAt(mainTab.getSelectedIndex(),Color.black);
+        mainTab.setBackgroundAt(1,new Color(32,136,203));
+        mainTab.setForegroundAt(1,Color.white);
+        mainTab.setBackgroundAt(2,new Color(32,136,203));
+        mainTab.setForegroundAt(2,Color.white);
+        mainTab.setBackgroundAt(3,new Color(32,136,203));
+        mainTab.setForegroundAt(3,Color.white);
 
         mainTab.addChangeListener(new ChangeListener() {
 
@@ -78,6 +86,14 @@ public class Screen extends JFrame {
                     DataModel.getInstance().setTableObserver(mainTab.getStudentTable());
                     tabName = getTabName("Studenti");
                     statusBar.setTabName(tabName);
+                    
+                    mainTab.setForegroundAt(mainTab.getSelectedIndex(),Color.black);
+                    mainTab.setBackgroundAt(1,new Color(32,136,203));
+                    mainTab.setForegroundAt(1,Color.white);
+                    mainTab.setBackgroundAt(2,new Color(32,136,203));
+                    mainTab.setForegroundAt(2,Color.white);
+                    mainTab.setBackgroundAt(3,new Color(32,136,203));
+                    mainTab.setForegroundAt(3,Color.white);
                 } else if (mainTab.getSelectedIndex() == 1) {
                     activeTab = "Profesori";
                     mainTab.setAddingController(new AddProfessorController());
@@ -86,6 +102,14 @@ public class Screen extends JFrame {
                     DataModel.getInstance().setTableObserver(mainTab.getProfessorTable());
                     tabName = getTabName("Profesori");
                     statusBar.setTabName(tabName);
+                    
+                    mainTab.setForegroundAt(mainTab.getSelectedIndex(),Color.black);
+                    mainTab.setBackgroundAt(0,new Color(32,136,203));
+                    mainTab.setForegroundAt(0,Color.white);
+                    mainTab.setBackgroundAt(2,new Color(32,136,203));
+                    mainTab.setForegroundAt(2,Color.white);
+                    mainTab.setBackgroundAt(3,new Color(32,136,203));
+                    mainTab.setForegroundAt(3,Color.white);
                 } else if(mainTab.getSelectedIndex() == 2) {
                     activeTab = "Predmeti";
                     mainTab.setAddingController(new AddSubjectController());
@@ -94,6 +118,14 @@ public class Screen extends JFrame {
                     DataModel.getInstance().setTableObserver(mainTab.getSubjectTable());
                     tabName = getTabName("Predmeti");
                     statusBar.setTabName(tabName);
+                    
+                    mainTab.setForegroundAt(mainTab.getSelectedIndex(),Color.black);
+                    mainTab.setBackgroundAt(1,new Color(32,136,203));
+                    mainTab.setForegroundAt(1,Color.white);
+                    mainTab.setBackgroundAt(0,new Color(32,136,203));
+                    mainTab.setForegroundAt(0,Color.white);
+                    mainTab.setBackgroundAt(3,new Color(32,136,203));
+                    mainTab.setForegroundAt(3,Color.white);
                 } else {
                     activeTab="Katedre";
                     mainTab.setAddingController(new AddDepartmentController());
@@ -102,6 +134,14 @@ public class Screen extends JFrame {
                     DataModel.getInstance().setTableObserver(mainTab.getDepartmentTable());
                     tabName = getTabName("Katedre");
                     statusBar.setTabName(tabName);
+                    
+                    mainTab.setForegroundAt(mainTab.getSelectedIndex(),Color.black);
+                    mainTab.setBackgroundAt(0,new Color(32,136,203));
+                    mainTab.setForegroundAt(0,Color.white);
+                    mainTab.setBackgroundAt(1,new Color(32,136,203));
+                    mainTab.setForegroundAt(1,Color.white);
+                    mainTab.setBackgroundAt(2,new Color(32,136,203));
+                    mainTab.setForegroundAt(2,Color.white);
                 }
             }
         });

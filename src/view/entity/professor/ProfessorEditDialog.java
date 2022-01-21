@@ -25,15 +25,27 @@ public class ProfessorEditDialog extends EditingScreen {
         setLocationRelativeTo(null);
         setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
         setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
+        
         tab = new ProfessorEditTab();
+        tab.setForegroundAt(tab.getSelectedIndex(),Color.black);
+        tab.setBackgroundAt(1,new Color(32,136,203));
+        tab.setForegroundAt(1,Color.white);
+
         tab.addChangeListener(new ChangeListener() {
 
             @Override
             public void stateChanged(ChangeEvent e) {
                 // TODO Auto-generated method stub
                 if (tab.getSelectedIndex() == 0) {
+                   tab.setForegroundAt(tab.getSelectedIndex(),Color.black);
+                   tab.setBackgroundAt(1,new Color(32,136,203));
+                   tab.setForegroundAt(1,Color.white);
 
                 } else if (tab.getSelectedIndex() == 1) {
+                    tab.setForegroundAt(tab.getSelectedIndex(),Color.black);
+                    tab.setBackgroundAt(0,new Color(32,136,203));
+                    tab.setForegroundAt(0,Color.white);
+                    
                     DataModel.getInstance().setEditTableObserver(tab.getEditSubjects().getProfessorSubjectsTable());
                 }
 

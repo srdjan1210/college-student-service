@@ -20,6 +20,8 @@ public class AddFailedSubjectController {
             return;
         }
         JList selektor = new JList(new SubjectListModel(subjects));
+        selektor.setSelectionBackground(new Color(232,57,95));
+        selektor.setSelectionForeground(Color.white);
         selektor.setPreferredSize(new Dimension(100, 300));
         int result = JOptionPane.showConfirmDialog(null, new JScrollPane(selektor), Screen.getInstance().getResourceBundle().getString("chooseSubject"), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
