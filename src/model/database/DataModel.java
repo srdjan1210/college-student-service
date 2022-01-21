@@ -49,7 +49,8 @@ public class DataModel {
             marks = reader.readEntityFromFile(basepath + "ocene.txt", "Mark");
             reader.readStudentSubjectsFromFile(basepath + "nepolozeni.txt", "nepolozeni");
             reader.readStudentSubjectsFromFile(basepath + "polozeni.txt", "polozeni");
-            reader.readProfessorSubjectsFromFile(basepath + "profesor_predmeti.txt");
+            subjLogic.loadPassedAndNotPassed();
+            profLogic.loadSubjectsForProfessor();
             depLogic.loadProfessorsToDepartments();
             studLogic.calculateAverageForStudents();
         } catch (Exception err) {

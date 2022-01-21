@@ -26,6 +26,8 @@ public class EditingSubjectController implements IEditingController {
             Subject subject = getEditedSubject(dialog);
             DataModel model = DataModel.getInstance();
             model.setEditedSubject(subjectIndexBeforeEdit, subject);
+            Professor professor = subject.getProfessor();
+            professor.addSubject(subject);
             JOptionPane.showMessageDialog(dialog, Screen.getInstance().getResourceBundle().getString("successEditSubject"));
             dialog.dispose();
         } catch (Exception e) {

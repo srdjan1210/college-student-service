@@ -5,7 +5,6 @@
 ### Eclipse ###
 *.iml
 out/
-src/resources/
 .metadata
 *.iml
 bin/

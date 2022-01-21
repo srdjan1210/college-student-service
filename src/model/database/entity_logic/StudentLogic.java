@@ -72,13 +72,13 @@ public class StudentLogic {
 
     private void removeStudentFromPassed(String index) {
         ArrayList<Subject> subjects = dataModel.getSubjects();
-        ArrayList<Student> students = dataModel.getStudents();
         for (Subject subject : subjects) {
             ArrayList<Student> passed = subject.getStudentsPassed();
             for (Iterator<Student> studIt = passed.iterator(); studIt.hasNext(); ) {
                 Student student = studIt.next();
                 if (student.getIndexNumber().equals(index)) {
-                    students.remove(student);
+                    studIt.remove();
+                    return;
                 }
             }
         }
@@ -92,7 +92,8 @@ public class StudentLogic {
             for (Iterator<Student> studIt = failed.iterator(); studIt.hasNext(); ) {
                 Student student = studIt.next();
                 if (student.getIndexNumber().equals(index)) {
-                    students.remove(student);
+                    studIt.remove();
+                    return;
                 }
             }
         }
@@ -113,6 +114,7 @@ public class StudentLogic {
         for (Student student : students) {
             if (student.getIndexNumber().equals(index)) {
                 student.addFailedSubject(subject);
+                subject.getStudentsFailed().add(student);
                 //  dataModel.getFailedSubjects().add(subject);
                 dataModel.notifyEditTable();
             }
@@ -150,11 +152,23 @@ public class StudentLogic {
             Student student = studentIt.next();
             if (student.getIndexNumber().equals(studentId)) {
                 student.removeFailedSubject(subjectId);
+                removeStudentFromFailedInSubject(studentId, subjectId);
                 dataModel.notifyEditTable();
                 return true;
             }
         }
         return false;
+    }
+
+    public void removeStudentFromFailedInSubject(String studentId, String subjectId) {
+        Subject subject = dataModel.getSubjectById(subjectId);
+        for(Iterator<Student> studIt = subject.getStudentsFailed().iterator(); studIt.hasNext();) {
+            Student student = studIt.next();
+            if(student.getIndexNumber().equals(studentId)) {
+                studIt.remove();
+            }
+        }
+
     }
 
     public boolean addPassedSubjectToStudent(String index, String subjectId) {
@@ -166,18 +180,6 @@ public class StudentLogic {
             }
         }
         return false;
-    }
-
-    public void addMarkToPassedSubject(String index, String subjectId, int markValue) {
-        Subject subject = dataModel.getSubjectById(subjectId);
-        Student student = dataModel.getStudentById(index);
-        ArrayList<Mark> marks = dataModel.getMarks();
-        for (Iterator<Mark> markIt = marks.iterator(); markIt.hasNext(); ) {
-            Mark mark = markIt.next();
-            if (mark.getSubject().getSubjectId().equals(subjectId)) {
-                markIt.remove();
-            }
-        }
     }
 
     public void undoMarkFromStudent(String subjectId, String studentId) {

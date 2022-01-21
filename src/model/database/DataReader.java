@@ -20,8 +20,7 @@ public class DataReader {
 
     public <T> ArrayList<T> readEntityFromFile(String fileName, String className) throws FileNotFoundException {
         ArrayList<T> entityList = new ArrayList<T>();
-        //Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-        Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");	
+        Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");
         while (scanner.hasNextLine()) {
             String scannedData = scanner.nextLine();
             if(scannedData.trim().equals("")) return entityList;
@@ -48,8 +47,7 @@ public class DataReader {
     }
 
     public void readStudentSubjectsFromFile(String fileName, String listName) throws FileNotFoundException {
-        //Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-    	Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");	
+    	Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");
         while (scanner.hasNextLine()) {
             String scannedData = scanner.nextLine();
             String[] data = splitScannedData(scannedData);
@@ -65,8 +63,7 @@ public class DataReader {
 
 
     public void readProfessorSubjectsFromFile(String fileName) throws FileNotFoundException {
-        //Scanner scanner = new Scanner(DataUtils.readDataFile(fileName));
-    	Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");	
+    	Scanner scanner = new Scanner(new FileInputStream(fileName), "UTF-8");
     	while (scanner.hasNextLine()) {
             String rowData = scanner.nextLine();
             String[] dataSplit = rowData.split(",");

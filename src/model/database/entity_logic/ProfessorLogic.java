@@ -88,7 +88,6 @@ public class ProfessorLogic {
             if (!isSubjectFoundInList(subject.getSubjectId(), professorSubjects))
                 subjectsForAdding.add(subject);
         }
-        System.out.println(subjectsForAdding);
         return subjectsForAdding;
     }
 
@@ -170,6 +169,21 @@ public class ProfessorLogic {
                 return;
             }
         }
+    }
+
+    public void loadSubjectsForProfessor() {
+        ArrayList<Subject> subjects = dataModel.getSubjects();
+        ArrayList<Professor> professors = dataModel.getProfessors();
+
+        for(Professor professor: professors) {
+            for(Subject subject: subjects) {
+                if(subject.getProfessor() == null) continue;
+                if(subject.getProfessor().getIdNumber().equals(professor.getIdNumber())) {
+                    professor.addSubject(subject);
+                }
+            }
+        }
+
     }
 
 }

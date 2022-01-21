@@ -115,5 +115,19 @@ public class SubjectLogic {
         subject.getStudentsPassed().add(student);
     }
 
+    public void loadPassedAndNotPassed() {
+        ArrayList<Student> students = dataModel.getStudents();
+        for(Student student: students) {
+            for(Subject subject: student.getPassedSubjects()) {
+                subject.getStudentsPassed().add(student);
+            }
+            for(Subject subject: student.getFailedSubjects()) {
+                subject.getStudentsFailed().add(student);
+            }
+        }
+    }
+
+
+
 
 }
